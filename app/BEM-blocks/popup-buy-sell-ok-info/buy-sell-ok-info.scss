@@ -1,0 +1,62 @@
+.buy-sell-ok-info__positioning-wrapper {
+  width                : 100vw;
+  height               : 100vh;
+  top                  : 0;
+  left                 : 0;
+  position             : absolute;
+  z-index              : -1;
+  background-color     : rgba(0,0,0,0);
+}
+.buy-sell-ok-info {
+  width                : 120px;
+  height               : 20px;
+  background-color     : #1d2a38;
+  border               : 1px solid white;
+  border-radius        : 6px;
+  box-shadow           : 0 0 10px white;
+  padding              : 26px;
+  position             : absolute;
+  top                  : -10%;
+  left                 : 50%;
+  transform            : translate(-50%,-50%);
+  overflow             : hidden;
+  &__close-btn {
+    width              : 22px;
+    height             : 22px;
+    position           : absolute;
+    z-index            : 9999;
+    top                : 3px;
+    right              : 3px;
+    cursor             : pointer;
+  }
+  &__close-btn-line1 {
+    width              : 0px;
+    height             : 2px;
+    background-color   : dodgerblue;
+    position           : absolute;
+    top                : 50%;
+    left               : 50%;
+    transform          : translate(-50%, -50%) rotate(45deg);
+  }
+  &__close-btn-line2 {
+    @extend .buy-sell-ok-info__close-btn-line1;
+    transform          : translate(-50%, -50%) rotate(-45deg);
+  }
+  &__info-string {
+    width              : 100%;
+    margin-bottom      : 10px;
+    padding            : 12px;
+    display            : none;
+    text-align         : center;
+    opacity            : 0;
+    transition         : opacity 1s;
+  }
+  &__close-btn-ok {
+    display            : none;
+    position           : absolute;
+    z-index            : 9999;
+    left               : 50%;
+    bottom             : -30px;
+    transform          : translate(-50%, 0);
+  }
+}

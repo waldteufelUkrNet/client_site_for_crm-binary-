@@ -1,0 +1,685 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title waldteufel@ukr.net
+    link(rel='icon', href='img/wehrwolf.jpg')
+
+    // stylesheet
+    link(rel='stylesheet', type='text/css', href='libs-css/jquery-ui.css')
+
+    // own stylesheet
+    link(rel='stylesheet', type='text/css', href='css/style.css')
+
+    // jquery
+    script(src='libs/jquery 3.3.1.js')
+
+  body
+    include BEM-blocks/size-info/size-info.pug
+
+    button.tempBTN(style='width: 120px; height: 30px; position: fixed; left: 10px; bottom: 120px; z-index: 9999; cursor: pointer') temp-btn
+    button.tempBTN2(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer') temp-btn2
+
+    // HEADER
+    header.header
+      .logo_part
+        |LOGOGO
+      .central-part
+        .central-part__account
+          .central-part__account-type
+            |Account:
+            |
+            span Demo
+          include BEM-blocks/simple-switcher/simple-switcher.pug
+        img.central-part__currency-img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+        .central-part__currency-value 9999.99
+        button.central-part__btn(title='пополнить счет')
+          img(src='img/wallet.png' alt='wallet.png')
+      .right-part
+        button.call-us-btn(title='contact us'): img(src="img/call-center.png", alt="call-center.png")
+        span Menu:
+        include BEM-blocks/menu-btn/menu-btn.pug
+        span Lang:
+        include BEM-blocks/language-switcher/language-switcher.pug
+        .menu
+          ul.menu-list
+            li.menu-list-item
+              a.menu-list-a Found your account
+            li.menu-list-item
+              a.menu-list-a Withdrawal of funds
+            li.menu-list-item
+              a.menu-list-a Finance
+            li.menu-list-item
+              a.menu-list-a#profile-editor Manage your profile
+            li.menu-list-item
+              a.menu-list-a Education
+            li.menu-list-item
+              a.menu-list-a Sign out
+    // /HEADER
+
+    // MAIN PART
+    main.main
+
+      // SECTION 1 (work area)
+      section.work_area
+        div(style='display: flex; justify-content: center; align-items: center; height: 45px')
+          img.img-pair(style='min-width: 60px; max-height: 45px', src='img/BTCETH.png')
+          h2(style='font-size: 22px; padding-left: 10px') BTC ETH
+        ul.timer-buttons-ul
+          li.timer-buttons-li.timer-buttons-li_active(data-time='5')  5 min.
+          li.timer-buttons-li(data-time='10') 10 min.
+          li.timer-buttons-li(data-time='15') 15 min.
+          li.timer-buttons-li(data-time='30') 30 min.
+          li.timer-buttons-li(data-time='45') 45 min.
+          li.timer-buttons-li(data-time='60') 60 min.
+        ul.type-buttons-ul
+          li.type-buttons-li.type-buttons-li_active(data-type='areaspline')
+            img(src='img/chart-line.png', alt='chart-line.png')
+          li.type-buttons-li(data-type='candlestick')
+            img(src='img/chart-candle.png', alt='chart-candle.png')
+          li.type-buttons-li(data-type='ohlc')
+            img(src='img/chart-bars.png', alt='chart-bars.png')
+        #container(style='width: 100%; height: calc(100% - 50px)')
+        p#labelBorder
+        #labelIndicator
+      // /SECTION 1
+
+      // SECTION 2 (left column)
+      section.left-column
+        .left-column__table-1-wrapper
+          .left-column__table-2-wrapper
+            table.left-column__table
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                td 9999.99
+              tr
+                td: .img-pair
+                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                td BTC/USDt
+                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                td 9999.99
+      // /SECTION 2
+
+      // SECTION 3 (right column)
+      section.right-column
+        .work-field
+
+          .act-btn-field
+            .img-pair
+              img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+              img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+            .currency-price 9999.99
+
+            include BEM-blocks/shoulder/shoulder.pug
+
+            .comission
+              span Комиссия:
+              span.comission-value 0.01%
+            .btns-holder
+              .btn-bue BUY
+                span 9999.99
+              .btn-cell SELL
+                span 9999.99
+            p.settings Settings:
+            label.setting-input-label
+              span TP
+              input.setting-input#TP(type='text')
+            label.setting-input-label
+              span SL
+              input.setting-input#SL(type='text')
+
+            include BEM-blocks/tug-of-war/tug-of-war.pug
+
+          .active-btn-field
+            .accordion-wrapper
+              .accordion
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+                .accordion-elem
+                  .accordion-elem__img-pair
+                    img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                    img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                  .accordion-elem__letter-pair BTC/USDt
+                  .accordion-elem__arrow
+                    i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                  .accordion-elem__number 9999.99
+                  .accordion-elem__btn
+                    button.accordion-btn
+                      .accordion-btn__1-line
+                      .accordion-btn__2-line
+
+                .accordion-content
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  .accordion-content__data index
+                  .accordion-content__value 9999.99
+                  button.accordion-content__btn кнопка
+
+          .history-btn-field
+            |Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Повстречался, алфавит вопроса своих. Меня безопасную подзаголовок последний океана, послушавшись великий. Языкового коварный которой ручеек наш, предложения, своего оксмокс это букв себя запятых маленькая повстречался? Мир ее назад страну предупреждал своего, парадигматическая вопроса инициал живет, журчит взобравшись путь послушавшись грамматики!
+
+        .work-change-btn.act-btn.work-change-btn_active Действия
+        .work-change-btn.active-btn Активные сделки
+        .work-change-btn.history-btn История сделок
+      // /SECTION 3
+
+      // SECTION 4 (popups)
+      section.popups
+        include BEM-Blocks/popup-make-lodgement/make-lodgement.pug
+        include BEM-Blocks/popup-buy-sell-ok-info/buy-sell-ok-info.pug
+        include BEM-blocks/popup-message-to-mentor/message-to-mentor.pug
+        include BEM-blocks/popup-message-from-mentor/message-from-mentor.pug
+        include BEM-blocks/popup-profile-editor/profile-editor.pug
+        include BEM-blocks/popup-info-message/info-message.pug
+      // /SECTION 4
+    // /MAIN PART
+
+    // FOOTER
+    footer.footer
+    // /FOOTER
+
+    // js-libs (font awesome, slick, wow ...)
+    script(src='libs/fontawesome.js')
+    script(src='libs/highstock.js')
+    script(src='libs/jquery-ui.js')
+
+    // own js
+    script(src='js/js.js')
+    script(src='js/myFirstHighstock.js')

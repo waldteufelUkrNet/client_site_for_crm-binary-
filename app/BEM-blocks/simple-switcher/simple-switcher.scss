@@ -1,0 +1,49 @@
+.simple-switcher {
+  position        : relative;
+  margin          : 0 auto;
+  width           : 70px;
+  height          : 18px;
+  border-radius   : 4px;
+  font-size       : 13px;
+  background-color: white;
+  color           : dodgerblue;
+  display         : flex;
+  justify-content : space-around;
+}
+
+.simple-switcher span {
+  display         : block;
+  cursor          : default;
+}
+
+.simple-switcher__thumb {
+  position        : absolute;
+  top             : 0;
+  left            : 0;
+  cursor          : pointer;
+  background-color: lightgrey;
+  width           : 35px;
+  height          : 18px;
+  border-radius   : 4px;
+}
+
+.simple-switcher__thumb-line {
+  width           : 1px;
+  height          : 10px;
+  background-color: #1d2a38;
+  position        : absolute;
+  top             : 50%;
+  transform       : translate(0, -50%);
+}
+
+.simple-switcher__thumb-line-1 {
+  left            : 35%;
+}
+
+.simple-switcher__thumb-line-2 {
+  left            : 50%;
+}
+
+.simple-switcher__thumb-line-3 {
+  left            : 65%;
+}

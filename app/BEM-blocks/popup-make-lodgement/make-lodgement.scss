@@ -1,0 +1,97 @@
+.make-lodgement__positioning-wrapper {
+  width                  : 100vw;
+  height                 : 100vh;
+  top                    : 0;
+  left                   : 0;
+  position               : absolute;
+  z-index                : -1;
+  background-color       : rgba(0,0,0,0);
+}
+.make-lodgement {
+  width                  : 120px;
+  height                 : 20px;
+  background-color       : #1d2a38;
+  border                 : 1px solid white;
+  border-radius          : 6px;
+  box-shadow             : 0 0 10px white;
+  padding                : 26px;
+  position               : absolute;
+  top                    : -10%;
+  left                   : 50%;
+  transform              : translate(-50%,-50%);
+  overflow               : hidden;
+  &__close-btn {
+    width                : 22px;
+    height               : 22px;
+    position             : absolute;
+    z-index              : 9999;
+    top                  : 3px;
+    right                : 3px;
+    cursor               : pointer;
+  }
+  &__close-btn-line1 {
+    width                : 0px;
+    height               : 2px;
+    background-color     : dodgerblue;
+    position             : absolute;
+    top                  : 50%;
+    left                 : 50%;
+    transform            : translate(-50%, -50%) rotate(45deg);
+  }
+  &__close-btn-line2 {
+    @extend .make-lodgement__close-btn-line1;
+    transform            : translate(-50%, -50%) rotate(-45deg);
+  }
+  &__pay-system {
+    width                : 100%;
+    height               : 50px;
+    line-height          : 50px;
+    border               : 1px solid white;
+    margin-bottom        : 10px;
+    border-radius        : 6px;
+    padding              : 0px 12px;
+    position             : relative;
+    cursor               : pointer;
+    display              : none;
+    &:nth-of-type(odd) {
+      left               : -110%;
+    }
+    &:nth-of-type(even) {
+      left               : 110%;
+    }
+    &:hover {
+      padding-left       : 50px;
+      letter-spacing     : 6px;
+    }
+  }
+  &__pay-img {
+    height               : 30px;
+    width                : auto;
+    position             : absolute;
+    top                  : 10px;
+    right                : 10px;
+  }
+  &__triangle {
+    border-right         : 12px solid red;
+    border-top           : 8px solid transparent;
+    border-bottom        : 8px solid transparent;
+    position             : absolute;
+    top                  : 74px;
+    right                : -12px;
+  }
+  &__pay-block form {
+    display              : grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap             : 30px;
+    overflow             : hidden;
+    height               : 0px;
+    input {
+      height             : 30px;
+      border             : 1px solid #1d2a38;
+      font-family        : rcl;
+      font-size          : 16px;
+      padding-left       : 6px;
+      margin-bottom      : 10px;
+    }
+  }
+}

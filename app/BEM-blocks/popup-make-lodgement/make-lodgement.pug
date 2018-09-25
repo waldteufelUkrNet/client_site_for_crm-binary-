@@ -1,0 +1,26 @@
+// ↓↓↓ BEM-blocks: make-lodgement (start) ↓↓↓
+
+.make-lodgement__positioning-wrapper
+  .make-lodgement
+    .make-lodgement__close-btn
+      .make-lodgement__close-btn-line1
+      .make-lodgement__close-btn-line2
+    .make-lodgement__pay-system MasterCard
+      img.make-lodgement__pay-img(src='img/mastercard.png')
+    .make-lodgement__pay-system VISA
+      img.make-lodgement__pay-img(src='img/visa.png')
+    .make-lodgement__triangle
+    .make-lodgement__pay-block
+      form.make-lodgement-MasterCard(action='#' method='#' name='make-lodgement-MasterCard')
+        input(type='text')
+        button#make-lodgement-MasterCard-btn.popup-ok-btn(type='submit') оплатить
+      form.make-lodgement-VISA(action='#' method='#' name='make-lodgement-VISA')
+        input(type='text')
+        button#make-lodgement-VISA-btn.popup-ok-btn(type='submit') оплатить
+
+style
+  include make-lodgement.css
+script
+  include ../minjs/popup-make-lodgement/make-lodgement.js
+
+// ↑↑↑ BEM-blocks: make-lodgement (end) ↑↑↑

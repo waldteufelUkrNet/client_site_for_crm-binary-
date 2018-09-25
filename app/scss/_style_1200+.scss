@@ -1,0 +1,548 @@
+@media only screen and (min-width: 1px) {
+  body {
+    width           : 100vw;
+    height          : 100vh;
+    overflow        : hidden;
+    background-color: $bgColor;
+    color           : $overColor;
+    border          : 2px solid black;
+    font-family     : rcl;
+    font-size       : 16px;
+  }
+  /* ↓↓↓ HEADER ↓↓↓ */
+  .header {
+    width          : 100%;
+    height         : 10%;
+    border-bottom  : 2px solid black;
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    padding        : 10px 15px;
+    .logo_part {
+      font-family  : rb;
+      font-size    : 42px;
+      color        : gold;
+    }
+    .central-part {
+      display        : flex;
+      justify-content: center;
+      align-items    : center;
+      &__account {
+      	width : 92px;
+      	margin: 0 20px;
+      }
+      &__account-type {
+        margin-bottom: 6px;
+      }
+      &__currency-img {
+      	height: 20px;
+      	margin: 0 10px;
+      }
+      &__currency-value {}
+      &__btn {
+        height          : 6vh;
+        cursor          : pointer;
+        background-color: transparent;
+        border          : none;
+        margin          : 0 20px;
+        img {
+          height: 40px;
+        }
+      }
+    }
+    .right-part {
+      position    : relative;
+      display     : flex;
+      align-items : center;
+      span {
+        display   : block;
+        margin    : 0 6px;
+      }
+      .menu {
+        position        : absolute;
+        z-index         : 8777;
+        top             : 110%;
+        width           : 100%;
+        background-color: black;
+        padding         : 0px 0px;
+        border          : 0px solid darkgrey;
+        overflow        : hidden;
+        height          : 0px;
+        .menu-list-a {
+          display    : block;
+          color      : $overColor;
+          height     : 30px;
+          width      : 100%;
+          position   : relative;
+          left       : 100%;
+          line-height: 30px;
+          padding    : 0px 10px;
+          transition : background-color .5s;
+          cursor     : pointer;
+          &:hover {
+            background-color: $bgColor;
+            transition      : background-color .5s;
+          }
+        }
+      }
+      .call-us-btn {
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: 0;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        top: 3px;
+        img {
+          height: 25px;
+        }
+      }
+    }
+  }
+  /* ↑↑↑ /HEADER ↑↑↑ */
+
+  /* ↓↓↓ MAIN PART ↓↓↓ */
+  .main {
+    width  : 100%;
+    height : 90%;
+    display: flex;
+
+    /* ↓↓↓ SECTION 1 (work area) ↓↓↓ */
+    .work_area {
+      order    : 2;
+      flex-grow: 1;
+      width    : 60%;
+      border   : {
+        left   : 2px solid black;
+        right  : 2px solid black;
+      }
+      padding: 15px;
+      position: relative;
+      .timer-buttons-ul {
+        display: inline-block;
+        position: absolute;
+        z-index: 1111;
+        top: 46px;
+        left: 25px;
+        .timer-buttons-li {
+          display: inline-block;
+          min-width: 45px;
+          font-size: 16px;
+          border: 1px solid silver;
+          border-radius: 4px;
+          padding: 2px 4px;
+          margin-right: 3px;
+          cursor: pointer;
+          background-color: transparent;
+          transition: background-color .5s, border-color .5s;
+          &:hover {
+            background-color: dodgerblue;
+            border-color: dodgerblue;
+          }
+          &_active {
+            background-color: dodgerblue;
+            border-color: dodgerblue;
+          }
+        }
+      }
+      .type-buttons-ul {
+        display: inline-block;
+        position: absolute;
+        z-index: 1111;
+        top: 32px;
+        right: 55px;
+        .type-buttons-li {
+          display: inline-block;
+          position: relative;
+          margin-left: 3px;
+          width: 36px;
+          height: 36px;
+          font-size: 16px;
+          border: 1px solid silver;
+          border-radius: 4px;
+          cursor: pointer;
+          background-color: transparent;
+          transition: background-color .5s, border-color .5s;
+          &:hover {
+            background-color: dodgerblue;
+            border-color: dodgerblue;
+          }
+          &_active {
+            background-color: dodgerblue;
+            border-color: dodgerblue;
+          }
+          img {
+            width: 30px;
+            height: 30px;
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+          }
+        }
+      }
+      .highcharts-point-up {
+        fill: dodgerblue !important;
+        stroke: dodgerblue !important;
+      }
+
+      .highcharts-point-down {
+        fill: red !important;
+        stroke: red !important;
+      }
+
+      @keyframes lightbulb {
+        0% {background-color: yellow; border-color: #3d4a58;}
+        100% {background-color: #3d4a58; border-color: yellow;}
+      }
+    }
+    #labelBorder {
+      position: fixed;
+      background-color: lightgrey;
+      padding: 0 3px;
+      font-family: 'Lucida Sans Unicode';
+      font-size: 11px;
+      line-height: 18px;
+      color: black;
+    }
+    #labelIndicator {
+      position: fixed;
+      border-radius: 50px;
+      animation-name: lightbulb;
+      animation-duration: .5s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+    /* ↑↑↑ /SECTION 1 (work area) ↑↑↑ */
+
+    /* ↓↓↓ SECTION 2 (left column) ↓↓↓ */
+    .left-column {
+      order    : 1;
+      flex-grow: 0;
+      width    : 250px;
+      padding  : 15px 10px 10px 15px;
+      overflow : hidden;
+      &__table-1-wrapper {
+        height  : 100%;
+        overflow: hidden;
+        position: relative;
+      }
+      &__table-2-wrapper {
+        height  : 100%;
+        width   : calc( 100% + 20px);
+        overflow: auto;
+      }
+      &__table {
+      	tr {
+          display    : flex;
+          align-items: center;
+      		td {
+      			padding: 4px;
+      		}
+      	}
+      	.img-pair {
+          width   : 30px;
+          height  : 30px;
+          position: relative;
+      		.img-pair-top {
+            width   : 20px;
+            height  : 20px;
+            position: absolute;
+            top     : 0;
+            left    : 0;
+      		}
+      		.img-pair-bottom {
+            width   : 20px;
+            height  : 20px;
+            position: absolute;
+            bottom  : 0;
+            right   : 0;
+      		}
+      	}
+      }
+    }
+    /* ↑↑↑ /SECTION 2 (left column) ↑↑↑ */
+
+    /* ↓↓↓ SECTION 3 (right column) ↓↓↓ */
+    .right-column {
+      order    : 3;
+      flex-grow: 0;
+      width    : 250px;
+      padding  : 15px 15px 10px 15px;
+      .work-field {
+        position: relative;
+        height  : calc( 100% - 3*24px - 4*6px - 15px - 10px );
+        overflow: hidden;
+        .act-btn-field {
+          position: absolute; z-index: 1;
+          height  : 100%;
+          width   : 100%;
+          .img-pair {
+            width   : 50px;
+            height  : 50px;
+            position: relative;
+            margin  : 0 auto;
+            .img-pair-top {
+              width   : 35px;
+              height  : 35px;
+              position: absolute;
+              top     : 0;
+              left    : 0;
+            }
+            .img-pair-bottom {
+              width   : 35px;
+              height  : 35px;
+              position: absolute;
+              bottom  : 0;
+              right   : 0;
+            }
+          }
+          .currency-price {
+            text-align: center;
+            margin    : 10px auto;
+          }
+          .comission {
+            text-align: center;
+            span {
+              display: inline-block;
+              margin : 10px;
+            }
+          }
+          .btns-holder {
+            display        : flex;
+            justify-content: space-between;
+            margin         : 10px auto;
+            .some-btn-class {
+              width         : 45%;
+              height        : 40px;
+              line-height   : 16px;
+              padding-top   : 4px;
+              position      : relative;
+              z-index       : 1;
+              border-radius : 4px;
+              text-align    : center;
+              letter-spacing: 4px;
+              cursor        : pointer;
+              &:before {
+                content      : '';
+                display      : block;
+                height       : 100%;
+                width        : 100%;
+                border-radius: inherit;
+                position     : absolute;
+                z-index      : -1;
+                top          : 0;
+                left         : 0;
+                opacity      : 0;
+                transition   : opacity 1s;
+              }
+              &:hover {
+               &:before {
+                 opacity: 1;
+               }
+              }
+              span {
+                display       : block;
+                font-size     : 12px;
+                letter-spacing: 1px;
+              }
+            }
+            .btn-bue {
+              @extend .some-btn-class;
+              background: linear-gradient(tomato,orange);
+              &:before {
+                background: linear-gradient(orange,red);
+              }
+            }
+            .btn-cell {
+              @extend .some-btn-class;
+              background: linear-gradient(teal,steelblue);
+              &:before {
+                background: linear-gradient(cornflowerblue,darkblue);
+              }
+            }
+          }
+          .settings {
+            text-align: center;
+          }
+          .setting-input-label {
+            display: block;
+            margin : 0 auto;
+            width  : 164px;
+            span {
+              display: inline-block;
+              width  : 20px;
+            }
+          }
+          .setting-input {
+            width       : 140px;
+            height      : 24px;
+            margin      : 4px auto;
+            outline     : none;
+            font-family : rcl;
+            font-size   : 16px;
+            color       : black;
+            opacity     : 1;
+            border      : none;
+            padding-left: 10px;
+          }
+        }
+        .active-btn-field {
+          position: absolute;
+          opacity : 0;
+          height  : 100%;
+          width   : 100%;
+          overflow: hidden;
+
+          .accordion-wrapper {
+            height       : 100%;
+            overflow-y   : scroll;
+            padding-right: 4px;
+            width        : calc( 100% + 20px );
+          }
+        }
+        .history-btn-field {
+          position: absolute;
+          opacity : 0;
+          height  : 100%;
+          width   : 100%;
+        }
+      }
+      .work-change-btn {
+        background-color: dodgerblue;
+        border          : 1px solid dodgerblue;
+        border-radius   : 4px;
+        margin          : 6px auto;
+        padding         : 6px;
+        text-align      : center;
+        cursor          : pointer;
+        transition      : background-color .5s, border-color .5s;
+        &:hover {
+          background-color: $bgColor;
+          border-color    : $overColor;
+        }
+      }
+      .work-change-btn_active {
+        background-color: $bgColor;
+        border-color    : $overColor;
+      }
+
+      /* ↓↓↓ ACORDION ↓↓↓ */
+      .accordion {
+        .accordion-elem {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          &__img-pair {
+            width   : 30px;
+            height  : 30px;
+            position: relative;
+            .img-pair-top {
+              width   : 20px;
+              height  : 20px;
+              position: absolute;
+              top     : 0;
+              left    : 0;
+            }
+            .img-pair-bottom {
+              width   : 20px;
+              height  : 20px;
+              position: absolute;
+              bottom  : 0;
+              right   : 0;
+            }
+          }
+          &__btn {
+            .accordion-btn {
+              width : 26px;
+              height: 26px;
+              background-color: dodgerblue;
+              border: 1px solid dodgerblue;
+              border-radius: 6px;
+              position: relative;
+              z-index: 1;
+              top: -2px;
+              cursor: pointer;
+              transition: background-color .5s, border-color .5s;
+              &:hover {
+                background-color: $bgColor;
+                border-color    : $overColor;
+              }
+              &__1-line {
+                height: 16px;
+                width: 2px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                background-color: white;
+              }
+              &__2-line {
+                height: 2px;
+                width: 16px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                background-color: white;
+              }
+            }
+            .accordion-btn_active {
+              background-color: $bgColor;
+              border-color    : $overColor;
+            }
+          }
+        }
+        .accordion-content {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          overflow: hidden;
+          border: {
+            top: 0px solid white;
+            bottom: 0px solid white;
+          }
+          height: 0px;
+          &__data {
+            width: 50%;
+            height: 26px;
+            line-height: 26px;
+          }
+          &__value {
+            width: 50%;
+            height: 26px;
+            line-height: 26px;
+          }
+          &__btn {
+            background-color: dodgerblue;
+            color           : white;
+            border          : 1px solid dodgerblue;
+            border-radius   : 4px;
+            margin          : 0 0 6px auto;
+            padding         : 0px 10px;
+            height          : 24px;
+            text-align      : center;
+            cursor          : pointer;
+            transition      : background-color .5s, border-color .5s;
+            &:hover {
+              background-color: $bgColor;
+              border-color    : $overColor;
+            }
+          }
+        }
+      }
+
+
+      /* ↑↑↑ /ACORDION ↑↑↑ */
+
+    }
+    /* ↑↑↑ /SECTION 3 (right column) ↑↑↑ */
+
+  }
+
+  /* ↓↓↓ FOOTER ↓↓↓ */
+
+  /* ↑↑↑ /FOOTER ↑↑↑ */
+}

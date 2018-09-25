@@ -1,0 +1,31 @@
+// ↓↓↓ BEM-blocks: shoulder (start) ↓↓↓
+
+.shoulder__positioning-wrapper
+  input.investment#investment(type='text' placeholder='инвестиции')
+  .shoulder
+    span.shoulder__name Плечо:
+    .onoff-switcher
+      span.onoff-switcher__on on
+      span.onoff-switcher__off off
+      .onoff-switcher__thumb
+        .onoff-switcher__thumb-line.onoff-switcher__thumb-line-1
+        .onoff-switcher__thumb-line.onoff-switcher__thumb-line-2
+        .onoff-switcher__thumb-line.onoff-switcher__thumb-line-3
+  .shoulder__body
+    input#shoulderValue(type='text' hidden='true' value='0')
+    .shoulder__line
+      .shoulder__subline.shoulder-line
+      .shoulder__subline.shoulder-line
+      .shoulder__subline.shoulder-line
+      .shoulder__round1.shoulder-point.shoulder__round_active
+      .shoulder__round2.shoulder-point
+      .shoulder__round3.shoulder-point
+      .shoulder__round4.shoulder-point
+    .investment-result#investment-result
+
+style
+  include shoulder.css
+script
+  include ../minjs/shoulder/shoulder.js
+
+// ↑↑↑ BEM-blocks: shoulder (end) ↑↑↑

@@ -1,0 +1,18 @@
+.popup-ok-btn {
+  min-width          : 100px;
+  height             : 30px;
+  line-height        : 28px;
+  background-color   : dodgerblue;
+  border             : 1px solid dodgerblue;
+  font-family        : rcl;
+  text-transform     : uppercase;
+  letter-spacing     : 1px;
+  color              : white;
+  border-radius      : 6px;
+  cursor             : pointer;
+  transition         : border-color .5s, background-color .5s, bottom .5s;
+  &:hover {
+    border           : 1px solid white;
+    background-color : #1d2a38;
+  }
+}

@@ -1,0 +1,25 @@
+.close-btn__positioning-wrapper {}
+.close-btn {
+  width              : 22px;
+  height             : 22px;
+  position           : absolute;
+  z-index            : 1;
+  top                : 3px;
+  right              : 3px;
+  cursor             : pointer;
+  &__line1,
+  &__line2 {
+    width            : 24px;
+    height           : 2px;
+    background-color : dodgerblue;
+    position         : absolute;
+    top              : 50%;
+    left             : 50%;
+  }
+  &__line1 {
+     transform       : translate(-50%, -50%) rotate(45deg);
+  }
+  &__line2 {
+    transform        : translate(-50%, -50%) rotate(-45deg);
+  }
+}

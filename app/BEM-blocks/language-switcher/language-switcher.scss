@@ -1,0 +1,47 @@
+.language-switcher {
+	position        : relative;
+	z-index         : 8666;
+	width           : 32px;
+	height          : 24px;
+	cursor          : pointer;
+}
+.language-switcher__flag-container {
+	position        : absolute;
+	z-index         : 8666;
+	top             : 0;
+	left            : 0;
+	height          : 100%;
+	width           : 32px;
+	overflow        : hidden;
+}
+.language-switcher__btn {
+	position        : relative;
+	z-index         : 8666;
+	display         : block;
+	color           : dodgerblue;
+	width           : 32px;
+	height          : 24px;
+	border          : none;
+	cursor          : pointer;
+	background-color: white;
+	text-align      : center;
+	line-height     : 24px;
+	font-size       : 18px;
+	transition      : color .5s;
+}
+.language-switcher__flag-en {
+	position        : relative;
+	z-index         : 8666;
+	width           : 32px;
+	height          : 24px;
+	background      : url(../../img/language-switcher.jpg) -452px -252px;
+	cursor          : pointer;
+}
+.language-switcher__flag-ru {
+	position        : relative;
+	z-index         : 8666;
+	width           : 32px;
+	height          : 24px;
+	background      : url(../../img/language-switcher.jpg) -377px -393px;
+	cursor          : pointer;
+}

@@ -1,0 +1,76 @@
+.tug-of-war {
+  &__wrapper {
+    width : 100%;
+    max-width: 220px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 15px;
+    position: relative;
+  }
+  &__img-holder {
+    height: 30px;
+    width: 55px;
+    position: relative;
+    img:first-of-type {
+      display: none;
+    }
+  }
+  &__img {
+    height: 30px;
+    position: absolute;
+  }
+  &__indicator-wrapper {
+    position: relative;
+  }
+  &__indicator-holder {
+    width: 120px;
+    height: 4px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: visible;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+  }
+  &__indicator {
+    width: 200%;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+  }
+  &__indicator-line {
+    width: 50%;
+    height: 100%;
+    &:first-of-type {
+      background-color: dodgerblue;
+    }
+    &:last-of-type {
+      background-color: red;
+    }
+  }
+  &__lightbulb {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid yellow;
+    background-color: yellow;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: lightbulb;
+    animation-duration: .5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+}
+
+@keyframes lightbulb {
+  0% {background-color: yellow; border-color: #3d4a58;}
+  100% {background-color: #3d4a58; border-color: yellow;}
+}

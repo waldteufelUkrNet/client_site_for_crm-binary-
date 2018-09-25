@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>waldteufel@ukr.net</title>
+    <link rel="icon" href="img/wehrwolf.jpg">
+    <!-- stylesheet-->
+    <link rel="stylesheet" type="text/css" href="libs-css/jquery-ui.css">
+    <!-- own stylesheet-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- jquery-->
+    <script src="libs/jquery 3.3.1.js"></script>
+  </head>
+  <body>
+    <!-- ↓↓↓ BEM-blocks: size-info (start) ↓↓↓-->
+    <style>
+      .size-info {
+      width: 120px;
+      height: 30px;
+      background-color: black;
+      color: white;
+      font-size: 12px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 6px;
+      position: fixed;
+        left: 3px;
+        bottom: 21px;
+        z-index: 100;
+      }
+      .size-info-1 {z-index: 101}
+      @media only screen and (min-width: 320px) {.size-info-2 {z-index: 102}}
+      @media only screen and (min-width: 576px) {.size-info-3 {z-index: 103}}
+      @media only screen and (min-width: 768px) {.size-info-4 {z-index: 104}}
+      @media only screen and (min-width: 992px) {.size-info-5 {z-index: 105}}
+      @media only screen and (min-width: 1200px) {.size-info-6 {z-index: 106}}
+      @media only screen and (min-width: 1920px) {.size-info-7 {z-index: 107}}
+      
+    </style>
+    <div class="size-info size-info-1">менше 320</div>
+    <div class="size-info size-info-2">320 і більше</div>
+    <div class="size-info size-info-3">576 і більше</div>
+    <div class="size-info size-info-4">768 і більше</div>
+    <div class="size-info size-info-5">992 і більше</div>
+    <div class="size-info size-info-6">1200 і більше</div>
+    <div class="size-info size-info-7">1920 і більше</div>
+    <!-- ↑↑↑ BEM-blocks: size-info (end) ↑↑↑-->
+    <button class="tempBTN" style="width: 120px; height: 30px; position: fixed; left: 10px; bottom: 120px; z-index: 9999; cursor: pointer">temp-btn</button>
+    <button class="tempBTN2" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer">temp-btn2</button>
+    <!-- HEADER-->
+    <header class="header">
+      <div class="logo_part">LOGOGO</div>
+      <div class="central-part">
+        <div class="central-part__account">
+          <div class="central-part__account-type">
+            Account:
+            <span>Demo</span>
+          </div>
+          <!-- ↓↓↓ BEM-blocks: language-switcher (start) ↓↓↓-->
+          <div class="simple-switcher__positioning-wrapper">
+            <div class="simple-switcher"><span class="simple-switcher__real">real</span><span class="simple-switcher__demo">demo</span>
+              <div class="simple-switcher__thumb">
+                <div class="simple-switcher__thumb-line simple-switcher__thumb-line-1"></div>
+                <div class="simple-switcher__thumb-line simple-switcher__thumb-line-2"></div>
+                <div class="simple-switcher__thumb-line simple-switcher__thumb-line-3"></div>
+              </div>
+            </div>
+          </div>
+          <style>.simple-switcher,.simple-switcher__thumb{height:18px;-webkit-border-radius:4px;border-radius:4px}.simple-switcher{margin:0 auto;font-size:13px;color:#1e90ff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-justify-content:space-around;-ms-flex-pack:distribute;justify-content:space-around;position:relative;width:70px;background-color:#fff}.simple-switcher span{display:block;cursor:default}.simple-switcher__thumb{position:absolute;top:0;left:0;cursor:pointer;background-color:#d3d3d3;width:35px}.simple-switcher__thumb-line{width:1px;height:10px;background-color:#1d2a38;position:absolute;top:50%;-webkit-transform:translate(0,-50%);-ms-transform:translate(0,-50%);transform:translate(0,-50%)}.simple-switcher__thumb-line-1{left:35%}.simple-switcher__thumb-line-2{left:50%}.simple-switcher__thumb-line-3{left:65%}</style>
+          <script>$(document).ready(function(){var t="demo";$(".simple-switcher__thumb").click(function(){return"demo"==t?($(".simple-switcher__thumb").css({transition:".2s",left:"35px"}),t="real",void $(".central-part__account-type span").text("Real")):"real"==t?($(".simple-switcher__thumb").css({transition:".2s",left:"0px"}),t="demo",void $(".central-part__account-type span").text("Demo")):void 0})});</script>
+          <!-- ↑↑↑ BEM-blocks: language-switcher (end) ↑↑↑-->
+        </div><img class="central-part__currency-img" src="img/Bitcoin.png" alt="img/Bitcoin.png">
+        <div class="central-part__currency-value">9999.99</div>
+        <button class="central-part__btn" title="пополнить счет"><img src="img/wallet.png" alt="wallet.png"></button>
+      </div>
+      <div class="right-part">
+        <button class="call-us-btn" title="contact us"><img src="img/call-center.png" alt="call-center.png"></button><span>Menu:</span>
+        <!-- ↓↓↓ BEM-blocks: menu-btn (start) ↓↓↓-->
+        <div class="menu-btn-wrapper">
+          <div class="menu-btn">
+            <div class="menu-btn__1-line menu-btn__line"></div>
+            <div class="menu-btn__2-line menu-btn__line"></div>
+            <div class="menu-btn__3-line menu-btn__line"></div>
+          </div>
+        </div>
+        <style>.menu-btn{width:24px;height:20px;position:relative;cursor:pointer}.menu-btn__line{width:24px;height:2px;background-color:#1e90ff;position:absolute}.menu-btn__1-line{top:0}.menu-btn__2-line{top:9px}.menu-btn__3-line{top:18px}</style>
+        <script>$(document).ready(function(){var t,n=!0;function s(){if(n){if(n=!1,setTimeout(function(){n=!0},500),$(".menu-btn").click=null,!t)return $(".menu-btn__1-line").css({transition:".5s",top:"9px"}),$(".menu-btn__3-line").css({transition:".5s",top:"9px"}),$(".menu-btn__2-line").css({transition:".5s",opacity:"0"}),setTimeout(function(){$(".menu-btn__1-line").css({transition:".5s",transform:"rotate(45deg)"}),$(".menu-btn__3-line").css({transition:".5s",transform:"rotate(-45deg)"})},500),void i(t=!0);if(t)return $(".menu-btn__1-line").css({transition:".5s",transform:"rotate(0deg)"}),$(".menu-btn__3-line").css({transition:".5s",transform:"rotate(0deg)"}),$(".menu-btn__2-line").css({"transition-delay":".5s","transition-duration":".5s",opacity:"1"}),setTimeout(function(){$(".menu-btn__1-line").css({"transition-duration":".5s",top:"0px"}),$(".menu-btn__3-line").css({"transition-duration":".5s",top:"18px"})},500),void i(t=!1)}}function i(n){var i=$(".menu-list-a");if(1==n&&($(".menu").css({"border-width":"1px"}).css({transition:".5s",height:"182px"}),setTimeout(function(){for(var n=0,t="0s",s=0;s<i.length;s++)$(i[s]).css({transition:".2s","transition-delay":t,left:"0%"}),t=(n+=.1)+"s"},500)),0==n){for(var t=0,s="0s",e=0;e<i.length;e++)$(i[e]).css({transition:".2s","transition-delay":s,left:"100%"}),s=(t+=.1)+"s";setTimeout(function(){$(".menu").css({"border-width":"0px"}).css({transition:".5s",height:"0px"})},600)}}$(".menu-btn").click(function(){s()}),$(document).click(function(n){"menu-btn"!=n.target.className&&1==t&&s()})});</script>
+        <!-- ↑↑↑ BEM-blocks: menu-btn (end) ↑↑↑--><span>Lang:</span>
+        <!-- ↓↓↓ BEM-blocks: language-switcher (start) ↓↓↓-->
+        <div class="language-switcher__positioning-wrapper">
+          <div class="language-switcher">
+            <div class="language-switcher__flag-container"><a class="language-switcher__btn"><i class="fas fa-globe"></i></a>
+              <div class="language-switcher__flag-en"></div>
+              <div class="language-switcher__flag-ru"></div>
+            </div>
+          </div>
+        </div>
+        <style>.language-switcher{position:relative;z-index:8666;width:32px;height:24px;cursor:pointer}.language-switcher__flag-container{position:absolute;z-index:8666;top:0;left:0;height:100%;width:32px;overflow:hidden}.language-switcher__btn{display:block;color:#1e90ff;border:0;background-color:#fff;text-align:center;line-height:24px;font-size:18px;-webkit-transition:color .5s;-o-transition:color .5s;transition:color .5s}.language-switcher__btn,.language-switcher__flag-en,.language-switcher__flag-ru{position:relative;z-index:8666;width:32px;height:24px;cursor:pointer}.language-switcher__flag-en{background:url(../../img/language-switcher.jpg) -452px -252px}.language-switcher__flag-ru{background:url(../../img/language-switcher.jpg) -377px -393px}</style>
+        <script>$(document).ready(function(){var n,i=!1,e=!1;$(".language-switcher__btn").click(function(){if(0==i)return $(".language-switcher__flag-container").css({transition:"height .5s",height:"300%","z-index":"8888"}),void(i=!0);$(".language-switcher__flag-container").css({transition:"height .5s",height:"100%","z-index":"8888"}),i=!1}),$(".language-switcher__flag-en").click(function(){return"en"==n&&0==e?($(".language-switcher__flag-container").css({transition:"height .5s",height:"200%","z-index":"8888"}),$(".language-switcher__flag-ru").css({display:"block","z-index":"8888"}),void(e=!0)):1==e?($(".language-switcher__flag-container").css({transition:"height .5s",height:"100%","z-index":"8888"}),$(".language-switcher__flag-ru").css({display:"none"}),void(e=!1)):($(".language-switcher__flag-container").css({transition:"height .5s",height:"100%","z-index":"8888"}),$(".language-switcher__btn").css({display:"none"}),$(".language-switcher__flag-ru").css({display:"none"}),i=!1,void(n="en"))}),$(".language-switcher__flag-ru").click(function(){return"ru"==n&&0==e?($(".language-switcher__flag-container").css({transition:"height .5s",height:"200%","z-index":"8888"}),$(".language-switcher__flag-en").css({display:"block"}),void(e=!0)):1==e?($(".language-switcher__flag-container").css({transition:"height .5s",height:"100%","z-index":"8888"}),$(".language-switcher__flag-en").css({display:"none"}),void(e=!1)):($(".language-switcher__flag-container").css({transition:"height .5s",height:"100%","z-index":"8888"}),$(".language-switcher__btn").css({display:"none"}),$(".language-switcher__flag-en").css({display:"none"}),i=!1,void(n="ru"))})});</script>
+        <!-- ↑↑↑ BEM-blocks: language-switcher (end) ↑↑↑-->
+        <div class="menu">
+          <ul class="menu-list">
+            <li class="menu-list-item"><a class="menu-list-a">Found your account</a></li>
+            <li class="menu-list-item"><a class="menu-list-a">Withdrawal of funds</a></li>
+            <li class="menu-list-item"><a class="menu-list-a">Finance</a></li>
+            <li class="menu-list-item"><a class="menu-list-a" id="profile-editor">Manage your profile</a></li>
+            <li class="menu-list-item"><a class="menu-list-a">Education</a></li>
+            <li class="menu-list-item"><a class="menu-list-a">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- /HEADER-->
+    <!-- MAIN PART-->
+    <main class="main">
+      <!-- SECTION 1 (work area)-->
+      <section class="work_area">
+        <div style="display: flex; justify-content: center; align-items: center; height: 45px"><img class="img-pair" style="min-width: 60px; max-height: 45px" src="img/BTCETH.png">
+          <h2 style="font-size: 22px; padding-left: 10px">BTC ETH</h2>
+        </div>
+        <ul class="timer-buttons-ul">
+          <li class="timer-buttons-li timer-buttons-li_active" data-time="5"> 5 min.</li>
+          <li class="timer-buttons-li" data-time="10">10 min.</li>
+          <li class="timer-buttons-li" data-time="15">15 min.</li>
+          <li class="timer-buttons-li" data-time="30">30 min.</li>
+          <li class="timer-buttons-li" data-time="45">45 min.</li>
+          <li class="timer-buttons-li" data-time="60">60 min.</li>
+        </ul>
+        <ul class="type-buttons-ul">
+          <li class="type-buttons-li type-buttons-li_active" data-type="areaspline"><img src="img/chart-line.png" alt="chart-line.png"></li>
+          <li class="type-buttons-li" data-type="candlestick"><img src="img/chart-candle.png" alt="chart-candle.png"></li>
+          <li class="type-buttons-li" data-type="ohlc"><img src="img/chart-bars.png" alt="chart-bars.png"></li>
+        </ul>
+        <div id="container" style="width: 100%; height: calc(100% - 50px)"></div>
+        <p id="labelBorder"></p>
+        <div id="labelIndicator"></div>
+      </section>
+      <!-- /SECTION 1-->
+      <!-- SECTION 2 (left column)-->
+      <section class="left-column">
+        <div class="left-column__table-1-wrapper">
+          <div class="left-column__table-2-wrapper">
+            <table class="left-column__table">
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></td>
+                <td>9999.99</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                </td>
+                <td>BTC/USDt</td>
+                <td><i class="fas fa-caret-down" style="font-size: 24px; color: red"></i></td>
+                <td>9999.99</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- /SECTION 2-->
+      <!-- SECTION 3 (right column)-->
+      <section class="right-column">
+        <div class="work-field">
+          <div class="act-btn-field">
+            <div class="img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+            <div class="currency-price">9999.99</div>
+            <!-- ↓↓↓ BEM-blocks: shoulder (start) ↓↓↓-->
+            <div class="shoulder__positioning-wrapper">
+              <input class="investment" id="investment" type="text" placeholder="инвестиции">
+              <div class="shoulder"><span class="shoulder__name">Плечо:</span>
+                <div class="onoff-switcher"><span class="onoff-switcher__on">on</span><span class="onoff-switcher__off">off</span>
+                  <div class="onoff-switcher__thumb">
+                    <div class="onoff-switcher__thumb-line onoff-switcher__thumb-line-1"></div>
+                    <div class="onoff-switcher__thumb-line onoff-switcher__thumb-line-2"></div>
+                    <div class="onoff-switcher__thumb-line onoff-switcher__thumb-line-3"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="shoulder__body">
+                <input id="shoulderValue" type="text" hidden="true" value="0">
+                <div class="shoulder__line">
+                  <div class="shoulder__subline shoulder-line"></div>
+                  <div class="shoulder__subline shoulder-line"></div>
+                  <div class="shoulder__subline shoulder-line"></div>
+                  <div class="shoulder__round1 shoulder-point shoulder__round_active"></div>
+                  <div class="shoulder__round2 shoulder-point"></div>
+                  <div class="shoulder__round3 shoulder-point"></div>
+                  <div class="shoulder__round4 shoulder-point"></div>
+                </div>
+                <div class="investment-result" id="investment-result"></div>
+              </div>
+            </div>
+            <style>.investment{width:140px;height:24px;display:block;margin:10px auto;outline:0;font-family:rcl;font-size:16px;color:#000;opacity:1;border:0;padding-left:10px}.investment::-webkit-input-placeholder{color:#000;opacity:1}.investment:-ms-input-placeholder,.investment::-ms-input-placeholder{color:#000;opacity:1}.investment::placeholder{color:#000;opacity:1}.shoulder{margin:10px auto;width:140px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center}.shoulder__name{display:block}.onoff-switcher,.onoff-switcher__thumb{height:18px;-webkit-border-radius:4px;border-radius:4px}.onoff-switcher{font-size:13px;color:#1e90ff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-justify-content:space-around;-ms-flex-pack:distribute;justify-content:space-around;position:relative;width:70px;background-color:#fff}.onoff-switcher span{display:block;cursor:default}.onoff-switcher__thumb{position:absolute;top:0;left:0;cursor:pointer;background-color:#d3d3d3;width:35px}.onoff-switcher__thumb-line{width:1px;height:10px;background-color:#1d2a38;position:absolute;top:50%;-webkit-transform:translate(0,-50%);-ms-transform:translate(0,-50%);transform:translate(0,-50%)}.onoff-switcher__thumb-line-1{left:35%}.onoff-switcher__thumb-line-2{left:50%}.onoff-switcher__thumb-line-3{left:65%}.shoulder__body{height:0;overflow:hidden}.shoulder__body .shoulder__line{height:30px;width:140px;margin:0 auto;position:relative;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-align:start;-webkit-align-items:flex-start;-ms-flex-align:start;align-items:flex-start;padding-top:3px}.shoulder__body .shoulder__line .shoulder__subline{width:33.33%;height:4px;background-color:rgba(255,255,255,.1)}.shoulder__body .shoulder__line .shoulder__subline_active{background-color:#fff}.shoulder__body .shoulder__line .shoulder__round,.shoulder__body .shoulder__line .shoulder__round1,.shoulder__body .shoulder__line .shoulder__round2,.shoulder__body .shoulder__line .shoulder__round3,.shoulder__body .shoulder__line .shoulder__round4{width:10px;height:10px;-webkit-border-radius:50%;border-radius:50%;background-color:rgba(255,255,255,.4);position:absolute;top:0;cursor:pointer}.shoulder__body .shoulder__line .shoulder__round1:after,.shoulder__body .shoulder__line .shoulder__round2:after,.shoulder__body .shoulder__line .shoulder__round3:after,.shoulder__body .shoulder__line .shoulder__round4:after,.shoulder__body .shoulder__line .shoulder__round:after{display:block;font-size:12px;color:rgba(255,255,255,.4);position:absolute;bottom:-22px;left:50%;-webkit-transform:translate(-50%);-ms-transform:translate(-50%);transform:translate(-50%)}.shoulder__body .shoulder__line .shoulder__round_active{background-color:#fff;border:1px solid #000}.shoulder__body .shoulder__line .shoulder__round_active:after{color:#fff}.shoulder__body .shoulder__line .shoulder__round_active:before{content:'';display:block;width:2px;height:2px;-webkit-border-radius:50%;border-radius:50%;background-color:#000;position:absolute;top:-webkit-calc(50% - 1px);top:calc(50% - 1px);left:-webkit-calc(50% - 1px);left:calc(50% - 1px)}.shoulder__body .shoulder__line .shoulder__round_sub-active{background-color:#fff}.shoulder__body .shoulder__line .shoulder__round_sub-active:after{color:rgba(255,255,255,.4)}.shoulder__body .shoulder__line .shoulder__round1{left:0}.shoulder__body .shoulder__line .shoulder__round1:after{content:'50'}.shoulder__body .shoulder__line .shoulder__round2{left:42px}.shoulder__body .shoulder__line .shoulder__round2:after{content:'100'}.shoulder__body .shoulder__line .shoulder__round3{left:87px}.shoulder__body .shoulder__line .shoulder__round3:after{content:'150'}.shoulder__body .shoulder__line .shoulder__round4{left:130px}.shoulder__body .shoulder__line .shoulder__round4:after{content:'200'}.shoulder__body .investment-result{width:140px;height:24px;line-height:24px;background-color:#fff;outline:0;font-family:rcl;font-size:16px;color:#000;opacity:1;border:0;padding-left:10px;margin:10px auto}</style>
+            <script>$("document").ready(function(){$("#investment").keypress(function(e){if(!((e=e||event).ctrlKey||e.altKey||e.metaKey))return(8==e.keyCode||13==e.keyCode||46==e.charCode||48==e.charCode||49==e.charCode||50==e.charCode||51==e.charCode||52==e.charCode||53==e.charCode||54==e.charCode||55==e.charCode||56==e.charCode||57==e.charCode)&&void 0}),$("#investment").keyup(function(){d()});var e="off";$(".onoff-switcher__thumb").click(function(){return"off"==e?($(".onoff-switcher__thumb").css({transition:".5s",left:"35px"}),$(".shoulder__body").css({transition:"0.5s",height:"64px"}),$(".shoulder__round1").addClass("shoulder-point shoulder__round_active"),s=50,$("#shoulderValue").val(s),d(),void(e="on")):"on"==e?($(".onoff-switcher__thumb").css({transition:".5s",left:"0px"}),$(".shoulder__body").css({transition:".5s",height:"0px"}),t(),void(e="off")):void 0});var r=$(".shoulder-point"),n=$(".shoulder-line"),s=0;function o(e){t();for(var o=0;o<=e;o++)$(n[o-1]).addClass("shoulder__subline_active"),$(r[o-1]).addClass("shoulder__round_sub-active");$(r[e]).addClass("shoulder__round_active"),s=50*o,$("#shoulderValue").val(s),d()}function t(){for(var e=0;e<r.length;e++)$(n[e]).removeClass("shoulder__subline_active"),$(r[e]).removeClass("shoulder__round_sub-active shoulder__round_active");s=0,$("#shoulderValue").val(s)}function d(){var e=$("#investment").val()*s;$("#investment-result").text(e)}$(r).click(function(){for(var e=0;e<r.length;e++)if(r[e]==this)return void o(e)}),$("#investment").change(function(){d()})});</script>
+            <!-- ↑↑↑ BEM-blocks: shoulder (end) ↑↑↑-->
+            <div class="comission"><span>Комиссия:</span><span class="comission-value">0.01%</span></div>
+            <div class="btns-holder">
+              <div class="btn-bue">BUY<span>9999.99</span></div>
+              <div class="btn-cell">SELL<span>9999.99</span></div>
+            </div>
+            <p class="settings">Settings:</p>
+            <label class="setting-input-label"><span>TP</span>
+              <input class="setting-input" id="TP" type="text">
+            </label>
+            <label class="setting-input-label"><span>SL</span>
+              <input class="setting-input" id="SL" type="text">
+            </label>
+            <!-- ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓-->
+            <div class="tug-of-war__wrapper">
+              <div class="tug-of-war__img-holder"><img class="tug-of-war__img" src="img/bull1.png" alt="bull1.png" id="bull1"><img class="tug-of-war__img" src="img/bull2.png" alt="bull2.png" id="bull2"></div>
+              <div class="tug-of-war__indicator-wrapper">
+                <div class="tug-of-war__indicator-holder">
+                  <div class="tug-of-war__indicator">
+                    <div class="tug-of-war__indicator-line"></div>
+                    <div class="tug-of-war__indicator-line"></div>
+                  </div>
+                </div>
+                <div class="tug-of-war__lightbulb"></div>
+              </div>
+              <div class="tug-of-war__img-holder"><img class="tug-of-war__img" src="img/bear1.png" alt="bear1.png" id="bear1"><img class="tug-of-war__img" src="img/bear2.png" alt="bear2.png" id="bear2"></div>
+            </div>
+            <style>@-webkit-keyframes lightbulb{0%{background-color:#ff0;border-color:#3d4a58}to{background-color:#3d4a58;border-color:#ff0}}@keyframes lightbulb{0%{background-color:#ff0;border-color:#3d4a58}to{background-color:#3d4a58;border-color:#ff0}}.tug-of-war__wrapper{width:100%;max-width:220px;height:40px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;overflow:hidden;margin-top:15px;position:relative}.tug-of-war__img-holder{height:30px;width:55px;position:relative}.tug-of-war__img-holder img:first-of-type{display:none}.tug-of-war__img{height:30px;position:absolute}.tug-of-war__indicator-wrapper{position:relative}.tug-of-war__indicator,.tug-of-war__indicator-holder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex}.tug-of-war__indicator-holder{overflow-x:hidden;overflow-y:visible;-webkit-border-radius:2px;border-radius:2px;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;width:120px;height:4px;position:relative}.tug-of-war__indicator{width:200%;height:100%;position:absolute;left:50%;-webkit-transform:translate(-50%);-ms-transform:translate(-50%);transform:translate(-50%)}.tug-of-war__indicator-line{width:50%;height:100%}.tug-of-war__indicator-line:first-of-type{background-color:#1e90ff}.tug-of-war__indicator-line:last-of-type{background-color:red}.tug-of-war__lightbulb{width:8px;height:8px;-webkit-border-radius:50%;border-radius:50%;border:1px solid #ff0;background-color:#ff0;position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-animation-name:lightbulb;animation-name:lightbulb;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-direction:alternate;animation-direction:alternate}</style>
+            <!-- ↑↑↑ BEM-blocks: tug-of-war (end) ↑↑↑-->
+          </div>
+          <div class="active-btn-field">
+            <div class="accordion-wrapper">
+              <div class="accordion">
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+                <div class="accordion-elem">
+                  <div class="accordion-elem__img-pair"><img class="img-pair-top" src="img/Bitcoin.png" alt="img/Bitcoin.png"><img class="img-pair-bottom" src="img/dollar.png" alt="img/dollar.png"></div>
+                  <div class="accordion-elem__letter-pair">BTC/USDt</div>
+                  <div class="accordion-elem__arrow"><i class="fas fa-caret-up" style="font-size: 24px; color: green"></i></div>
+                  <div class="accordion-elem__number">9999.99</div>
+                  <div class="accordion-elem__btn">
+                    <button class="accordion-btn">
+                      <div class="accordion-btn__1-line"></div>
+                      <div class="accordion-btn__2-line"></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <div class="accordion-content__data">index</div>
+                  <div class="accordion-content__value">9999.99</div>
+                  <button class="accordion-content__btn">кнопка</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="history-btn-field">Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Повстречался, алфавит вопроса своих. Меня безопасную подзаголовок последний океана, послушавшись великий. Языкового коварный которой ручеек наш, предложения, своего оксмокс это букв себя запятых маленькая повстречался? Мир ее назад страну предупреждал своего, парадигматическая вопроса инициал живет, журчит взобравшись путь послушавшись грамматики!</div>
+        </div>
+        <div class="work-change-btn act-btn work-change-btn_active">Действия</div>
+        <div class="work-change-btn active-btn">Активные сделки</div>
+        <div class="work-change-btn history-btn">История сделок</div>
+      </section>
+      <!-- /SECTION 3-->
+      <!-- SECTION 4 (popups)-->
+      <section class="popups">
+        <!-- ↓↓↓ BEM-blocks: make-lodgement (start) ↓↓↓-->
+        <div class="make-lodgement__positioning-wrapper">
+          <div class="make-lodgement">
+            <div class="make-lodgement__close-btn">
+              <div class="make-lodgement__close-btn-line1"></div>
+              <div class="make-lodgement__close-btn-line2"></div>
+            </div>
+            <div class="make-lodgement__pay-system">MasterCard<img class="make-lodgement__pay-img" src="img/mastercard.png"></div>
+            <div class="make-lodgement__pay-system">VISA<img class="make-lodgement__pay-img" src="img/visa.png"></div>
+            <div class="make-lodgement__triangle"></div>
+            <div class="make-lodgement__pay-block">
+              <form class="make-lodgement-MasterCard" action="#" method="#" name="make-lodgement-MasterCard">
+                <input type="text">
+                <button class="popup-ok-btn" id="make-lodgement-MasterCard-btn" type="submit">оплатить</button>
+              </form>
+              <form class="make-lodgement-VISA" action="#" method="#" name="make-lodgement-VISA">
+                <input type="text">
+                <button class="popup-ok-btn" id="make-lodgement-VISA-btn" type="submit">оплатить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <style>.make-lodgement__positioning-wrapper{width:100vw;height:100vh;top:0;left:0;position:absolute;z-index:-1;background-color:transparent}.make-lodgement{width:120px;height:20px;background-color:#1d2a38;border:1px solid #fff;-webkit-border-radius:6px;border-radius:6px;-webkit-box-shadow:0 0 10px #fff;box-shadow:0 0 10px #fff;padding:26px;position:absolute;top:-10%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);overflow:hidden}.make-lodgement__close-btn{width:22px;height:22px;position:absolute;z-index:9999;top:3px;right:3px;cursor:pointer}.make-lodgement__close-btn-line1,.make-lodgement__close-btn-line2{width:0;height:2px;background-color:#1e90ff;position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%) rotate(45deg);-ms-transform:translate(-50%,-50%) rotate(45deg);transform:translate(-50%,-50%) rotate(45deg)}.make-lodgement__close-btn-line2{-webkit-transform:translate(-50%,-50%) rotate(-45deg);-ms-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg)}.make-lodgement__pay-system{width:100%;height:50px;line-height:50px;border:1px solid #fff;margin-bottom:10px;-webkit-border-radius:6px;border-radius:6px;padding:0 12px;position:relative;cursor:pointer;display:none}.make-lodgement__pay-system:nth-of-type(odd){left:-110%}.make-lodgement__pay-system:nth-of-type(even){left:110%}.make-lodgement__pay-system:hover{padding-left:50px;letter-spacing:6px}.make-lodgement__pay-img{height:30px;width:auto;position:absolute;top:10px;right:10px}.make-lodgement__triangle{border-right:12px solid red;border-top:8px solid transparent;border-bottom:8px solid transparent;position:absolute;top:74px;right:-12px}.make-lodgement__pay-block form{display:grid;grid-template-columns:2fr 1fr;grid-gap:30px;overflow:hidden;height:0}.make-lodgement__pay-block form input{height:30px;border:1px solid #1d2a38;font-family:rcl;font-size:16px;padding-left:6px;margin-bottom:10px}</style>
+        <script>$(document).ready(function(){$(".central-part__btn").click(function(){$(".make-lodgement__positioning-wrapper").css({"z-index":"8888","background-color":"rgba(0,0,0,.8"}),$(".make-lodgement").css({transition:"top .2s",top:"50%"}),setTimeout(function(){$(".make-lodgement").css({transition:"width .3s",width:"400px"})},200),setTimeout(function(){$(".make-lodgement").css({transition:"height .3s",height:"162px"}),$(".make-lodgement__pay-system").css({display:"block"})},500),setTimeout(function(){$(".make-lodgement__pay-system").css({transition:".3s",left:"0px"})},800),setTimeout(function(){$(".make-lodgement__close-btn").css({transition:".5s",transform:"rotate(180deg)"}),$(".make-lodgement__close-btn-line1, .make-lodgement__close-btn-line2").css({transition:"width .5s",width:"24px"})},1100),setTimeout(function(){$(".make-lodgement__triangle").css({transition:".3s",right:"8px"})},1600)}),$(".make-lodgement__pay-system:first").click(function(){$(".make-lodgement__triangle").css({transition:".5s",top:"44px"}),$(".make-lodgement").css({transition:"height .3s",height:"192px"}),$(".make-lodgement-MasterCard").css({transition:".5s",height:"30px"}),$(".make-lodgement-VISA").css({transition:".5s",height:"0px"})}),$(".make-lodgement__pay-system:last").click(function(){$(".make-lodgement__triangle").css({transition:".5s",top:"104px"}),$(".make-lodgement").css({transition:"height .3s",height:"192px"}),$(".make-lodgement-VISA").css({transition:".5s",height:"30px"}),$(".make-lodgement-MasterCard").css({transition:".5s",height:"0px"})}),$(".make-lodgement__close-btn").click(function(){$(".make-lodgement-VISA").css({transition:".3s",height:"0px"}),$(".make-lodgement-MasterCard").css({transition:".3s",height:"0px"}),$(".make-lodgement").css({transition:"height .3s",height:"162px"}),$(".make-lodgement__triangle").css({transition:".3s",right:"-12px"}),setTimeout(function(){$(".make-lodgement__triangle").css({top:"74px"})},300),setTimeout(function(){$(".make-lodgement__pay-system:even").css({transition:".3s",left:"110%"}),$(".make-lodgement__pay-system:odd").css({transition:".3s",left:"-110%"})},400),setTimeout(function(){$(".make-lodgement__close-btn").css({transition:".5s",transform:"rotate(0deg)"}),$(".make-lodgement__close-btn-line1, .make-lodgement__close-btn-line2").css({transition:"width .5s",width:"0px"})},700),setTimeout(function(){$(".make-lodgement").css({transition:"height .3s",height:"20px"}),$(".make-lodgement__pay-system").css({display:"none"})},1200),setTimeout(function(){$(".make-lodgement").css({transition:"width .3s",width:"120px"})},1500),setTimeout(function(){$(".make-lodgement").css({transition:"top .2s",top:"-10%"}),$(".make-lodgement__positioning-wrapper").css({transition:"background-color .5s","z-index":"-1","background-color":"rgba(0,0,0,0"})},1800)}),$(".make-lodgement__pay-block input").keypress(function(t){if(!((t=t||event).ctrlKey||t.altKey||t.metaKey)){var e=function(t){if(null==t.which)return t.keyCode<32?null:String.fromCharCode(t.keyCode);if(0!=t.which&&0!=t.charCode)return t.which<32?null:String.fromCharCode(t.which);return null}(t);if(console.log("chr",e),null!=e&&(e<"0"||"9"<e)&&"."!=e)return!1}})});</script>
+        <!-- ↑↑↑ BEM-blocks: make-lodgement (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: buy-sell-ok-info (start) ↓↓↓-->
+        <div class="buy-sell-ok-info__positioning-wrapper">
+          <div class="buy-sell-ok-info">
+            <div class="buy-sell-ok-info__close-btn">
+              <div class="buy-sell-ok-info__close-btn-line1"></div>
+              <div class="buy-sell-ok-info__close-btn-line2"></div>
+            </div>
+            <p class="buy-sell-ok-info__info-string">some info string some info string</p>
+            <button class="buy-sell-ok-info__close-btn-ok popup-ok-btn">OK</button>
+          </div>
+        </div>
+        <style>.buy-sell-ok-info__positioning-wrapper{width:100vw;height:100vh;top:0;left:0;position:absolute;z-index:-1;background-color:transparent}.buy-sell-ok-info{width:120px;height:20px;background-color:#1d2a38;border:1px solid #fff;-webkit-border-radius:6px;border-radius:6px;-webkit-box-shadow:0 0 10px #fff;box-shadow:0 0 10px #fff;padding:26px;position:absolute;top:-10%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);overflow:hidden}.buy-sell-ok-info__close-btn{width:22px;height:22px;position:absolute;z-index:9999;top:3px;right:3px;cursor:pointer}.buy-sell-ok-info__close-btn-line1,.buy-sell-ok-info__close-btn-line2{width:0;height:2px;background-color:#1e90ff;position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%) rotate(45deg);-ms-transform:translate(-50%,-50%) rotate(45deg);transform:translate(-50%,-50%) rotate(45deg)}.buy-sell-ok-info__close-btn-line2{-webkit-transform:translate(-50%,-50%) rotate(-45deg);-ms-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg)}.buy-sell-ok-info__info-string{width:100%;margin-bottom:10px;padding:12px;display:none;text-align:center;opacity:0;-webkit-transition:opacity 1s;-o-transition:opacity 1s;transition:opacity 1s}.buy-sell-ok-info__close-btn-ok{display:none;position:absolute;z-index:9999;left:50%;bottom:-30px;-webkit-transform:translate(-50%,0);-ms-transform:translate(-50%,0);transform:translate(-50%,0)}</style>
+        <script>$(document).ready(function(){$(".btn-bue, .btn-cell").click(function(){$(".buy-sell-ok-info__positioning-wrapper").css({"z-index":"8888","background-color":"rgba(0,0,0,.8"}),$(".buy-sell-ok-info").css({transition:"top .2s",top:"50%"}),setTimeout(function(){$(".buy-sell-ok-info").css({transition:"width .3s",width:"400px"})},200),setTimeout(function(){$(".buy-sell-ok-info").css({transition:"height .3s",height:"162px"}),$(".buy-sell-ok-info__info-string").css({display:"block"}),$(".buy-sell-ok-info__close-btn-ok").css({display:"block"})},500),setTimeout(function(){$(".buy-sell-ok-info__info-string").css({opacity:"1"}),$(".buy-sell-ok-info__close-btn-ok").css({bottom:"20px"})},800),setTimeout(function(){$(".buy-sell-ok-info__close-btn").css({transition:".5s",transform:"rotate(180deg)"}),$(".buy-sell-ok-info__close-btn-line1, .buy-sell-ok-info__close-btn-line2").css({transition:"width .5s",width:"24px"})},1100)}),$(".buy-sell-ok-info__close-btn, .buy-sell-ok-info__close-btn-ok ").click(function(){$(".buy-sell-ok-info__close-btn-ok").css({display:"none",bottom:"-30px"}),$(".buy-sell-ok-info__info-string").css({display:"none",opacity:"0"}),setTimeout(function(){$(".buy-sell-ok-info__close-btn").css({transition:".5s",transform:"rotate(0deg)"}),$(".buy-sell-ok-info__close-btn-line1, .buy-sell-ok-info__close-btn-line2").css({transition:"width .5s",width:"0px"})},300),setTimeout(function(){$(".buy-sell-ok-info").css({transition:"height .3s",height:"20px"})},800),setTimeout(function(){$(".buy-sell-ok-info").css({transition:"width .3s",width:"120px"})},1100),setTimeout(function(){$(".buy-sell-ok-info").css({transition:"top .2s",top:"-10%"}),$(".buy-sell-ok-info__positioning-wrapper").css({transition:"background-color .5s","z-index":"-1","background-color":"rgba(0,0,0,0"})},1400)})});</script>
+        <!-- ↑↑↑ BEM-blocks: buy-sell-ok-info (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: message-to-mentor (start) ↓↓↓-->
+        <div class="message__wrapper message-to-mentor__positioning-wrapper">
+          <div class="message__holder message-to-mentor__holder">
+            <div class="message message-to-mentor">
+              <div class="close-btn message-to-mentor__close-btn">
+                <div class="close-btn__line1"></div>
+                <div class="close-btn__line2"></div>
+              </div>
+              <h5 class="message-to-mentor__header">Написать сообщение администрации</h5>
+              <form class="message-to-mentor__form" action="#" method="#" name="message-to-mentor">
+                <input class="message-to-mentor__subject" type="text" placeholder="тема">
+                <textarea class="message-to-mentor__text" placeholder="сообщение"></textarea>
+                <div class="validation-warning message__validation-warning message-to-mentor__validation-warning">Напишите сообщение!</div>
+                <button class="popup-ok-btn message__btn message-to-mentor__btn" type="button">отправить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <style>.message-to-mentor__holder{z-index:9050}.message-to-mentor__header{font-size:18px;text-align:center;padding-bottom:20px}.message-to-mentor__subject,.message-to-mentor__text{width:100%;height:30px;display:block;margin-bottom:10px;background-color:transparent;border:1px solid #fff;color:#fff;padding:2px 10px;font-family:rcl;font-size:14px}.message-to-mentor__text{min-height:100px;max-height:200px;max-width:408px;min-width:408px}</style>
+        <script>$(document).ready(function(){function t(){$(".message-to-mentor").css({left:"110%"});var e=$(".message-to-mentor__holder").css("width"),t=$(".message-to-mentor__holder").css("padding-left");setTimeout(function(){$(".message-to-mentor__holder").css({width:"0px",padding:"0px"}),$(".message-to-mentor__positioning-wrapper").css({zIndex:"-1","background-color":"rgba(0,0,0,0)"}),$(".message-to-mentor").css({left:"-110%"})},500),setTimeout(function(){$(".message-to-mentor__validation-warning").css({height:"0px"}),$(".message-to-mentor__holder").css({width:e,padding:t})},1e3)}$(".call-us-btn").click(function(){$(".message-to-mentor__subject").val(""),$(".message-to-mentor__text").val(""),$(".message-to-mentor__positioning-wrapper").css({zIndex:"8888","background-color":"rgba(0,0,0,.8)"}),$(".message-to-mentor").css({left:"0%"})}),$(".message-to-mentor__close-btn").click(function(){t()}),$(".message-to-mentor__btn").click(function(e){$(".message-to-mentor__text").val().length<10?(e.preventDefault(),$(".message-to-mentor__validation-warning").css({height:"30px"})):t()}),$(".message-to-mentor__text").keyup(function(){10<=$(this).val().length&&$(".message-to-mentor__validation-warning").css({height:"0px"})})});</script>
+        <!-- ↑↑↑ BEM-blocks: message-to-mentor (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: message-from-mentor (start) ↓↓↓-->
+        <div class="message-from-mentor__positioning-wrapper message__wrapper">
+          <div class="message-from-mentor__holder message__holder">
+            <div class="message-from-mentor message">
+              <div class="close-btn message-from-mentor__close-btn">
+                <div class="close-btn__line1"></div>
+                <div class="close-btn__line2"></div>
+              </div>
+              <h5 class="message-from-mentor__header">Вам сообщение
+                <div class="message-from-mentor__text-wrapper">
+                  <div class="message-from-mentor__text">
+                    <p class="Lorem">ipsum dolor sit amet, consectetur adipisicing elit. Expedita corporis eligendi commodi nesciunt dolores minima, enim fuga officiis quae in laborum optio tenetur praesentium quis sit harum mollitia veritatis, maiores excepturi, suscipit soluta eius possimus temporibus! Repudiandae nostrum numquam provident molestias veritatis quas recusandae laudantium, ipsa dolorum dolorem cumque alias excepturi libero ipsum corrupti, quaerat hic. Accusantium autem consequuntur repellat error recusandae sint dolor explicabo, blanditiis odit, cumque cupiditate libero hic eaque porro, laboriosam assumenda obcaecati voluptatem nisi. Aliquam provident laudantium sit. Temporibus magni natus ab nihil atque, ipsum ut? Nemo maxime asperiores cumque similique culpa quia provident inventore optio!</p><br>
+                    <p class="message-from-mentor__mentor_name">Белый Господин</p>
+                  </div>
+                </div>
+                <button class="message-from-mentor__btn message__btn popup-ok-btn" type="button">ок</button>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <style>.message-from-mentor__holder{z-index:9050}.message-from-mentor__header{font-size:18px;text-align:center;padding-bottom:20px}.message-from-mentor__text-wrapper{width:100%;height:150px;display:block;margin:10px 0 0;background-color:transparent;overflow:hidden}.message-from-mentor__text{width:-webkit-calc(100% + 18px);width:calc(100% + 18px);height:150px;color:#fff;padding:2px 10px;font-family:rcl;font-size:14px;line-height:1.3em;text-align:justify;overflow-x:hidden;overflow-y:scroll}.message-from-mentor__mentor_name{text-align:right;font-family:rcli;font-size:16px}</style>
+        <script>$(document).ready(function(){$(".tempBTN").click(function(){$(".message-from-mentor__positioning-wrapper").css({zIndex:"8888","background-color":"rgba(0,0,0,.8)"}),$(".message-from-mentor").css({left:"0%"})}),$(".message-from-mentor__btn, .message-from-mentor__close-btn").click(function(){$(".message-from-mentor").css({left:"110%"});var e=$(".message-from-mentor__holder").css("width"),o=$(".message-from-mentor__holder").css("padding-left");setTimeout(function(){$(".message-from-mentor__holder").css({width:"0px",padding:"0px"}),$(".message-from-mentor__positioning-wrapper").css({zIndex:"-1","background-color":"rgba(0,0,0,0)"}),$(".message-from-mentor").css({left:"-110%"})},500),setTimeout(function(){$(".message-from-mentor__holder").css({width:e,padding:o})},1e3)})});</script>
+        <!-- ↑↑↑ BEM-blocks: message-from-mentor (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: profile-editor (start) ↓↓↓-->
+        <div class="profile-editor__positioning-wrapper">
+          <div class="profile-editor__holder">
+            <div class="profile-editor">
+              <div class="close-btn profile-editor__close-btn">
+                <div class="close-btn__line1"></div>
+                <div class="close-btn__line2"></div>
+              </div>
+              <h5 class="profile-editor__header">Редактор профиля</h5>
+              <form class="profile-editor__form" action="#" method="#" name="profile-editor">
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Имя</span>
+                  <input class="profile-editor__input" id="prof-fname" type="text" placeholder="имя"><span></span>
+                  <div class="validation-warning profile-editor__validation-warning" id="prof-fname-info">Введите Ваше имя!</div>
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Фамилия</span>
+                  <input class="profile-editor__input" id="prof-lname" type="text" placeholder="фамилия"><span></span>
+                  <div class="validation-warning profile-editor__validation-warning" id="prof-lname-info">Введите Вашу фамилию!</div>
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Пол</span>
+                  <div class="profile-editor__gender-container">
+                    <input class="profile-editor__input" type="radio" name="gender" value="male">мужской
+                    <input class="profile-editor__input" type="radio" name="gender" value="female">женский
+                    <input class="profile-editor__input" type="radio" name="gender" value="none" checked>не указан
+                  </div>
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Дата рождения</span>
+                  <input class="profile-editor__input" id="datepicker" type="text" placeholder="день рождения">
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Страна</span>
+                  <input class="profile-editor__input" id="prof-country" type="text" placeholder="страна"><span></span>
+                  <div class="validation-warning profile-editor__validation-warning" id="prof-country-info">Введите страну проживания!</div>
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Город</span>
+                  <input class="profile-editor__input" type="text" placeholder="город">
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Адрес</span>
+                  <input class="profile-editor__input" type="text" placeholder="адрес">
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Телефон</span>
+                  <input class="profile-editor__input" id="prof-phone" type="text" placeholder="телефон"><span></span>
+                  <div class="validation-warning profile-editor__validation-warning" id="prof-phone-info">Введите корректный номер телефона!</div>
+                </label>
+                <button class="profile-editor__btn popup-ok-btn" type="button">сохранить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <style>.profile-editor__positioning-wrapper{width:100vw;height:100vh;top:0;left:0;position:absolute;z-index:-1;background-color:transparent}.profile-editor__holder{width:460px;min-height:200px;padding:10px;position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);background-color:transparent;overflow:hidden}.profile-editor{width:440px;min-height:200px;background-color:#1d2a38;border:1px solid #fff;-webkit-border-radius:6px;border-radius:6px;-webkit-box-shadow:0 0 10px #fff;box-shadow:0 0 10px #fff;padding:15px 15px 45px;position:relative;left:-120%;-webkit-transition:left .5s;-o-transition:left .5s;transition:left .5s}.profile-editor__header{font-size:18px;text-align:center;padding-bottom:20px}.profile-editor__label{width:100%;display:grid;grid-template-columns:110px auto;margin:10px 0;line-height:30px}.profile-editor__input{display:block;height:30px;line-height:30;padding:0 6px;font-size:14px;outline:0;border:0}.profile-editor__input::-webkit-input-placeholder{font-family:rcl;font-size:14px;opacity:1}.profile-editor__input:-ms-input-placeholder,.profile-editor__input::-ms-input-placeholder{font-family:rcl;font-size:14px;opacity:1}.profile-editor__input::placeholder{font-family:rcl;font-size:14px;opacity:1}.profile-editor__gender-container{display:grid;grid-template-columns:repeat(6,auto);-webkit-box-pack:start;-webkit-justify-content:start;-ms-flex-pack:start;justify-content:start}.profile-editor__btn{position:absolute;left:50%;bottom:15px;-webkit-transform:translate(-50%,0);-ms-transform:translate(-50%,0);transform:translate(-50%,0)}</style>
+        <script>$(document).ready(function(){function o(){$(".profile-editor").css({left:"110%"});var e=$(".profile-editor__holder").css("width"),o=$(".profile-editor__holder").css("padding-left");setTimeout(function(){$(".profile-editor__holder").css({width:"0px",padding:"0px"}),$(".profile-editor__positioning-wrapper").css({zIndex:"-1","background-color":"rgba(0,0,0,0)"}),$(".profile-editor").css({left:"-110%"})},500),setTimeout(function(){$(".profile-editor__validation-warning").css({height:"0px","margin-top":"0px"}),$(".profile-editor__holder").css({width:e,padding:o})},1e3)}$("#profile-editor").click(function(){$(".profile-editor__positioning-wrapper").css({zIndex:"8888","background-color":"rgba(0,0,0,.8)"}),$(".profile-editor").css({left:"0%"})}),$(".profile-editor__close-btn").click(function(){o()}),$("#prof-phone").keypress(function(e){if(!((e=e||event).ctrlKey||e.altKey||e.metaKey)){var o=function(e){if(null==e.which)return e.keyCode<32?null:String.fromCharCode(e.keyCode);if(0!=e.which&&0!=e.charCode)return e.which<32?null:String.fromCharCode(e.which);return null}(e);if($("#prof-phone").val()){if(1!=o&&2!=o&&3!=o&&4!=o&&5!=o&&6!=o&&7!=o&&8!=o&&9!=o&&0!=o&&8!=e.keyCode)return!1}else if(1!=o&&2!=o&&3!=o&&4!=o&&5!=o&&6!=o&&7!=o&&8!=o&&9!=o&&0!=o&&"+"!=o&&8!=e.keyCode)return!1}}),$(".profile-editor__btn").click(function(e){return $("#prof-fname").val().length<2?(e.preventDefault(),void $("#prof-fname-info").css({transition:"height .5s",height:"30px","margin-top":"10px"})):$("#prof-lname").val().length<2?(e.preventDefault(),void $("#prof-lname-info").css({transition:"height .5s",height:"30px","margin-top":"10px"})):$("#prof-country").val().length<3?(e.preventDefault(),void $("#prof-country-info").css({transition:"height .5s",height:"30px","margin-top":"10px"})):$("#prof-phone").val().length<13?(e.preventDefault(),void $("#prof-phone-info").css({transition:"height .5s",height:"30px","margin-top":"10px"})):void o()}),$("#prof-fname").keyup(function(){2<=$("#prof-fname").val().length&&$("#prof-fname-info").css({transition:"height .5s",height:"0px","margin-top":"0px"})}),$("#prof-lname").keyup(function(){2<=$("#prof-lname").val().length&&$("#prof-lname-info").css({transition:"height .5s",height:"0px","margin-top":"0px"})}),$("#prof-country").keyup(function(){3<=$("#prof-country").val().length&&$("#prof-country-info").css({transition:"height .5s",height:"0px","margin-top":"0px"})}),$("#prof-phone").keyup(function(){13<=$("#prof-phone").val().length&&$("#prof-phone-info").css({transition:"height .5s",height:"0px","margin-top":"0px"})})});</script>
+        <!-- ↑↑↑ BEM-blocks: profile-editor (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: info-message (start) ↓↓↓-->
+        <div class="info-message">
+          <div class="close-btn info-message__close-btn">
+            <div class="close-btn__line1"></div>
+            <div class="close-btn__line2"></div>
+          </div>
+          <p class="info-message__body">  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad quos, assumenda beatae est illum. Libero saepe quisquam voluptate, vero iste eaque totam sed provident illum quas consequuntur, tempora atque neque.</p>
+        </div>
+        <style>.info-message{width:290px;min-height:65px;background-color:#000;border:1px solid gray;padding:22px;line-height:1.3em;text-align:justify;position:absolute;z-index:9999;right:-290px;bottom:2px;-webkit-transition:right .5s;-o-transition:right .5s;transition:right .5s}.info-message__body{position:relative;height:100%;width:-webkit-calc(290px - 44px);width:calc(290px - 44px);left:50%;-webkit-transform:translate(-50%);-ms-transform:translate(-50%);transform:translate(-50%)}</style>
+        <script>$(document).ready(function(){$(".tempBTN2").click(function(){$(".info-message").css({right:"0px"});var e=setTimeout(function(){$(".info-message").css({right:"-290px"})},4e3);$(".info-message__close-btn").click(function(){$(".info-message").css({right:"-290px"}),clearTimeout(e)}),$(".info-message").mouseenter(function(){clearTimeout(e)}),$(".info-message").mouseleave(function(){$(".info-message").css({right:"-290px"})})})});</script>
+        <!-- ↑↑↑ BEM-blocks: info-message (end) ↑↑↑-->
+      </section>
+      <!-- /SECTION 4-->
+    </main>
+    <!-- /MAIN PART-->
+    <!-- FOOTER-->
+    <footer class="footer"></footer>
+    <!-- /FOOTER-->
+    <!-- js-libs (font awesome, slick, wow ...)-->
+    <script src="libs/fontawesome.js"></script>
+    <script src="libs/highstock.js"></script>
+    <script src="libs/jquery-ui.js"></script>
+    <!-- own js-->
+    <script src="js/js.js"></script>
+    <script src="js/myFirstHighstock.js"></script>
+  </body>
+</html>

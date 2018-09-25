@@ -1,0 +1,43 @@
+@import "reset";
+@import "variables";
+@import "fonts";
+
+/* ↓↓↓ global styles ↓↓↓ */
+* {
+	box-sizing: border-box;
+}
+a, a:hover {
+	color: black;
+	text-decoration: none;
+}
+.clearfix::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.validation-warning {
+	width : 100%;
+	height: 0px;
+	line-height: 30px;
+	padding-left: 6px;
+	border-left: 6px solid red;
+	background-color: rgba(0,0,0,.4);
+	overflow: hidden;
+	transition: height .5s;
+}
+/* ↑↑↑ global styles ↑↑↑ */
+
+/* ↓↓↓ for 320px and more ↓↓↓ */
+/* ↑↑↑ for 320px and more ↑↑↑ */
+
+@import "style_576+";
+@import "style_768+";
+@import "style_992+";
+@import "style_1200+";
+@import "style_1920+";
+
+
+//BEM-blocks
+@import "../BEM-blocks/popup-ok-btn/popup-ok-btn.scss";
+@import "../BEM-blocks/close-btn/close-btn.scss";
+@import "../BEM-blocks/message/message.scss";

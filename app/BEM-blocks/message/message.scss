@@ -1,0 +1,42 @@
+.message__wrapper {
+  width                : 100vw;
+  height               : 100vh;
+  top                  : 0;
+  left                 : 0;
+  position             : absolute;
+  z-index              : -1;
+  background-color     : rgba(0,0,0,0);
+}
+.message__holder {
+  width                : 460px;
+  min-height           : 200px;
+  padding              : 10px;
+  position             : absolute;
+  top                  : 50%;
+  left                 : 50%;
+  transform            : translate(-50%,-50%);
+  background-color     : transparent;
+  overflow             : hidden;
+}
+.message {
+  width                : 440px;
+  min-height           : 200px;
+  max-height           : 500px;
+  background-color     : #1d2a38;
+  border               : 1px solid white;
+  border-radius        : 6px;
+  box-shadow           : 0 0 10px white;
+  padding              : 15px 15px 45px;
+  position             : relative;
+  left                 : -120%;
+  transition           : left .5s;
+  &__btn {
+    position           : absolute;
+    left               : 50%;
+    bottom             : 15px;
+    transform          : translate(-50%,0);
+  }
+  &__validation-warning {
+    margin-bottom      : 10px;
+  }
+}

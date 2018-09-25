@@ -1,0 +1,72 @@
+.profile-editor__positioning-wrapper {
+  width                : 100vw;
+  height               : 100vh;
+  top                  : 0;
+  left                 : 0;
+  position             : absolute;
+  z-index              : -1;
+  background-color     : rgba(0,0,0,0);
+}
+.profile-editor__holder {
+  width                : 460px;
+  min-height           : 200px;
+  padding              : 10px;
+  position             : absolute;
+  top                  : 50%;
+  left                 : 50%;
+  transform            : translate(-50%,-50%);
+  background-color     : transparent;
+  overflow             : hidden;
+}
+.profile-editor {
+  width                : 440px;
+  min-height           : 200px;
+  background-color     : #1d2a38;
+  border               : 1px solid white;
+  border-radius        : 6px;
+  box-shadow           : 0 0 10px white;
+  padding              : 15px 15px 45px;
+  position             : relative;
+  left                 : -120%;
+  transition           : left .5s;
+  &__header {
+    font-size          : 18px;
+    text-align         : center;
+    padding-bottom     : 20px;
+  }
+  &__label {
+    width                 : 100%;
+    display               : grid;
+    grid-template-columns : 110px auto;
+    margin                : 10px 0;
+    line-height: 30px;
+  }
+  &__input {
+    display               : block;
+    height                : 30px;
+    line-height           : 30;
+    padding               : 0 6px;
+    font-size: 14px;
+    outline               : none;
+    border                : none;
+    &::placeholder {
+      font-family         : rcl;
+      font-size           : 14px;
+      opacity             : 1;
+    }
+  }
+  &__gender-container {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    justify-content: start;
+  }
+  &__btn {
+    position           : absolute;
+    left               : 50%;
+    bottom             : 15px;
+    transform          : translate(-50%,0);
+  }
+  &__validation-warning {
+    //margin             : 10px 0 0;
+  }
+}

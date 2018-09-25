@@ -1,0 +1,22 @@
+.info-message {
+  width: 290px;
+  min-height: 65px;
+  background-color: black;
+  border: 1px solid grey;
+  padding: 22px;
+  line-height: 1.3em;
+  text-align: justify;
+  position: absolute;
+  z-index: 9999;
+  right: -290px;
+  bottom: 2px;
+  transition: right .5s;
+  &__body {
+    position: relative;
+    height: 100%;
+    width: calc( 290px - 44px );
+    left: 50%;
+    transform: translate(-50%);
+
+  }
+}

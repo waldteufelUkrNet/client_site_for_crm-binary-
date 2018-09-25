@@ -1,0 +1,58 @@
+// ↓↓↓ BEM-blocks: profile-editor (start) ↓↓↓
+
+.profile-editor__positioning-wrapper
+  .profile-editor__holder
+    .profile-editor
+      .close-btn.profile-editor__close-btn
+        .close-btn__line1
+        .close-btn__line2
+      h5.profile-editor__header Редактор профиля
+      form.profile-editor__form(action='#' method='#' name='profile-editor')
+
+        label.profile-editor__label
+          span.profile-editor__annotation Имя
+          input.profile-editor__input#prof-fname(type='text' placeholder='имя')
+          span
+          .validation-warning.profile-editor__validation-warning#prof-fname-info Введите Ваше имя!
+        label.profile-editor__label
+          span.profile-editor__annotation Фамилия
+          input.profile-editor__input#prof-lname(type='text' placeholder='фамилия')
+          span
+          .validation-warning.profile-editor__validation-warning#prof-lname-info Введите Вашу фамилию!
+        label.profile-editor__label
+          span.profile-editor__annotation Пол
+          div.profile-editor__gender-container
+            input.profile-editor__input(type='radio' name='gender' value="male")
+            | мужской
+            input.profile-editor__input(type='radio' name='gender' value="female")
+            | женский
+            input.profile-editor__input(type='radio' name='gender' value="none" checked)
+            | не указан
+        label.profile-editor__label
+          span.profile-editor__annotation Дата рождения
+          input.profile-editor__input#datepicker(type='text' placeholder='день рождения')
+        label.profile-editor__label
+          span.profile-editor__annotation Страна
+          input.profile-editor__input#prof-country(type='text' placeholder='страна')
+          span
+          .validation-warning.profile-editor__validation-warning#prof-country-info Введите страну проживания!
+        label.profile-editor__label
+          span.profile-editor__annotation Город
+          input.profile-editor__input(type='text' placeholder='город')
+        label.profile-editor__label
+          span.profile-editor__annotation Адрес
+          input.profile-editor__input(type='text' placeholder='адрес')
+        label.profile-editor__label
+          span.profile-editor__annotation Телефон
+          input.profile-editor__input#prof-phone(type='text' placeholder='телефон')
+          span
+          .validation-warning.profile-editor__validation-warning#prof-phone-info Введите корректный номер телефона!
+
+        button(type='button').profile-editor__btn.popup-ok-btn сохранить
+
+style
+  include profile-editor.css
+script
+  include ../minjs/popup-profile-editor/profile-editor.js
+
+// ↑↑↑ BEM-blocks: profile-editor (end) ↑↑↑
