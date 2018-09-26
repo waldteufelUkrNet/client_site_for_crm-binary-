@@ -28,15 +28,15 @@
       justify-content: center;
       align-items    : center;
       &__account {
-      	width : 92px;
-      	margin: 0 20px;
+      	width        : 92px;
+      	margin       : 0 20px;
       }
       &__account-type {
         margin-bottom: 6px;
       }
       &__currency-img {
-      	height: 20px;
-      	margin: 0 10px;
+      	height       : 20px;
+      	margin       : 0 10px;
       }
       &__currency-value {}
       &__btn {
@@ -46,7 +46,7 @@
         border          : none;
         margin          : 0 20px;
         img {
-          height: 40px;
+          height        : 40px;
         }
       }
     }
@@ -87,12 +87,12 @@
       }
       .call-us-btn {
         background-color: transparent;
-        border: 1px solid transparent;
-        padding: 0;
-        outline: none;
-        cursor: pointer;
-        position: relative;
-        top: 3px;
+        border          : 1px solid transparent;
+        padding         : 0;
+        outline         : none;
+        cursor          : pointer;
+        position        : relative;
+        top             : 3px;
         img {
           height: 25px;
         }
@@ -119,76 +119,76 @@
       padding: 15px;
       position: relative;
       .timer-buttons-ul {
-        display: inline-block;
+        display : inline-block;
         position: absolute;
-        z-index: 1111;
-        top: 46px;
-        left: 25px;
+        z-index : 1111;
+        top     : 46px;
+        left    : 25px;
         .timer-buttons-li {
-          display: inline-block;
-          min-width: 45px;
-          font-size: 16px;
-          border: 1px solid silver;
-          border-radius: 4px;
-          padding: 2px 4px;
-          margin-right: 3px;
-          cursor: pointer;
+          display         : inline-block;
+          min-width       : 45px;
+          font-size       : 16px;
+          border          : 1px solid silver;
+          border-radius   : 4px;
+          padding         : 2px 4px;
+          margin-right    : 3px;
+          cursor          : pointer;
           background-color: transparent;
-          transition: background-color .5s, border-color .5s;
+          transition      : background-color .5s, border-color .5s;
           &:hover {
             background-color: dodgerblue;
-            border-color: dodgerblue;
+            border-color    : dodgerblue;
           }
           &_active {
             background-color: dodgerblue;
-            border-color: dodgerblue;
+            border-color    : dodgerblue;
           }
         }
       }
       .type-buttons-ul {
-        display: inline-block;
+        display : inline-block;
         position: absolute;
-        z-index: 1111;
-        top: 32px;
-        right: 55px;
+        z-index : 1111;
+        top     : 32px;
+        right   : 55px;
         .type-buttons-li {
-          display: inline-block;
-          position: relative;
-          margin-left: 3px;
-          width: 36px;
-          height: 36px;
-          font-size: 16px;
-          border: 1px solid silver;
-          border-radius: 4px;
-          cursor: pointer;
+          display         : inline-block;
+          position        : relative;
+          margin-left     : 3px;
+          width           : 36px;
+          height          : 36px;
+          font-size       : 16px;
+          border          : 1px solid silver;
+          border-radius   : 4px;
+          cursor          : pointer;
           background-color: transparent;
-          transition: background-color .5s, border-color .5s;
+          transition      : background-color .5s, border-color .5s;
           &:hover {
             background-color: dodgerblue;
-            border-color: dodgerblue;
+            border-color    : dodgerblue;
           }
           &_active {
             background-color: dodgerblue;
-            border-color: dodgerblue;
+            border-color    : dodgerblue;
           }
           img {
-            width: 30px;
-            height: 30px;
-            display: block;
-            position: absolute;
-            top: 50%;
-            left: 50%;
+            width    : 30px;
+            height   : 30px;
+            display  : block;
+            position : absolute;
+            top      : 50%;
+            left     : 50%;
             transform: translate(-50%,-50%);
           }
         }
       }
       .highcharts-point-up {
-        fill: dodgerblue !important;
+        fill  : dodgerblue !important;
         stroke: dodgerblue !important;
       }
 
       .highcharts-point-down {
-        fill: red !important;
+        fill  : red !important;
         stroke: red !important;
       }
 
@@ -198,21 +198,21 @@
       }
     }
     #labelBorder {
-      position: fixed;
+      position        : fixed;
       background-color: lightgrey;
-      padding: 0 3px;
-      font-family: 'Lucida Sans Unicode';
-      font-size: 11px;
-      line-height: 18px;
-      color: black;
+      padding         : 0 3px;
+      font-family     : 'Lucida Sans Unicode';
+      font-size       : 11px;
+      line-height     : 18px;
+      color           : black;
     }
     #labelIndicator {
-      position: fixed;
-      border-radius: 50px;
-      animation-name: lightbulb;
-      animation-duration: .5s;
+      position                 : fixed;
+      border-radius            : 50px;
+      animation-name           : lightbulb;
+      animation-duration       : .5s;
       animation-iteration-count: infinite;
-      animation-direction: alternate;
+      animation-direction      : alternate;
     }
     /* ↑↑↑ /SECTION 1 (work area) ↑↑↑ */
 
@@ -223,6 +223,7 @@
       width    : 250px;
       padding  : 15px 10px 10px 15px;
       overflow : hidden;
+      position: relative;
       &__table-1-wrapper {
         height  : 100%;
         overflow: hidden;
@@ -237,6 +238,7 @@
       	tr {
           display    : flex;
           align-items: center;
+          height     : 45px;
       		td {
       			padding: 4px;
       		}
@@ -260,6 +262,65 @@
             right   : 0;
       		}
       	}
+      }
+    }
+
+    .wares-change { // border: 1px dotted red;
+      position: relative;
+      z-index: 1000;
+      width: 220px;
+      &__item {
+        border: 1px solid white;
+        height: 45px;
+        width: 220px;
+        line-height: 45px;
+        text-align: center;
+        font-family: rb;
+        border-radius: 6px;
+        position: absolute;
+        user-select: none;
+        &:not(:first-of-type) {
+          background-image: linear-gradient( to right, red, dodgerblue, transparent);
+          left: -250px;
+          cursor: pointer;
+          &:hover {
+            background-color: dodgerblue
+          }
+        }
+        &:nth-of-type(1) {
+          background-color: dodgerblue;
+        }
+        &:nth-of-type(2) {
+          background-image: linear-gradient( to right, navy, dodgerblue, dodgerblue, transparent);
+          top: 50px;
+          transition: background-color .3s ease 0s, left .3s ease 0s;
+        }
+        &:nth-of-type(3) {
+          background-image: linear-gradient( to right, blue, dodgerblue, dodgerblue, transparent);
+          top: 100px;
+          transition: background-color .3s ease 0s, left .3s ease 0.2s;
+        }
+        &:nth-of-type(4) {
+          background-image: linear-gradient( to right, magenta, dodgerblue, dodgerblue, transparent);
+          top: 150px;
+          transition: background-color .3s ease 0s, left .3s ease 0.4s;
+        }
+        &:nth-of-type(5) {
+          background-image: linear-gradient( to right, violet, dodgerblue, dodgerblue, transparent);
+          top: 200px;
+          transition: background-color .3s ease 0s, left .3s ease 0.6s;
+        }
+      }
+      &__changelink {
+        display: block;
+        line-height: 16px;
+        position: absolute;
+        bottom: 0px;
+        right: 3px;
+        color: white;
+        font-family: rcli;
+        font-size: 12px;
+        cursor: pointer;
       }
     }
     /* ↑↑↑ /SECTION 2 (left column) ↑↑↑ */
@@ -431,10 +492,10 @@
       /* ↓↓↓ ACORDION ↓↓↓ */
       .accordion {
         .accordion-elem {
-          width: 100%;
-          display: flex;
+          width          : 100%;
+          display        : flex;
           justify-content: space-between;
-          align-items: center;
+          align-items    : center;
           &__img-pair {
             width   : 30px;
             height  : 30px;
@@ -456,36 +517,36 @@
           }
           &__btn {
             .accordion-btn {
-              width : 26px;
-              height: 26px;
+              width           : 26px;
+              height          : 26px;
               background-color: dodgerblue;
-              border: 1px solid dodgerblue;
-              border-radius: 6px;
-              position: relative;
-              z-index: 1;
-              top: -2px;
-              cursor: pointer;
-              transition: background-color .5s, border-color .5s;
+              border          : 1px solid dodgerblue;
+              border-radius   : 6px;
+              position        : relative;
+              z-index         : 1;
+              top             : -2px;
+              cursor          : pointer;
+              transition      : background-color .5s, border-color .5s;
               &:hover {
                 background-color: $bgColor;
                 border-color    : $overColor;
               }
               &__1-line {
-                height: 16px;
-                width: 2px;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%);
+                height          : 16px;
+                width           : 2px;
+                position        : absolute;
+                top             : 50%;
+                left            : 50%;
+                transform       : translate(-50%,-50%);
                 background-color: white;
               }
               &__2-line {
-                height: 2px;
-                width: 16px;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%);
+                height          : 2px;
+                width           : 16px;
+                position        : absolute;
+                top             : 50%;
+                left            : 50%;
+                transform       : translate(-50%,-50%);
                 background-color: white;
               }
             }
@@ -496,23 +557,23 @@
           }
         }
         .accordion-content {
-          width: 100%;
-          display: flex;
+          width    : 100%;
+          display  : flex;
           flex-wrap: wrap;
-          overflow: hidden;
+          overflow : hidden;
           border: {
-            top: 0px solid white;
+            top   : 0px solid white;
             bottom: 0px solid white;
           }
           height: 0px;
           &__data {
-            width: 50%;
-            height: 26px;
+            width      : 50%;
+            height     : 26px;
             line-height: 26px;
           }
           &__value {
-            width: 50%;
-            height: 26px;
+            width      : 50%;
+            height     : 26px;
             line-height: 26px;
           }
           &__btn {
