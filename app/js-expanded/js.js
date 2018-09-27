@@ -29,60 +29,58 @@
   /* ↓↓↓ wares change ↓↓↓ */
   // open
   $('.wares-change__changelink').click(function() {
-    var tempArr = $('.wares-change__item'),
-        tempVal = 0,
-        tempTransDelay;
+    var tempArr = $('.wares-change__item');
     for (var i = 0; i < tempArr.length; i++) {
-      tempTransDelay = tempVal + 's';
       $(tempArr[i]).css({'left':'0px'});
-      tempVal = tempVal + 0.2;
     }
   });
 
   // choice & close
-  $('.wares-change__item:not(:first-of-type)').click(function(){
+  $('.wares-change__item').click(function(){
 
     // видаляємо "змінити"
     $('.wares-change__item:first-of-type').children('a.wares-change__changelink').remove();
 
     // піднімаємо елемент угору, додаємо йому "змінити"
     $(this).css({'top':'0px','cursor':'default','background-image':'none','background-color':'dodgerblue'})
-           .append('<a class="wares-change__changelink" onclick=reorder(this)>изменить</a>');
+           .append('<a class="wares-change__changelink" onclick=openMeny()>изменить</a>');
 
-    // в циклі даємо елементам затримку, анімуємо
-    var tempArr = $('.wares-change__item'),
-        tempVal = 0,
-        tempTransDelay;
+    // анімуємо зникнення
+    var tempArr = $('.wares-change__item');
+    var tempTime = tempArr.length * .3 * 1000;
     for (var i = 0; i < tempArr.length; i++) {
       if (this == tempArr[i]) continue;
-      tempTransDelay = tempVal + 's';
-      $(tempArr[i]).css({'left':'-200px'});
-      tempVal = tempVal + 0.2;
+      $(tempArr[i]).css({'left':'-250px'});
     }
 
     // після анімації перерозташовуємо елементи
-    var timer = setTimeout(function(){
+    var timer = setTimeout(function() {
 
+      // знаходимо кнопку із елементом "змінити"
       for (var i = 0; i < tempArr.length; i++) {
         if ( $(tempArr[i]).children('a.wares-change__changelink').length != 0 ) {
+          var THIS = i;
           break
-        } else {
-          console.log( $(tempArr[i]).css('top') );
         }
       }
-    }, 1200);
+
+      // усі елементи перед ставимо позаду
+      for (var i = THIS; i >= 0; i--) {
+        $(tempArr[THIS]).after(tempArr[i]);
+      }
+    }, tempTime);
   });
 
   /* ↑↑↑ /wares change ↑↑↑ */
 // });
 
-function reorder(THIS){
-  // var tempEl = $(THIS).parents('li.wares-change__item')[0];
-  // var tempArr = $('.wares-change__item');
-
-  // for (var i = 0; i < tempArr.length; i++) {
-  //   if ( tempArr[i] != tempEl ) {
-  //     $(tempArr[i]).css({'top':tempTop});
-  //   } else continue
-  // }
+/* ↓↓↓ FUNCTION DECLARATIONS ↓↓↓ */
+function openMeny() {
+  var tempArr = $('.wares-change__item');
+  setTimeout(function(){
+                        for (var i = 0; i < tempArr.length; i++) {
+                          $(tempArr[i]).attr({'style':'left: 0px'});
+                        }
+                       },1);
 }
+/* ↑↑↑ /FUNCTION DECLARATIONS ↑↑↑ */

@@ -279,10 +279,10 @@
         border-radius: 6px;
         position: absolute;
         user-select: none;
+        cursor: pointer;
         &:not(:first-of-type) {
           background-image: linear-gradient( to right, red, dodgerblue, transparent);
           left: -250px;
-          cursor: pointer;
           &:hover {
             background-color: dodgerblue
           }
