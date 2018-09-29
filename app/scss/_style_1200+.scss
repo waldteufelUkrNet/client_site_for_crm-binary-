@@ -282,7 +282,7 @@
         cursor: pointer;
         &:not(:first-of-type) {
           background-image: linear-gradient( to right, red, dodgerblue, transparent);
-          left: -200px;
+          left: -250px;
           &:hover {
             background-color: dodgerblue
           }

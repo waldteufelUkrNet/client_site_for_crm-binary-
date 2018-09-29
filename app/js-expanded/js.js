@@ -33,30 +33,43 @@
 
     // open
     if ( e.target.tagName == 'A' ) {
-      console.log('ckick on a');
+      // console.log('ckick on a');
       $('.wares-change__item').css({'left':'0px'});
     // choice & close
     } else if ( e.target.tagName == 'LI' || e.target.tagName == 'SPAN' ) {
-      console.log('ckick on li');
+      // console.log('ckick on li');
+      var thisEl = this;
 
-      var tempArr = $('.wares-change__item');
-      for (var i = 0; i < tempArr.length; i++) {
-        if ( tempArr[i] == this ) {
+      var tempObj = $('.wares-change__item');
+      for (var i = 0; i < tempObj.length; i++) {
+        if ( tempObj[i] == this ) {
           var I = i;
         }
       }
-      var tempPart1 = tempArr.slice(0,I);
-      var tempPart2 = tempArr.slice(I+1);
-      //var tempPartArr3 = tempPartArr1.concat(tempPartArr2);
-
-      var tempArr = $('.wares-change__item');
-      for (var i = 0; i < tempArr.length; i++) {
-        if ( tempArr[i] == this ) {
-          $(tempArr[i]).css({'top':'0px'}).append('<a class="wares-change__changelink">изменить</a>');
-          $(tempArr[i]).after(tempPart1);
-        }
+      // obj -> arr
+      var tempArr = [];
+      for ( var i = 0; i < tempObj.length; i++ ) {
+        if ( i == I ) continue;
+        tempArr.push(tempObj[i])
       }
+      // part of arr before this-element
+      var tempPart1 = tempArr.slice(0,I);
 
+      // delete and add "изменить"-link
+      $('li.wares-change__item a.wares-change__changelink').remove();
+      $(thisEl).css({'top':'0px'})
+               .append('<a class="wares-change__changelink">изменить</a>');
+
+      $(tempArr).css({'left':'-250px'});
+      setTimeout(function(){
+        var tempVal = 50;
+        for ( var i = 0; i < tempArr.length; i++ ) {
+          var tempTop = tempVal + 'px';
+          $(tempArr[i]).css({'top':tempTop});
+          tempVal += 50;
+        }
+        $(thisEl).after(tempPart1);
+      },tempArr.length * .2 * 1000);
 
     }
 
