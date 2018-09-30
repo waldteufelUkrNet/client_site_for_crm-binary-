@@ -305,35 +305,12 @@ html(lang='en')
       section.right-column
         .work-field
 
-          .act-btn-field
-            .img-pair
-              img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-              img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-            .currency-price 9999.99
+        include BEM-blocks/tug-of-war/tug-of-war.pug
 
-            include BEM-blocks/shoulder/shoulder.pug
-
-            .comission
-              span Комиссия:
-              span.comission-value 0.01%
-            .btns-holder
-              .btn-bue BUY
-                span 9999.99
-              .btn-cell SELL
-                span 9999.99
-            p.settings Settings:
-            label.setting-input-label
-              span TP
-              input.setting-input#TP(type='text')
-            label.setting-input-label
-              span SL
-              input.setting-input#SL(type='text')
-
-            include BEM-blocks/tug-of-war/tug-of-war.pug
-
-        .work-change-btn.act-btn.work-change-btn_active Действия
-        .work-change-btn.active-btn Активные сделки
-        .work-change-btn.history-btn История сделок
+        .work-change-btn-holder
+          .work-change-btn.act-btn.work-change-btn_active Действия
+          .work-change-btn.active-btn Активные сделки
+          .work-change-btn.history-btn История сделок
       // /SECTION 3
 
       //- // SECTION 4 (popups)
