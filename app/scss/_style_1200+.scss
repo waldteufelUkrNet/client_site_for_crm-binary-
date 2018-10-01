@@ -116,7 +116,7 @@
         left   : 2px solid black;
         right  : 2px solid black;
       }
-      padding: 15px;
+      padding : 15px;
       position: relative;
       .timer-buttons-ul {
         display : inline-block;
@@ -193,7 +193,7 @@
       }
 
       @keyframes lightbulb {
-        0% {background-color: yellow; border-color: #3d4a58;}
+        0% {background-color  : yellow; border-color: #3d4a58;}
         100% {background-color: #3d4a58; border-color: yellow;}
       }
     }
@@ -267,22 +267,22 @@
 
     .wares-change { // border: 1px dotted red;
       position: relative;
-      z-index: 1000;
-      width: 220px;
+      z-index : 1000;
+      width   : 220px;
       &__item {
-        border: 1px solid white;
-        height: 45px;
-        width: 220px;
-        line-height: 45px;
-        text-align: center;
-        font-family: rb;
+        border       : 1px solid white;
+        height       : 45px;
+        width        : 220px;
+        line-height  : 45px;
+        text-align   : center;
+        font-family  : rb;
         border-radius: 6px;
-        position: absolute;
-        user-select: none;
-        cursor: pointer;
+        position     : absolute;
+        user-select  : none;
+        cursor       : pointer;
         &:not(:first-of-type) {
           background-image: linear-gradient( to right, red, dodgerblue, transparent);
-          left: -250px;
+          left            : -250px;
           &:hover {
             background-color: dodgerblue
           }
@@ -292,35 +292,35 @@
         }
         &:nth-of-type(2) {
           background-image: linear-gradient( to right, navy, dodgerblue, dodgerblue, transparent);
-          top: 50px;
-          transition: background-color .5s ease 0s, left .3s ease 0s, top .3s ease-in;
+          top             : 50px;
+          transition      : background-color .5s ease 0s, left .3s ease 0s, top .3s ease-in;
         }
         &:nth-of-type(3) {
           background-image: linear-gradient( to right, blue, dodgerblue, dodgerblue, transparent);
-          top: 100px;
-          transition: background-color .5s ease 0s, left .3s ease 0.2s, top .3s ease-in;
+          top             : 100px;
+          transition      : background-color .5s ease 0s, left .3s ease 0.2s, top .3s ease-in;
         }
         &:nth-of-type(4) {
           background-image: linear-gradient( to right, magenta, dodgerblue, dodgerblue, transparent);
-          top: 150px;
-          transition: background-color .5s ease 0s, left .3s ease 0.4s, top .3s ease-in;
+          top             : 150px;
+          transition      : background-color .5s ease 0s, left .3s ease 0.4s, top .3s ease-in;
         }
         &:nth-of-type(5) {
           background-image: linear-gradient( to right, violet, dodgerblue, dodgerblue, transparent);
-          top: 200px;
-          transition: background-color .5s ease 0s, left .3s ease 0.6s, top .3s ease-in;
+          top             : 200px;
+          transition      : background-color .5s ease 0s, left .3s ease 0.6s, top .3s ease-in;
         }
       }
       &__changelink {
-        display: block;
+        display    : block;
         line-height: 16px;
-        position: absolute;
-        bottom: 0px;
-        right: 3px;
-        color: white;
+        position   : absolute;
+        bottom     : 0px;
+        right      : 3px;
+        color      : white;
         font-family: rcli;
-        font-size: 12px;
-        cursor: pointer;
+        font-size  : 12px;
+        cursor     : pointer;
       }
     }
     /* ↑↑↑ /SECTION 2 (left column) ↑↑↑ */
@@ -357,25 +357,28 @@
           }
         }
         .investment-calculator {
-          //overflow: hidden;
-          display: grid;
-          grid-template-columns: 1fr minmax(auto, 120px);
-          grid-gap: 6px;
+          overflow             : hidden;
+          display              : grid;
+          grid-template-columns: 1fr auto;
+          grid-gap             : 6px;
 
           label {
-            height: 26px;
+            height     : 26px;
             line-height: 22px;
+            user-select: none;
           }
 
           input, span {
             background-image: linear-gradient(to right, #141414, #102734);
-            border: none;
-            height: 26px;
-            line-height: 26px;
-            padding: 0 12px;
-            color: white;
-            font-family: rcl;
-            font-size: 14px;
+            border          : 1px solid #102734;
+            height          : 26px;
+            line-height     : 26px;
+            padding         : 0 12px;
+            color           : white;
+            font-family     : rcl;
+            font-size       : 14px;
+            outline         : none;
+            display         : block;
           }
 
           span {
@@ -383,11 +386,23 @@
           }
 
           input::placeholder {
-            color: white;
-            opacity: 1;
+            color      : white;
+            opacity    : 1;
             font-family: rcl;
-            font-size: 14px;
+            font-size  : 14px;
           }
+        }
+      }#UTC-datetimer-holder { border: 1px solid dodgerblue;
+        min-height: 30px;
+        padding: 6px;
+        border-radius: 4px;
+        text-align: center;
+        margin: 6px 0;
+        color: dodgerblue;
+        user-select: none;
+        #UTC-datetimer {
+          color: white;
+
         }
       }
       .work-change-btn-holder {

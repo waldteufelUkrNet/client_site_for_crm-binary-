@@ -85,13 +85,41 @@ $('#investment-input').bind('blur keyup', function(event) {
     resultValue = 'ошибка ввода!';
     $( $('#investment-input') ).val('').css({'border':'1px solid red'});
   } else {
-    $( $('#investment-input') ).css({'border':'none'});
+    $( $('#investment-input') ).css({'border':'1px solid #102734'});
   }
 
   $( $('#investment-result') ).text(resultValue);
 
 });
 /* ↑↑↑ /investment calculator ↑↑↑ */
+
+/* ↓↓↓ navigation datetimer ↓↓↓ */
+var datetimer = document.getElementById('UTC-datetimer');
+
+setInterval(function() {
+  var date = new Date();
+  var dd = date.getUTCDate();
+  if (dd < 10) dd = '0' + dd;
+
+  var mm = date.getUTCMonth() + 1;
+  if (mm < 10) mm = '0' + mm;
+
+  var yy = date.getUTCFullYear();
+  if (yy < 10) yy = '0' + yy;
+
+  var hh = date.getUTCHours();
+  if (hh < 10) hh = '0' + hh;
+
+  var mn = date.getUTCMinutes();
+  if (mn < 10) mn = '0' + mn;
+
+  var ss = date.getUTCSeconds();
+  if (ss < 10) ss = '0' + ss;
+
+  datetimer.innerHTML = dd + "." + mm + "." + yy + "   " + hh + ":" + mn + ":" + ss;
+}, 1000);
+
+/* ↑↑↑ /navigation datetimer ↑↑↑ */
 
 /* ↓↓↓ FUNCTION DECLARATIONS ↓↓↓ */
 function isNumeric(n) {

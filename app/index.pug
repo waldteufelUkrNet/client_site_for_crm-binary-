@@ -321,8 +321,11 @@ html(lang='en')
             label(for='#investment-result') прибыль:
             span(id='investment-result' type='text')
 
-        include BEM-blocks/tug-of-war/tug-of-war.pug
+          #UTC-datetimer-holder
+            span#UTC-datetimer-info Время UTC: &nbsp
+            span#UTC-datetimer
 
+        include BEM-blocks/tug-of-war/tug-of-war.pug
         .work-change-btn-holder
           .work-change-btn.act-btn.work-change-btn_active Действия
           .work-change-btn.active-btn Активные сделки
