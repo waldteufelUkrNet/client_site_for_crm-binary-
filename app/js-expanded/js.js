@@ -25,6 +25,54 @@
   });
   /* ↑↑↑ /field switch ↑↑↑ */
 
+  /* ↓↓↓ wares change ↓↓↓ */
+  $('.wares-change__item').click(function(e) {
+    //console.log("e.currentTarget.tagName:", e.currentTarget.tagName, "; e.target.tagName:", e.target.tagName);
+
+    // open
+    if ( e.target.tagName == 'A' ) {
+      // console.log('ckick on a');
+      $('.wares-change__item').css({'left':'0px'});
+    // choice & close
+    } else if ( e.target.tagName == 'LI' || e.target.tagName == 'SPAN' ) {
+      // console.log('ckick on li');
+      var thisEl = this;
+
+      var tempObj = $('.wares-change__item');
+      for (var i = 0; i < tempObj.length; i++) {
+        if ( tempObj[i] == this ) {
+          var I = i;
+        }
+      }
+      // obj -> arr
+      var tempArr = [];
+      for ( var i = 0; i < tempObj.length; i++ ) {
+        if ( i == I ) continue;
+        tempArr.push(tempObj[i])
+      }
+      // part of arr before this-element
+      var tempPart1 = tempArr.slice(0,I);
+
+      // delete and add "изменить"-link
+      $('li.wares-change__item a.wares-change__changelink').remove();
+      $(thisEl).css({'top':'0px'})
+               .append('<a class="wares-change__changelink">изменить</a>');
+
+      $(tempArr).css({'left':'-250px'});
+      setTimeout(function(){
+        var tempVal = 50;
+        for ( var i = 0; i < tempArr.length; i++ ) {
+          var tempTop = tempVal + 'px';
+          $(tempArr[i]).css({'top':tempTop});
+          tempVal += 50;
+        }
+        $(thisEl).after(tempPart1);
+      },tempArr.length * .2 * 1000);
+
+    }
+
+  });
+  /* ↑↑↑ /wares change ↑↑↑ */
 
 /* ↓↓↓ investment calculator ↓↓↓ */
 $('#investment-input').bind('blur keyup', function(event) {
