@@ -26,134 +26,27 @@
   /* ↑↑↑ /field switch ↑↑↑ */
 
 
-/* ↓↓↓ wares change ↓↓↓ */
+/* ↓↓↓ investment calculator ↓↓↓ */
+$('#investment-input').bind('blur keyup', function(event) {
+  var inputValue   = +$('#investment-input').val(),
+      percentValue = +$('#investment-percent').text();
 
-  $('.wares-change__item').click(function(e) {
-    //console.log("e.currentTarget.tagName:", e.currentTarget.tagName, "; e.target.tagName:", e.target.tagName);
+  var resultValue  = (inputValue * percentValue)/100 + inputValue;
 
-    // open
-    if ( e.target.tagName == 'A' ) {
-      // console.log('ckick on a');
-      $('.wares-change__item').css({'left':'0px'});
-    // choice & close
-    } else if ( e.target.tagName == 'LI' || e.target.tagName == 'SPAN' ) {
-      // console.log('ckick on li');
-      var thisEl = this;
+  if ( !isNumeric(resultValue) ) {
+    resultValue = 'ошибка ввода!';
+    $( $('#investment-input') ).val('').css({'border':'1px solid red'});
+  } else {
+    $( $('#investment-input') ).css({'border':'none'});
+  }
 
-      var tempObj = $('.wares-change__item');
-      for (var i = 0; i < tempObj.length; i++) {
-        if ( tempObj[i] == this ) {
-          var I = i;
-        }
-      }
-      // obj -> arr
-      var tempArr = [];
-      for ( var i = 0; i < tempObj.length; i++ ) {
-        if ( i == I ) continue;
-        tempArr.push(tempObj[i])
-      }
-      // part of arr before this-element
-      var tempPart1 = tempArr.slice(0,I);
+  $( $('#investment-result') ).text(resultValue);
 
-      // delete and add "изменить"-link
-      $('li.wares-change__item a.wares-change__changelink').remove();
-      $(thisEl).css({'top':'0px'})
-               .append('<a class="wares-change__changelink">изменить</a>');
+});
+/* ↑↑↑ /investment calculator ↑↑↑ */
 
-      $(tempArr).css({'left':'-250px'});
-      setTimeout(function(){
-        var tempVal = 50;
-        for ( var i = 0; i < tempArr.length; i++ ) {
-          var tempTop = tempVal + 'px';
-          $(tempArr[i]).css({'top':tempTop});
-          tempVal += 50;
-        }
-        $(thisEl).after(tempPart1);
-      },tempArr.length * .2 * 1000);
-
-    }
-
-  });
-
-/* ↑↑↑ /wares change ↑↑↑ */
-
-
-
-
-
-//   /* ↓↓↓ wares change ↓↓↓ */
-//   // open
-//   // $('.wares-change__changelink').click(function(e) {
-//   //   if ( $(e.target).hasClass('wares-change__changelink') ) { console.log(1) }
-//   //   if ( $(e.target).hasClass('wares-change__item') ) { console.log(2) }
-//   //   var tempArr = $('.wares-change__item');
-//   //   for (var i = 0; i < tempArr.length; i++) {
-//   //     $(tempArr[i]).css({'left':'0px'});
-//   //   }
-//   // });
-
-//   // choice & close
-//   $('.wares-change__item').click(function(e) {
-//     if ( $(e.target).hasClass('wares-change__changelink') ) { console.log('зміна');
-//       var tempArr = $('.wares-change__item');
-//       for (var i = 0; i < tempArr.length; i++) {
-//         $(tempArr[i]).css({'left':'0px'});
-//       }
-//       return
-//     }
-//     if ( $(e.target).hasClass('wares-change__item') || $('li.wares-change__item span').length != 0 ) { console.log('вибір');
-
-//       // видаляємо "змінити"
-//       $('.wares-change__item:first-of-type').children('a.wares-change__changelink').remove();
-
-//       // піднімаємо елемент угору, додаємо йому "змінити"
-//       $(this).css({'top':'0px','cursor':'default','background-image':'none','background-color':'dodgerblue'})
-//              .append('<a class="wares-change__changelink">изменить</a>');
-
-//       // анімуємо зникнення
-//       var tempArr = $('.wares-change__item');
-//       var tempTime = tempArr.length * .3 * 1000;
-//       for (var i = 0; i < tempArr.length; i++) {
-//         if (this == tempArr[i]) continue;
-//         $(tempArr[i]).css({'left':'-100px'});
-//       }
-
-//       // після анімації перерозташовуємо елементи
-//       var timer = setTimeout(function() {
-//         var tempArr = $('.wares-change__item');
-//         // знаходимо кнопку із елементом "змінити"
-//         for (var i = 0; i < tempArr.length; i++) {
-//           if ( $(tempArr[i]).children('a.wares-change__changelink').length != 0 ) {
-//             var THIS = i;
-//             break
-//           }
-//         }
-
-//         // усі елементи перед ставимо позаду
-//         // var tempArr = $('.wares-change__item'),
-//         //     tempVal = 0,
-//         //     tempTop;
-//         // for (var i = THIS; i >= 0; i--) { console.log("i", i);
-//         //   tempTop = tempVal + 'px';
-//         //   $(tempArr[THIS]).after(tempArr[i]);
-
-//         //   $(tempArr[i]).css({'top':tempTop})
-//         //   tempVal += 50;
-//         // }
-//       }, 1200);
-//     }
-//   });
-
-//   /* ↑↑↑ /wares change ↑↑↑ */
-// // });
-
-// /* ↓↓↓ FUNCTION DECLARATIONS ↓↓↓ */
-// // function openMenu() {
-// //   var tempArr = $('.wares-change__item');
-// //   setTimeout(function(){
-// //                         for (var i = 0; i < tempArr.length; i++) {
-// //                           $(tempArr[i]).attr({'style':'left: 0px'});
-// //                         }
-// //                        },1);
-// // }
-// /* ↑↑↑ /FUNCTION DECLARATIONS ↑↑↑ */
+/* ↓↓↓ FUNCTION DECLARATIONS ↓↓↓ */
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n)
+}
+/* ↑↑↑ /FUNCTION DECLARATIONS ↑↑↑ */

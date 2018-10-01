@@ -332,7 +332,64 @@
       width    : 250px;
       padding  : 15px 15px 10px 15px;
       position : relative;
-      .work-field {}
+      .work-field {
+        .trade-pair {
+          position: relative;
+          &__logo {
+            width: 50px;
+            position: absolute;
+          }
+          &__name {
+            font-family: rcl;
+            font-size: 28px;
+            padding: 4px 0 10px 60px;
+          }
+          &__description {
+            font-family: rcli;
+            font-size: 14px;
+            color: lightskyblue;
+          }
+          &__price {
+            position: relative;
+            top: -9px;
+            left: 6px;
+            letter-spacing: 2px;
+          }
+        }
+        .investment-calculator {
+          //overflow: hidden;
+          display: grid;
+          grid-template-columns: 1fr minmax(auto, 120px);
+          grid-gap: 6px;
+
+          label {
+            height: 26px;
+            line-height: 22px;
+          }
+
+          input, span {
+            background-image: linear-gradient(to right, #141414, #102734);
+            border: none;
+            height: 26px;
+            line-height: 26px;
+            padding: 0 12px;
+            color: white;
+            font-family: rcl;
+            font-size: 14px;
+          }
+
+          span {
+            user-select: none;
+          }
+
+          input::placeholder {
+            color: white;
+            opacity: 1;
+            font-family: rcl;
+            font-size: 14px;
+          }
+        }
+      }
       .work-change-btn-holder {
         width   : calc(100% - 30px);
         position: absolute;

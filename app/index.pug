@@ -304,6 +304,22 @@ html(lang='en')
       // SECTION 3 (right column)
       section.right-column
         .work-field
+          .trade-pair
+            img.trade-pair__logo(src="img/BTCETH.png", alt="BTCETH.png")
+            h5.trade-pair__name BTC/ETH
+            p.trade-pair__description котировка: биткоин/тугрик
+            i.fas.fa-caret-up(style='font-size: 40px; color: green')
+            span.trade-pair__price 12345.67890
+
+          .investment-calculator
+            label(for='#investment-input') инвестиции:
+            input(id='investment-input' type='text' placeholder='инвестиции')
+
+            label(for='#investment-percent') доход, %:
+            span(id='investment-percent' type='text') 80
+
+            label(for='#investment-result') прибыль:
+            span(id='investment-result' type='text')
 
         include BEM-blocks/tug-of-war/tug-of-war.pug
 
