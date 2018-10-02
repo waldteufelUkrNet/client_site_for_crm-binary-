@@ -8,6 +8,8 @@ html(lang='en')
 
     // stylesheet
     link(rel='stylesheet', type='text/css', href='libs-css/jquery-ui.css')
+    link(rel='stylesheet', type='text/css', href='libs-css/slick.css')
+    link(rel='stylesheet', type='text/css', href='libs-css/slick-theme.css')
 
     // own stylesheet
     link(rel='stylesheet', type='text/css', href='css/style.css')
@@ -87,218 +89,294 @@ html(lang='en')
 
       // SECTION 2 (left column)
       section.left-column
-        ul.wares-change
-          li.wares-change__item
-            span Акции
-            a.wares-change__changelink изменить
-          li.wares-change__item
-            span Валютные пары
-          li.wares-change__item
-            span Криптовалюта
-          li.wares-change__item
-            span Товары
-          li.wares-change__item
-            span Негры
+        .wares-slider
+          .wares-slider__item
+            h5.wares-slider__item-header Акции
 
-        .left-column__table-1-wrapper
-          .left-column__table-2-wrapper
-            table.left-column__table
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                td 9999.99
-              tr
-                td: .img-pair
-                  img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                  img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                td BTC/USDt
-                td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                td 9999.99
+            .wares-slider__item-table-1-wrapper
+              .wares-slider__item-table-2-wrapper
+                table.wares-slider__table
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 1111
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td qqq
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td XXXXX
+
+          .wares-slider__item
+            h5.wares-slider__item-header Валютные пары
+
+            .wares-slider__item-table-1-wrapper
+              .wares-slider__item-table-2-wrapper
+                table.wares-slider__table
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+
+          .wares-slider__item
+            h5.wares-slider__item-header Криптовалюта
+
+            .wares-slider__item-table-1-wrapper
+              .wares-slider__item-table-2-wrapper
+                table.wares-slider__table
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+
+          .wares-slider__item
+            h5.wares-slider__item-header Товары
+
+            .wares-slider__item-table-1-wrapper
+              .wares-slider__item-table-2-wrapper
+                table.wares-slider__table
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
+                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                    td BTC/USDt
+                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td 9999.99
+
       // /SECTION 2
 
       // SECTION 3 (right column)
@@ -351,6 +429,7 @@ html(lang='en')
     script(src='libs/fontawesome.js')
     script(src='libs/highstock.js')
     script(src='libs/jquery-ui.js')
+    script(src='libs/slick.js')
 
     // own js
     script(src='js/js.js')

@@ -224,103 +224,96 @@
       padding  : 15px 10px 10px 15px;
       overflow : hidden;
       position: relative;
-      &__table-1-wrapper {
-        height  : 100%;
-        overflow: hidden;
-        position: relative;
+      &::after {
+        content: '';
+        display: block;
+        height: 2px;
+        width: 280px;
+        background-color: black;
+        position: absolute;
+        top: 50px;
+        left: 0px;
       }
-      &__table-2-wrapper {
-        height  : 100%;
-        width   : calc( 100% + 20px);
-        overflow: auto;
-      }
-      &__table {
-      	tr {
-          display    : flex;
-          align-items: center;
-          height     : 45px;
-      		td {
-      			padding: 4px;
-      		}
-      	}
-      	.img-pair {
-          width   : 30px;
-          height  : 30px;
+      .wares-slider {
+        &__item {
+          text-align: center;
+          height: calc(100vh - 100px);
+        }
+        &__item-header {
+          text-transform: uppercase;
+          font-size     : 20px;
+          padding-bottom : 20px;
+        }
+        &__item-table-1-wrapper {
+          height  : 95%;
+          overflow: hidden;
           position: relative;
-      		.img-pair-top {
-            width   : 20px;
-            height  : 20px;
-            position: absolute;
-            top     : 0;
-            left    : 0;
-      		}
-      		.img-pair-bottom {
-            width   : 20px;
-            height  : 20px;
-            position: absolute;
-            bottom  : 0;
-            right   : 0;
-      		}
-      	}
-      }
-    }
-
-    .wares-change { // border: 1px dotted red;
-      position: relative;
-      z-index : 1000;
-      width   : 220px;
-      &__item {
-        border       : 1px solid white;
-        height       : 45px;
-        width        : 220px;
-        line-height  : 45px;
-        text-align   : center;
-        font-family  : rb;
-        border-radius: 6px;
-        position     : absolute;
-        user-select  : none;
-        cursor       : pointer;
-        &:not(:first-of-type) {
-          background-image: linear-gradient( to right, red, dodgerblue, transparent);
-          left            : -250px;
-          &:hover {
-            background-color: dodgerblue
+        }
+        &__item-table-2-wrapper {
+          height  : 100%;
+          width   : calc( 100% + 20px);
+          overflow: auto;
+        }
+        &__table {
+          tr {
+            display    : flex;
+            align-items: center;
+            height     : 45px;
+            td {
+              padding: 4px;
+            }
+          }
+          .img-pair {
+            width   : 30px;
+            height  : 30px;
+            position: relative;
+            .img-pair-top {
+              width   : 20px;
+              height  : 20px;
+              position: absolute;
+              top     : 0;
+              left    : 0;
+            }
+            .img-pair-bottom {
+              width   : 20px;
+              height  : 20px;
+              position: absolute;
+              bottom  : 0;
+              right   : 0;
+            }
           }
         }
-        &:nth-of-type(1) {
-          background-color: dodgerblue;
+        .slick-arrow {
+          //border: 1px solid white;
+          border-radius: 4px;
+          font-family: fa;
+          transition: background-color .5s;
+          &:before {
+            width: 100%;
+            height: 100%;
+            font-family: fa;
+            font-size  : 14px;
+            color      : white;
+          }
+          &:hover {
+            background-color: dodgerblue;
+            transition: background-color .5s;
+          }
         }
-        &:nth-of-type(2) {
-          background-image: linear-gradient( to right, navy, dodgerblue, dodgerblue, transparent);
-          top             : 50px;
-          transition      : background-color .5s ease 0s, left .3s ease 0s, top .3s ease-in;
+        .slick-prev {
+          top: 11px;
+          left: -9px;
+          &:before {
+            content: "\f104";
+          }
         }
-        &:nth-of-type(3) {
-          background-image: linear-gradient( to right, blue, dodgerblue, dodgerblue, transparent);
-          top             : 100px;
-          transition      : background-color .5s ease 0s, left .3s ease 0.2s, top .3s ease-in;
+        .slick-next {
+          top: 11px;
+          right: -3px;
+          &:before {
+            content: "\f105";
+          }
         }
-        &:nth-of-type(4) {
-          background-image: linear-gradient( to right, magenta, dodgerblue, dodgerblue, transparent);
-          top             : 150px;
-          transition      : background-color .5s ease 0s, left .3s ease 0.4s, top .3s ease-in;
-        }
-        &:nth-of-type(5) {
-          background-image: linear-gradient( to right, violet, dodgerblue, dodgerblue, transparent);
-          top             : 200px;
-          transition      : background-color .5s ease 0s, left .3s ease 0.6s, top .3s ease-in;
-        }
-      }
-      &__changelink {
-        display    : block;
-        line-height: 16px;
-        position   : absolute;
-        bottom     : 0px;
-        right      : 3px;
-        color      : white;
-        font-family: rcli;
-        font-size  : 12px;
-        cursor     : pointer;
       }
     }
     /* ↑↑↑ /SECTION 2 (left column) ↑↑↑ */
@@ -359,7 +352,7 @@
         .investment-calculator {
           overflow             : hidden;
           display              : grid;
-          grid-template-columns: 1fr auto;
+          grid-template-columns: 90px 120px;
           grid-gap             : 6px;
 
           label {
@@ -379,6 +372,7 @@
             font-size       : 14px;
             outline         : none;
             display         : block;
+            width           : 120px;
           }
 
           span {
@@ -392,7 +386,8 @@
             font-size  : 14px;
           }
         }
-      }#UTC-datetimer-holder { border: 1px solid dodgerblue;
+      }
+      #UTC-datetimer-holder { border: 1px solid dodgerblue;
         min-height: 30px;
         padding: 6px;
         border-radius: 4px;
@@ -402,7 +397,6 @@
         user-select: none;
         #UTC-datetimer {
           color: white;
-
         }
       }
       .work-change-btn-holder {

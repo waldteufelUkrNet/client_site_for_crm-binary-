@@ -1,6 +1,7 @@
 // $(document).ready(function(){
 
-  $( "#datepicker" ).datepicker();
+  $( '.wares-slider' ).slick();
+  $( '#datepicker' ).datepicker();
 
   /* ↓↓↓ field switch ↓↓↓ */
   $('.act-btn').click(function(){
