@@ -4,26 +4,25 @@
   $( '#datepicker' ).datepicker();
 
   /* ↓↓↓ field switch ↓↓↓ */
-  $('.act-btn').click(function(){
+  $('.slider-change-btn').click(function(){
+
+    var tempArrBtn  = $('.slider-change-btn');
+    var tempArrItem = $('.slider-area__item');
+    for ( var i = 0; i < tempArrBtn.length; i++ ) {
+      if (tempArrBtn[i] == this) {
+        var thisElNumber = i;
+      }
+    }
   	// buttons
-  	$('.act-btn').addClass('work-change-btn_active');
-  	$('.active-btn').removeClass('work-change-btn_active');
-  	$('.history-btn').removeClass('work-change-btn_active');
+  	$('.slider-change-btn').removeClass('slider-change-btn_active');
+  	$(this).addClass('slider-change-btn_active');
+    //sliders
+    $('.slider-area__item').css({'display':'none'});
+    $(tempArrItem[thisElNumber]).css({'display':'block'});
   });
 
-  $('.active-btn').click(function(){
-  	// buttons
-  	$('.act-btn').removeClass('work-change-btn_active');
-  	$('.active-btn').addClass('work-change-btn_active');
-  	$('.history-btn').removeClass('work-change-btn_active');
-  });
 
-  $('.history-btn').click(function(){
-  	// buttons
-  	$('.act-btn').removeClass('work-change-btn_active');
-  	$('.active-btn').removeClass('work-change-btn_active');
-  	$('.history-btn').addClass('work-change-btn_active');
-  });
+
   /* ↑↑↑ /field switch ↑↑↑ */
 
   /* ↓↓↓ wares change ↓↓↓ */
@@ -94,7 +93,7 @@ $('#investment-input').bind('blur keyup', function(event) {
 });
 /* ↑↑↑ /investment calculator ↑↑↑ */
 
-/* ↓↓↓ navigation datetimer ↓↓↓ */
+/* ↓↓↓ datetimer ↓↓↓ */
 var datetimer = document.getElementById('UTC-datetimer');
 
 setInterval(function() {
@@ -120,7 +119,7 @@ setInterval(function() {
   datetimer.innerHTML = dd + "." + mm + "." + yy + "   " + hh + ":" + mn + ":" + ss;
 }, 1000);
 
-/* ↑↑↑ /navigation datetimer ↑↑↑ */
+/* ↑↑↑ /datetimer ↑↑↑ */
 
 /* ↓↓↓ FUNCTION DECLARATIONS ↓↓↓ */
 function isNumeric(n) {

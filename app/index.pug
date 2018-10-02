@@ -82,9 +82,15 @@ html(lang='en')
             img(src='img/chart-candle.png', alt='chart-candle.png')
           li.type-buttons-li(data-type='ohlc')
             img(src='img/chart-bars.png', alt='chart-bars.png')
-        #container(style='width: 100%; height: calc(100% - 50px)')
+        #container(style='width: 100%; height: calc(100% - 250px)')
         p#labelBorder
         #labelIndicator
+        .slider-area
+          .slider-area__item#active-slider active-slider
+          .slider-area__item#history-slider history-slider
+          .slider-area__item#deposit-slider deposit-slider
+          .slider-area__item#withdrawal-slider withdrawal-slider
+
       // /SECTION 1
 
       // SECTION 2 (left column)
@@ -389,6 +395,8 @@ html(lang='en')
             i.fas.fa-caret-up(style='font-size: 40px; color: green')
             span.trade-pair__price 12345.67890
 
+          include BEM-blocks/tug-of-war/tug-of-war.pug
+
           .investment-calculator
             label(for='#investment-input') инвестиции:
             input(id='investment-input' type='text' placeholder='инвестиции')
@@ -403,11 +411,16 @@ html(lang='en')
             span#UTC-datetimer-info Время UTC: &nbsp
             span#UTC-datetimer
 
-        include BEM-blocks/tug-of-war/tug-of-war.pug
-        .work-change-btn-holder
-          .work-change-btn.act-btn.work-change-btn_active Действия
-          .work-change-btn.active-btn Активные сделки
-          .work-change-btn.history-btn История сделок
+          .parlay-accordion
+            .parlay-accordion__quick
+            .parlay-accordion__normal
+            .parlay-accordion__long
+
+        .slider-change-btn-holder
+          .slider-change-btn.active-slider-btn.slider-change-btn_active Активные сделки
+          .slider-change-btn.history-slider-btn История сделок
+          .slider-change-btn.deposit-slider-btn История депозитов
+          .slider-change-btn.withdrawal-slider-btn История выводов
       // /SECTION 3
 
       //- // SECTION 4 (popups)
