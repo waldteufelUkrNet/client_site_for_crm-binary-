@@ -1,13 +1,17 @@
 // $(document).ready(function(){
 
   $( '.wares-slider' ).slick();
+  $( '#history-slider, #deposit-slider, #withdrawal-slider' ).slick({
+    centerMode: true,
+    variableWidth: true
+  });
   $( '#datepicker' ).datepicker();
 
   /* ↓↓↓ field switch ↓↓↓ */
   $('.slider-change-btn').click(function(){
 
     var tempArrBtn  = $('.slider-change-btn');
-    var tempArrItem = $('.slider-area__item');
+    var tempArrItem = $('.slider-area__slider');
     for ( var i = 0; i < tempArrBtn.length; i++ ) {
       if (tempArrBtn[i] == this) {
         var thisElNumber = i;
@@ -17,7 +21,7 @@
   	$('.slider-change-btn').removeClass('slider-change-btn_active');
   	$(this).addClass('slider-change-btn_active');
     //sliders
-    $('.slider-area__item').css({'display':'none'});
+    $('.slider-area__slider').css({'display':'none'});
     $(tempArrItem[thisElNumber]).css({'display':'block'});
   });
 
