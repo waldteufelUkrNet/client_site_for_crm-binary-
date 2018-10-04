@@ -1,7 +1,11 @@
 // $(document).ready(function(){
 
+$(".active-slider__item-timer").TimeCircles({
+  fg_width           : 0.03
+});
+
   $( '.wares-slider' ).slick();
-  $( '#history-slider, #deposit-slider, #withdrawal-slider' ).slick({
+  $( '#active-slider, #history-slider, #deposit-slider, #withdrawal-slider' ).slick({
     centerMode: true,
     variableWidth: true
   });

@@ -10,7 +10,7 @@ html(lang='en')
     link(rel='stylesheet', type='text/css', href='libs-css/jquery-ui.css')
     link(rel='stylesheet', type='text/css', href='libs-css/slick.css')
     link(rel='stylesheet', type='text/css', href='libs-css/slick-theme.css')
-
+    link(rel='stylesheet', type='text/css', href='libs-css/TimeCircles.css')
     // own stylesheet
     link(rel='stylesheet', type='text/css', href='css/style.css')
 
@@ -86,7 +86,37 @@ html(lang='en')
         p#labelBorder
         #labelIndicator
         .slider-area
-          .slider-area__slider#active-slider active-slider
+          .slider-area__slider#active-slider
+            .active-slider__item
+              .active-slider__item-timer(data-date="2018-11-01 00:00:00")
+              .active-slider__item-graphic
+            .active-slider__item
+              .active-slider__item-timer(data-date="2019-01-01 00:00:00")
+              .active-slider__item-graphic
+            .active-slider__item
+              .active-slider__item-timer(data-date="2018-11-01 00:00:00")
+              .active-slider__item-graphic
+            .active-slider__item
+              .active-slider__item-timer(data-date="2019-01-01 00:00:00")
+              .active-slider__item-graphic
+            .active-slider__item
+              .active-slider__item-timer(data-date="2018-11-01 00:00:00")
+              .active-slider__item-graphic
+            .active-slider__item
+              .active-slider__item-timer(data-date="2019-01-01 00:00:00")
+              .active-slider__item-graphic
+            .active-slider__item
+              .active-slider__item-timer(data-date="2018-11-01 00:00:00")
+              .active-slider__item-graphic
+            .active-slider__item
+              .active-slider__item-timer(data-date="2019-01-01 00:00:00")
+              .active-slider__item-graphic
+            .active-slider__item
+              .active-slider__item-timer(data-date="2018-11-01 00:00:00")
+              .active-slider__item-graphic
+            .active-slider__item
+              .active-slider__item-timer(data-date="2019-01-01 00:00:00")
+              .active-slider__item-graphic
 
           .slider-area__slider#history-slider
             .slider-area__slider-item.history-slider__item.slider-area__win
@@ -900,6 +930,7 @@ html(lang='en')
     script(src='libs/highstock.js')
     script(src='libs/jquery-ui.js')
     script(src='libs/slick.js')
+    script(src='libs/TimeCircles.js')
 
     // own js
     script(src='js/js.js')
