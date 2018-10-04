@@ -1,7 +1,9 @@
 // $(document).ready(function(){
 
 $(".active-slider__item-timer").TimeCircles({
-  fg_width           : 0.03
+  fg_width           : 0.03,
+  text_size          : 0.15,
+  number_size        : 0.3
 });
 
   $( '.wares-slider' ).slick();
