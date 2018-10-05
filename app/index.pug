@@ -20,7 +20,7 @@ html(lang='en')
   body
     //- include BEM-blocks/size-info/size-info.pug
 
-    //- button.tempBTN(style='width: 120px; height: 30px; position: fixed; left: 10px; bottom: 120px; z-index: 9999; cursor: pointer') temp-btn
+    button.tempBTN(style='width: 120px; height: 30px; position: fixed; left: 10px; bottom: 120px; z-index: 9999; cursor: pointer') temp-btn
     //- button.tempBTN2(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer') temp-btn2
 
     // HEADER
@@ -65,23 +65,25 @@ html(lang='en')
 
       // SECTION 1 (work area)
       section.work_area
-        div(style='display: flex; justify-content: center; align-items: center; height: 45px')
-          img.img-pair(style='min-width: 60px; max-height: 45px', src='img/BTCETH.png')
-          h2(style='font-size: 22px; padding-left: 10px') BTC ETH
-        ul.timer-buttons-ul
-          li.timer-buttons-li.timer-buttons-li_active(data-time='5')  5 min.
-          li.timer-buttons-li(data-time='10') 10 min.
-          li.timer-buttons-li(data-time='15') 15 min.
-          li.timer-buttons-li(data-time='30') 30 min.
-          li.timer-buttons-li(data-time='45') 45 min.
-          li.timer-buttons-li(data-time='60') 60 min.
-        ul.type-buttons-ul
-          li.type-buttons-li.type-buttons-li_active(data-type='areaspline')
-            img(src='img/chart-line.png', alt='chart-line.png')
-          li.type-buttons-li(data-type='candlestick')
-            img(src='img/chart-candle.png', alt='chart-candle.png')
-          li.type-buttons-li(data-type='ohlc')
-            img(src='img/chart-bars.png', alt='chart-bars.png')
+        .graphic-header
+          ul.timer-buttons-ul
+            li.timer-buttons-li.timer-buttons-li_active(data-time='5')  5 min.
+            li.timer-buttons-li(data-time='10') 10 min.
+            li.timer-buttons-li(data-time='15') 15 min.
+            li.timer-buttons-li(data-time='30') 30 min.
+            li.timer-buttons-li(data-time='45') 45 min.
+            li.timer-buttons-li(data-time='60') 60 min.
+          .currency-logo-holder
+            img.img-pair(src='img/BTCETH.png')
+            h2 BTC ETH
+          ul.type-buttons-ul
+            li.type-buttons-li.type-buttons-li_active(data-type='areaspline')
+              img(src='img/chart-line.png', alt='chart-line.png')
+            li.type-buttons-li(data-type='candlestick')
+              img(src='img/chart-candle.png', alt='chart-candle.png')
+            li.type-buttons-li(data-type='ohlc')
+              img(src='img/chart-bars.png', alt='chart-bars.png')
+
         #container(style='width: 100%; height: calc(100% - 250px)')
         p#labelBorder
         #labelIndicator
@@ -90,76 +92,74 @@ html(lang='en')
 
             .active-slider__item
               .active-slider__item-timer-wrapper
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-              .active-slider__item-graphic
-
-
-            .active-slider__item
-              .active-slider__item-timer-wrapper
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-              .active-slider__item-graphic
-            .active-slider__item
-              .active-slider__item-timer-wrapper
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-              .active-slider__item-graphic
-            .active-slider__item
-              .active-slider__item-timer-wrapper
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-              .active-slider__item-graphic
-            .active-slider__item
-              .active-slider__item-timer-wrapper
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-              .active-slider__item-graphic
-            .active-slider__item
-              .active-slider__item-timer-wrapper
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-              .active-slider__item-graphic
-            .active-slider__item
-              .active-slider__item-timer-wrapper
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-              .active-slider__item-graphic
-            .active-slider__item
-              .active-slider__item-timer-wrapper
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-              .active-slider__item-graphic
-            .active-slider__item
-              .active-slider__item-timer-wrapper
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-              .active-slider__item-graphic
-            .active-slider__item
-              .active-slider__item-timer-wrapper
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-                .active-slider__item-timer(data-date="2018-11-01 00:00:00")
-              .active-slider__item-graphic
+                .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-11-01 00:00:00")
+                .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-11-01 00:00:00")
+                .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-11-01 00:00:00")
+                .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-11-01 00:00:00")
+              .active-slider__item-graphic 1
+            //- .active-slider__item
+            //-   .active-slider__item-timer-wrapper
+            //-     .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-11-01 00:00:00")
+            //-   .active-slider__item-graphic 2
+            //- .active-slider__item
+            //-   .active-slider__item-timer-wrapper
+            //-     .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-11-01 00:00:00")
+            //-   .active-slider__item-graphic 3
+            //- .active-slider__item
+            //-   .active-slider__item-timer-wrapper
+            //-     .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-11-01 00:00:00")
+            //-   .active-slider__item-graphic 4
+            //- .active-slider__item
+            //-   .active-slider__item-timer-wrapper
+            //-     .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-11-01 00:00:00")
+            //-   .active-slider__item-graphic 5
+            //- .active-slider__item
+            //-   .active-slider__item-timer-wrapper
+            //-     .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-11-01 00:00:00")
+            //-   .active-slider__item-graphic 6
+            //- .active-slider__item
+            //-   .active-slider__item-timer-wrapper
+            //-     .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-11-01 00:00:00")
+            //-   .active-slider__item-graphic 7
+            //- .active-slider__item
+            //-   .active-slider__item-timer-wrapper
+            //-     .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-11-01 00:00:00")
+            //-   .active-slider__item-graphic 8
+            //- .active-slider__item
+            //-   .active-slider__item-timer-wrapper
+            //-     .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-11-01 00:00:00")
+            //-   .active-slider__item-graphic 9
+            //- .active-slider__item
+            //-   .active-slider__item-timer-wrapper
+            //-     .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-11-01 00:00:00")
+            //-     .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-11-01 00:00:00")
+            //-   .active-slider__item-graphic 0
 
           .slider-area__slider#history-slider
             .slider-area__slider-item.history-slider__item.slider-area__win

@@ -1,100 +1,100 @@
 @media only screen and (min-width: 1px) {
   body {
-    width           : 100vw;
-    height          : 100vh;
-    overflow        : hidden;
-    background-color: $bgColor;
-    color           : $overColor;
-    border          : 2px solid black;
-    font-family     : rcl;
-    font-size       : 16px;
+    width                        : 100vw;
+    height                       : 100vh;
+    overflow                     : hidden;
+    background-color             : $bgColor;
+    color                        : $overColor;
+    border                       : 2px solid black;
+    font-family                  : rcl;
+    font-size                    : 16px;
   }
   /* ↓↓↓ HEADER ↓↓↓ */
   .header {
-    width          : 100%;
-    height         : 60px;
-    border-bottom  : 2px solid black;
-    display        : flex;
-    justify-content: space-between;
-    align-items    : center;
-    padding        : 10px 15px;
+    width                        : 100%;
+    height                       : 60px;
+    border-bottom                : 2px solid black;
+    display                      : flex;
+    justify-content              : space-between;
+    align-items                  : center;
+    padding                      : 10px 15px;
     .logo_part {
-      font-family  : rb;
-      font-size    : 42px;
-      color        : gold;
+      font-family                : rb;
+      font-size                  : 42px;
+      color                      : gold;
     }
     .central-part {
-      display        : flex;
-      justify-content: center;
-      align-items    : center;
+      display                    : flex;
+      justify-content            : center;
+      align-items                : center;
       &__account {
-      	width        : 92px;
-      	margin       : 0 20px;
+      	width                    : 92px;
+      	margin                   : 0 20px;
       }
       &__account-type {
-        margin-bottom: 6px;
+        margin-bottom            : 6px;
       }
       &__currency-img {
-      	height       : 20px;
-      	margin       : 0 10px;
+      	height                   : 20px;
+      	margin                   : 0 10px;
       }
       &__currency-value {}
       &__btn {
-        height          : 6vh;
-        cursor          : pointer;
-        background-color: transparent;
-        border          : none;
-        margin          : 0 20px;
+        height                   : 6vh;
+        cursor                   : pointer;
+        background-color         : transparent;
+        border                   : none;
+        margin                   : 0 20px;
         img {
-          height        : 40px;
+          height                 : 40px;
         }
       }
     }
     .right-part {
-      position    : relative;
-      display     : flex;
-      align-items : center;
+      position                   : relative;
+      display                    : flex;
+      align-items                : center;
       span {
-        display   : block;
-        margin    : 0 6px;
+        display                  : block;
+        margin                   : 0 6px;
       }
       .menu {
-        position        : absolute;
-        z-index         : 8777;
-        top             : 110%;
-        width           : 100%;
-        background-color: black;
-        padding         : 0px 0px;
-        border          : 0px solid darkgrey;
-        overflow        : hidden;
-        height          : 0px;
+        position                 : absolute;
+        z-index                  : 8777;
+        top                      : 110%;
+        width                    : 100%;
+        background-color         : black;
+        padding                  : 0px 0px;
+        border                   : 0px solid darkgrey;
+        overflow                 : hidden;
+        height                   : 0px;
         .menu-list-a {
-          display    : block;
-          color      : $overColor;
-          height     : 30px;
-          width      : 100%;
-          position   : relative;
-          left       : 100%;
-          line-height: 30px;
-          padding    : 0px 10px;
-          transition : background-color .5s;
-          cursor     : pointer;
+          display                : block;
+          color                  : $overColor;
+          height                 : 30px;
+          width                  : 100%;
+          position               : relative;
+          left                   : 100%;
+          line-height            : 30px;
+          padding                : 0px 10px;
+          transition             : background-color .5s;
+          cursor                 : pointer;
           &:hover {
-            background-color: $bgColor;
-            transition      : background-color .5s;
+            background-color     : $bgColor;
+            transition           : background-color .5s;
           }
         }
       }
       .call-us-btn {
-        background-color: transparent;
-        border          : 1px solid transparent;
-        padding         : 0;
-        outline         : none;
-        cursor          : pointer;
-        position        : relative;
-        top             : 3px;
+        background-color         : transparent;
+        border                   : 1px solid transparent;
+        padding                  : 0;
+        outline                  : none;
+        cursor                   : pointer;
+        position                 : relative;
+        top                      : 3px;
         img {
-          height: 25px;
+          height                 : 25px;
         }
       }
     }
@@ -103,93 +103,120 @@
 
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
-    width      : 100%;
-    height     : calc(100% - 60px);
-    display    : flex;
+    width                        : 100%;
+    height                       : calc(100% - 60px);
+    display                      : flex;
 
     /* ↓↓↓ SECTION 1 (work area) ↓↓↓ */
     .work_area {
-      order    : 2;
-      flex-grow: 1;
-      width    : 60%;
-      border   : {
-        left   : 2px solid black;
-        right  : 2px solid black;
+      order                      : 2;
+      flex-grow                  : 1;
+      width                      : 60%;
+      border                     : {
+        left                     : 2px solid black;
+        right                    : 2px solid black;
       }
-      padding : 15px;
-      position: relative;
-      .timer-buttons-ul {
-        display : inline-block;
-        position: absolute;
-        z-index : 1111;
-        top     : 46px;
-        left    : 25px;
-        .timer-buttons-li {
-          display         : inline-block;
-          min-width       : 45px;
-          font-size       : 16px;
-          border          : 1px solid silver;
-          border-radius   : 4px;
-          padding         : 2px 4px;
-          margin-right    : 3px;
-          cursor          : pointer;
-          background-color: transparent;
-          transition      : background-color .5s, border-color .5s;
-          &:hover {
-            background-color: dodgerblue;
-            border-color    : dodgerblue;
+      padding                    : 15px;
+      position                   : relative;
+      .graphic-header {
+        display                  : flex;
+        justify-content          : space-between;
+        align-items              : center;
+
+        .currency-logo-holder {
+          width: 33.33%;
+          display                : flex;
+          justify-content        : center;
+          align-items            : center;
+          height                 : 45px;
+          .img-pair {
+            min-width            : 60px;
+            max-height           : 45px
           }
-          &_active {
-            background-color: dodgerblue;
-            border-color    : dodgerblue;
+          h2 {
+            font-size            : 22px;
+            padding-left         : 10px
           }
         }
-      }
-      .type-buttons-ul {
-        display : inline-block;
-        position: absolute;
-        z-index : 1111;
-        top     : 32px;
-        right   : 55px;
-        .type-buttons-li {
-          display         : inline-block;
-          position        : relative;
-          margin-left     : 3px;
-          width           : 36px;
-          height          : 36px;
-          font-size       : 16px;
-          border          : 1px solid silver;
-          border-radius   : 4px;
-          cursor          : pointer;
-          background-color: transparent;
-          transition      : background-color .5s, border-color .5s;
-          &:hover {
-            background-color: dodgerblue;
-            border-color    : dodgerblue;
+        .timer-buttons-ul {
+          width                  : 33.33%;
+          display                : inline-block;
+          .timer-buttons-li {
+            display              : inline-block;
+            min-width            : 45px;
+            font-size            : 16px;
+            border               : 1px solid silver;
+            border-radius        : 4px;
+            padding              : 2px 4px;
+            margin-right         : 3px;
+            cursor               : pointer;
+            background-color     : transparent;
+            transition           : background-color .5s, border-color .5s;
+            &:hover {
+              background-color   : dodgerblue;
+              border-color       : dodgerblue;
+            }
+            &_active {
+              background-color   : dodgerblue;
+              border-color       : dodgerblue;
+            }
           }
-          &_active {
-            background-color: dodgerblue;
-            border-color    : dodgerblue;
-          }
-          img {
-            width    : 30px;
-            height   : 30px;
-            display  : block;
-            position : absolute;
-            top      : 50%;
-            left     : 50%;
-            transform: translate(-50%,-50%);
+        }
+        .type-buttons-ul {
+           width                 : 33.33%;
+           height                : 36px;
+           display               : inline-block;
+           position              : relative;
+
+          .type-buttons-li {
+            display              : inline-block;
+            position             : absolute;
+            margin-left          : 3px;
+            width                : 36px;
+            height               : 36px;
+            font-size            : 16px;
+            border               : 1px solid silver;
+            border-radius        : 4px;
+            cursor               : pointer;
+            background-color     : transparent;
+            transition           : background-color .5s, border-color .5s;
+            &:nth-of-type(1) {
+              right              : 80px;
+            }
+            &:nth-of-type(2) {
+              right              : 40px;
+            }
+            &:nth-of-type(3) {
+              right              : 0px;
+            }
+            &:hover {
+              background-color   : dodgerblue;
+              border-color       : dodgerblue;
+            }
+            &_active {
+              background-color   : dodgerblue;
+              border-color       : dodgerblue;
+            }
+            img {
+              width              : 30px;
+              height             : 30px;
+              display            : block;
+              position           : absolute;
+              top                : 50%;
+              left               : 50%;
+              transform          : translate(-50%,-50%);
+            }
           }
         }
       }
       .highcharts-point-up {
-        fill  : dodgerblue !important;
-        stroke: dodgerblue !important;
+        fill                     : dodgerblue !important;
+        stroke                   : dodgerblue !important;
       }
 
       .highcharts-point-down {
-        fill  : red !important;
-        stroke: red !important;
+        fill                     : red !important;
+        stroke                   : red !important;
       }
 
       @keyframes lightbulb {
@@ -198,138 +225,138 @@
       }
     }
     #labelBorder {
-      position        : fixed;
-      background-color: lightgrey;
-      padding         : 0 3px;
-      font-family     : 'Lucida Sans Unicode';
-      font-size       : 11px;
-      line-height     : 18px;
-      color           : black;
+      position                   : fixed;
+      background-color           : lightgrey;
+      padding                    : 0 3px;
+      font-family                : 'Lucida Sans Unicode';
+      font-size                  : 11px;
+      line-height                : 18px;
+      color                      : black;
     }
     #labelIndicator {
-      position                 : fixed;
-      border-radius            : 50px;
-      animation-name           : lightblue;
-      animation-duration       : .5s;
-      animation-iteration-count: infinite;
-      animation-direction      : alternate;
+      position                   : fixed;
+      border-radius              : 50px;
+      animation-name             : lightblue;
+      animation-duration         : .5s;
+      animation-iteration-count  : infinite;
+      animation-direction        : alternate;
     }
-    .slider-area { //border: 1px dotted red;
-      width    : calc( 100% - 30px);
-      height   : 200px;
-      position : absolute;
-      bottom   : 10px;
-      overflow : hidden;
+    .slider-area {
+      width                      : calc( 100% - 30px);
+      height                     : 200px;
+      position                   : absolute;
+      bottom                     : 10px;
+      overflow                   : hidden;
       &__slider {
-        width: 100%;
-        height: 100%;
-        padding: 0 30px;
-        display: none;
+        width                    : 100%;
+        height                   : 100%;
+        padding                  : 0 30px;
+        display                  : none;
         &:first-of-type {
-          display: block;
+          display                : block;
         }
         .slick-arrow {
-          width: 25px;
-          height: 50px;
-          border: 1px solid white;
-          border-radius: 4px;
-          font-family: fa;
-          transition: background-color .5s;
+          width                  : 25px;
+          height                 : 50px;
+          border                 : 1px solid white;
+          border-radius          : 4px;
+          font-family            : fa;
+          transition             : background-color .5s;
           &:before {
-            width: 100%;
-            height: 100%;
-            font-family: fa;
-            font-size  : 14px;
-            color      : white;
+            width                : 100%;
+            height               : 100%;
+            font-family          : fa;
+            font-size            : 14px;
+            color                : white;
           }
           &:hover {
-            background-color: dodgerblue;
-            transition: background-color .5s;
+            background-color     : dodgerblue;
+            transition           : background-color .5s;
           }
         }
         .slick-prev {
-          top: 50%;
-          left: 0px;
+          top                    : 50%;
+          left                   : 0px;
           &:before {
-            content: "\f104";
+            content              : "\f104";
           }
         }
         .slick-next {
-          top: 50%;
-          right: 0px;
+          top                    : 50%;
+          right                  : 0px;
           &:before {
-            content: "\f105";
+            content              : "\f105";
           }
         }
       }
       &__slider-item {
-        height: 200px;
-        max-width: 320px;
-        min-width: 320px;
-        border: 1px solid white;
-        border-radius: 4px;
-        padding: 15px;
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-column-gap: 15px;
-        margin: 0 20px
+        height                   : 200px;
+        max-width                : 320px;
+        min-width                : 320px;
+        border                   : 1px solid white;
+        border-radius            : 4px;
+        padding                  : 15px;
+        display                  : grid;
+        grid-template-columns    : auto 1fr;
+        grid-column-gap          : 15px;
+        margin                   : 0 20px
       }
       &__win {
-        border: 1px solid green;
-        background-color: rgba(127,255,212,.1);
+        border                   : 1px solid green;
+        background-color         : rgba(127,255,212,.1);
       }
       &__lose {
-        border: 1px solid red;
-        background-color: rgba(255,0,0,.1);
+        border                   : 1px solid red;
+        background-color         : rgba(255,0,0,.1);
       }
       .active-slider {
         &__item {
-          height: 200px;
-          max-width: 500px;
-          min-width: 500px;
-          border: 1px solid white;
-          border-radius: 4px;
-          padding: 5px;
-          display: grid;
-          grid-template-columns: auto 1fr;
-          grid-column-gap: 5px;
-          margin: 0 20px;
+          height                 : 200px;
+          max-width              : 500px;
+          min-width              : 500px;
+          border                 : 1px solid white;
+          border-radius          : 4px;
+          padding                : 5px;
+          display                : grid;
+          grid-template-columns  : auto 1fr;
+          grid-column-gap        : 5px;
+          margin                 : 0 20px;
         }
         &__item-timer-wrapper {
-          max-height: 100%;
-          width: 47px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          overflow: hidden;
+          max-height             : 100%;
+          width                  : 47px;
+          display                : flex;
+          flex-direction         : column;
+          justify-content        : start;
+          overflow               : hidden;
         }
 
         &__item-timer {
-          height: 45px;
-          width: 180px;
-          position: relative;
-          &:nth-of-type(2){
-            left: -45px;
+          height                 : 45px;
+          width                  : 180px;
+          position               : relative;
+          &_hours {
+            left                 : -45px;
           }
-          &:nth-of-type(3){
-            left: -90px;
+          &_minutes {
+            left                 : -90px;
           }
-          &:nth-of-type(4){
-            left: -135px;
+          &_seconds {
+            left                 : -135px;
           }
         }
-        // &__item-graphic { border: 1px dotted blue;
-        // }
+        &__item-graphic {
+        }
       }
       #history-slider {}
       #deposit-slider {
         .deposit-slider__item {
-          background-color: rgba(255,0,0,.05);
+          background-color       : rgba(255,0,0,.05);
         }
       }
       #withdrawal-slider {
         .withdrawal-slider__item {
-          background-color: rgba(173,255,47,.05);
+          background-color       : rgba(173,255,47,.05);
         }
       }
     }
@@ -337,101 +364,101 @@
 
     /* ↓↓↓ SECTION 2 (left column) ↓↓↓ */
     .left-column {
-      order    : 1;
-      flex-grow: 0;
-      width    : 250px;
-      padding  : 15px 10px 10px 15px;
-      overflow : hidden;
-      position: relative;
+      order                      : 1;
+      flex-grow                  : 0;
+      width                      : 250px;
+      padding                    : 15px 10px 10px 15px;
+      overflow                   : hidden;
+      position                   : relative;
       &::after {
-        content: '';
-        display: block;
-        height: 2px;
-        width: 280px;
-        background-color: black;
-        position: absolute;
-        top: 50px;
-        left: 0px;
+        content                  : '';
+        display                  : block;
+        height                   : 2px;
+        width                    : 280px;
+        background-color         : black;
+        position                 : absolute;
+        top                      : 50px;
+        left                     : 0px;
       }
       .wares-slider {
         &__item {
-          text-align: center;
-          height: calc(100vh - 86px);
+          text-align             : center;
+          height                 : calc(100vh - 86px);
         }
         &__item-header {
-          text-transform: uppercase;
-          font-size     : 20px;
-          padding-bottom : 20px;
+          text-transform         : uppercase;
+          font-size              : 20px;
+          padding-bottom         : 20px;
         }
         &__item-table-1-wrapper {
-          height  : 95%;
-          overflow: hidden;
-          position: relative;
+          height                 : 95%;
+          overflow               : hidden;
+          position               : relative;
         }
         &__item-table-2-wrapper {
-          height  : 100%;
-          width   : calc( 100% + 20px);
-          overflow: auto;
+          height                 : 100%;
+          width                  : calc( 100% + 20px);
+          overflow               : auto;
         }
         &__table {
           tr {
-            display    : flex;
-            align-items: center;
-            height     : 45px;
+            display              : flex;
+            align-items          : center;
+            height               : 45px;
             td {
               padding: 4px;
             }
           }
           .img-pair {
-            width   : 30px;
-            height  : 30px;
-            position: relative;
+            width               : 30px;
+            height              : 30px;
+            position            : relative;
             .img-pair-top {
-              width   : 20px;
-              height  : 20px;
-              position: absolute;
-              top     : 0;
-              left    : 0;
+              width             : 20px;
+              height            : 20px;
+              position          : absolute;
+              top               : 0;
+              left              : 0;
             }
             .img-pair-bottom {
-              width   : 20px;
-              height  : 20px;
-              position: absolute;
-              bottom  : 0;
-              right   : 0;
+              width             : 20px;
+              height            : 20px;
+              position          : absolute;
+              bottom            : 0;
+              right             : 0;
             }
           }
         }
         .slick-arrow {
-          width: 20px;
-          height: 20px;
-          border-radius: 4px;
-          font-family: fa;
-          transition: background-color .5s;
+          width                 : 20px;
+          height                : 20px;
+          border-radius         : 4px;
+          font-family           : fa;
+          transition            : background-color .5s;
           &:before {
-            width: 100%;
-            height: 100%;
-            font-family: fa;
-            font-size  : 14px;
-            color      : white;
+            width               : 100%;
+            height              : 100%;
+            font-family         : fa;
+            font-size           : 14px;
+            color               : white;
           }
           &:hover {
-            background-color: dodgerblue;
-            transition: background-color .5s;
+            background-color    : dodgerblue;
+            transition          : background-color .5s;
           }
         }
         .slick-prev {
-          top: 11px;
-          left: -9px;
+          top                   : 11px;
+          left                  : -9px;
           &:before {
             content: "\f104";
           }
         }
         .slick-next {
-          top: 11px;
-          right: -3px;
+          top                   : 11px;
+          right                 : -3px;
           &:before {
-            content: "\f105";
+            content             : "\f105";
           }
         }
       }
@@ -440,113 +467,114 @@
 
     /* ↓↓↓ SECTION 3 (right column) ↓↓↓ */
     .right-column {
-      order    : 3;
-      flex-grow: 0;
-      width    : 250px;
-      padding  : 15px 15px 10px 15px;
-      position : relative;
+      order                     : 3;
+      flex-grow                 : 0;
+      width                     : 250px;
+      padding                   : 15px 15px 10px 15px;
+      position                  : relative;
       .work-field {
         .trade-pair {
-          position: relative;
+          position              : relative;
           &__logo {
-            width: 50px;
-            position: absolute;
+            width               : 50px;
+            position            : absolute;
           }
           &__name {
-            font-family: rcl;
-            font-size: 28px;
-            padding: 4px 0 10px 60px;
+            font-family         : rcl;
+            font-size           : 28px;
+            padding             : 4px 0 10px 60px;
           }
           &__description {
-            font-family: rcli;
-            font-size: 14px;
-            color: lightskyblue;
+            font-family         : rcli;
+            font-size           : 14px;
+            color               : lightskyblue;
           }
           &__price {
-            position: relative;
-            top: -9px;
-            left: 6px;
-            letter-spacing: 2px;
+            position            : relative;
+            top                 : -9px;
+            left                : 6px;
+            letter-spacing      : 2px;
           }
         }
         .investment-calculator {
-          overflow             : hidden;
-          display              : grid;
-          grid-template-columns: 90px 120px;
-          grid-gap             : 6px;
+          overflow              : hidden;
+          display               : grid;
+          grid-template-columns : 90px 120px;
+          grid-gap              : 6px;
 
           label {
-            height     : 26px;
-            line-height: 22px;
-            user-select: none;
+            height              : 26px;
+            line-height         : 22px;
+            user-select         : none;
           }
 
           input, span {
-            background-image: linear-gradient(to right, #141414, #102734);
-            border          : 1px solid #102734;
-            height          : 26px;
-            line-height     : 26px;
-            padding         : 0 12px;
-            color           : white;
-            font-family     : rcl;
-            font-size       : 14px;
-            outline         : none;
-            display         : block;
-            width           : 120px;
+            background-image    : linear-gradient(to right, #141414, #102734);
+            border              : 1px solid #102734;
+            height              : 26px;
+            line-height         : 26px;
+            padding             : 0 12px;
+            color               : white;
+            font-family         : rcl;
+            font-size           : 14px;
+            outline             : none;
+            display             : block;
+            width               : 120px;
           }
 
           span {
-            user-select: none;
+            user-select         : none;
           }
 
           input::placeholder {
-            color      : white;
-            opacity    : 1;
-            font-family: rcl;
-            font-size  : 14px;
+            color               : white;
+            opacity             : 1;
+            font-family         : rcl;
+            font-size           : 14px;
           }
         }
       }
-      #UTC-datetimer-holder { border: 1px solid dodgerblue;
-        min-height: 30px;
-        padding: 6px;
-        border-radius: 4px;
-        text-align: center;
-        margin: 6px 0;
-        color: dodgerblue;
-        user-select: none;
+      #UTC-datetimer-holder {
+        min-height              : 30px;
+        padding                 : 6px;
+        border-radius           : 4px;
+        text-align              : center;
+        margin                  : 6px 0;
+        color                   : dodgerblue;
+        user-select             : none;
+        border                  : 1px solid dodgerblue;
         #UTC-datetimer {
-          color: white;
+          color                 : white;
         }
       }
       .slider-change-btn-holder {
-        width   : calc(100% - 30px);
-        height  : 200px;
-        position: absolute;
-        bottom  : 10px;
-        display : flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex-wrap: nowrap;
+        width                   : calc(100% - 30px);
+        height                  : 200px;
+        position                : absolute;
+        bottom                  : 10px;
+        display                 : flex;
+        flex-direction          : column;
+        justify-content         : space-between;
+        flex-wrap               : nowrap;
         .slider-change-btn {
-          width: 220px;
-          height: 40px;
-          line-height: 36px;
-          background-color: dodgerblue;
-          border          : 1px solid dodgerblue;
-          border-radius   : 4px;
-          text-align      : center;
-          cursor          : pointer;
-          transition      : background-color .5s, border-color .5s;
-          user-select     : none;
+          width                 : 220px;
+          height                : 40px;
+          line-height           : 36px;
+          background-color      : dodgerblue;
+          border                : 1px solid dodgerblue;
+          border-radius         : 4px;
+          text-align            : center;
+          cursor                : pointer;
+          transition            : background-color .5s, border-color .5s;
+          user-select           : none;
           &:hover {
-            background-color: $bgColor;
-            border-color    : $overColor;
+            background-color    : $bgColor;
+            border-color        : $overColor;
           }
         }
         .slider-change-btn_active {
-          background-color: $bgColor;
-          border-color    : $overColor;
+          background-color      : $bgColor;
+          border-color          : $overColor;
         }
       }
     }

@@ -1,15 +1,16 @@
 // $(document).ready(function(){
 
 $(".active-slider__item-timer").TimeCircles({
-  fg_width           : 0.03,
-  text_size          : 0.15,
-  number_size        : 0.3
+  fg_width    : 0.03,
+  text_size   : 0.15,
+  number_size : 0.3
 });
 
   $( '.wares-slider' ).slick();
   $( '#active-slider, #history-slider, #deposit-slider, #withdrawal-slider' ).slick({
-    centerMode: true,
-    variableWidth: true
+    centerMode    : true,
+    variableWidth : true,
+    infinite      : false
   });
   $( '#datepicker' ).datepicker();
 
@@ -30,59 +31,7 @@ $(".active-slider__item-timer").TimeCircles({
     $('.slider-area__slider').css({'display':'none'});
     $(tempArrItem[thisElNumber]).css({'display':'block'});
   });
-
-
-
   /* ↑↑↑ /field switch ↑↑↑ */
-
-  /* ↓↓↓ wares change ↓↓↓ */
-  $('.wares-change__item').click(function(e) {
-    //console.log("e.currentTarget.tagName:", e.currentTarget.tagName, "; e.target.tagName:", e.target.tagName);
-
-    // open
-    if ( e.target.tagName == 'A' ) {
-      // console.log('ckick on a');
-      $('.wares-change__item').css({'left':'0px'});
-    // choice & close
-    } else if ( e.target.tagName == 'LI' || e.target.tagName == 'SPAN' ) {
-      // console.log('ckick on li');
-      var thisEl = this;
-
-      var tempObj = $('.wares-change__item');
-      for (var i = 0; i < tempObj.length; i++) {
-        if ( tempObj[i] == this ) {
-          var I = i;
-        }
-      }
-      // obj -> arr
-      var tempArr = [];
-      for ( var i = 0; i < tempObj.length; i++ ) {
-        if ( i == I ) continue;
-        tempArr.push(tempObj[i])
-      }
-      // part of arr before this-element
-      var tempPart1 = tempArr.slice(0,I);
-
-      // delete and add "изменить"-link
-      $('li.wares-change__item a.wares-change__changelink').remove();
-      $(thisEl).css({'top':'0px'})
-               .append('<a class="wares-change__changelink">изменить</a>');
-
-      $(tempArr).css({'left':'-250px'});
-      setTimeout(function(){
-        var tempVal = 50;
-        for ( var i = 0; i < tempArr.length; i++ ) {
-          var tempTop = tempVal + 'px';
-          $(tempArr[i]).css({'top':tempTop});
-          tempVal += 50;
-        }
-        $(thisEl).after(tempPart1);
-      },tempArr.length * .2 * 1000);
-
-    }
-
-  });
-  /* ↑↑↑ /wares change ↑↑↑ */
 
 /* ↓↓↓ investment calculator ↓↓↓ */
 $('#investment-input').bind('blur keyup', function(event) {
@@ -131,8 +80,36 @@ setInterval(function() {
 
 /* ↑↑↑ /datetimer ↑↑↑ */
 
-/* ↓↓↓ FUNCTION DECLARATIONS ↓↓↓ */
+/* ↓↓↓ create active-slider-item ↓↓↓ */
+$('.tempBTN').click(function(){
+  // активних ставок - не більше 10
+  if( $('#active-slider .active-slider__item').not('.slick-cloned').length >= 10 ) {
+    console.log('не більше 10!')
+  }
+  else {
+    // зупинити slick
+    $( '#active-slider' ).slick('unslick');
+    // створити ставку
+    var J = $('#active-slider .active-slider__item').not('.slick-cloned').length + 1;
+    $( '#active-slider' ).append('<div class="active-slider__item"><div class="active-slider__item-timer-wrapper"><div class="active-slider__item-timer active-slider__item-timer_days" data-date="2018-11-01 00:00:00"></div><div class="active-slider__item-timer active-slider__item-timer_hours" data-date="2018-11-01 00:00:00"></div><div class="active-slider__item-timer active-slider__item-timer_minutes" data-date="2018-11-01 00:00:00"></div><div class="active-slider__item-timer active-slider__item-timer_seconds" data-date="2018-11-01 00:00:00"></div></div><div class="active-slider__item-graphic">' + J + '</div></div>');
+    // перезапустити slick
+    $( '#active-slider' ).slick({
+      centerMode: true,
+      variableWidth: true,
+      infinite: false
+    });
+    //
+    $(".active-slider__item-timer").TimeCircles({
+      fg_width           : 0.03,
+      text_size          : 0.15,
+      number_size        : 0.3
+    });
+  }
+});
+/* ↑↑↑ /create active-slider-item ↑↑↑ */
+
+/* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n)
 }
-/* ↑↑↑ /FUNCTION DECLARATIONS ↑↑↑ */
+/* ↑↑↑ /FUNCTIONS DECLARATIONS ↑↑↑ */
