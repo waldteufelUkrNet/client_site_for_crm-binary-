@@ -124,7 +124,7 @@
         align-items              : center;
 
         .currency-logo-holder {
-          width: 33.33%;
+          width                  : 180px;
           display                : flex;
           justify-content        : center;
           align-items            : center;
@@ -139,7 +139,7 @@
           }
         }
         .timer-buttons-ul {
-          width                  : 33.33%;
+          width                  : calc( (100% - 180px) / 2);
           display                : inline-block;
           .timer-buttons-li {
             display              : inline-block;
@@ -148,7 +148,7 @@
             border               : 1px solid silver;
             border-radius        : 4px;
             padding              : 2px 4px;
-            margin-right         : 3px;
+            margin               : 3px 3px 0 0;
             cursor               : pointer;
             background-color     : transparent;
             transition           : background-color .5s, border-color .5s;
@@ -163,10 +163,10 @@
           }
         }
         .type-buttons-ul {
-           width                 : 33.33%;
-           height                : 36px;
-           display               : inline-block;
-           position              : relative;
+          width                  : calc( (100% - 180px) / 2);
+          height                 : 36px;
+          display                : inline-block;
+          position               : relative;
 
           .type-buttons-li {
             display              : inline-block;
@@ -500,7 +500,7 @@
           overflow              : hidden;
           display               : grid;
           grid-template-columns : 90px 120px;
-          grid-gap              : 6px;
+          grid-gap              : 3px;
 
           label {
             height              : 26px;
