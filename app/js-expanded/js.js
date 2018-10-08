@@ -152,6 +152,24 @@ $('.tempBTN').click(function(){
 });
 /* ↑↑↑ /create active-slider-item ↑↑↑ */
 
+/* ↓↓↓ parlay-accordion ↓↓↓ */
+$('.parlay-accordion__btn').click(function(){
+
+  // контроль можливості торгівлі акціями (торги на них не цілодобові)
+  var date = new Date;
+  var currentTimeInMinutes = date.getUTCHours() * 60 + date.getUTCMinutes(),
+      minTimeInMinutes = 10 * 60 + 00,
+      maxTimeInMinutes = 14 * 60 + 00;
+  if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text() == 'Акции'
+      && (currentTimeInMinutes < minTimeInMinutes || currentTimeInMinutes > maxTimeInMinutes) ) {
+    showInfoMessage('Акционная биржа на данный момент закрыта. Торговать акциями возможно только с 10:00 по 17:00\
+                     по Гринвичу (часовой пояс UTC)');
+  }
+  console.log('qqq');
+
+});
+/* ↑↑↑ /parlay-accordion ↑↑↑ */
+
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n)
