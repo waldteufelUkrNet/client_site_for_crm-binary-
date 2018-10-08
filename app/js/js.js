@@ -84,26 +84,70 @@ setInterval(function() {
 $('.tempBTN').click(function(){
   // активних ставок - не більше 10
   if( $('#active-slider .active-slider__item').not('.slick-cloned').length >= 10 ) {
-    console.log('не більше 10!')
+    showInfoMessage("Вы достигли максимально возможного количества одновременно открытых ставок.\
+                     Для открытия новой ставки дождитесь, пожалуйста, закрытия активных торгов.")
   }
   else {
     // зупинити slick
     $( '#active-slider' ).slick('unslick');
     // створити ставку
-    var J = $('#active-slider .active-slider__item').not('.slick-cloned').length + 1;
-    $( '#active-slider' ).append('<div class="active-slider__item"><div class="active-slider__item-timer-wrapper"><div class="active-slider__item-timer active-slider__item-timer_days" data-date="2018-11-01 00:00:00"></div><div class="active-slider__item-timer active-slider__item-timer_hours" data-date="2018-11-01 00:00:00"></div><div class="active-slider__item-timer active-slider__item-timer_minutes" data-date="2018-11-01 00:00:00"></div><div class="active-slider__item-timer active-slider__item-timer_seconds" data-date="2018-11-01 00:00:00"></div></div><div class="active-slider__item-graphic">' + J + '</div></div>');
+    var tempNumber = $('#active-slider .active-slider__item').not('.slick-cloned').length + 1;
+    $( '#active-slider' ).append('<div class="active-slider__item">\
+                                      <div class="active-slider__item-timer-wrapper">\
+                                          <div class     = "active-slider__item-timer active-slider__item-timer_days"\
+                                               data-date = "2018-11-01 00:00:00">\
+                                          </div>\
+                                          <div class     = "active-slider__item-timer active-slider__item-timer_hours"\
+                                               data-date = "2018-11-01 00:00:00">\
+                                          </div>\
+                                          <div class     = "active-slider__item-timer active-slider__item-timer_minutes"\
+                                               data-date = "2018-11-01 00:00:00">\
+                                          </div>\
+                                          <div class     = "active-slider__item-timer active-slider__item-timer_seconds"\
+                                               data-date = "2018-11-01 00:00:00">\
+                                          </div>\
+                                      </div>\
+                                      <div class="active-slider__item-graphic">'
+                                        + tempNumber +
+                                      '</div>\
+                                  </div>');
     // перезапустити slick
     $( '#active-slider' ).slick({
       centerMode: true,
       variableWidth: true,
       infinite: false
     });
-    //
-    $(".active-slider__item-timer").TimeCircles({
+
+    // зробити останній доданий елемент активним та правильно його відпозиціонувати
+    $('.active-slider__item').removeClass('slick-current slick-center')
+                             .attr('tabindex','-1');
+    $('.active-slider__item:last-of-type').addClass('slick-current slick-center')
+                                          .attr('tabindex','0');
+
+    setTimeout(function(){
+
+    var halfOfSlickListInnerWidthWithoutPaddings = ( $('.slick-list').innerWidth()
+                                                   - +$('.slick-list').css('padding-left').slice(0, -2)
+                                                   - +$('.slick-list').css('padding-right').slice(0, -2) ) /2,
+        halfOfSliderItemWithMargins = (  $('#active-slider .active-slider__item').outerWidth()
+                 + +$('#active-slider .active-slider__item').css('margin-left').slice(0, -2)
+                 + +$('#active-slider .active-slider__item').css('margin-right').slice(0, -2) ) /2,
+        startTranslateValue = halfOfSlickListInnerWidthWithoutPaddings - halfOfSliderItemWithMargins;
+
+    var translateValue = startTranslateValue - ( (tempNumber - 1) * halfOfSliderItemWithMargins * 2 );
+
+        translateValue = 'translate3D(' + translateValue + 'px, 0px, 0px)';
+
+      $('#active-slider .slick-track').css({'transition':'transform .3s','transform': translateValue});
+    },501);
+
+    // перезапустити таймери
+    $(".active-slider__item-timer").TimeCircles({ // slick-current slick-center
       fg_width           : 0.03,
       text_size          : 0.15,
       number_size        : 0.3
     });
+
   }
 });
 /* ↑↑↑ /create active-slider-item ↑↑↑ */
