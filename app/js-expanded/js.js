@@ -77,7 +77,6 @@ setInterval(function() {
 
   datetimer.innerHTML = dd + "." + mm + "." + yy + "   " + hh + ":" + mn + ":" + ss;
 }, 1000);
-
 /* ↑↑↑ /datetimer ↑↑↑ */
 
 /* ↓↓↓ create active-slider-item ↓↓↓ */
@@ -162,10 +161,11 @@ $('.parlay-accordion__btn').click(function(){
       maxTimeInMinutes = 14 * 60 + 00;
   if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text() == 'Акции'
       && (currentTimeInMinutes < minTimeInMinutes || currentTimeInMinutes > maxTimeInMinutes) ) {
-    showInfoMessage('Акционная биржа на данный момент закрыта. Торговать акциями возможно только с 10:00 по 17:00\
+    showInfoMessage('Акционная биржа на данный момент закрыта. Торговать акциями возможно только с 10:00 до 17:00\
                      по Гринвичу (часовой пояс UTC)');
+    return
   }
-  console.log('qqq');
+  console.log('тут код для акордеона');
 
 });
 /* ↑↑↑ /parlay-accordion ↑↑↑ */
