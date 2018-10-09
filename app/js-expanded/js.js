@@ -6,7 +6,7 @@ $(".active-slider__item-timer").TimeCircles({
   number_size : 0.3
 });
 
-  $( '.wares-slider' ).slick();
+  $( '.wares-slider, .parlay-slider' ).slick();
   $( '#active-slider, #history-slider, #deposit-slider, #withdrawal-slider' ).slick({
     centerMode    : true,
     variableWidth : true,
@@ -54,7 +54,6 @@ $('#investment-input').bind('blur keyup', function(event) {
 
 /* ↓↓↓ datetimer ↓↓↓ */
 var datetimer = document.getElementById('UTC-datetimer');
-
 setInterval(function() {
   var date = new Date();
   var dd = date.getUTCDate();
@@ -151,7 +150,7 @@ $('.tempBTN').click(function(){
 });
 /* ↑↑↑ /create active-slider-item ↑↑↑ */
 
-/* ↓↓↓ parlay-accordion ↓↓↓ */
+/* ↓↓↓ parlay-slider ↓↓↓ */
 $('.parlay-accordion__btn').click(function(){
 
   // контроль можливості торгівлі акціями (торги на них не цілодобові)
@@ -168,7 +167,12 @@ $('.parlay-accordion__btn').click(function(){
   console.log('тут код для акордеона');
 
 });
-/* ↑↑↑ /parlay-accordion ↑↑↑ */
+
+$('.parlay-slider__parlay-choise-btn').click(function(){
+  $('.parlay-btns__cover').css('display','none');
+  // підсвітка по кліку!!!
+});
+/* ↑↑↑ /parlay-slider ↑↑↑ */
 
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
 function isNumeric(n) {

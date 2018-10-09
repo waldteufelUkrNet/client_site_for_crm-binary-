@@ -629,13 +629,62 @@ html(lang='en')
             span#UTC-datetimer-info Время UTC: &nbsp
             span#UTC-datetimer
 
-          .parlay-accordion
-            .parlay-accordion__btn Быстрые
-            .parlay-accordion__choice-field
-            .parlay-accordion__btn Нормальные
-            .parlay-accordion__normal-choice-field
-            .parlay-accordion__btn Длинные
-            .parlay-accordion__long-choice-field
+          .parlay-slider
+            .parlay-slider__item
+              h5.parlay-slider__item-header Быстрые
+              .parlay-slider__item-choice-field
+                .parlay-slider__parlay-choise-btn-holder
+                  .parlay-slider__parlay-choise-btn 30 секунд
+                  .parlay-slider__parlay-choise-btn 1 минута
+                  .parlay-slider__parlay-choise-btn 2 минуты
+                  .parlay-slider__parlay-choise-btn 3 минуты
+            .parlay-slider__item
+              h5.parlay-slider__item-header Нормальные
+              .parlay-slider__item-choice-field
+                .parlay-slider__parlay-choise-btn-holder
+                  .parlay-slider__parlay-choise-btn інтервал по 30хв до кінця РОБОЧОГО дня
+                  .parlay-slider__parlay-choise-btn 1
+                  .parlay-slider__parlay-choise-btn 2
+                  .parlay-slider__parlay-choise-btn 3
+                  .parlay-slider__parlay-choise-btn 4
+                  .parlay-slider__parlay-choise-btn 5
+                  .parlay-slider__parlay-choise-btn 6
+                  .parlay-slider__parlay-choise-btn 7
+                  .parlay-slider__parlay-choise-btn 8
+                  .parlay-slider__parlay-choise-btn 9
+                  .parlay-slider__parlay-choise-btn 10
+                  .parlay-slider__parlay-choise-btn 11
+                  .parlay-slider__parlay-choise-btn 12
+                  .parlay-slider__parlay-choise-btn 13
+                  .parlay-slider__parlay-choise-btn 14
+                  .parlay-slider__parlay-choise-btn 15
+                  .parlay-slider__parlay-choise-btn 16
+                  .parlay-slider__parlay-choise-btn 17
+                  .parlay-slider__parlay-choise-btn 18
+                  .parlay-slider__parlay-choise-btn 19
+                  .parlay-slider__parlay-choise-btn 20
+            .parlay-slider__item
+              h5.parlay-slider__item-header Длинные
+              .parlay-slider__item-choice-field
+                .parlay-slider__parlay-choise-btn-holder
+                  .parlay-slider__parlay-choise-btn 1 сутки
+                  .parlay-slider__parlay-choise-btn 5 суток
+                  .parlay-slider__parlay-choise-btn 10 суток
+                  .parlay-slider__parlay-choise-btn 15 суток
+                  .parlay-slider__parlay-choise-btn 30 суток
+
+          .parlay-btns__holder
+            .parlay-btns__btn.parlay-btns__btn_up Вверх
+              |
+              |
+              i.fas.fa-angle-double-up
+            .parlay-btns__btn.parlay-btns__btn_down
+              i.fas.fa-angle-double-down
+              |
+              | Вниз
+            .parlay-btns__cover
+              .parlay-btns__cover-left
+              .parlay-btns__cover-right
 
         .slider-change-btn-holder
           .slider-change-btn.active-slider-btn.slider-change-btn_active Активные сделки

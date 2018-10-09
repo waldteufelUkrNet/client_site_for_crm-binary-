@@ -547,17 +547,21 @@
           color                 : white;
         }
       }
-      .parlay-accordion { border: 1px dotted red;
+      .parlay-slider {
         width                   : 100%;
-        min-height              : 100px;
+        //min-height              : 208px;
         display                 : flex;
         flex-direction          : column;
         justify-content         : space-between;
         flex-wrap               : nowrap;
-        &__btn {
-          width                 : 100%;
+        position                : relative;
+        z-index                 : 2;
+        background-color        : #1d2a38;
+        &__item-header {
+          width                 : 70%;
+          margin                : 0 auto;
           height                : 30px;
-          line-height           : 30px;
+          line-height           : 28px;
           background-color      : dodgerblue;
           border                : 1px solid dodgerblue;
           border-radius         : 4px;
@@ -566,16 +570,159 @@
           transition            : background-color .5s, border-color .5s;
           user-select           : none;
         }
+        &__item-choice-field {
+          border                : 1px solid rgb(0,0,0);
+          height                : 130px;
+          margin-top            : 6px;
+          overflow              : hidden;
+        }
+        &__parlay-choise-btn-holder {
+          height                : 130px;
+          width                 : calc(100% + 20px);
+          overflow              : auto;
+        }
+        &__parlay-choise-btn {
+          width: 100%;
+          // border-top: 1px solid grey;
+          // border-bottom: 1px solid grey;
+          margin: 2px 0;
+          padding: 6px;
+          cursor: pointer;
+          user-select: none;
+          transition: background-color .3s;
+          &:hover {
+            background-color: rgba(0,0,0,.3);
+          }
+        }
+        .slick-arrow {
+          width                  : 25px;
+          height                 : 30px;
+          border                 : 1px solid white;
+          border-radius          : 4px;
+          font-family            : fa;
+          transition             : background-color .5s;
+          z-index                : 11;
+          background-color       : #1d2a38;
+          &:before {
+            width                : 100%;
+            height               : 100%;
+            font-family          : fa;
+            font-size            : 14px;
+            color                : white;
+          }
+          &:hover {
+            background-color     : dodgerblue;
+            transition           : background-color .5s;
+          }
+        }
+        .slick-prev {
+          top                    : 15px;
+          left                   : 0px;
+          &:before {
+            content              : "\f104";
+          }
+        }
+        .slick-next {
+          top                    : 15px;
+          right                  : 0px;
+          &:before {
+            content              : "\f105";
+          }
+        }
       }
+      .parlay-btns {
+        &__holder {
+          height: 40px;
+          margin-top: 6px;
+          display: flex;
+          justify-content: space-between;
+        }
+        &__btn { border: 1px solid white;
+          width         : 45%;
+          height        : 40px;
+          line-height   : 38px;
+          position      : relative;
+          z-index       : 1;
+          border-radius : 4px;
+          text-align    : center;
+          letter-spacing: 2px;
+          cursor        : pointer;
+          &:before {
+            content      : '';
+            display      : block;
+            height       : 100%;
+            width        : 100%;
+            border-radius: inherit;
+            position     : absolute;
+            z-index      : -1;
+            top          : 0;
+            left         : 0;
+            opacity      : 0;
+            transition   : opacity 1s;
+          }
+          &:hover {
+           &:before {
+             opacity: 1;
+           }
+          }
+          svg {
+            position: absolute;
+            top: 12px;
+          }
+          &_up {
+            background: linear-gradient(teal,steelblue);
+            &:before {
+              background: linear-gradient(cornflowerblue,darkblue);
+            }
+            svg {
+              right: 10px;
+            }
+          }
+          &_down {
+            background: linear-gradient(tomato,orange);
+            &:before {
+              background: linear-gradient(orange,red);
+            }
+            svg {
+              left: 10px;
+            }
+          }
+        }
+        &__cover {
+          position: absolute;
+          z-index: 12;
+          width: 220px;
+          height: 40px;
+          display: flex;
+          justify-content: space-between;
+          & > div {
+            background-color: rgba(0,0,0,.5);
+            border-radius: 4px;
+            width: 45%;
+          }
+        }
+      }
+
       .slider-change-btn-holder {
         width                   : calc(100% - 30px);
-        height                  : 200px;
+        height                  : 190px;
         position                : absolute;
+        z-index                 : 1;
         bottom                  : 10px;
         display                 : flex;
         flex-direction          : column;
         justify-content         : space-between;
         flex-wrap               : nowrap;
+        &:after {
+          display               : block;
+          content               : '';
+          width                 : 250px;
+          height                : 2px;
+          background-color      : black;
+          position              : absolute;
+          top                   : -10px;
+          left                  : -15px;
+        }
         .slider-change-btn {
           width                 : 220px;
           height                : 40px;
