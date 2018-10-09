@@ -1,37 +1,37 @@
 // $(document).ready(function(){
 
+// активація анімованих таймерів
 $(".active-slider__item-timer").TimeCircles({
   fg_width    : 0.03,
   text_size   : 0.15,
   number_size : 0.3
 });
 
-  $( '.wares-slider, .parlay-slider' ).slick();
-  $( '#active-slider, #history-slider, #deposit-slider, #withdrawal-slider' ).slick({
-    centerMode    : true,
-    variableWidth : true,
-    infinite      : false
-  });
-  $( '#datepicker' ).datepicker();
+// активація слайдерів
+$( '.wares-slider, .parlay-slider' ).slick();
+$( '#active-slider, #history-slider, #deposit-slider, #withdrawal-slider' ).slick({
+  centerMode    : true,
+  variableWidth : true,
+  infinite      : false
+});
 
-  /* ↓↓↓ field switch ↓↓↓ */
-  $('.slider-change-btn').click(function(){
-
-    var tempArrBtn  = $('.slider-change-btn');
-    var tempArrItem = $('.slider-area__slider');
-    for ( var i = 0; i < tempArrBtn.length; i++ ) {
-      if (tempArrBtn[i] == this) {
-        var thisElNumber = i;
-      }
+/* ↓↓↓ field switch (активні ставки + історії) ↓↓↓ */
+$('.slider-change-btn').click(function(){
+  var tempArrBtn  = $('.slider-change-btn');
+  var tempArrItem = $('.slider-area__slider');
+  for ( var i = 0; i < tempArrBtn.length; i++ ) {
+    if (tempArrBtn[i] == this) {
+      var thisElNumber = i;
     }
-  	// buttons
-  	$('.slider-change-btn').removeClass('slider-change-btn_active');
-  	$(this).addClass('slider-change-btn_active');
-    //sliders
-    $('.slider-area__slider').css({'display':'none'});
-    $(tempArrItem[thisElNumber]).css({'display':'block'});
-  });
-  /* ↑↑↑ /field switch ↑↑↑ */
+  }
+	// buttons
+	$('.slider-change-btn').removeClass('slider-change-btn_active');
+	$(this).addClass('slider-change-btn_active');
+  //sliders
+  $('.slider-area__slider').css({'display':'none'});
+  $(tempArrItem[thisElNumber]).css({'display':'block'});
+});
+/* ↑↑↑ /field switch (активні ставки + історії) ↑↑↑ */
 
 /* ↓↓↓ investment calculator ↓↓↓ */
 $('#investment-input').bind('blur keyup', function(event) {
@@ -48,7 +48,6 @@ $('#investment-input').bind('blur keyup', function(event) {
   }
 
   $( $('#investment-result') ).text(resultValue);
-
 });
 /* ↑↑↑ /investment calculator ↑↑↑ */
 
@@ -151,26 +150,45 @@ $('.tempBTN').click(function(){
 /* ↑↑↑ /create active-slider-item ↑↑↑ */
 
 /* ↓↓↓ parlay-slider ↓↓↓ */
-$('.parlay-accordion__btn').click(function(){
+// $('.parlay-accordion__btn').click(function(){
 
-  // контроль можливості торгівлі акціями (торги на них не цілодобові)
-  var date = new Date;
-  var currentTimeInMinutes = date.getUTCHours() * 60 + date.getUTCMinutes(),
-      minTimeInMinutes = 10 * 60 + 00,
-      maxTimeInMinutes = 14 * 60 + 00;
-  if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text() == 'Акции'
-      && (currentTimeInMinutes < minTimeInMinutes || currentTimeInMinutes > maxTimeInMinutes) ) {
-    showInfoMessage('Акционная биржа на данный момент закрыта. Торговать акциями возможно только с 10:00 до 17:00\
-                     по Гринвичу (часовой пояс UTC)');
-    return
+//   // контроль можливості торгівлі акціями (торги на них не цілодобові)
+//   var date = new Date;
+//   var currentTimeInMinutes = date.getUTCHours() * 60 + date.getUTCMinutes(),
+//       minTimeInMinutes = 10 * 60 + 00,
+//       maxTimeInMinutes = 14 * 60 + 00;
+//   if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text() == 'Акции'
+//       && (currentTimeInMinutes < minTimeInMinutes || currentTimeInMinutes > maxTimeInMinutes) ) {
+//     showInfoMessage('Акционная биржа на данный момент закрыта. Торговать акциями возможно только с 10:00 до 17:00\
+//                      по Гринвичу (часовой пояс UTC)');
+//     return
+//   }
+//   console.log('тут код для акордеона');
+
+// });
+var parlayType,
+    parlayTime,
+    parlayPeriod;
+$( $('.parlay-slider').children('.slick-arrow') ).click(function(){
+  // прибирання підсвіток
+  var tempArr = $('.parlay-slider__parlay-choise-btn');
+  for (var i = 0; i < tempArr.length; i++) {
+    $(tempArr[i]).css('background-color','transparent');
   }
-  console.log('тут код для акордеона');
-
+  // деактивувати кнопки ставок
+  $('.parlay-btns__cover').css('display','flex');
 });
 
 $('.parlay-slider__parlay-choise-btn').click(function(){
+  // підсвітка по кліку
+  var tempArr = $('.parlay-slider__parlay-choise-btn');
+  for (var i = 0; i < tempArr.length; i++) {
+    $(tempArr[i]).css('background-color','transparent');
+  }
+  $(this).css('background-color','rgba(0,0,0,.3)');
+  // активувати кнопки ставок
   $('.parlay-btns__cover').css('display','none');
-  // підсвітка по кліку!!!
+
 });
 /* ↑↑↑ /parlay-slider ↑↑↑ */
 
