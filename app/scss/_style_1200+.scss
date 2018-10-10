@@ -606,10 +606,6 @@
           padding-left: 16px;
           cursor: pointer;
           user-select: none;
-          transition: background-color .3s;
-          &:hover {
-            background-color: rgba(0,0,0,.3);
-          }
         }
         .slick-arrow {
           width                  : 25px;

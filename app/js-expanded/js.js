@@ -1,19 +1,40 @@
 // $(document).ready(function(){
 
-// активація анімованих таймерів
+/* ↓↓↓ GLOBAL VARIABLES ↓↓↓ */
+var parlayInvestment,     // розмір ставки
+    parlayType,           // short/normal/long
+    parlayTime,           // час ДО закриття ставки - в секундах
+    parlayAnticipation,   // up/down
+    parlayPairName,       // назва пари
+    parlayCurrentPrice;   // поточна котировка
+
+var TradingHolidays  = [ '2018-11-22', '2018-12-25', '2019-01-01', '2019-01-21', '2019-02-18', '2019-04-19',
+                         '2019-05-27', '2019-07-04', '2019-09-02', '2019-11-28', '2019-12-25', '2020-01-01',
+                         '2020-01-20', '2020-02-17', '2020-04-10', '2020-05-25', '2020-07-03', '2020-09-07',
+                         '2020-11-26', '2020-12-25'
+                       ];
+// Market closes at 1:00 p.m. ET.
+var TradingShortDays = [ '2018-11-23', '2018-12-24', '2019-07-03', '2019-11-29', '2019-12-24', '2020-11-27',
+                         '2020-12-24'
+                       ];
+/* ↑↑↑ /GLOBAL VARIABLES ↑↑↑ */
+
+/* ↓↓↓ активація анімованих таймерів ↓↓↓ */
 $(".active-slider__item-timer").TimeCircles({
   fg_width    : 0.03,
   text_size   : 0.15,
   number_size : 0.3
 });
+/* ↑↑↑ /активація анімованих таймерів ↑↑↑ */
 
-// активація слайдерів
+/* ↓↓↓ активація слайдерів ↓↓↓ */
 $( '.wares-slider, .parlay-slider' ).slick();
 $( '#active-slider, #history-slider, #deposit-slider, #withdrawal-slider' ).slick({
   centerMode    : true,
   variableWidth : true,
   infinite      : false
 });
+/* ↑↑↑ /активація слайдерів ↑↑↑ */
 
 /* ↓↓↓ field switch (активні ставки + історії) ↓↓↓ */
 $('.slider-change-btn').click(function(){
@@ -40,9 +61,12 @@ $('#investment-input').bind('blur keyup', function(event) {
 
   if (inputValue == 0) {
     // прибирання підсвіток
-    $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
+    highlightingParlayChoiseBtn();
     // блокування кнопок для активації ставки, якщо ставка == 0
     $('.parlay-btns__cover').css('display','flex');
+  } else {
+    // розблокування кнопок для активації ставки
+    $('.parlay-btns__cover').css('display','none');
   }
 
   var resultValue  = (inputValue * percentValue)/100 + inputValue;
@@ -102,22 +126,36 @@ setInterval(function() {
 // });
 /* ↑↑↑ /parlay-slider ↑↑↑ */
 
-var parlayInvestment,     // розмір ставки
-    parlayType,           // short/normal/long
-    parlayTime,           // час ДО закриття ставки - в секундах
-    parlayAnticipation,   // up/down
-    parlayPairName,       // назва пари
-    parlayCurrentPrice;   // поточна котировка
 
-var TradingHolidays  = [ '2018-11-22', '2018-12-25', '2019-01-01', '2019-01-21', '2019-02-18', '2019-04-19',
-                         '2019-05-27', '2019-07-04', '2019-09-02', '2019-11-28', '2019-12-25', '2020-01-01',
-                         '2020-01-20', '2020-02-17', '2020-04-10', '2020-05-25', '2020-07-03', '2020-09-07',
-                         '2020-11-26', '2020-12-25'
-                       ];
-// Market closes at 1:00 p.m. ET.
-var TradingShortDays = [ '2018-11-23', '2018-12-24', '2019-07-03', '2019-11-29', '2019-12-24', '2020-11-27',
-                         '2020-12-24'
-                       ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ↓↓↓ динамічне формування списків можливих ставок ↓↓↓ */
 $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
@@ -131,9 +169,14 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
         tempUTCDate,
         tempUTCHours;
 
+console.log("tempDateTime   ", tempDateTime);
+var tempEndDateTime = tempDateTime;
+tempEndDateTime.setUTCDate(tempEndDateTime.getUTCDate() + 1);
+tempEndDateTime.setUTCMinutes(0);
+tempEndDateTime.setUTCHours(0);
+console.log("tempEndDateTime", tempEndDateTime);
 
-
-    // округлення часу ставок до 00хв або 30хв
+    // округлення часу ставки до 00хв або 30хв
     if ( 25 <= tempUTCMinutes && tempUTCMinutes < 55 ) {
       // оркуглити до 00, додати 1 годину
       tempDateTime.setUTCMinutes(60);
@@ -145,30 +188,33 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
       tempDateTime.setUTCMinutes(90);
     }
 
-    console.log("tempDateTime", tempDateTime);
-    var tempUTCDate = date.getUTCDate();
+    // сформувати рядок дати
+    tempUTCDate = tempDateTime.getUTCDate();
     if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
 
-    var tempUTCMonth = date.getUTCMonth() + 1;
+    tempUTCMonth = tempDateTime.getUTCMonth() + 1;
     if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
 
-    var yy = date.getUTCFullYear();
+    tempUTCFullYear = tempDateTime.getUTCFullYear();
     if (tempUTCFullYear < 10) tempUTCFullYear = '0' + tempUTCFullYear;
 
-    var tempUTCHours = date.getUTCHours();
+    tempUTCHours = tempDateTime.getUTCHours();
     if (tempUTCHours < 10) tempUTCHours = '0' + tempUTCHours;
 
+    tempUTCMinutes = tempDateTime.getUTCMinutes();
     if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
 
-    //datetimer.innerHTML = dd + "." + mm + "." + yy + "   " + hh + ":" + mn + ":" + ss;
-
-    tempDateTimeString = tempDateTime + '';
-    console.log("tempDateTimeString", tempDateTimeString);
+    tempDateTimeString = tempUTCFullYear + '-' +
+                         tempUTCMonth    + '-' +
+                         tempUTCDate     + ' ' +
+                         tempUTCHours    + ':' +
+                         tempUTCMinutes;
 
     $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
                                                        .children('.parlay-slider__parlay-choise-btn-holder')
-                                                       .append('<div class="parlay-slider__parlay-choise-btn">'
-                                                                    + tempDateTime +
+                                                       .append('<div class="parlay-slider__parlay-choise-btn"\
+                                                                     onclick="highlightingParlayChoiseBtn(this)">'
+                                                                    + tempDateTimeString +
                                                                '</div>');
 
   }
@@ -179,13 +225,59 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
 });
 /* ↑↑↑ /динамічне формування списків можливих ставок ↑↑↑ */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ↓↓↓ попередній вибір ставки ↓↓↓ */
 $('.parlay-slider__parlay-choise-btn').click(function(){
   // якщо є якесь значення ставки
   if ( +$('#investment-input').val() > 0 ) {
     // підсвітка по кліку
-    $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
-    $(this).css('background-color','rgba(0,0,0,.3)');
+    highlightingParlayChoiseBtn(this)
     // активувати кнопки ставок
     $('.parlay-btns__cover').css('display','none');
   }
@@ -286,6 +378,10 @@ function createParlay(){
   }
 }
 
+function highlightingParlayChoiseBtn (elem) {
+  $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
+  $(elem).css('background-color','rgba(0,0,0,.3)');
+}
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n)
 }
