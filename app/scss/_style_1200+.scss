@@ -329,10 +329,13 @@
           flex-direction         : column;
           justify-content        : start;
           overflow               : hidden;
+          background-color       : rgba(0,0,0,.5);
+          border                 : 1px solid white;
+          border-radius          : 4px;
         }
 
         &__item-timer {
-          height                 : 45px;
+          height                 : 47px;
           width                  : 180px;
           position               : relative;
           &_hours {
@@ -345,14 +348,23 @@
             left                 : -135px;
           }
         }
-        &__item-graphic {
-          border: 1px dotted yellow;
+        &__item-graphic {//border: 1px dotted yellow;
         }
         &__info {
           position: absolute;
           top: 5px;
           left: 57px;
+          border: 1px solid white;
+          border-radius: 4px;
+          padding: 3px;
+          background-color: rgba(0,0,0,.5)
         }
+        &__pair-name {}
+        &__parlay {}
+        &__start-price {
+          font-size: 12px;
+        }
+
       }
       #history-slider {}
       #deposit-slider {
@@ -571,7 +583,6 @@
           border                : 1px solid dodgerblue;
           border-radius         : 4px;
           text-align            : center;
-          cursor                : pointer;
           transition            : background-color .5s, border-color .5s;
           user-select           : none;
         }
@@ -592,6 +603,7 @@
           // border-bottom: 1px solid grey;
           margin: 2px 0;
           padding: 6px;
+          padding-left: 16px;
           cursor: pointer;
           user-select: none;
           transition: background-color .3s;

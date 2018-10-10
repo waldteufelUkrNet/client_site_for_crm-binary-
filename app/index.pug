@@ -20,7 +20,7 @@ html(lang='en')
   body
     //- include BEM-blocks/size-info/size-info.pug
 
-    button.tempBTN(style='width: 120px; height: 30px; position: fixed; left: 10px; bottom: 120px; z-index: 9999; cursor: pointer') temp-btn
+    //- button.tempBTN(style='width: 120px; height: 30px; position: fixed; left: 10px; bottom: 120px; z-index: 9999; cursor: pointer') temp-btn
     //- button.tempBTN2(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer') temp-btn2
 
     // HEADER
@@ -98,10 +98,15 @@ html(lang='en')
                 .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-12-01 00:00:00")
               .active-slider__item-graphic
               .active-slider__info
-                .active-slider__pair-name BTC/ETH
+                span.active-slider__pair-name BTC/ETH
+                  |
+                  |
+                span.active-slider__parlay 30
                   |
                   |
                   i.fas.fa-angle-double-up
+                .active-slider__start-price 12345.67890
+
 
           .slider-area__slider#history-slider
             .slider-area__slider-item.history-slider__item.slider-area__win
@@ -635,7 +640,7 @@ html(lang='en')
             span#UTC-datetimer
 
           .parlay-slider
-            .parlay-slider__item
+            .parlay-slider__item(data-parlayType='short')
               h5.parlay-slider__item-header Быстрые
               .parlay-slider__item-choice-field
                 .parlay-slider__parlay-choise-btn-holder
@@ -643,32 +648,13 @@ html(lang='en')
                   .parlay-slider__parlay-choise-btn 1 минута
                   .parlay-slider__parlay-choise-btn 2 минуты
                   .parlay-slider__parlay-choise-btn 3 минуты
-            .parlay-slider__item
+
+            .parlay-slider__item(data-parlayType='normal')
               h5.parlay-slider__item-header Нормальные
               .parlay-slider__item-choice-field
                 .parlay-slider__parlay-choise-btn-holder
-                  .parlay-slider__parlay-choise-btn інтервал по 30хв до кінця РОБОЧОГО дня
-                  .parlay-slider__parlay-choise-btn 1
-                  .parlay-slider__parlay-choise-btn 2
-                  .parlay-slider__parlay-choise-btn 3
-                  .parlay-slider__parlay-choise-btn 4
-                  .parlay-slider__parlay-choise-btn 5
-                  .parlay-slider__parlay-choise-btn 6
-                  .parlay-slider__parlay-choise-btn 7
-                  .parlay-slider__parlay-choise-btn 8
-                  .parlay-slider__parlay-choise-btn 9
-                  .parlay-slider__parlay-choise-btn 10
-                  .parlay-slider__parlay-choise-btn 11
-                  .parlay-slider__parlay-choise-btn 12
-                  .parlay-slider__parlay-choise-btn 13
-                  .parlay-slider__parlay-choise-btn 14
-                  .parlay-slider__parlay-choise-btn 15
-                  .parlay-slider__parlay-choise-btn 16
-                  .parlay-slider__parlay-choise-btn 17
-                  .parlay-slider__parlay-choise-btn 18
-                  .parlay-slider__parlay-choise-btn 19
-                  .parlay-slider__parlay-choise-btn 20
-            .parlay-slider__item
+
+            .parlay-slider__item(data-parlayType='long')
               h5.parlay-slider__item-header Длинные
               .parlay-slider__item-choice-field
                 .parlay-slider__parlay-choise-btn-holder
@@ -679,11 +665,11 @@ html(lang='en')
                   .parlay-slider__parlay-choise-btn 30 суток
 
           .parlay-btns__holder
-            .parlay-btns__btn.parlay-btns__btn_up Вверх
+            .parlay-btns__btn.parlay-btns__btn_up(data-parlayAnticipation='up') Вверх
               |
               |
               i.fas.fa-angle-double-up
-            .parlay-btns__btn.parlay-btns__btn_down
+            .parlay-btns__btn.parlay-btns__btn_down(data-parlayAnticipation='down')
               i.fas.fa-angle-double-down
               |
               | Вниз
