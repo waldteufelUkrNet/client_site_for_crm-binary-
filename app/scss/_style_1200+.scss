@@ -660,6 +660,7 @@
           text-align    : center;
           letter-spacing: 2px;
           cursor        : pointer;
+          user-select   : none;
           &:before {
             content      : '';
             display      : block;

@@ -32,7 +32,7 @@ var gulp         = require('gulp'),                  //
 gulp.task('pug', function() {
   return gulp.src('app/*.pug')
     .pipe(pug({
-      pretty: false
+      pretty: true
     }))
     .pipe(gulp.dest('app/'))
 });
@@ -50,7 +50,7 @@ gulp.task('browser-sync', function() {
 // препроцесинг scss - style.scss
 gulp.task('sass', function() {
   return gulp.src(['app/scss/*.+(scss|sass)'])
-  .pipe(sass({outputStyle: 'compressed'}))
+  .pipe(sass({outputStyle: 'expanded'}))
   .on('error', notify.onError({
     message: 'Error: <%= error.message %>',
     title: 'sass error'
@@ -59,11 +59,11 @@ gulp.task('sass', function() {
     browsers : ['last 10 versions', '> 1%', 'ie 8', 'ie 7'],
     cascade  : true
   }))
-  .pipe(csso({
-    restructure : true, // злиття декларацій
-    sourceMap   : false,
-    debug       : false // виведення в консоль детальної інформації
-  }))
+  // .pipe(csso({
+  //   restructure : true, // злиття декларацій
+  //   sourceMap   : false,
+  //   debug       : false // виведення в консоль детальної інформації
+  // }))
   .pipe(gulp.dest('app/css'))
   .pipe(browserSync.reload({stream:true}))
 });
