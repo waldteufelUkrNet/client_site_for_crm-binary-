@@ -159,7 +159,7 @@ setInterval(function() {
 
 
 /* ↓↓↓ динамічне формування списків можливих ставок ↓↓↓ */
-$( $('.parlay-slider').children('.slick-arrow') ).click(function(){
+$( $('.parlay-slider').children('.slick-arrow') ).click(function(){ alert(1);
 
   parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
   if (parlayType == 'normal') {
@@ -311,25 +311,22 @@ $('.parlay-btns__btn').click(function(){
         for ( var i = 0; i < tempArr.length; i++ ) {
           if ( $(tempArr[i]).css('background-color') == 'rgba(0, 0, 0, 0.3)' ) {
             highlightingEl = tempArr[i];
-            // кількість мілісекунд
-            parlayTime     = $(tempArr[i]).attr('data-timeToEndInMS');
+            // кількість мілісекунд (тривалість) - те, чого достатньо бекендщикам
+            parlayTime     = +$(tempArr[i]).attr('data-timeToEndInMS');
           }
         }
-        // дата кінця у мілісекундах
-        parlayTime =  Date.now() ;// + +parlayTime;
-        console.log("parlayTime", parlayTime);
-        // об'єкт дати
+        // час закінчення = кількість мілісекунд (тривалість) + поточний час
+        parlayTime =  Date.now() + parlayTime;
         parlayTime = new Date(parlayTime);
 
-        // data-date="2018-12-01 00:00:00"
-
+        // перетворення часу закінчення із мілісекунд у формат "2018-12-01 00:00:00"
         tempUTCDate = parlayTime.getUTCDate();
         if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
         tempUTCMonth = parlayTime.getUTCMonth() + 1;
         if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
         tempUTCFullYear = parlayTime.getUTCFullYear();
         if (tempUTCFullYear < 10) tempUTCFullYear = '0' + tempUTCFullYear;
-        tempUTCHours = parlayTime.getUTCHours();
+        tempUTCHours = parlayTime.getUTCHours() + 3;
         if (tempUTCHours < 10) tempUTCHours = '0' + tempUTCHours;
         tempUTCMinutes = parlayTime.getUTCMinutes();
         if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
@@ -342,7 +339,6 @@ $('.parlay-btns__btn').click(function(){
                      tempUTCHours    + ':' +
                      tempUTCMinutes  + ':' +
                      tempUTCІSeconds;
-        console.log("parlayTime", parlayTime);
       }
 
   createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parlayTime, parlayCurrentPrice);
