@@ -28,7 +28,9 @@ $(".active-slider__item-timer").TimeCircles({
 /* ↑↑↑ /активація анімованих таймерів ↑↑↑ */
 
 /* ↓↓↓ активація слайдерів ↓↓↓ */
-$( '.wares-slider, .parlay-slider' ).slick();
+$( '.wares-slider, .parlay-slider' ).slick({
+  draggable     : false
+});
 $( '#active-slider, #history-slider, #deposit-slider, #withdrawal-slider' ).slick({
   centerMode    : true,
   variableWidth : true,
@@ -108,24 +110,10 @@ setInterval(function() {
 }, 1000);
 /* ↑↑↑ /datetimer ↑↑↑ */
 
-/* ↓↓↓ parlay-slider ↓↓↓ */
-// $('.parlay-accordion__btn').click(function(){
 
-//   // контроль можливості торгівлі акціями (торги на них не цілодобові)
-//   var date = new Date;
-//   var currentTimeInMinutes = date.getUTCHours() * 60 + date.getUTCMinutes(),
-//       minTimeInMinutes = 10 * 60 + 00,
-//       maxTimeInMinutes = 14 * 60 + 00;
-//   if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text() == 'Акции'
-//       && (currentTimeInMinutes < minTimeInMinutes || currentTimeInMinutes > maxTimeInMinutes) ) {
-//     showInfoMessage('Акционная биржа на данный момент закрыта. Торговать акциями возможно только с 10:00 до 17:00\
-//                      по Гринвичу (часовой пояс UTC)');
-//     return
-//   }
-//   console.log('тут код для акордеона');
 
-// });
-/* ↑↑↑ /parlay-slider ↑↑↑ */
+
+
 
 
 
@@ -159,73 +147,55 @@ setInterval(function() {
 
 
 /* ↓↓↓ динамічне формування списків можливих ставок ↓↓↓ */
-$( $('.parlay-slider').children('.slick-arrow') ).click(function(){ alert(1);
+var startTime, finishTime, currentDateTime;
+$( $('.parlay-slider').children('.slick-arrow') ).click(function(){
 
   parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
   if (parlayType == 'normal') {
-    var currentDateTime = new Date,
-        tempUTCMinutes  = currentDateTime.getUTCMinutes(),
-        tempUTCFullYear,
-        tempUTCMonth,
-        tempUTCDate,
-        tempUTCHours;
+
+  currentDateTime = new Date();
+
+/////////////////////////////////////////////////////
+  var xhttp = new XMLHttpRequest();
+  console.log("xhttp", xhttp);
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(1);
+      console.log(this.responseText);
+    }
+  };
+  xhttp.open("POST", "god.ares.local/Hol/GetDate?value=2018-11-10");
+  xhttp.send();
+/////////////////////////////////////////////////////
+
+
+
+
+  // контроль можливості торгівлі акціями (торги на них не цілодобові)
+  if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
+      $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions') {
+    currentDateTime = new Date();
+    // перевірка на вихідний день (субота/неділя)
+    if ( currentDateTime.getUTCDay() == 6 || currentDateTime.getUTCDay() == 0) {
+      console.log('неробочий день');
+      startTime = finishTime = false;
+    } else if (1) {}
+    //             перевірка на державні свята США
+    // http://god.ares.local/Hol/GetDate?value=2018-11-10
+    //             перевірка на короткий робочий день в США
+  } else {
+    // якщо не акції - від поточного часу до 24:00 (startTime, finishTime)
+  }
+  // виклик createListOfNormalParlay (startTime, finishTime)
+
+    // var currentDateTime = new Date,
+    //     tempUTCMinutes  = currentDateTime.getUTCMinutes(),
+    //     tempUTCFullYear,
+    //     tempUTCMonth,
+    //     tempUTCDate,
+    //     tempUTCHours;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //   // округлення часу ставки до 00хв або 30хв
-  //   if ( 25 <= tempUTCMinutes && tempUTCMinutes < 55 ) {
-  //     // оркуглити до 00, додати 1 годину
-  //     tempDateTime.setUTCMinutes(60);
-  //   } else if ( 0 <= tempUTCMinutes && tempUTCMinutes < 25 ) {
-  //     // оркуглити до 30
-  //     tempDateTime.setUTCMinutes(30);
-  //   } else if ( 55 <= tempUTCMinutes && tempUTCMinutes <= 59 ) {
-  //     // округлити до 30, додати годину
-  //     tempDateTime.setUTCMinutes(90);
-  //   }
-
-  //   // сформувати рядок дати
-  //   tempUTCDate = tempDateTime.getUTCDate();
-  //   if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
-
-  //   tempUTCMonth = tempDateTime.getUTCMonth() + 1;
-  //   if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
-
-  //   tempUTCFullYear = tempDateTime.getUTCFullYear();
-  //   if (tempUTCFullYear < 10) tempUTCFullYear = '0' + tempUTCFullYear;
-
-  //   tempUTCHours = tempDateTime.getUTCHours();
-  //   if (tempUTCHours < 10) tempUTCHours = '0' + tempUTCHours;
-
-  //   tempUTCMinutes = tempDateTime.getUTCMinutes();
-  //   if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
-
-  //   tempDateTimeString = tempUTCFullYear + '-' +
-  //                        tempUTCMonth    + '-' +
-  //                        tempUTCDate     + ' ' +
-  //                        tempUTCHours    + ':' +
-  //                        tempUTCMinutes;
-
-  //   $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
-  //                                                      .children('.parlay-slider__parlay-choise-btn-holder')
-  //                                                      .append('<div class="parlay-slider__parlay-choise-btn"\
-  //                                                                    onclick="highlightingParlayChoiseBtn(this)">'
-  //                                                                   + tempDateTimeString +
-  //                                                              '</div>');
-
-  // }
   parlayTime = 0;
   // прибирання підсвіток
   highlightingParlayChoiseBtn();
@@ -440,8 +410,50 @@ function highlightingParlayChoiseBtn (elem) {
   $(elem).css('background-color','rgba(0,0,0,.3)');
 }
 
-function createListOfNormalParley (startTime, finishTime) {
+function createListOfNormalParlay (startTime, finishTime) {
+  // спочатку потрібно видалити старий список, якщо він є!!!
+  //   // округлення часу ставки до 00хв або 30хв
+  //   if ( 25 <= tempUTCMinutes && tempUTCMinutes < 55 ) {
+  //     // оркуглити до 00, додати 1 годину
+  //     tempDateTime.setUTCMinutes(60);
+  //   } else if ( 0 <= tempUTCMinutes && tempUTCMinutes < 25 ) {
+  //     // оркуглити до 30
+  //     tempDateTime.setUTCMinutes(30);
+  //   } else if ( 55 <= tempUTCMinutes && tempUTCMinutes <= 59 ) {
+  //     // округлити до 30, додати годину
+  //     tempDateTime.setUTCMinutes(90);
+  //   }
 
+  //   // сформувати рядок дати
+  //   tempUTCDate = tempDateTime.getUTCDate();
+  //   if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
+
+  //   tempUTCMonth = tempDateTime.getUTCMonth() + 1;
+  //   if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
+
+  //   tempUTCFullYear = tempDateTime.getUTCFullYear();
+  //   if (tempUTCFullYear < 10) tempUTCFullYear = '0' + tempUTCFullYear;
+
+  //   tempUTCHours = tempDateTime.getUTCHours();
+  //   if (tempUTCHours < 10) tempUTCHours = '0' + tempUTCHours;
+
+  //   tempUTCMinutes = tempDateTime.getUTCMinutes();
+  //   if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
+
+  //   tempDateTimeString = tempUTCFullYear + '-' +
+  //                        tempUTCMonth    + '-' +
+  //                        tempUTCDate     + ' ' +
+  //                        tempUTCHours    + ':' +
+  //                        tempUTCMinutes;
+
+  //   $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
+  //                                                      .children('.parlay-slider__parlay-choise-btn-holder')
+  //                                                      .append('<div class="parlay-slider__parlay-choise-btn"\
+  //                                                                    onclick="highlightingParlayChoiseBtn(this)">'
+  //                                                                   + tempDateTimeString +
+  //                                                              '</div>');
+
+  // }
 }
 
 function isNumeric(n) {
