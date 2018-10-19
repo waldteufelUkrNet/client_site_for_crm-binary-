@@ -120,72 +120,73 @@ setInterval(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ↓↓↓ динамічне формування списків можливих ставок ↓↓↓ */
 var startTime, finishTime, currentDateTime;
 $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
-
   parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
-  if (parlayType == 'normal') {
 
   currentDateTime = new Date();
 
-/////////////////////////////////////////////////////
-  var xhttp = new XMLHttpRequest();
-  console.log("xhttp", xhttp);
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(1);
-      console.log(this.responseText);
+  var tempYear = currentDateTime.getUTCFullYear();
+  if (tempYear < 10) tempYear = '0' + tempYear;
+  var tempDate = currentDateTime.getUTCDate();
+  if (tempDate < 10) tempDate = '0' + tempDate;
+  var tempMonth = currentDateTime.getUTCMonth() + 1;
+  if (tempMonth < 10) tempMonth = '0' + tempMonth;
+  var tempHour = currentDateTime.getUTCHours();
+  if (tempHour < 10) tempHour = '0' + tempHour;
+  var tempMinutes = currentDateTime.getUTCMinutes();
+  if (tempMinutes < 10) tempMinutes = '0' + tempMinutes;
+  var tempSeconds = currentDateTime.getUTCSeconds();
+  if (tempSeconds < 10) tempSeconds = '0' + tempSeconds;
+
+  var currentDateString = tempYear  + '-' +
+                          tempMonth + '-' +
+                          tempDate;
+
+  if ( parlayType == 'short' ) {
+    // контроль для акцій
+  } else if ( parlayType == 'long' ) {
+    // контроль для акцій
+  } else if ( parlayType == 'normal' ) {
+    // побудова списку можливих ставок
+    // контроль можливості торгівлі акціями (торги на них не цілодобові)
+    if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
+        $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
+
+        // перевірка на державні свята США / короткі робочі дні в США
+        var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentDateString;
+        $.ajax({
+          url     : url,
+          success :  function ( data ) {
+                      if ( data == 1 ) { // святковий день
+                        startTime = finishTime = false;
+                      }
+                      if ( data == 0 ) { // не святковий день
+                        // перевірка на вихідний день (субота/неділя)
+                        if ( currentDateTime.getUTCDay() == 6 || currentDateTime.getUTCDay() == 0 ) { // вихідний день (субота/неділя)
+                          startTime = finishTime = false;
+                        } else { // робочий день - 13:30-20:00 по UTC
+                          if ( tempHour > 20 || (tempHour < 13 && tempMinutes < 30 ) ) {
+                            startTime = finishTime = false
+                          } else {
+                            startTime = tempHour + ':' + tempMinutes;
+                            finishTime = '20:00'
+                          }
+                        }
+                      }
+                    }
+        })
+    } else {
+      // якщо не акції - від поточного часу до 24:00 (startTime, finishTime)
+      startTime = tempHour + ':' + tempMinutes;
+      finishTime = '24:00'
     }
-  };
-  xhttp.open("POST", "god.ares.local/Hol/GetDate?value=2018-11-10");
-  xhttp.send();
-/////////////////////////////////////////////////////
+    console.log("startTime", startTime);
+    console.log("finishTime", finishTime);
 
 
 
-
-  // контроль можливості торгівлі акціями (торги на них не цілодобові)
-  if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
-      $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions') {
-    currentDateTime = new Date();
-    // перевірка на вихідний день (субота/неділя)
-    if ( currentDateTime.getUTCDay() == 6 || currentDateTime.getUTCDay() == 0) {
-      console.log('неробочий день');
-      startTime = finishTime = false;
-    } else if (1) {}
-    //             перевірка на державні свята США
-    // http://god.ares.local/Hol/GetDate?value=2018-11-10
-    //             перевірка на короткий робочий день в США
-  } else {
-    // якщо не акції - від поточного часу до 24:00 (startTime, finishTime)
-  }
   // виклик createListOfNormalParlay (startTime, finishTime)
 
     // var currentDateTime = new Date,
@@ -203,36 +204,6 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
   $('.parlay-btns__cover').css('display','flex');
 });
 /* ↑↑↑ /динамічне формування списків можливих ставок ↑↑↑ */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
