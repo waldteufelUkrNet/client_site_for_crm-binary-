@@ -4,19 +4,10 @@
 var parlayInvestment,     // розмір ставки
     parlayType,           // short/normal/long
     parlayTime = 0,       // час ДО закриття ставки - в мілісекундах
-    parlayAnticipation,   // up/down
+    parlayAnticipation,   // очікування - up/down
     parlayPairName,       // назва пари
     parlayCurrentPrice;   // поточна котировка
 
-var TradingHolidays  = [ '2018-11-22', '2018-12-25', '2019-01-01', '2019-01-21', '2019-02-18', '2019-04-19',
-                         '2019-05-27', '2019-07-04', '2019-09-02', '2019-11-28', '2019-12-25', '2020-01-01',
-                         '2020-01-20', '2020-02-17', '2020-04-10', '2020-05-25', '2020-07-03', '2020-09-07',
-                         '2020-11-26', '2020-12-25'
-                       ];
-// Market closes at 1:00 p.m. ET.
-var TradingShortDays = [ '2018-11-23', '2018-12-24', '2019-07-03', '2019-11-29', '2019-12-24', '2020-11-27',
-                         '2020-12-24'
-                       ];
 /* ↑↑↑ /GLOBAL VARIABLES ↑↑↑ */
 
 /* ↓↓↓ активація анімованих таймерів ↓↓↓ */
@@ -110,16 +101,6 @@ setInterval(function() {
 }, 1000);
 /* ↑↑↑ /datetimer ↑↑↑ */
 
-
-
-
-
-
-
-
-
-
-
 /* ↓↓↓ динамічне формування списків можливих ставок ↓↓↓ */
 var startTime, finishTime, currentDateTime;
 $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
@@ -127,22 +108,22 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
 
   currentDateTime = new Date();
 
-  var tempYear = currentDateTime.getUTCFullYear();
-  if (tempYear < 10) tempYear = '0' + tempYear;
-  var tempDate = currentDateTime.getUTCDate();
-  if (tempDate < 10) tempDate = '0' + tempDate;
-  var tempMonth = currentDateTime.getUTCMonth() + 1;
-  if (tempMonth < 10) tempMonth = '0' + tempMonth;
-  var tempHour = currentDateTime.getUTCHours();
-  if (tempHour < 10) tempHour = '0' + tempHour;
-  var tempMinutes = currentDateTime.getUTCMinutes();
-  if (tempMinutes < 10) tempMinutes = '0' + tempMinutes;
-  var tempSeconds = currentDateTime.getUTCSeconds();
-  if (tempSeconds < 10) tempSeconds = '0' + tempSeconds;
+  var tempUTCYear = currentDateTime.getUTCFullYear();
+  if (tempUTCYear < 10) tempUTCYear = '0' + tempUTCYear;
+  var tempUTCDate = currentDateTime.getUTCDate();
+  if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
+  var tempUTCMonth = currentDateTime.getUTCMonth() + 1;
+  if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
+  var tempUTCHour = currentDateTime.getUTCHours();
+  if (tempUTCHour < 10) tempUTCHour = '0' + tempUTCHour;
+  var tempUTCMinutes = currentDateTime.getUTCMinutes();
+  if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
+  var tempUTCSeconds = currentDateTime.getUTCSeconds();
+  if (tempUTCSeconds < 10) tempUTCSeconds = '0' + tempUTCSeconds;
 
-  var currentDateString = tempYear  + '-' +
-                          tempMonth + '-' +
-                          tempDate;
+  var currentUTCDateString = tempUTCYear  + '-' +
+                          tempUTCMonth + '-' +
+                          tempUTCDate;
 
   if ( parlayType == 'short' ) {
     // контроль для акцій
@@ -155,46 +136,37 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
 
         // перевірка на державні свята США / короткі робочі дні в США
-        var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentDateString;
-        $.ajax({
-          url     : url,
-          success :  function ( data ) {
-                      if ( data == 1 ) { // святковий день
-                        startTime = finishTime = false;
-                      }
-                      if ( data == 0 ) { // не святковий день
-                        // перевірка на вихідний день (субота/неділя)
-                        if ( currentDateTime.getUTCDay() == 6 || currentDateTime.getUTCDay() == 0 ) { // вихідний день (субота/неділя)
-                          startTime = finishTime = false;
-                        } else { // робочий день - 13:30-20:00 по UTC
-                          if ( tempHour > 20 || (tempHour < 13 && tempMinutes < 30 ) ) {
-                            startTime = finishTime = false
-                          } else {
-                            startTime = tempHour + ':' + tempMinutes;
-                            finishTime = '20:00'
-                          }
-                        }
-                      }
-                    }
-        })
+        var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString;
+        // $.ajax({
+        //   url     : url,
+        //   success :  function ( data ) {
+        //               if ( data == 1 ) { // святковий день
+        //                 startTime = finishTime = false;
+        //               }
+        //               if ( data == 0 ) { // не святковий день
+        //                 // перевірка на вихідний день (субота/неділя)
+        //                 if ( currentDateTime.getUTCDay() == 6 || currentDateTime.getUTCDay() == 0 ) { // вихідний день (субота/неділя)
+        //                   startTime = finishTime = false;
+        //                 } else { // робочий день - 13:30-20:00 по UTC
+        //                   if ( tempUTCHour > 20 || (tempUTCHour < 13 && tempUTCMinutes < 30 ) ) {
+        //                     startTime = finishTime = false
+        //                   } else {
+        //                     startTime = tempUTCHour + ':' + tempUTCMinutes;
+        //                     finishTime = '20:00'
+        //                   }
+        //                 }
+        //               }
+        //             }
+        // })
+        startTime  = tempUTCHour + ':' + tempUTCMinutes;
+        finishTime = '20:00'
     } else {
       // якщо не акції - від поточного часу до 24:00 (startTime, finishTime)
-      startTime = tempHour + ':' + tempMinutes;
+      startTime  = tempUTCHour + ':' + tempUTCMinutes;
       finishTime = '24:00'
     }
-    console.log("startTime", startTime);
-    console.log("finishTime", finishTime);
+    createListOfNormalParlay (startTime, finishTime)
 
-
-
-  // виклик createListOfNormalParlay (startTime, finishTime)
-
-    // var currentDateTime = new Date,
-    //     tempUTCMinutes  = currentDateTime.getUTCMinutes(),
-    //     tempUTCFullYear,
-    //     tempUTCMonth,
-    //     tempUTCDate,
-    //     tempUTCHours;
   }
 
   parlayTime = 0;
@@ -204,23 +176,6 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
   $('.parlay-btns__cover').css('display','flex');
 });
 /* ↑↑↑ /динамічне формування списків можливих ставок ↑↑↑ */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ↓↓↓ попередній вибір ставки ↓↓↓ */
 $('.parlay-slider__parlay-choise-btn').click(function(){
@@ -253,7 +208,7 @@ $('.parlay-btns__btn').click(function(){
           if ( $(tempArr[i]).css('background-color') == 'rgba(0, 0, 0, 0.3)' ) {
             highlightingEl = tempArr[i];
             // кількість мілісекунд (тривалість) - те, чого достатньо бекендщикам
-            parlayTime     = +$(tempArr[i]).attr('data-timeToEndInMS');
+            parlayTime = +$(tempArr[i]).attr('data-timeToEndInMS');
           }
         }
         // час закінчення = кількість мілісекунд (тривалість) + поточний час
@@ -261,17 +216,17 @@ $('.parlay-btns__btn').click(function(){
         parlayTime = new Date(parlayTime);
 
         // перетворення часу закінчення із мілісекунд у формат "2018-12-01 00:00:00"
-        tempUTCDate = parlayTime.getUTCDate();
+        var tempUTCDate = parlayTime.getUTCDate();
         if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
-        tempUTCMonth = parlayTime.getUTCMonth() + 1;
+        var tempUTCMonth = parlayTime.getUTCMonth() + 1;
         if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
-        tempUTCFullYear = parlayTime.getUTCFullYear();
+        var tempUTCFullYear = parlayTime.getUTCFullYear();
         if (tempUTCFullYear < 10) tempUTCFullYear = '0' + tempUTCFullYear;
-        tempUTCHours = parlayTime.getUTCHours() + 3;
+        var tempUTCHours = parlayTime.getUTCHours() + 3;
         if (tempUTCHours < 10) tempUTCHours = '0' + tempUTCHours;
-        tempUTCMinutes = parlayTime.getUTCMinutes();
+        var tempUTCMinutes = parlayTime.getUTCMinutes();
         if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
-        tempUTCІSeconds = parlayTime.getUTCSeconds();
+        var tempUTCІSeconds = parlayTime.getUTCSeconds();
         if (tempUTCІSeconds < 10) tempUTCІSeconds = '0' + tempUTCІSeconds;
 
         parlayTime = tempUTCFullYear + '-' +
@@ -382,18 +337,37 @@ function highlightingParlayChoiseBtn (elem) {
 }
 
 function createListOfNormalParlay (startTime, finishTime) {
-  // спочатку потрібно видалити старий список, якщо він є!!!
-  //   // округлення часу ставки до 00хв або 30хв
-  //   if ( 25 <= tempUTCMinutes && tempUTCMinutes < 55 ) {
-  //     // оркуглити до 00, додати 1 годину
-  //     tempDateTime.setUTCMinutes(60);
-  //   } else if ( 0 <= tempUTCMinutes && tempUTCMinutes < 25 ) {
-  //     // оркуглити до 30
-  //     tempDateTime.setUTCMinutes(30);
-  //   } else if ( 55 <= tempUTCMinutes && tempUTCMinutes <= 59 ) {
-  //     // округлити до 30, додати годину
-  //     tempDateTime.setUTCMinutes(90);
-  //   }
+  console.log("startTime          :", startTime);
+  console.log("finishTime         :", finishTime);
+
+  // спочатку потрібно видалити старий список, якщо він є
+  $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+
+  // якщо startTime = finishTime = false - торги не можливі
+  if ( startTime == false ) {
+    // біржа закрита - потрібно буде зробити відповідне інфооформлення - попап або вікно
+    console.log('біржа закрита');
+  }
+  // визначення першого можливого часу ставки: ставки робляться або в 00хв, або в 30хв,
+  // але так, щоб до кінця ставки було щонайменше 5 хв
+
+  // розібрати рядки startTime / finishTime
+  var tempUTCTimeHours   = +startTime.slice(0,2),
+      tempUTCTimeMinutes = +startTime.slice(3);
+      console.log("tempUTCTimeHours   :", tempUTCTimeHours);
+      console.log("tempUTCTimeMinutes :", tempUTCTimeMinutes);
+
+  // округлення часу ставки до 00хв або 30хв
+  if ( 25 <= tempUTCTimeMinutes && tempUTCTimeMinutes < 55 ) {
+    // оркуглити до 00, додати 1 годину
+    tempDateTime.setUTCMinutes(60);
+  } else if ( 0 <= tempUTCTimeMinutes && tempUTCTimeMinutes < 25 ) {
+    // оркуглити до 30
+    tempDateTime.setUTCMinutes(30);
+  } else if ( 55 <= tempUTCTimeMinutes && tempUTCTimeMinutes <= 59 ) {
+    // округлити до 30, додати годину
+    tempDateTime.setUTCMinutes(90);
+  }
 
   //   // сформувати рядок дати
   //   tempUTCDate = tempDateTime.getUTCDate();
