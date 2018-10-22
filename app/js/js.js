@@ -1,5 +1,4 @@
 // $(document).ready(function(){
-
 /* ↓↓↓ GLOBAL VARIABLES ↓↓↓ */
 var parlayInvestment,     // розмір ставки
     parlayType,           // short/normal/long
@@ -134,39 +133,50 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
     // контроль можливості торгівлі акціями (торги на них не цілодобові)
     if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
+        // console.log('акції');
 
         // перевірка на державні свята США / короткі робочі дні в США
         var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString;
-        // $.ajax({
-        //   url     : url,
-        //   success :  function ( data ) {
-        //               if ( data == 1 ) { // святковий день
-        //                 startTime = finishTime = false;
-        //               }
-        //               if ( data == 0 ) { // не святковий день
-        //                 // перевірка на вихідний день (субота/неділя)
-        //                 if ( currentDateTime.getUTCDay() == 6 || currentDateTime.getUTCDay() == 0 ) { // вихідний день (субота/неділя)
-        //                   startTime = finishTime = false;
-        //                 } else { // робочий день - 13:30-20:00 по UTC
-        //                   if ( tempUTCHour > 20 || (tempUTCHour < 13 && tempUTCMinutes < 30 ) ) {
-        //                     startTime = finishTime = false
-        //                   } else {
-        //                     startTime = tempUTCHour + ':' + tempUTCMinutes;
-        //                     finishTime = '20:00'
-        //                   }
-        //                 }
-        //               }
-        //             }
-        // })
-        startTime  = tempUTCHour + ':' + tempUTCMinutes;
-        finishTime = '20:00'
+        // // для дому: http://god.ares.local/62.216.34.146:9000
+        $.ajax({
+          url     : url,
+          success :  function ( data ) {
+                      if ( data == 1 ) { // святковий день
+                        // console.log("святковий день");
+                        startTime = finishTime = false;
+                      }
+                      if ( data == 0 ) { // не святковий день
+                        // console.log("не святковий день");
+                        // перевірка на вихідний день (субота/неділя)
+                        if ( currentDateTime.getUTCDay() == 6 || currentDateTime.getUTCDay() == 0 ) { // вихідний день (субота/неділя)
+                          // console.log("вихідний день (субота/неділя)");
+                          startTime = finishTime = false;
+                        } else { // робочий день - 13:30-20:00 по UTC
+                          // перевести години в хвилини, додатидо хвилин
+                          var timeInMinutes = tempUTCHour*60 + tempUTCMinutes;
+                          if ( timeInMinutes >= 1200 || timeInMinutes < 810 ) {
+                            // console.log('неробочий час');
+                            startTime = finishTime = false
+                          } else {
+                            // console.log('робочий час');
+                            startTime = tempUTCHour + ':' + tempUTCMinutes;
+                            finishTime = '20:00'
+                          }
+                        }
+                      }
+                      createListOfNormalParlay (startTime, finishTime, currentDateTime);
+                    }
+        })
+
+        // startTime  = tempUTCHour + ':' + tempUTCMinutes;
+        // finishTime = '20:00';
+        // createListOfNormalParlay (startTime, finishTime, currentDateTime);
     } else {
       // якщо не акції - від поточного часу до 24:00 (startTime, finishTime)
       startTime  = tempUTCHour + ':' + tempUTCMinutes;
-      finishTime = '24:00'
+      finishTime = '24:00';
+      createListOfNormalParlay (startTime, finishTime, currentDateTime)
     }
-    createListOfNormalParlay (startTime, finishTime)
-
   }
 
   parlayTime = 0;
@@ -336,9 +346,9 @@ function highlightingParlayChoiseBtn (elem) {
   $(elem).css('background-color','rgba(0,0,0,.3)');
 }
 
-function createListOfNormalParlay (startTime, finishTime) {
-  console.log("startTime          :", startTime);
-  console.log("finishTime         :", finishTime);
+function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
+  // console.log("startTime / finishTime                             :", startTime + " / " + finishTime);
+  // console.log("currentDateTime                                    :", currentDateTime);
 
   // спочатку потрібно видалити старий список, якщо він є
   $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
@@ -347,61 +357,99 @@ function createListOfNormalParlay (startTime, finishTime) {
   if ( startTime == false ) {
     // біржа закрита - потрібно буде зробити відповідне інфооформлення - попап або вікно
     console.log('біржа закрита');
+    return
   }
+
   // визначення першого можливого часу ставки: ставки робляться або в 00хв, або в 30хв,
   // але так, щоб до кінця ставки було щонайменше 5 хв
 
   // розібрати рядки startTime / finishTime
-  var tempUTCTimeHours   = +startTime.slice(0,2),
-      tempUTCTimeMinutes = +startTime.slice(3);
-      console.log("tempUTCTimeHours   :", tempUTCTimeHours);
-      console.log("tempUTCTimeMinutes :", tempUTCTimeMinutes);
+  var tempUTCTimeHours         = +startTime.slice(0,2),
+      tempUTCTimeMinutes       = +startTime.slice(3),
+      tempUTCTimeFinishHours   = +finishTime.slice(0,2),
+      tempUTCTimeFinishMinutes = +finishTime.slice(3);
+      // console.log("tempUTCTimeHours / tempUTCTimeMinutes              :", tempUTCTimeHours + " / " + tempUTCTimeMinutes);
+      // console.log("tempUTCTimeFinishHours / tempUTCTimeFinishMinutes  :", tempUTCTimeFinishHours + " / " + tempUTCTimeFinishMinutes);
 
-  // округлення часу ставки до 00хв або 30хв
+  var tempUTCTimeInMinutes       = tempUTCTimeHours * 60 + tempUTCTimeMinutes,
+      tempUTCTimeFinishInMinutes = tempUTCTimeFinishHours * 60 + tempUTCTimeFinishMinutes;
+      // console.log("tempUTCTimeInMinutes / tempUTCTimeFinishInMinutes  :", tempUTCTimeInMinutes + " / " + tempUTCTimeFinishInMinutes);
+
+  // округлення часу першої можливої ставки до 00хв або 30хв
   if ( 25 <= tempUTCTimeMinutes && tempUTCTimeMinutes < 55 ) {
     // оркуглити до 00, додати 1 годину
-    tempDateTime.setUTCMinutes(60);
+    currentDateTime.setUTCMinutes(60);
   } else if ( 0 <= tempUTCTimeMinutes && tempUTCTimeMinutes < 25 ) {
     // оркуглити до 30
-    tempDateTime.setUTCMinutes(30);
+    currentDateTime.setUTCMinutes(30);
   } else if ( 55 <= tempUTCTimeMinutes && tempUTCTimeMinutes <= 59 ) {
     // округлити до 30, додати годину
-    tempDateTime.setUTCMinutes(90);
+    currentDateTime.setUTCMinutes(90);
   }
+  // console.log("currentDateTime                                    :", currentDateTime);
 
-  //   // сформувати рядок дати
-  //   tempUTCDate = tempDateTime.getUTCDate();
-  //   if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
+  // сформувати рядок дати ( у список для вибору клієнту )
+  tempUTCFullYear = currentDateTime.getUTCFullYear();
+  if (tempUTCFullYear < 10) tempUTCFullYear = '0' + tempUTCFullYear;
+  tempUTCMonth = currentDateTime.getUTCMonth() + 1;
+  if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
+  tempUTCDate = currentDateTime.getUTCDate();
+  if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
+  tempUTCHours = currentDateTime.getUTCHours();
+  if (tempUTCHours < 10) tempUTCHours = '0' + tempUTCHours;
+  tempUTCMinutes = currentDateTime.getUTCMinutes();
+  if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
 
-  //   tempUTCMonth = tempDateTime.getUTCMonth() + 1;
-  //   if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
+  var tempDateTimeString = tempUTCFullYear + '-' +
+                           tempUTCMonth    + '-' +
+                           tempUTCDate     + ' ' +
+                           tempUTCHours    + ':' +
+                           tempUTCMinutes;
 
-  //   tempUTCFullYear = tempDateTime.getUTCFullYear();
-  //   if (tempUTCFullYear < 10) tempUTCFullYear = '0' + tempUTCFullYear;
+  // console.log("tempDateTimeString                                 :", tempDateTimeString);
 
-  //   tempUTCHours = tempDateTime.getUTCHours();
-  //   if (tempUTCHours < 10) tempUTCHours = '0' + tempUTCHours;
+  $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
+                                                     .children('.parlay-slider__parlay-choise-btn-holder')
+                                                     .append('<div class="parlay-slider__parlay-choise-btn"\
+                                                                   onclick="highlightingParlayChoiseBtn(this)">'
+                                                                  + tempDateTimeString +
+                                                             '</div>');
 
-  //   tempUTCMinutes = tempDateTime.getUTCMinutes();
-  //   if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
+  while (tempUTCTimeInMinutes < tempUTCTimeFinishInMinutes - 60) {
+    currentDateTime.setMinutes(currentDateTime.getMinutes() + 30)
+    // сформувати рядок дати ( у список для вибору клієнту )
+    tempUTCFullYear = currentDateTime.getUTCFullYear();
+    if (tempUTCFullYear < 10) tempUTCFullYear = '0' + tempUTCFullYear;
+    tempUTCMonth = currentDateTime.getUTCMonth() + 1;
+    if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
+    tempUTCDate = currentDateTime.getUTCDate();
+    if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
+    tempUTCHours = currentDateTime.getUTCHours();
+    if (tempUTCHours < 10) tempUTCHours = '0' + tempUTCHours;
+    tempUTCMinutes = currentDateTime.getUTCMinutes();
+    if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
 
-  //   tempDateTimeString = tempUTCFullYear + '-' +
-  //                        tempUTCMonth    + '-' +
-  //                        tempUTCDate     + ' ' +
-  //                        tempUTCHours    + ':' +
-  //                        tempUTCMinutes;
-
-  //   $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
-  //                                                      .children('.parlay-slider__parlay-choise-btn-holder')
-  //                                                      .append('<div class="parlay-slider__parlay-choise-btn"\
-  //                                                                    onclick="highlightingParlayChoiseBtn(this)">'
-  //                                                                   + tempDateTimeString +
-  //                                                              '</div>');
-
-  // }
+    var tempDateTimeString = tempUTCFullYear + '-' +
+                             tempUTCMonth    + '-' +
+                             tempUTCDate     + ' ' +
+                             tempUTCHours    + ':' +
+                             tempUTCMinutes;
+    $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
+                                                       .children('.parlay-slider__parlay-choise-btn-holder')
+                                                       .append('<div class="parlay-slider__parlay-choise-btn"\
+                                                                     onclick="highlightingParlayChoiseBtn(this)">'
+                                                                    + tempDateTimeString +
+                                                               '</div>');
+    tempUTCTimeInMinutes += 30;
+  }
 }
 
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n)
+}
+
+function sleep(ms) {
+  ms += new Date().getTime();
+  while (new Date() < ms){}
 }
 /* ↑↑↑ /FUNCTIONS DECLARATIONS ↑↑↑ */
