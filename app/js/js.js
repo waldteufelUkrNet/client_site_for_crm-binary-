@@ -136,8 +136,8 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
         // console.log('акції');
 
         // перевірка на державні свята США / короткі робочі дні в США
-        var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString;
-        // // для дому: http://god.ares.local/62.216.34.146:9000
+        // var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
+        var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
         $.ajax({
           url     : url,
           success :  function ( data ) {

@@ -10,8 +10,10 @@ var startTime,
     nameOfChart        = 'BTC/ETH',
     dataType           = 'areaspline',
     timeStep           = 5,
-    dataArr            = 'http://god.ares.local/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol,
-    dataOne            = 'http://god.ares.local/api/Stock?timer=realOne&symbol=' + stringSymbol,
+    // dataArr            = 'http://god.ares.local/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol,
+    dataArr            = 'http://62.216.34.146:9000/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol,
+    // dataOne            = 'http://god.ares.local/api/Stock?timer=realOne&symbol=' + stringSymbol,
+    dataOne            = 'http://62.216.34.146:9000/api/Stock?timer=realOne&symbol=' + stringSymbol,
     isDrawing          = false,
     labelValue1        = labelValue2 = YPlotLinesValue,
     labelBorderColor   = 'white',
@@ -74,7 +76,8 @@ function getDataArr(){
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
-  dataArr = 'http://god.ares.local/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
+  // dataArr = 'http://god.ares.local/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
+  dataArr = 'http://62.216.34.146:9000/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
   $.ajax({
     url: dataArr,
     success: function (data) {
