@@ -50,7 +50,7 @@ $('.slider-change-btn').click(function(){
 $('#investment-input').bind('blur keyup', function(event) {
   var inputValue   = +$('#investment-input').val(),
       percentValue = +$('#investment-percent').text();
-
+  console.log("parlayTime", parlayTime);
   if (inputValue == 0) {
     // прибирання підсвіток
     parlayTime = 0;
