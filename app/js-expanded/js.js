@@ -100,6 +100,17 @@ setInterval(function() {
 }, 1000);
 /* ↑↑↑ /datetimer ↑↑↑ */
 
+/* ↓↓↓ обнулення інвестицій при зміні торгових пар ↓↓↓ */
+$( $('.wares-slider').children('.slick-arrow') ).click(function(){
+  $('#investment-input').val('');
+  $('.parlay-btns__cover').css('display','flex');
+  parlayTime = 0;
+  highlightingParlayChoiseBtn();
+
+  // зробити перший елемент активним та правильно його відпозиціонувати
+  $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
+});
+
 /* ↓↓↓ динамічне формування списків можливих ставок ↓↓↓ */
 var startTime, finishTime, currentDateTime;
 $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
@@ -136,8 +147,8 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
         // console.log('акції');
 
         // перевірка на державні свята США / короткі робочі дні в США
-        // var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
-        var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
+        var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
+        // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
         $.ajax({
           url     : url,
           success :  function ( data ) {
