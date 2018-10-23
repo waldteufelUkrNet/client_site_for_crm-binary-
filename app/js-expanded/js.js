@@ -19,7 +19,7 @@ $(".active-slider__item-timer").TimeCircles({
 
 /* ↓↓↓ активація слайдерів ↓↓↓ */
 $( '.wares-slider, .parlay-slider' ).slick({
-  draggable     : false
+  draggable: false
 });
 $( '#active-slider, #history-slider, #deposit-slider, #withdrawal-slider' ).slick({
   centerMode    : true,
@@ -45,34 +45,6 @@ $('.slider-change-btn').click(function(){
   $(tempArrItem[thisElNumber]).css({'display':'block'});
 });
 /* ↑↑↑ /field switch (активні ставки + історії) ↑↑↑ */
-
-/* ↓↓↓ investment calculator ↓↓↓ */
-$('#investment-input').bind('blur keyup', function(event) {
-  var inputValue   = +$('#investment-input').val(),
-      percentValue = +$('#investment-percent').text();
-  console.log("parlayTime", parlayTime);
-  if (inputValue == 0) {
-    // прибирання підсвіток
-    parlayTime = 0;
-    highlightingParlayChoiseBtn();
-    // блокування кнопок для активації ставки, якщо ставка == 0
-    $('.parlay-btns__cover').css('display','flex');
-  } else if (inputValue != 0 && parlayTime != 0) {
-    // розблокування кнопок для активації ставки
-    $('.parlay-btns__cover').css('display','none');
-  }
-
-  var resultValue  = (inputValue * percentValue)/100 + inputValue;
-  if ( !isNumeric(resultValue) ) {
-    resultValue = 'ошибка ввода!';
-    $( $('#investment-input') ).val('').css({'border':'1px solid red'});
-  } else {
-    $( $('#investment-input') ).css({'border':'1px solid #102734'});
-  }
-
-  $( $('#investment-result') ).text(resultValue);
-});
-/* ↑↑↑ /investment calculator ↑↑↑ */
 
 /* ↓↓↓ datetimer ↓↓↓ */
 var datetimer = document.getElementById('UTC-datetimer');
@@ -110,6 +82,34 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
   // зробити перший елемент активним та правильно його відпозиціонувати
   $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
 });
+/* ↑↑↑ /обнулення інвестицій при зміні торгових пар ↑↑↑ */
+
+/* ↓↓↓ investment calculator ↓↓↓ */
+$('#investment-input').bind('blur keyup', function(event) {
+  var inputValue   = +$('#investment-input').val(),
+      percentValue = +$('#investment-percent').text();
+  if (inputValue == 0) {
+    // прибирання підсвіток
+    parlayTime = 0;
+    highlightingParlayChoiseBtn();
+    // блокування кнопок для активації ставки, якщо ставка == 0
+    $('.parlay-btns__cover').css('display','flex');
+  } else if (inputValue != 0 && parlayTime != 0) {
+    // розблокування кнопок для активації ставки
+    $('.parlay-btns__cover').css('display','none');
+  }
+
+  var resultValue  = (inputValue * percentValue)/100 + inputValue;
+  if ( !isNumeric(resultValue) ) {
+    resultValue = 'ошибка ввода!';
+    $( $('#investment-input') ).val('').css({'border':'1px solid red'});
+  } else {
+    $( $('#investment-input') ).css({'border':'1px solid #102734'});
+  }
+
+  $( $('#investment-result') ).text(resultValue);
+});
+/* ↑↑↑ /investment calculator ↑↑↑ */
 
 /* ↓↓↓ динамічне формування списків можливих ставок ↓↓↓ */
 var startTime, finishTime, currentDateTime;
@@ -175,6 +175,8 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
                           }
                         }
                       }
+                      startTime  = tempUTCHour + ':' + tempUTCMinutes;
+                      finishTime = '20:00'
                       createListOfNormalParlay (startTime, finishTime, currentDateTime);
                     }
         })
@@ -200,7 +202,7 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
 
 /* ↓↓↓ попередній вибір ставки ↓↓↓ */
 $('.parlay-slider__parlay-choise-btn').click(function(){
-  parlayTime = +$(this).attr('data-timeToEndInMS') || 0;
+  parlayTime = +$(this).attr('data-timeToEndInMS') || +$(this).attr('data-timeToEnd') || 0;
   // якщо є якесь значення ставки
   if ( +$('#investment-input').val() > 0 ) {
     // підсвітка по кліку
@@ -271,6 +273,11 @@ $('.parlay-btns__btn').click(function(){
 
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
 function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parlayTime, parlayCurrentPrice) {
+  console.log("parlayCurrentPrice :", parlayCurrentPrice);
+  console.log("parlayTime         :", parlayTime);
+  console.log("parlayAnticipation :", parlayAnticipation);
+  console.log("parlayInvestment   :", parlayInvestment);
+  console.log("parlayPairName     :", parlayPairName);
   // створення активної ставки - елементу акордеону
 
   if ( parlayAnticipation == 'up') {
@@ -421,7 +428,7 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
 
   $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
                                                      .children('.parlay-slider__parlay-choise-btn-holder')
-                                                     .append('<div class="parlay-slider__parlay-choise-btn"\
+                                                     .append('<div class="parlay-slider__parlay-choise-btn" data-timeToEnd="' + tempDateTimeString + '"\
                                                                    onclick="highlightingParlayChoiseBtn(this)">'
                                                                   + tempDateTimeString +
                                                              '</div>');
