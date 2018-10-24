@@ -1,4 +1,3 @@
-// $(document).ready(function(){
 /* ↓↓↓ GLOBAL VARIABLES ↓↓↓ */
 var parlayInvestment,     // розмір ставки
     parlayType,           // short/normal/long
@@ -6,7 +5,6 @@ var parlayInvestment,     // розмір ставки
     parlayAnticipation,   // очікування - up/down
     parlayPairName,       // назва пари
     parlayCurrentPrice;   // поточна котировка
-
 /* ↑↑↑ /GLOBAL VARIABLES ↑↑↑ */
 
 /* ↓↓↓ активація анімованих таймерів ↓↓↓ */
@@ -40,7 +38,7 @@ $('.slider-change-btn').click(function(){
 	// buttons
 	$('.slider-change-btn').removeClass('slider-change-btn_active');
 	$(this).addClass('slider-change-btn_active');
-  //sliders
+  // sliders
   $('.slider-area__slider').css({'display':'none'});
   $(tempArrItem[thisElNumber]).css({'display':'block'});
 });
@@ -88,7 +86,11 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
 
   // зробити перший елемент активним та правильно його відпозиціонувати
   $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
-  clickOnParlaySliderArrow();
+  // після unslick на кнопки слайдера потрібно наново навішувати обробники
+  $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
+    clickOnParlaySliderArrow();
+  });
+
 });
 /* ↑↑↑ /обнулення інвестицій при зміні торгових пар ↑↑↑ */
 
@@ -198,7 +200,7 @@ $('.parlay-btns__btn').click(function(){
 /* ↑↑↑ /create active-slider-item ↑↑↑ */
 
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
-function clickOnParlaySliderArrow(){ console.log(1);
+function clickOnParlaySliderArrow(){ console.log('clickOnParlaySliderArrow');
   parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
 
   currentDateTime = new Date();
@@ -232,8 +234,8 @@ function clickOnParlaySliderArrow(){ console.log(1);
         // console.log('акції');
 
         // перевірка на державні свята США / короткі робочі дні в США
-        // var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
-        var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
+        var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
+        // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
         $.ajax({
           url     : url,
           success :  function ( data ) {
