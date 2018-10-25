@@ -75,6 +75,7 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
   $('#investment-input').val('');
   $('.parlay-btns__cover').css('display','flex');
   parlayTime = 0;
+  $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
 
   // зробити перший елемент активним та правильно його відпозиціонувати
   $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
@@ -146,19 +147,23 @@ $('.parlay-btns__btn').click(function(){
   createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parlayTime, parlayCurrentPrice);
 
   parlayTime = 0;
+  $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
   $('.parlay-btns__cover').css('display','flex');
-  highlightingParlayChoiseBtn();
   $('#investment-input').val('');
 
 });
 /* ↑↑↑ /create active-slider-item ↑↑↑ */
 /* ↓↓↓ динамічне формування списків можливих ставок ↓↓↓ */
 var startTime, finishTime, currentDateTime;
-$( $('.parlay-slider').children('.slick-arrow') ).click(function(){clickOnParlaySliderArrow()});
+
+$( $('.parlay-slider').children('.slick-arrow') ).click(function(){
+  $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
+  clickOnParlaySliderArrow()
+});
 /* ↑↑↑ /динамічне формування списків можливих ставок ↑↑↑ */
 
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
-function clickOnParlaySliderArrow(){ console.log('clickOnParlaySliderArrow');
+function clickOnParlaySliderArrow(){
   parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
 
   currentDateTime = new Date();
@@ -239,17 +244,16 @@ function clickOnParlaySliderArrow(){ console.log('clickOnParlaySliderArrow');
 
   parlayTime = 0;
   // прибирання підсвіток
-  highlightingParlayChoiseBtn();
   // деактивувати кнопки ставок
   $('.parlay-btns__cover').css('display','flex');
 }
 
 function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parlayTime, parlayCurrentPrice) {
-  console.log("parlayCurrentPrice :", parlayCurrentPrice);
-  console.log("parlayTime         :", parlayTime);
-  console.log("parlayAnticipation :", parlayAnticipation);
-  console.log("parlayInvestment   :", parlayInvestment);
-  console.log("parlayPairName     :", parlayPairName);
+  // console.log("parlayCurrentPrice :", parlayCurrentPrice);
+  // console.log("parlayTime         :", parlayTime);
+  // console.log("parlayAnticipation :", parlayAnticipation);
+  // console.log("parlayInvestment   :", parlayInvestment);
+  // console.log("parlayPairName     :", parlayPairName);
   // створення активної ставки - елементу акордеону
 
   if ( parlayAnticipation == 'up') {
@@ -331,17 +335,35 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
 }
 
 function deActivationParlayBtns(clickedElem) {
-  // позрахунок прибутку + активація кнопок вгору/вниз
+  // позрахунок прибутку + активація кнопок вгору/вниз + підсвітка
   var inputValue   = +$('#investment-input').val(),
       percentValue = +$('#investment-percent').text();
 
   var tempArr = $('.parlay-slider__parlay-choise-btn');
   for ( var i = 0; i < tempArr.length; i++ ) {
     if ( $(tempArr[i]).css('background-color') == 'rgba(0, 0, 0, 0.3)' ) {
+      var tempClickedElem = $(tempArr[i]);
       var tempParlayTime = +$(tempArr[i]).attr('data-timeToEndInMS') || +$(tempArr[i]).attr('data-timeToEnd');
     }
   }
-  var parlayTime = +$(clickedElem).attr('data-timeToEndInMS') || +$(clickedElem).attr('data-timeToEnd') || tempParlayTime || 0;
+  //var parlayTime = +$(clickedElem).attr('data-timeToEndInMS') || +$(clickedElem).attr('data-timeToEnd') || tempParlayTime || 0;
+  if ( $(clickedElem).attr('data-timeToEnd') ) {
+    $(clickedElem).attr('data-timeToEnd')
+    console.log($(clickedElem).attr('data-timeToEnd'));
+  };
+
+  console.log("inputValue   :", inputValue);
+  console.log("percentValue :", percentValue);
+  console.log("parlayTime   :", parlayTime);
+
+  /* ↓↓↓ highlighting ↓↓↓ */
+  $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
+  if ( clickedElem ) {
+    $(clickedElem).css('background-color','rgba(0,0,0,.3)');
+  } else {
+    $(tempClickedElem).css('background-color','rgba(0,0,0,.3)');
+  }
+  /* ↑↑↑ /highlighting ↑↑↑ */
 
   /* ↓↓↓ investment calculator ↓↓↓ */
   var resultValue  = (inputValue * percentValue)/100 + inputValue;
@@ -363,12 +385,6 @@ function deActivationParlayBtns(clickedElem) {
   }
   /* ↑↑↑ /activation/deactivation btns ↑↑↑ */
 };
-
-function highlightingParlayChoiseBtn (elem) {
-  // підсвічування активної ставки
-  $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
-  $(elem).css('background-color','rgba(0,0,0,.3)');
-}
 
 function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
   // console.log("startTime / finishTime                             :", startTime + " / " + finishTime);
@@ -435,8 +451,8 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
   $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
                                                      .children('.parlay-slider__parlay-choise-btn-holder')
                                                      .append('<div class="parlay-slider__parlay-choise-btn" data-timeToEnd="' + tempDateTimeString + '"\
-                                                                   onclick="highlightingParlayChoiseBtn(this)">'
-                                                                  + tempDateTimeString +
+                                                                   onclick="deActivationParlayBtns(this)">'
+                                                                   + tempDateTimeString +
                                                              '</div>');
 
   while (tempUTCTimeInMinutes < tempUTCTimeFinishInMinutes - 60) {
@@ -460,9 +476,9 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
                              tempUTCMinutes;
     $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
                                                        .children('.parlay-slider__parlay-choise-btn-holder')
-                                                       .append('<div class="parlay-slider__parlay-choise-btn"\
-                                                                     onclick="highlightingParlayChoiseBtn(this)">'
-                                                                    + tempDateTimeString +
+                                                       .append('<div class="parlay-slider__parlay-choise-btn" data-timeToEnd="' + tempDateTimeString + '"\
+                                                                     onclick="deActivationParlayBtns(this)">'
+                                                                     + tempDateTimeString +
                                                                '</div>');
     tempUTCTimeInMinutes += 30;
   }
