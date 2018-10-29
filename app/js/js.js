@@ -189,19 +189,26 @@ function clickOnParlaySliderArrow() {
   if (tempUTCSeconds < 10) tempUTCSeconds = '0' + tempUTCSeconds;
 
   var currentUTCDateString = tempUTCYear  + '-' +
-                          tempUTCMonth + '-' +
-                          tempUTCDate;
+                             tempUTCMonth + '-' +
+                             tempUTCDate;
 
   if ( parlayType == 'short' ) {
-    // контроль для акцій
+    // контроль для акцій: контроль, чи біржа відкрита - ajax, якщо відкрита - максимально можлива ставка - за 5 хв до закриття біржі
+    if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
+        $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
+      console.log('тут код для контролю акцій');
+    }
   } else if ( parlayType == 'long' ) {
-    // контроль для акцій
+    // контроль для акцій: контроль, чи біржа відкрита - ajax, якщо відкрита - перевірка, чи час закриття припадає на робочий час
+    if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
+        $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
+      console.log('тут код для контролю акцій');
+    }
   } else if ( parlayType == 'normal' ) {
     // побудова списку можливих ставок
     // контроль можливості торгівлі акціями (торги на них не цілодобові)
     if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
-        // console.log('акції');
 
         // перевірка на державні свята США / короткі робочі дні в США
         var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
@@ -450,13 +457,8 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
                            tempUTCHours    + ':' +
                            tempUTCMinutes;
 
-  console.log("tempUTCTimeHours         :", tempUTCTimeHours);
-  console.log("tempUTCTimeMinutes       :", tempUTCTimeMinutes);
-  console.log("tempUTCTimeFinishHours   :", tempUTCTimeFinishHours);
-  console.log("tempUTCTimeFinishMinutes :", tempUTCTimeFinishMinutes);
-
-  if ( tempUTCTimeHours*60 + tempUTCTimeMinutes < ( tempUTCTimeFinishHours*60 + tempUTCTimeFinishMinutes-10 ) ) { console.log(1);
-
+  // це щоб перша ставка формувалася лише тоді, коли час робочий
+  if ( tempUTCTimeHours*60 + tempUTCTimeMinutes < ( tempUTCTimeFinishHours*60 + tempUTCTimeFinishMinutes-10 ) ) {
     $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
                                                        .children('.parlay-slider__parlay-choise-btn-holder')
                                                        .append('<div class="parlay-slider__parlay-choise-btn" data-timeToEnd="' + tempDateTimeString + '"\
