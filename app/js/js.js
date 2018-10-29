@@ -110,7 +110,20 @@ $('.parlay-btns__btn').click(function(){
           if ( $(tempArr[i]).css('background-color') == 'rgba(0, 0, 0, 0.3)' ) {
             highlightingEl = tempArr[i];
             // кількість мілісекунд (тривалість) - те, чого достатньо бекендщикам
-            parlayTime = +$(tempArr[i]).attr('data-timeToEndInMS');
+            if ( $(highlightingEl).attr('data-timeToEndInMS') ) {
+              parlayTime = +$(highlightingEl).attr('data-timeToEndInMS');
+            } else if ( $(highlightingEl).attr('data-timeToEnd') ) {
+              parlayTime = $(highlightingEl).attr('data-timeToEnd');
+
+              var UTCDate = new Date();
+              UTCDate = UTCDate.setHours(UTCDate.getUTCHours());
+
+              parlayTime =  new Date(parlayTime.slice(0,4),
+                                    parlayTime.slice(5,7) - 1,
+                                    parlayTime.slice(8,10),
+                                    parlayTime.slice(11,13),
+                                    parlayTime.slice(14,16)) - UTCDate;
+            }
           }
         }
         // час закінчення = кількість мілісекунд (тривалість) + поточний час
@@ -191,8 +204,8 @@ function clickOnParlaySliderArrow() {
         // console.log('акції');
 
         // перевірка на державні свята США / короткі робочі дні в США
-        // var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
-        var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
+        var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
+        // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
         $.ajax({
           url     : url,
           success :  function ( data ) {
@@ -244,7 +257,7 @@ function clickOnParlaySliderArrow() {
 
 function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parlayTime, parlayCurrentPrice) {
   // console.log("parlayCurrentPrice :", parlayCurrentPrice);
-  console.log("parlayTime         :", parlayTime);
+  // console.log("parlayTime         :", parlayTime);
   // console.log("parlayAnticipation :", parlayAnticipation);
   // console.log("parlayInvestment   :", parlayInvestment);
   // console.log("parlayPairName     :", parlayPairName);
@@ -328,19 +341,6 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 function deActivationParlayBtns(clickedElem) {
   // розрахунок прибутку + активація кнопок вгору/вниз + підсвітка
   var inputValue   = +$('#investment-input').val(),
@@ -359,27 +359,12 @@ function deActivationParlayBtns(clickedElem) {
                           parlayTime.slice(8,10),
                           parlayTime.slice(11,13),
                           parlayTime.slice(14,16));
-/////////////////////////////////
-// зробити повну ревізію функій - що у що переходить
-// для активацыъ кнопок - замысть парлей - щось інше
-// розрахунок парлей перенести у клік на кнопки (видалити clickedElem?)
 
-    // parlayTime.setUTCHours(20);
-    // console.log("parlayTime", parlayTime);
-
-
-/////////////////////////////////
   } else if ( $(clickedElem).attr('data-timeToEndInMS') || $(tempClickedElem).attr('data-timeToEndInMS') ) {
     parlayTime = +$(clickedElem).attr('data-timeToEndInMS') || +$(tempClickedElem).attr('data-timeToEndInMS');
-    // console.log("parlayTime", parlayTime);
   } else {
     parlayTime = 0;
-    // console.log("parlayTime", parlayTime);
   }
-
-  console.log("inputValue   :", inputValue);
-  console.log("percentValue :", percentValue);
-  console.log("parlayTime   :", parlayTime);
 
   /* ↓↓↓ highlighting ↓↓↓ */
   $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
