@@ -397,8 +397,6 @@ function deActivationParlayBtns(clickedElem) {
 };
 
 function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
-  // console.log("startTime / finishTime                             :", startTime + " / " + finishTime);
-  // console.log("currentDateTime                                    :", currentDateTime);
 
   // спочатку потрібно видалити старий список, якщо він є
   $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
@@ -418,12 +416,9 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
       tempUTCTimeMinutes       = +startTime.slice(3),
       tempUTCTimeFinishHours   = +finishTime.slice(0,2),
       tempUTCTimeFinishMinutes = +finishTime.slice(3);
-      // console.log("tempUTCTimeHours / tempUTCTimeMinutes              :", tempUTCTimeHours + " / " + tempUTCTimeMinutes);
-      // console.log("tempUTCTimeFinishHours / tempUTCTimeFinishMinutes  :", tempUTCTimeFinishHours + " / " + tempUTCTimeFinishMinutes);
 
   var tempUTCTimeInMinutes       = tempUTCTimeHours * 60 + tempUTCTimeMinutes,
       tempUTCTimeFinishInMinutes = tempUTCTimeFinishHours * 60 + tempUTCTimeFinishMinutes;
-      // console.log("tempUTCTimeInMinutes / tempUTCTimeFinishInMinutes  :", tempUTCTimeInMinutes + " / " + tempUTCTimeFinishInMinutes);
 
   // округлення часу першої можливої ставки до 00хв або 30хв
   if ( 25 <= tempUTCTimeMinutes && tempUTCTimeMinutes < 55 ) {
@@ -436,7 +431,6 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
     // округлити до 30, додати годину
     currentDateTime.setUTCMinutes(90);
   }
-  // console.log("currentDateTime                                    :", currentDateTime);
 
   // сформувати рядок дати ( у список для вибору клієнту )
   tempUTCFullYear = currentDateTime.getUTCFullYear();
@@ -456,14 +450,20 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
                            tempUTCHours    + ':' +
                            tempUTCMinutes;
 
-  // console.log("tempDateTimeString                                 :", tempDateTimeString);
+  console.log("tempUTCTimeHours         :", tempUTCTimeHours);
+  console.log("tempUTCTimeMinutes       :", tempUTCTimeMinutes);
+  console.log("tempUTCTimeFinishHours   :", tempUTCTimeFinishHours);
+  console.log("tempUTCTimeFinishMinutes :", tempUTCTimeFinishMinutes);
 
-  $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
-                                                     .children('.parlay-slider__parlay-choise-btn-holder')
-                                                     .append('<div class="parlay-slider__parlay-choise-btn" data-timeToEnd="' + tempDateTimeString + '"\
-                                                                   onclick="deActivationParlayBtns(this)">'
-                                                                   + tempDateTimeString +
-                                                             '</div>');
+  if ( tempUTCTimeHours*60 + tempUTCTimeMinutes < ( tempUTCTimeFinishHours*60 + tempUTCTimeFinishMinutes-10 ) ) { console.log(1);
+
+    $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
+                                                       .children('.parlay-slider__parlay-choise-btn-holder')
+                                                       .append('<div class="parlay-slider__parlay-choise-btn" data-timeToEnd="' + tempDateTimeString + '"\
+                                                                     onclick="deActivationParlayBtns(this)">'
+                                                                     + tempDateTimeString +
+                                                               '</div>');
+  }
 
   while (tempUTCTimeInMinutes < tempUTCTimeFinishInMinutes - 60) {
     currentDateTime.setMinutes(currentDateTime.getMinutes() + 30)
