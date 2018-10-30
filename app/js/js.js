@@ -202,12 +202,19 @@ function clickOnParlaySliderArrow() {
     if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
 
+      // перевірка, чи працює поставник котирувань
       $.ajax({
         url     : 'http://god.ares.local/api/status/get',
         success :  function ( data ) {
-          console.log(data);
-          if (data == true) {
+          if (!!data == true) {
+            console.log('поставник працює справно');
             // тут наступні перевірки
+            // var tempDateTime = new Date();
+            // console.log("tempDateTime", tempDateTime);
+            // tempDateTime = tempDateTime + 180000;
+            // console.log("tempDateTime", tempDateTime);
+
+            if (1) {}
           } else {
             console.log('біржа не працює');
           }
@@ -223,20 +230,11 @@ function clickOnParlaySliderArrow() {
     if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
 
-      $.ajax({
-        url     : 'http://god.ares.local/api/status/get',
-        success :  function ( data ) {
-          console.log(data);
-          if (data == true) {
-            // тут наступні перевірки
-          } else {
-            console.log('біржа не працює');
-          }
-        },
-        error   : function () {
-          console.log('біржа не працює');
-        }
-      })
+      if ( isActionsTradingPossible() ) { console.log('return true');
+        //console.log('поставник працює справно');
+      } else { console.log('return false');
+        //console.log('біржа не працює');
+      }
 
     }
   } else if ( parlayType == 'normal' ) {
@@ -248,6 +246,7 @@ function clickOnParlaySliderArrow() {
         // перевірка на державні свята США / короткі робочі дні в США
         var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
         // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
+
         $.ajax({
           url     : url,
           success :  function ( data ) {
@@ -537,6 +536,25 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
                                                                '</div>');
     tempUTCTimeInMinutes += 30;
   }
+}
+
+function isActionsTradingPossible() { console.log('isActionsTradingPossible');
+  // https://stackoverflow.com/questions/14031421/how-to-make-code-wait-while-calling-asynchronous-calls-like-ajax
+  // перевіряє, чи працює поставник котирувань
+  $.ajax({
+    url     : 'http://god.ares.local/api/status/get',
+    success :  function ( data ) { console.log('success');
+      if (!!data == true) { console.log('data == true');
+        // тут наступні перевірки
+        return true;
+      } else { console.log('else');
+        return false;
+      }
+    },
+    error   : function () { console.log('error');
+      return false;
+    }
+  })
 }
 
 function isNumeric(n) {
