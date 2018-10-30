@@ -94,6 +94,9 @@ $('#investment-input').bind('blur keyup', function() {
 
 /* ↓↓↓ create active-slider-item ↓↓↓ */
 $('.parlay-btns__btn').click(function(){
+  // по кліку на кнопки формування ставок вибирає потрібні значення для формування нової ставки
+  // викликає функцію формування ставок createParlay
+  // обнулює значення, деактивує кнопки формування ставок та знімає підсвічування обраної ставки в списку
 
   parlayInvestment   = +$('#investment-input').val();
   parlayType         = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
@@ -172,6 +175,8 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
 
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
 function clickOnParlaySliderArrow() {
+  //
+
   parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
   currentDateTime = new Date();
 
@@ -196,13 +201,43 @@ function clickOnParlaySliderArrow() {
     // контроль для акцій: контроль, чи біржа відкрита - ajax, якщо відкрита - максимально можлива ставка - за 5 хв до закриття біржі
     if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
-      console.log('тут код для контролю акцій');
+
+      $.ajax({
+        url     : 'http://god.ares.local/api/status/get',
+        success :  function ( data ) {
+          console.log(data);
+          if (data == true) {
+            // тут наступні перевірки
+          } else {
+            console.log('біржа не працює');
+          }
+        },
+        error   : function () {
+          console.log('біржа не працює');
+        }
+      })
+
     }
   } else if ( parlayType == 'long' ) {
     // контроль для акцій: контроль, чи біржа відкрита - ajax, якщо відкрита - перевірка, чи час закриття припадає на робочий час
     if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
-      console.log('тут код для контролю акцій');
+
+      $.ajax({
+        url     : 'http://god.ares.local/api/status/get',
+        success :  function ( data ) {
+          console.log(data);
+          if (data == true) {
+            // тут наступні перевірки
+          } else {
+            console.log('біржа не працює');
+          }
+        },
+        error   : function () {
+          console.log('біржа не працює');
+        }
+      })
+
     }
   } else if ( parlayType == 'normal' ) {
     // побудова списку можливих ставок
@@ -263,12 +298,14 @@ function clickOnParlaySliderArrow() {
 }
 
 function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parlayTime, parlayCurrentPrice) {
+  // створює активну ставку - елемент акордеону
+  // контролює, щоб ставок було не більше 10
+
   // console.log("parlayCurrentPrice :", parlayCurrentPrice);
   // console.log("parlayTime         :", parlayTime);
   // console.log("parlayAnticipation :", parlayAnticipation);
   // console.log("parlayInvestment   :", parlayInvestment);
   // console.log("parlayPairName     :", parlayPairName);
-  // створення активної ставки - елементу акордеону
 
   if ( parlayAnticipation == 'up') {
     parlayAnticipation = 'class="fas fa-angle-double-up" style="color:dodgerblue"';
@@ -349,7 +386,10 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
 }
 
 function deActivationParlayBtns(clickedElem) {
-  // розрахунок прибутку + активація кнопок вгору/вниз + підсвітка
+  // розраховує прибуток
+  // активує/деактивує кнопки вгору/вниз
+  // підсвічує обрану ставку
+
   var inputValue   = +$('#investment-input').val(),
       percentValue = +$('#investment-percent').text();
 
@@ -404,6 +444,9 @@ function deActivationParlayBtns(clickedElem) {
 };
 
 function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
+  // видаляє старий список нормальних ставок (якщо він є)
+  // якщо біржа закрита - виводить повідомлення
+  // циклом формує список можливих нормальних ставок з інтервалом у півгодини
 
   // спочатку потрібно видалити старий список, якщо він є
   $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
@@ -458,7 +501,7 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
                            tempUTCMinutes;
 
   // це щоб перша ставка формувалася лише тоді, коли час робочий
-  if ( tempUTCTimeHours*60 + tempUTCTimeMinutes < ( tempUTCTimeFinishHours*60 + tempUTCTimeFinishMinutes-10 ) ) {
+  if ( tempUTCTimeHours*60 + tempUTCTimeMinutes < ( tempUTCTimeFinishHours*60 + tempUTCTimeFinishMinutes-5 ) ) {
     $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
                                                        .children('.parlay-slider__parlay-choise-btn-holder')
                                                        .append('<div class="parlay-slider__parlay-choise-btn" data-timeToEnd="' + tempDateTimeString + '"\
