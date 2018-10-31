@@ -237,7 +237,6 @@ function clickOnParlaySliderArrow() {
         var endTimeInDaysArray = ['1 сутки','5 суток','10 суток','15 суток','30 суток'];
         var endTimeInMS        = +currentDateTime + +endTimeInMSArray[0];
         var endTimeInObj       = new Date(endTimeInMS);
-
 ///////////////////////////////////////////////////////////
       } else {
         console.log('біржа не працює - тут зробити попап');
