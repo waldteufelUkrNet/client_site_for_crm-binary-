@@ -198,42 +198,45 @@ function clickOnParlaySliderArrow() {
                              tempUTCDate;
 
   if ( parlayType == 'short' ) {
-    // контроль для акцій: контроль, чи біржа відкрита - ajax, якщо відкрита - максимально можлива ставка - за 5 хв до закриття біржі
+    // контроль для акцій: контроль, чи працює поставник котирувань - ajax, якщо так - максимально можлива ставка - за 5 хв до закриття біржі, робочий день - 13:30-20:00 по UTC
     if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
 
-      // перевірка, чи працює поставник котирувань
-      $.ajax({
-        url     : 'http://god.ares.local/api/status/get',
-        success :  function ( data ) {
-          if (!!data == true) {
-            console.log('поставник працює справно');
-            // тут наступні перевірки
-            // var tempDateTime = new Date();
-            // console.log("tempDateTime", tempDateTime);
-            // tempDateTime = tempDateTime + 180000;
-            // console.log("tempDateTime", tempDateTime);
+      // очистити старий список ставок
+      $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
 
-            if (1) {}
-          } else {
-            console.log('біржа не працює');
-          }
-        },
-        error   : function () {
-          console.log('біржа не працює');
+      if ( isActionsTradingPossible() ) {
+
+        if ( (13*60 + 30) <= (+tempUTCHour * 60 + +tempUTCMinutes) && (+tempUTCHour * 60 + +tempUTCMinutes) < (19*60 + 50) ) {
+// тут буде потрібна інтернаціоналізація
+          $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                            .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
+                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
+                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
+                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
+                                                                    ');
+        } else {
+          console.log('біржа не працює - тут зробити попап');
         }
-      })
+      } else {
+        console.log('біржа не працює - тут зробити попап');
+      }
 
     }
   } else if ( parlayType == 'long' ) {
-    // контроль для акцій: контроль, чи біржа відкрита - ajax, якщо відкрита - перевірка, чи час закриття припадає на робочий час
+    // контроль для акцій: контроль, чи працює поставник котирувань - ajax, якщо так - перевірка, чи час закриття припадає на робочий час
     if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
 
-      if ( isActionsTradingPossible() ) { console.log('return true');
-        //console.log('поставник працює справно');
-      } else { console.log('return false');
-        //console.log('біржа не працює');
+      // очистити старий список ставок
+      $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+
+      if ( isActionsTradingPossible() ) {
+///////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////
+      } else {
+        console.log('біржа не працює - тут зробити попап');
       }
 
     }
@@ -538,23 +541,25 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
   }
 }
 
-function isActionsTradingPossible() { console.log('isActionsTradingPossible');
-  // https://stackoverflow.com/questions/14031421/how-to-make-code-wait-while-calling-asynchronous-calls-like-ajax
+function isActionsTradingPossible() {
   // перевіряє, чи працює поставник котирувань
+  var answer;
   $.ajax({
+    async   : false,
     url     : 'http://god.ares.local/api/status/get',
-    success :  function ( data ) { console.log('success');
-      if (!!data == true) { console.log('data == true');
+    success :  function ( data ) {
+      if (!!data == true) {
         // тут наступні перевірки
-        return true;
+        answer = true;
       } else { console.log('else');
-        return false;
+        answer = false;
       }
     },
-    error   : function () { console.log('error');
-      return false;
+    error   : function () {
+      answer = false;
     }
-  })
+  });
+  return answer;
 }
 
 function isNumeric(n) {
