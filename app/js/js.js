@@ -208,7 +208,7 @@ function clickOnParlaySliderArrow() {
       if ( isActionsTradingPossible() ) {
 
         if ( (13*60 + 30) <= (+tempUTCHour * 60 + +tempUTCMinutes) && (+tempUTCHour * 60 + +tempUTCMinutes) < (19*60 + 50) ) {
-// тут буде потрібна інтернаціоналізація
+          // тут буде потрібна інтернаціоналізація
           $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
                                                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
                                                                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
@@ -233,6 +233,10 @@ function clickOnParlaySliderArrow() {
 
       if ( isActionsTradingPossible() ) {
 ///////////////////////////////////////////////////////////
+        var endTimeInMSArray   = [86400000,432000000,864000000,1296000000,2592000000];
+        var endTimeInDaysArray = ['1 сутки','5 суток','10 суток','15 суток','30 суток'];
+        var endTimeInMS        = +currentDateTime + +endTimeInMSArray[0];
+        var endTimeInObj       = new Date(endTimeInMS);
 
 ///////////////////////////////////////////////////////////
       } else {
@@ -250,37 +254,13 @@ function clickOnParlaySliderArrow() {
         var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
         // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
 
-        $.ajax({
-          url     : url,
-          success :  function ( data ) {
-                      if ( data == 1 ) { // святковий день
-                        // console.log("святковий день");
-                        startTime = finishTime = false;
-                      }
-                      if ( data == 0 ) { // не святковий день
-                        // console.log("не святковий день");
-                        // перевірка на вихідний день (субота/неділя)
-                        if ( currentDateTime.getUTCDay() == 6 || currentDateTime.getUTCDay() == 0 ) { // вихідний день (субота/неділя)
-                          // console.log("вихідний день (субота/неділя)");
-                          startTime = finishTime = false;
-                        } else { // робочий день - 13:30-20:00 по UTC
-                          // перевести години в хвилини, додатидо хвилин
-                          var timeInMinutes = tempUTCHour*60 + tempUTCMinutes;
-                          if ( timeInMinutes >= 1200 || timeInMinutes < 810 ) {
-                            // console.log('неробочий час');
-                            startTime = finishTime = false
-                          } else {
-                            // console.log('робочий час');
-                            startTime = tempUTCHour + ':' + tempUTCMinutes;
-                            finishTime = '20:00'
-                          }
-                        }
-                      }
-                      startTime  = tempUTCHour + ':' + tempUTCMinutes;
-                      finishTime = '20:00'
-                      createListOfNormalParlay (startTime, finishTime, currentDateTime);
-                    }
-        })
+        if ( isActionsTradingPossible(url, currentDateTime) ) {
+          startTime  = tempUTCHour + ':' + tempUTCMinutes;
+          finishTime = '20:00';
+          createListOfNormalParlay (startTime, finishTime, currentDateTime);
+        } else {
+          console.log('біржа закрита - попап');
+        }
 
         // startTime  = tempUTCHour + ':' + tempUTCMinutes;
         // finishTime = '20:00';
@@ -363,11 +343,11 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
     setTimeout(function(){
 
     var halfOfSlickListInnerWidthWithoutPaddings = ( $('.slick-list').innerWidth()
-                                                   - +$('.slick-list').css('padding-left').slice(0, -2)
-                                                   - +$('.slick-list').css('padding-right').slice(0, -2) ) /2,
+                                                  - +$('.slick-list').css('padding-left').slice(0, -2)
+                                                  - +$('.slick-list').css('padding-right').slice(0, -2) ) /2,
         halfOfSliderItemWithMargins = (  $('#active-slider .active-slider__item').outerWidth()
-                 + +$('#active-slider .active-slider__item').css('margin-left').slice(0, -2)
-                 + +$('#active-slider .active-slider__item').css('margin-right').slice(0, -2) ) /2,
+                                      + +$('#active-slider .active-slider__item').css('margin-left').slice(0, -2)
+                                      + +$('#active-slider .active-slider__item').css('margin-right').slice(0, -2) ) /2,
         startTranslateValue = halfOfSlickListInnerWidthWithoutPaddings - halfOfSliderItemWithMargins;
 
     var translateValue = startTranslateValue - ( ($('#active-slider .active-slider__item').not('.slick-cloned').length -1) * halfOfSliderItemWithMargins * 2 );
@@ -404,10 +384,10 @@ function deActivationParlayBtns(clickedElem) {
   if ( $(clickedElem).attr('data-timeToEnd') || $(tempClickedElem).attr('data-timeToEnd') ) {
     parlayTime = $(clickedElem).attr('data-timeToEnd') || $(tempClickedElem).attr('data-timeToEnd');
     parlayTime =  Date.now() - new Date(parlayTime.slice(0,4),
-                          parlayTime.slice(5,7) - 1,
-                          parlayTime.slice(8,10),
-                          parlayTime.slice(11,13),
-                          parlayTime.slice(14,16));
+                                        parlayTime.slice(5,7) - 1,
+                                        parlayTime.slice(8,10),
+                                        parlayTime.slice(11,13),
+                                        parlayTime.slice(14,16));
 
   } else if ( $(clickedElem).attr('data-timeToEndInMS') || $(tempClickedElem).attr('data-timeToEndInMS') ) {
     parlayTime = +$(clickedElem).attr('data-timeToEndInMS') || +$(tempClickedElem).attr('data-timeToEndInMS');
@@ -541,15 +521,16 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
   }
 }
 
-function isActionsTradingPossible() {
+function isActionsTradingPossible(url, dateTime) {
   // перевіряє, чи працює поставник котирувань
+  // якщо ні - видає return false
+  // якщо так - перевіряє, чи робочий день і час
   var answer;
   $.ajax({
-    async   : false,
     url     : 'http://god.ares.local/api/status/get',
+    async   : false,
     success :  function ( data ) {
       if (!!data == true) {
-        // тут наступні перевірки
         answer = true;
       } else { console.log('else');
         answer = false;
@@ -559,7 +540,33 @@ function isActionsTradingPossible() {
       answer = false;
     }
   });
-  return answer;
+
+  if (answer == false) return answer;
+
+  $.ajax({
+    url     : url,
+    async   : false,
+    success :  function ( data ) {
+                if ( data == 1 ) { // святковий день
+                  answer = false
+                }
+                if ( data == 0 ) { // не святковий день
+                  // перевірка на вихідний день (субота/неділя)
+                  if ( dateTime.getUTCDay() == 6 || dateTime.getUTCDay() == 0 ) { // вихідний день (субота/неділя)
+                    answer = false
+                  } else { // робочий день - 13:30-20:00 по UTC
+                    // перевести години в хвилини, додати до хвилин
+                    var timeInMinutes = dateTime.getUTCHours()*60 + dateTime.getUTCMinutes();
+                    if ( timeInMinutes >= 1200 || timeInMinutes < 810 ) { // неробочий час
+                      answer = false
+                    } else { // робочий час
+                      answer = true
+                    }
+                  }
+                }
+              }
+  })
+  return answer
 }
 
 function isNumeric(n) {

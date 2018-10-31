@@ -208,7 +208,7 @@ function clickOnParlaySliderArrow() {
       if ( isActionsTradingPossible() ) {
 
         if ( (13*60 + 30) <= (+tempUTCHour * 60 + +tempUTCMinutes) && (+tempUTCHour * 60 + +tempUTCMinutes) < (19*60 + 50) ) {
-// тут буде потрібна інтернаціоналізація
+          // тут буде потрібна інтернаціоналізація
           $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
                                                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
                                                                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
@@ -363,11 +363,11 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
     setTimeout(function(){
 
     var halfOfSlickListInnerWidthWithoutPaddings = ( $('.slick-list').innerWidth()
-                                                   - +$('.slick-list').css('padding-left').slice(0, -2)
-                                                   - +$('.slick-list').css('padding-right').slice(0, -2) ) /2,
+                                                  - +$('.slick-list').css('padding-left').slice(0, -2)
+                                                  - +$('.slick-list').css('padding-right').slice(0, -2) ) /2,
         halfOfSliderItemWithMargins = (  $('#active-slider .active-slider__item').outerWidth()
-                 + +$('#active-slider .active-slider__item').css('margin-left').slice(0, -2)
-                 + +$('#active-slider .active-slider__item').css('margin-right').slice(0, -2) ) /2,
+                                      + +$('#active-slider .active-slider__item').css('margin-left').slice(0, -2)
+                                      + +$('#active-slider .active-slider__item').css('margin-right').slice(0, -2) ) /2,
         startTranslateValue = halfOfSlickListInnerWidthWithoutPaddings - halfOfSliderItemWithMargins;
 
     var translateValue = startTranslateValue - ( ($('#active-slider .active-slider__item').not('.slick-cloned').length -1) * halfOfSliderItemWithMargins * 2 );
@@ -404,10 +404,10 @@ function deActivationParlayBtns(clickedElem) {
   if ( $(clickedElem).attr('data-timeToEnd') || $(tempClickedElem).attr('data-timeToEnd') ) {
     parlayTime = $(clickedElem).attr('data-timeToEnd') || $(tempClickedElem).attr('data-timeToEnd');
     parlayTime =  Date.now() - new Date(parlayTime.slice(0,4),
-                          parlayTime.slice(5,7) - 1,
-                          parlayTime.slice(8,10),
-                          parlayTime.slice(11,13),
-                          parlayTime.slice(14,16));
+                                        parlayTime.slice(5,7) - 1,
+                                        parlayTime.slice(8,10),
+                                        parlayTime.slice(11,13),
+                                        parlayTime.slice(14,16));
 
   } else if ( $(clickedElem).attr('data-timeToEndInMS') || $(tempClickedElem).attr('data-timeToEndInMS') ) {
     parlayTime = +$(clickedElem).attr('data-timeToEndInMS') || +$(tempClickedElem).attr('data-timeToEndInMS');
