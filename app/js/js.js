@@ -231,16 +231,17 @@ function clickOnParlaySliderArrow() {
       // очистити старий список ставок
       $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
 
-      if ( isActionsTradingPossible() ) {
+      // if ( isActionsTradingPossible() ) {
 ///////////////////////////////////////////////////////////
         var endTimeInMSArray   = [86400000,432000000,864000000,1296000000,2592000000];
         var endTimeInDaysArray = ['1 сутки','5 суток','10 суток','15 суток','30 суток'];
         var endTimeInMS        = +currentDateTime + +endTimeInMSArray[0];
         var endTimeInObj       = new Date(endTimeInMS);
+        console.log("endTimeInObj", endTimeInObj);
 ///////////////////////////////////////////////////////////
-      } else {
-        console.log('біржа не працює - тут зробити попап');
-      }
+      // } else {
+      //   console.log('біржа не працює - тут зробити попап');
+      // }
 
     }
   } else if ( parlayType == 'normal' ) {
@@ -545,7 +546,7 @@ function isActionsTradingPossible(url, dateTime) {
   $.ajax({
     url     : url,
     async   : false,
-    success :  function ( data ) {
+    success : function ( data ) {
                 if ( data == 1 ) { // святковий день
                   answer = false
                 }
