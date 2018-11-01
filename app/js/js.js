@@ -5,6 +5,15 @@ var parlayInvestment,     // розмір ставки
     parlayAnticipation,   // очікування - up/down
     parlayPairName,       // назва пари
     parlayCurrentPrice;   // поточна котировка
+
+var exchangeDontWork   = [
+                          'Торги невозможны по причине того, что на данный момент биржа закрыта. Акционная биржа работает с 13:30 до 20:00 по UTC-времени с понедельника по пятницу с учетом государственных праздников США.',
+                          'Trades are not possible at the moment because the exchange is closed. Stock exchange is open from 13:30 to 20:00 UTC-time from Monday to Friday, considering US public holidays.'
+                         ],
+    noAccessibleParlay = [
+                          'Нет доступных ставок',
+                          'No parlays available'
+                         ];
 /* ↑↑↑ /GLOBAL VARIABLES ↑↑↑ */
 
 /* ↓↓↓ активація анімованих таймерів ↓↓↓ */
@@ -216,10 +225,20 @@ function clickOnParlaySliderArrow() {
                                                                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
                                                                     ');
         } else {
-          console.log('біржа не працює - тут зробити попап');
+          //біржа не працює
+          if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+            showInfoMessage(exchangeDontWork[0]);
+          } else {
+            showInfoMessage(exchangeDontWork[1]);
+          }
         }
       } else {
-        console.log('біржа не працює - тут зробити попап');
+        //біржа не працює
+        if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+          showInfoMessage(exchangeDontWork[0]);
+        } else {
+          showInfoMessage(exchangeDontWork[1]);
+        }
       }
 
     }
@@ -231,33 +250,44 @@ function clickOnParlaySliderArrow() {
       // очистити старий список ставок
       $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
 
-      // if ( isActionsTradingPossible() ) {
-///////////////////////////////////////////////////////////
+      if ( isActionsTradingPossible() ) {
         var endTimeInMSArray   = [86400000,432000000,864000000,1296000000,2592000000];
         var endTimeInDaysArray = ['1 сутки','5 суток','10 суток','15 суток','30 суток'];
 
         // дата закінчення ставки у формі об'єкту передаться на перевірку на робочий день: якщо день закінчення ставки робочий - ставка відмальовується
         for ( var i = 0; i < endTimeInMSArray.length; i++ ) {
           var endTimeInObj = new Date(+currentDateTime + +endTimeInMSArray[i]);
+          console.log("endTimeInObj", endTimeInObj);
 
           var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
           // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
-          if ( isActionsTradingPossible(url, currentDateTime) ) {
+          if ( isActionsTradingPossible(url, endTimeInObj) ) {
             $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
                                                              .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
-                                                             	        + endTimeInMSArray[i]
-                                                             	        + '"> '
-                                                             	        + endTimeInDaysArray[i]
-                                                             	        + '</div>');
+                                                                       + endTimeInMSArray[i]
+                                                                       + '"> '
+                                                                       + endTimeInDaysArray[i]
+                                                                       + '</div>');
           }
         }
-
         // якщо після циклу не відмалювалася жодна ставка - попап, що ставки не можливі
-        console.log('біржа працює, але доступних ставок нема');
-///////////////////////////////////////////////////////////
-      // } else {
-      //   console.log('біржа не працює - тут зробити попап');
-      // }
+
+        var tempObj = $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder');
+        if ( isObjectEmpty(tempObj) ) {
+	        if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+	          showInfoMessage(noAccessibleParlay[0]);
+	        } else {
+	          showInfoMessage(noAccessibleParlay[1]);
+	        }
+	      }
+      } else {
+        //біржа не працює
+        if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+          showInfoMessage(exchangeDontWork[0]);
+        } else {
+          showInfoMessage(exchangeDontWork[1]);
+        }
+      }
 
     }
   } else if ( parlayType == 'normal' ) {
@@ -275,7 +305,12 @@ function clickOnParlaySliderArrow() {
           finishTime = '20:00';
           createListOfNormalParlay (startTime, finishTime, currentDateTime);
         } else {
-          console.log('біржа закрита - попап');
+	        //біржа не працює
+	        if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+	          showInfoMessage(exchangeDontWork[0]);
+	        } else {
+	          showInfoMessage(exchangeDontWork[1]);
+	        }
         }
 
         // startTime  = tempUTCHour + ':' + tempUTCMinutes;
@@ -451,8 +486,12 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
 
   // якщо startTime = finishTime = false - торги не можливі
   if ( startTime == false ) {
-    // біржа закрита - потрібно буде зробити відповідне інфооформлення - попап або вікно
-    console.log('біржа закрита');
+    //біржа не працює
+    if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+      showInfoMessage(exchangeDontWork[0]);
+    } else {
+      showInfoMessage(exchangeDontWork[1]);
+    }
     return
   }
 
@@ -587,6 +626,13 @@ function isActionsTradingPossible(url, dateTime) {
 
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n)
+}
+
+function isObjectEmpty(obj) {
+	for (var key in obj) {
+		return false
+	}
+	return true
 }
 
 function sleep(ms) {
