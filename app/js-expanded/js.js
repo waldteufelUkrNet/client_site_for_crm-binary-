@@ -217,13 +217,23 @@ function clickOnParlaySliderArrow() {
       if ( isActionsTradingPossible() ) {
 
         if ( (13*60 + 30) <= (+tempUTCHour * 60 + +tempUTCMinutes) && (+tempUTCHour * 60 + +tempUTCMinutes) < (19*60 + 50) ) {
-          // тут буде потрібна інтернаціоналізація
-          $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
-                                                            .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
-                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
-                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
-                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
-                                                                    ');
+
+	        if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+	          $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+	                                                            .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
+	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
+	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
+	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
+	                                                                    ');
+	        } else {
+	          $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+	                                                            .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
+	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 minute</div>\
+	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 minutes</div>\
+	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
+	                                                                    ');
+	        }
+
         } else {
           //біржа не працює
           if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
@@ -251,23 +261,33 @@ function clickOnParlaySliderArrow() {
       $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
 
       if ( isActionsTradingPossible() ) {
-        var endTimeInMSArray   = [86400000,432000000,864000000,1296000000,2592000000];
-        var endTimeInDaysArray = ['1 сутки','5 суток','10 суток','15 суток','30 суток'];
+        var endTimeInMSArray     = [86400000,432000000,864000000,1296000000,2592000000];
+        var endTimeInDaysArray   = ['1 сутки','5 суток','10 суток','15 суток','30 суток'];
+        var endTimeInDaysArrayEn = ['1 day','5 days','10 days','15 days','30 days'];
 
         // дата закінчення ставки у формі об'єкту передаться на перевірку на робочий день: якщо день закінчення ставки робочий - ставка відмальовується
         for ( var i = 0; i < endTimeInMSArray.length; i++ ) {
           var endTimeInObj = new Date(+currentDateTime + +endTimeInMSArray[i]);
-          console.log("endTimeInObj", endTimeInObj);
 
           var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
           // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
           if ( isActionsTradingPossible(url, endTimeInObj) ) {
-            $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
-                                                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
-                                                                       + endTimeInMSArray[i]
-                                                                       + '"> '
-                                                                       + endTimeInDaysArray[i]
-                                                                       + '</div>');
+
+			      if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+	            $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
+	                                                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
+	                                                                       + endTimeInMSArray[i]
+	                                                                       + '"> '
+	                                                                       + endTimeInDaysArray[i]
+	                                                                       + '</div>');
+			      } else {
+	            $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
+	                                                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
+	                                                                       + endTimeInMSArray[i]
+	                                                                       + '"> '
+	                                                                       + endTimeInDaysArrayEn[i]
+	                                                                       + '</div>');
+			      }
           }
         }
         // якщо після циклу не відмалювалася жодна ставка - попап, що ставки не можливі
