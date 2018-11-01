@@ -475,6 +475,10 @@ function deActivationParlayBtns(clickedElem) {
   }
   /* ↑↑↑ /highlighting ↑↑↑ */
 
+  /* ↓↓↓ input validation ↓↓↓ */
+
+  /* ↑↑↑ /input validation ↑↑↑ */
+
   /* ↓↓↓ investment calculator ↓↓↓ */
   var resultValue  = (inputValue * percentValue)/100 + inputValue;
   if ( !isNumeric(resultValue) ) {
