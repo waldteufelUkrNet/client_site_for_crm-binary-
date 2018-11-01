@@ -35,9 +35,9 @@ $('.slider-change-btn').click(function(){
       var thisElNumber = i;
     }
   }
-	// buttons
-	$('.slider-change-btn').removeClass('slider-change-btn_active');
-	$(this).addClass('slider-change-btn_active');
+  // buttons
+  $('.slider-change-btn').removeClass('slider-change-btn_active');
+  $(this).addClass('slider-change-btn_active');
   // sliders
   $('.slider-area__slider').css({'display':'none'});
   $(tempArrItem[thisElNumber]).css({'display':'block'});
@@ -235,9 +235,25 @@ function clickOnParlaySliderArrow() {
 ///////////////////////////////////////////////////////////
         var endTimeInMSArray   = [86400000,432000000,864000000,1296000000,2592000000];
         var endTimeInDaysArray = ['1 сутки','5 суток','10 суток','15 суток','30 суток'];
-        var endTimeInMS        = +currentDateTime + +endTimeInMSArray[0];
-        var endTimeInObj       = new Date(endTimeInMS);
-        console.log("endTimeInObj", endTimeInObj);
+
+        // дата закінчення ставки у формі об'єкту передаться на перевірку на робочий день: якщо день закінчення ставки робочий - ставка відмальовується
+        for ( var i = 0; i < endTimeInMSArray.length; i++ ) {
+          var endTimeInObj = new Date(+currentDateTime + +endTimeInMSArray[i]);
+
+          var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
+          // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
+          if ( isActionsTradingPossible(url, currentDateTime) ) {
+            $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
+                                                             	        + endTimeInMSArray[i]
+                                                             	        + '"> '
+                                                             	        + endTimeInDaysArray[i]
+                                                             	        + '</div>');
+          }
+        }
+
+        // якщо після циклу не відмалювалася жодна ставка - попап, що ставки не можливі
+        console.log('біржа працює, але доступних ставок нема');
 ///////////////////////////////////////////////////////////
       // } else {
       //   console.log('біржа не працює - тут зробити попап');
