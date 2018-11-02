@@ -93,7 +93,7 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
   $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
   // після unslick на кнопки нового слайдера потрібно навішувати обробники
   $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
-    clickOnParlaySliderArrow();
+    rewriteParlayLists();
   });
 });
 /* ↑↑↑ /обнулення інвестицій при зміні торгових пар ↑↑↑ */
@@ -191,18 +191,18 @@ $('.parlay-btns__btn').click(function(){
 var startTime, finishTime, currentDateTime;
 $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
   $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
-  clickOnParlaySliderArrow()
+  rewriteParlayLists()
 });
 /* ↑↑↑ /динамічне формування списків можливих ставок ↑↑↑ */
 
 /* ↓↓↓ після завантаження сторінки, якщо активна вкладка акцій - розраховувати можливість торгівлі акціями ↓↓↓ */
 $(document).ready(function() {
-  clickOnParlaySliderArrow()
+  rewriteParlayLists()
 });
 /* ↑↑↑ /після завантаження сторінки, якщо активна вкладка акцій - розраховувати можливість торгівлі акціями ↑↑↑ */
 
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
-function clickOnParlaySliderArrow() {
+function rewriteParlayLists() {
   //
 
   // прибирати повідомлення, якщо вони є
