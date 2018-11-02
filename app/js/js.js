@@ -96,7 +96,17 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
 /* ↑↑↑ /обнулення інвестицій при зміні торгових пар ↑↑↑ */
 
 /* ↓↓↓ investment calculator + activation/deactivation btns ↓↓↓ */
-$('#investment-input').bind('blur keyup', function() {
+$('#investment-input').bind('keypress keyup blur', function(e) {
+  // в поле можна вводити тільки цілі додатні числа
+  if ( e.type == 'keypress' ) {
+  	e = e || event;
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+    var chr = getChar(e);
+    if (chr == null) false;
+    if (chr < '0' || chr > '9') {
+      return false;
+    }
+  }
   deActivationParlayBtns();
 });
 /* ↑↑↑ /investment calculator + activation/deactivation btns ↑↑↑ */
@@ -218,21 +228,21 @@ function clickOnParlaySliderArrow() {
 
         if ( (13*60 + 30) <= (+tempUTCHour * 60 + +tempUTCMinutes) && (+tempUTCHour * 60 + +tempUTCMinutes) < (19*60 + 50) ) {
 
-	        if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
-	          $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
-	                                                            .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
-	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
-	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
-	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
-	                                                                    ');
-	        } else {
-	          $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
-	                                                            .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
-	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 minute</div>\
-	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 minutes</div>\
-	                                                                     <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
-	                                                                    ');
-	        }
+          if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+            $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                              .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
+                                                                       <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
+                                                                       <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
+                                                                       <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
+                                                                      ');
+          } else {
+            $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                              .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
+                                                                       <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 minute</div>\
+                                                                       <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 minutes</div>\
+                                                                       <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
+                                                                      ');
+          }
 
         } else {
           //біржа не працює
@@ -273,33 +283,33 @@ function clickOnParlaySliderArrow() {
           // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
           if ( isActionsTradingPossible(url, endTimeInObj) ) {
 
-			      if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
-	            $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
-	                                                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
-	                                                                       + endTimeInMSArray[i]
-	                                                                       + '"> '
-	                                                                       + endTimeInDaysArray[i]
-	                                                                       + '</div>');
-			      } else {
-	            $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
-	                                                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
-	                                                                       + endTimeInMSArray[i]
-	                                                                       + '"> '
-	                                                                       + endTimeInDaysArrayEn[i]
-	                                                                       + '</div>');
-			      }
+            if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+              $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                               .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
+                                                                         + endTimeInMSArray[i]
+                                                                         + '"> '
+                                                                         + endTimeInDaysArray[i]
+                                                                         + '</div>');
+            } else {
+              $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                               .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
+                                                                         + endTimeInMSArray[i]
+                                                                         + '"> '
+                                                                         + endTimeInDaysArrayEn[i]
+                                                                         + '</div>');
+            }
           }
         }
         // якщо після циклу не відмалювалася жодна ставка - попап, що ставки не можливі
 
         var tempObj = $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder');
-        if ( isObjectEmpty(tempObj) ) {
-	        if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
-	          showInfoMessage(noAccessibleParlay[0]);
-	        } else {
-	          showInfoMessage(noAccessibleParlay[1]);
-	        }
-	      }
+        if ( $(tempObj).find('.parlay-slider__parlay-choise-btn') ) {
+          if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+            showInfoMessage(noAccessibleParlay[0]);
+          } else {
+            showInfoMessage(noAccessibleParlay[1]);
+          }
+        }
       } else {
         //біржа не працює
         if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
@@ -325,12 +335,12 @@ function clickOnParlaySliderArrow() {
           finishTime = '20:00';
           createListOfNormalParlay (startTime, finishTime, currentDateTime);
         } else {
-	        //біржа не працює
-	        if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
-	          showInfoMessage(exchangeDontWork[0]);
-	        } else {
-	          showInfoMessage(exchangeDontWork[1]);
-	        }
+          //біржа не працює
+          if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+            showInfoMessage(exchangeDontWork[0]);
+          } else {
+            showInfoMessage(exchangeDontWork[1]);
+          }
         }
 
         // startTime  = tempUTCHour + ':' + tempUTCMinutes;
@@ -353,12 +363,6 @@ function clickOnParlaySliderArrow() {
 function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parlayTime, parlayCurrentPrice) {
   // створює активну ставку - елемент акордеону
   // контролює, щоб ставок було не більше 10
-
-  // console.log("parlayCurrentPrice :", parlayCurrentPrice);
-  // console.log("parlayTime         :", parlayTime);
-  // console.log("parlayAnticipation :", parlayAnticipation);
-  // console.log("parlayInvestment   :", parlayInvestment);
-  // console.log("parlayPairName     :", parlayPairName);
 
   if ( parlayAnticipation == 'up') {
     parlayAnticipation = 'class="fas fa-angle-double-up" style="color:dodgerblue"';
@@ -492,7 +496,7 @@ function deActivationParlayBtns(clickedElem) {
   /* ↑↑↑ /investment calculator ↑↑↑ */
 
   /* ↓↓↓ activation/deactivation btns ↓↓↓ */
-  if ( inputValue != 0 && parlayTime != 0 ) {
+  if ( inputValue > 4 && parlayTime != 0 ) {
     $('.parlay-btns__cover').css('display','none');
   } else {
     $('.parlay-btns__cover').css('display','flex');
@@ -648,15 +652,22 @@ function isActionsTradingPossible(url, dateTime) {
   return answer
 }
 
-function isNumeric(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n)
+function getChar(event) {
+  if (event.which == null) { // IE
+    if (event.keyCode < 32) return null; // спец. символ
+    return String.fromCharCode(event.keyCode)
+  }
+
+  if (event.which != 0 && event.charCode != 0) { // все кроме IE
+    if (event.which < 32) return null; // спец. символ
+    return String.fromCharCode(event.which); // остальные
+  }
+
+  return null; // спец. символ
 }
 
-function isObjectEmpty(obj) {
-	for (var key in obj) {
-		return false
-	}
-	return true
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n)
 }
 
 function sleep(ms) {
