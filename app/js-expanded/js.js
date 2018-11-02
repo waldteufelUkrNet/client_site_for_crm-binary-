@@ -81,6 +81,9 @@ setInterval(function() {
 
 /* ↓↓↓ обнулення інвестицій при зміні торгових пар ↓↓↓ */
 $( $('.wares-slider').children('.slick-arrow') ).click(function(){
+  // прибирати повідомлення, якщо вони є
+  $('.info-message').css({'right':'-290px'});
+
   $('#investment-input').val('');
   $('.parlay-btns__cover').css('display','flex');
   parlayTime = 0;
@@ -192,9 +195,18 @@ $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
 });
 /* ↑↑↑ /динамічне формування списків можливих ставок ↑↑↑ */
 
+/* ↓↓↓ після завантаження сторінки, якщо активна вкладка акцій - розраховувати можливість торгівлі акціями ↓↓↓ */
+$(document).ready(function() {
+  clickOnParlaySliderArrow()
+});
+/* ↑↑↑ /після завантаження сторінки, якщо активна вкладка акцій - розраховувати можливість торгівлі акціями ↑↑↑ */
+
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
 function clickOnParlaySliderArrow() {
   //
+
+  // прибирати повідомлення, якщо вони є
+  $('.info-message').css({'right':'-290px'});
 
   parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
   currentDateTime = new Date();
@@ -270,6 +282,8 @@ function clickOnParlaySliderArrow() {
       // очистити старий список ставок
       $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
 
+      var isLongParlayListNotEmptyMarker = false;
+
       if ( isActionsTradingPossible() ) {
         var endTimeInMSArray     = [86400000,432000000,864000000,1296000000,2592000000];
         var endTimeInDaysArray   = ['1 сутки','5 суток','10 суток','15 суток','30 суток'];
@@ -298,18 +312,20 @@ function clickOnParlaySliderArrow() {
                                                                          + endTimeInDaysArrayEn[i]
                                                                          + '</div>');
             }
+
+            isLongParlayListNotEmptyMarker = true;
           }
         }
         // якщо після циклу не відмалювалася жодна ставка - попап, що ставки не можливі
 
-        var tempObj = $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder');
-        if ( $(tempObj).find('.parlay-slider__parlay-choise-btn') ) {
+        if ( !isLongParlayListNotEmptyMarker ) {
           if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
             showInfoMessage(noAccessibleParlay[0]);
           } else {
             showInfoMessage(noAccessibleParlay[1]);
           }
         }
+
       } else {
         //біржа не працює
         if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
@@ -479,18 +495,8 @@ function deActivationParlayBtns(clickedElem) {
   }
   /* ↑↑↑ /highlighting ↑↑↑ */
 
-  /* ↓↓↓ input validation ↓↓↓ */
-
-  /* ↑↑↑ /input validation ↑↑↑ */
-
   /* ↓↓↓ investment calculator ↓↓↓ */
   var resultValue  = (inputValue * percentValue)/100 + inputValue;
-  if ( !isNumeric(resultValue) ) {
-    resultValue = 'ошибка ввода!';
-    $( $('#investment-input') ).val('').css({'border':'1px solid red'});
-  } else {
-    $( $('#investment-input') ).css({'border':'1px solid #102734'});
-  }
 
   $( $('#investment-result') ).text(resultValue);
   /* ↑↑↑ /investment calculator ↑↑↑ */
@@ -666,12 +672,4 @@ function getChar(event) {
   return null; // спец. символ
 }
 
-function isNumeric(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n)
-}
-
-function sleep(ms) {
-  ms += new Date().getTime();
-  while (new Date() < ms){}
-}
 /* ↑↑↑ /FUNCTIONS DECLARATIONS ↑↑↑ */
