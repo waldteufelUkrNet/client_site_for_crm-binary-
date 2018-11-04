@@ -84,6 +84,33 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
   // прибирати повідомлення, якщо вони є
   $('.info-message').css({'right':'-290px'});
 
+  /* ↓↓↓ відновлння списків після того, як акції їх позатирали (в не робочий час) ↓↓↓ */
+  if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() != 'акции' &&
+    $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() != 'actions' ) {
+
+    $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+    $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+    $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+
+      if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+        $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                          .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
+                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
+                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
+                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
+                                                                  ');
+
+      } else {
+        $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                          .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
+                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 minute</div>\
+                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 minutes</div>\
+                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
+                                                                  ');
+      }
+  }
+  /* ↑↑↑ /відновлння списків після того, як акції їх позатирали (в не робочий час) ↑↑↑ */
+
   $('#investment-input').val('');
   $('.parlay-btns__cover').css('display','flex');
   parlayTime = 0;
@@ -205,7 +232,7 @@ $(document).ready(function() {
 function rewriteParlayLists() {
   //
 
-  // прибирати повідомлення, якщо вони є
+  // прибирати повідомлення, якщо воно є
   $('.info-message').css({'right':'-290px'});
 
   parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
@@ -341,6 +368,9 @@ function rewriteParlayLists() {
     // контроль можливості торгівлі акціями (торги на них не цілодобові)
     if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
+
+        // очистити старий список ставок
+        $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
 
         // перевірка на державні свята США / короткі робочі дні в США
         var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
