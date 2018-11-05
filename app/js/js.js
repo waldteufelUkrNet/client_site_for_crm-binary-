@@ -108,54 +108,10 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
                                                                   ');
       }
 
-///////////////////////////////////////////////////
-
-        var startTime = new Date();
-        var startUTCTime = new Date( startTime.setHours( startTime.getUTCHours() ) );
-
-        var endTime = +new Date( startUTCTime ) + 24*60*60*1000;
-
-        for (var i = 0; i < 31; i++) {
-
-          endTime = new Date(endTime);
-
-          var endYear = endTime.getUTCFullYear();
-          if (endYear < 10) endYear = '0' + endYear;
-          var endDate = endTime.getUTCDate();
-          if (endDate < 10) endDate = '0' + endDate;
-          var endMonth = endTime.getUTCMonth() + 1;
-          if (endMonth < 10) endMonth = '0' + endMonth;
-          var endHours = endTime.getUTCHours() + 2;
-          if (endHours < 10) endHours = '0' + endHours;
-          var endMinutes = endTime.getUTCMinutes();
-          if (endMinutes < 10) endMinutes = '0' + endMinutes;
-          var endSeconds = endTime.getUTCSeconds();
-          if (endSeconds < 10) endSeconds = '0' + endSeconds;
-
-          var endTimeString = endYear    + '-' +
-                              endMonth   + '-' +
-                              endDate    + ' ' +
-                              endHours   + ':' +
-                              endMinutes + ':' +
-                              endSeconds;
-
-
-          $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
-                                                           .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
-                                                            + timeToEndInMS + '">'
-                                                            + endTimeString + '</div>');
-
-
-          endTime = +new Date( endTime ) + 24*60*60*1000;
-          var timeToEndInMS = endTime - +new Date( startUTCTime );
-        }
-
-///////////////////////////////////////////////////
-
   }
   /* ↑↑↑ /відновлння списків після того, як акції їх позатирали (в не робочий час) ↑↑↑ */
 
-  $('#investment-input').val('');
+  $('#investment-input').val('25');
   $('.parlay-btns__cover').css('display','flex');
   parlayTime = 0;
   $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
@@ -253,7 +209,7 @@ $('.parlay-btns__btn').click(function(){
   parlayTime = 0;
   $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
   $('.parlay-btns__cover').css('display','flex');
-  $('#investment-input').val('');
+  $('#investment-input').val('25');
 
 });
 /* ↑↑↑ /create active-slider-item ↑↑↑ */
@@ -345,49 +301,61 @@ function rewriteParlayLists() {
 
     }
   } else if ( parlayType == 'long' ) {
+
+    // очистити старий список ставок
+    $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+
+
+
     // контроль для акцій: контроль, чи працює поставник котирувань - ajax, якщо так - перевірка, чи час закриття припадає на робочий час
     if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'акции' ||
         $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() == 'actions' ) {
 
-      // очистити старий список ставок
-      $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-
       var isLongParlayListNotEmptyMarker = false;
 
       if ( isActionsTradingPossible() ) {
-        var endTimeInMSArray     = [86400000,432000000,864000000,1296000000,2592000000];
-        var endTimeInDaysArray   = ['1 сутки','5 суток','10 суток','15 суток','30 суток'];
-        var endTimeInDaysArrayEn = ['1 day','5 days','10 days','15 days','30 days'];
 
-        // дата закінчення ставки у формі об'єкту передаться на перевірку на робочий день: якщо день закінчення ставки робочий - ставка відмальовується
-        for ( var i = 0; i < endTimeInMSArray.length; i++ ) {
-          var endTimeInObj = new Date(+currentDateTime + +endTimeInMSArray[i]);
+        var endTime = new Date(+new Date( new Date() ) + 24*60*60*1000); // 86400000
 
-          var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
-          // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
-          if ( isActionsTradingPossible(url, endTimeInObj) ) {
+        for (var i = 0; i < 31; i++) {
 
-            if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
-              $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
-                                                               .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
-                                                                         + endTimeInMSArray[i]
-                                                                         + '"> '
-                                                                         + endTimeInDaysArray[i]
-                                                                         + '</div>');
-            } else {
-              $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
-                                                               .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
-                                                                         + endTimeInMSArray[i]
-                                                                         + '"> '
-                                                                         + endTimeInDaysArrayEn[i]
-                                                                         + '</div>');
-            }
+          endTime = new Date(endTime);
 
+          var endYear = endTime.getUTCFullYear();
+          if (endYear < 10) endYear = '0' + endYear;
+          var endDate = endTime.getUTCDate();
+          if (endDate < 10) endDate = '0' + endDate;
+          var endMonth = endTime.getUTCMonth() + 1;
+          if (endMonth < 10) endMonth = '0' + endMonth;
+          var endHours = endTime.getHours();
+          if (endHours < 10) endHours = '0' + endHours;
+          var endMinutes = endTime.getUTCMinutes();
+          if (endMinutes < 10) endMinutes = '0' + endMinutes;
+          var endSeconds = endTime.getUTCSeconds();
+          if (endSeconds < 10) endSeconds = '0' + endSeconds;
+
+          var endTimeString = endYear    + '-' +
+                              endMonth   + '-' +
+                              endDate;
+
+          var timeToEndInMS = +endTime - +new Date();
+
+          var url = 'http://god.ares.local/api/Hol/GetDate?value=' + endTimeString; // на роботі (локалка)
+          // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + endTimeString; // вдома (інет)
+
+          if ( isActionsTradingPossible(url, endTime) ) {
+            $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
+                                                              + timeToEndInMS + '">'
+                                                              + endTimeString + '</div>');
             isLongParlayListNotEmptyMarker = true;
           }
-        }
-        // якщо після циклу не відмалювалася жодна ставка - попап, що ставки не можливі
 
+          endTime = +new Date( endTime ) + 24*60*60*1000;
+
+        }
+
+        // якщо після циклу не відмалювалася жодна ставка - попап, що ставки не можливі
         if ( !isLongParlayListNotEmptyMarker ) {
           if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
             showInfoMessage(noAccessibleParlay[0]);
@@ -405,7 +373,40 @@ function rewriteParlayLists() {
         }
       }
 
+    } else {
+      // якщо не акції
+      var startTime = new Date();
+      var startUTCTime = new Date( startTime.setHours( startTime.getUTCHours() ) );
+
+      var endTime = +new Date( startUTCTime ) + 24*60*60*1000;
+
+      for (var i = 0; i < 30; i++) {
+
+        endTime = new Date(endTime);
+
+        var endYear = endTime.getFullYear();
+        if (endYear < 10) endYear = '0' + endYear;
+        var endDate = endTime.getDate();
+        if (endDate < 10) endDate = '0' + endDate;
+        var endMonth = endTime.getMonth() + 1;
+        if (endMonth < 10) endMonth = '0' + endMonth;
+
+        var endTimeString = endYear  + '-' +
+                            endMonth + '-' +
+                            endDate;
+
+        var timeToEndInMS = endTime - +new Date( startUTCTime );
+
+        $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                         .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
+                                                          + timeToEndInMS + '">'
+                                                          + endTimeString + '</div>');
+
+        endTime = +new Date( endTime ) + 24*60*60*1000;
+      }
+
     }
+
   } else if ( parlayType == 'normal' ) {
     // побудова списку можливих ставок
     // контроль можливості торгівлі акціями (торги на них не цілодобові)
@@ -684,9 +685,6 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
 }
 
 function isActionsTradingPossible(url, dateTime) {
-  console.log("dateTime :", dateTime);
-  console.log("url      :", url);
-  console.log(" ");
   // перевіряє, чи працює поставник котирувань
   // якщо ні - видає return false
   // якщо так - перевіряє, чи робочий день і час
