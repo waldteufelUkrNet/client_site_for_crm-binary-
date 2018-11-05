@@ -99,7 +99,6 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
                                                                   ');
-
       } else {
         $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
                                                           .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
@@ -108,6 +107,51 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
                                                                   ');
       }
+
+///////////////////////////////////////////////////
+
+        var startTime = new Date();
+        var startUTCTime = new Date( startTime.setHours( startTime.getUTCHours() ) );
+
+        var endTime = +new Date( startUTCTime ) + 24*60*60*1000;
+
+        for (var i = 0; i < 31; i++) {
+
+          endTime = new Date(endTime);
+
+          var endYear = endTime.getUTCFullYear();
+          if (endYear < 10) endYear = '0' + endYear;
+          var endDate = endTime.getUTCDate();
+          if (endDate < 10) endDate = '0' + endDate;
+          var endMonth = endTime.getUTCMonth() + 1;
+          if (endMonth < 10) endMonth = '0' + endMonth;
+          var endHours = endTime.getUTCHours() + 2;
+          if (endHours < 10) endHours = '0' + endHours;
+          var endMinutes = endTime.getUTCMinutes();
+          if (endMinutes < 10) endMinutes = '0' + endMinutes;
+          var endSeconds = endTime.getUTCSeconds();
+          if (endSeconds < 10) endSeconds = '0' + endSeconds;
+
+          var endTimeString = endYear    + '-' +
+                              endMonth   + '-' +
+                              endDate    + ' ' +
+                              endHours   + ':' +
+                              endMinutes + ':' +
+                              endSeconds;
+
+
+          $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                           .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
+                                                            + timeToEndInMS + '">'
+                                                            + endTimeString + '</div>');
+
+
+          endTime = +new Date( endTime ) + 24*60*60*1000;
+          var timeToEndInMS = endTime - +new Date( startUTCTime );
+        }
+
+///////////////////////////////////////////////////
+
   }
   /* ↑↑↑ /відновлння списків після того, як акції їх позатирали (в не робочий час) ↑↑↑ */
 
@@ -282,7 +326,6 @@ function rewriteParlayLists() {
                                                                        <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
                                                                       ');
           }
-
         } else {
           //біржа не працює
           if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
@@ -641,20 +684,24 @@ function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
 }
 
 function isActionsTradingPossible(url, dateTime) {
+  console.log("dateTime :", dateTime);
+  console.log("url      :", url);
+  console.log(" ");
   // перевіряє, чи працює поставник котирувань
   // якщо ні - видає return false
   // якщо так - перевіряє, чи робочий день і час
+  var isActions = arguments[2];
   var answer;
   $.ajax({
     url     : 'http://god.ares.local/api/status/get',
     async   : false,
     success :  function ( data ) {
-      if (!!data == true) {
-        answer = true;
-      } else { console.log('else');
-        answer = false;
-      }
-    },
+                if (!!data == true) {
+                  answer = true;
+                } else { console.log('else');
+                  answer = false;
+                }
+              },
     error   : function () {
       answer = false;
     }
@@ -666,23 +713,30 @@ function isActionsTradingPossible(url, dateTime) {
     url     : url,
     async   : false,
     success : function ( data ) {
-                if ( data == 1 ) { // святковий день
-                  answer = false
-                }
-                if ( data == 0 ) { // не святковий день
-                  // перевірка на вихідний день (субота/неділя)
-                  if ( dateTime.getUTCDay() == 6 || dateTime.getUTCDay() == 0 ) { // вихідний день (субота/неділя)
+                if ( isActions == 'noActions' ) {
+                  answer = true
+                } else {
+                  if ( data == 1 ) { // святковий день
                     answer = false
-                  } else { // робочий день - 13:30-20:00 по UTC
-                    // перевести години в хвилини, додати до хвилин
-                    var timeInMinutes = dateTime.getUTCHours()*60 + dateTime.getUTCMinutes();
-                    if ( timeInMinutes >= 1200 || timeInMinutes < 810 ) { // неробочий час
+                  }
+                  if ( data == 0 ) { // не святковий день
+                    // перевірка на вихідний день (субота/неділя)
+                    if ( dateTime.getUTCDay() == 6 || dateTime.getUTCDay() == 0 ) { // вихідний день (субота/неділя)
                       answer = false
-                    } else { // робочий час
-                      answer = true
+                    } else { // робочий день - 13:30-20:00 по UTC noActions
+                      // перевести години в хвилини, додати до хвилин
+                      var timeInMinutes = dateTime.getUTCHours()*60 + dateTime.getUTCMinutes();
+                      if ( timeInMinutes >= 1200 || timeInMinutes < 810 ) { // неробочий час
+                        answer = false
+                      } else { // робочий час
+                        answer = true
+                      }
                     }
                   }
                 }
+              },
+    error   : function () {
+                answer = false;
               }
   })
   return answer
