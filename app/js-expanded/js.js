@@ -4,7 +4,8 @@ var parlayInvestment,     // розмір ставки
     parlayTime = 0,       // час ДО закриття ставки - в мілісекундах
     parlayAnticipation,   // очікування - up/down
     parlayPairName,       // назва пари
-    parlayCurrentPrice;   // поточна котировка
+    parlayCurrentPrice,   // поточна котировка
+    deactivationTimer;    // таймер для деактивації списків можливих ставок
 
 var exchangeDontWork   = [
                           'Торги невозможны по причине того, что на данный момент биржа закрыта. Акционная биржа работает с 13:30 до 20:00 по UTC-времени с понедельника по пятницу с учетом государственных праздников США.',
@@ -81,6 +82,8 @@ setInterval(function() {
 
 /* ↓↓↓ обнулення інвестицій при зміні торгових пар ↓↓↓ */
 $( $('.wares-slider').children('.slick-arrow') ).click(function(){
+  console.log('click');
+  clearTimeout(deactivationTimer);
   // прибирати повідомлення, якщо вони є
   $('.info-message').css({'right':'-290px'});
 
@@ -120,8 +123,19 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
   $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
   // після unslick на кнопки нового слайдера потрібно навішувати обробники
   $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
+    console.log('click');
+    clearTimeout(deactivationTimer);
+
     rewriteParlayLists();
+
+    deactivationTimer = setTimeout(function(){
+      console.log('заблокувати');
+    },5000);
   });
+
+  deactivationTimer = setTimeout(function(){
+    console.log('заблокувати');
+  },5000);
 });
 /* ↑↑↑ /обнулення інвестицій при зміні торгових пар ↑↑↑ */
 
@@ -217,14 +231,24 @@ $('.parlay-btns__btn').click(function(){
 /* ↓↓↓ динамічне формування списків можливих ставок ↓↓↓ */
 var startTime, finishTime, currentDateTime;
 $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
+  console.log('click');
+  clearTimeout(deactivationTimer);
+
   $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
-  rewriteParlayLists()
+  rewriteParlayLists();
+
+  deactivationTimer = setTimeout(function(){
+    console.log('заблокувати');
+  },5000);
 });
 /* ↑↑↑ /динамічне формування списків можливих ставок ↑↑↑ */
 
 /* ↓↓↓ після завантаження сторінки, якщо активна вкладка акцій - розраховувати можливість торгівлі акціями ↓↓↓ */
 $(document).ready(function() {
-  rewriteParlayLists()
+  rewriteParlayLists();
+  deactivationTimer = setTimeout(function(){
+    console.log('заблокувати');
+  },5000);
 });
 /* ↑↑↑ /після завантаження сторінки, якщо активна вкладка акцій - розраховувати можливість торгівлі акціями ↑↑↑ */
 

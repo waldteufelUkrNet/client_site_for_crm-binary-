@@ -568,7 +568,7 @@
           color                 : white;
         }
       }
-      .parlay-slider {
+      .parlay-slider { border: 1px dotted red;
         width                   : 100%;
         display                 : flex;
         flex-direction          : column;
@@ -594,6 +594,12 @@
           height                : 130px;
           margin-top            : 6px;
           overflow              : hidden;
+        }
+        &__reactivation-field {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0,0,0,.3);
         }
         &__parlay-choise-btn-holder {
           height                : 130px;
