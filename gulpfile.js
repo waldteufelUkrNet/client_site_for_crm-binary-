@@ -88,30 +88,30 @@ gulp.task('sass', function() {
 //   .pipe(browserSync.reload({stream:true}))
 // });
 
-// //мініфікація js - style.js
-// gulp.task('js', function() {
-//   return gulp.src(['app/js-expanded/*.js'])
-//     //.pipe(uglify())
-//     .pipe(gulp.dest('app/js'))
-//     .pipe(browserSync.reload({stream:true}));
-// });
-
-//мініфікація js - BEM-blocks
-gulp.task('js-bem', function() {
-  return gulp.src(['app/BEM-blocks/*/*.js', '!app/BEM-blocks/minjs'])
-    .pipe(uglify())
-    .pipe(gulp.dest('app/BEM-blocks/minjs'));
+//мініфікація js - style.js
+gulp.task('js', function() {
+  return gulp.src(['app/js-expanded/*.js'])
+    //.pipe(uglify())
+    .pipe(gulp.dest('app/js'))
+    .pipe(browserSync.reload({stream:true}));
 });
+
+// //мініфікація js - BEM-blocks
+// gulp.task('js-bem', function() {
+//   return gulp.src(['app/BEM-blocks/*/*.js', '!app/BEM-blocks/minjs'])
+//     .pipe(uglify())
+//     .pipe(gulp.dest('app/BEM-blocks/minjs'));
+// });
 
 // слідкування за змінами у збережених файлах, виклик препроцесингу та live reload
 gulp.task('watch', gulp.parallel(
-  gulp.series('sass', 'sass-bem', 'js', 'js-bem', 'pug', 'browser-sync'),
+  gulp.series('sass', 'js', 'pug', 'browser-sync'), // gulp.series('sass', 'sass-bem', 'js', 'js-bem', 'pug', 'browser-sync'),
   function() {
     gulp.watch(['app/scss/*.+(scss|sass)'], gulp.series('sass'));
-    gulp.watch(['app/BEM-blocks/*/*.+(scss|sass)'], gulp.series('sass-bem','pug'));
+    gulp.watch(['app/BEM-blocks/*/*.+(scss|sass)'], gulp.series('pug')); // gulp.watch(['app/BEM-blocks/*/*.+(scss|sass)'], gulp.series('sass-bem','pug'));
 
-    gulp.watch(['app/js-expanded/*.js'], gulp.series('js','pug'));
-    gulp.watch(['app/BEM-blocks/*/*.js', '!app/BEM-blocks/minjs'], gulp.series('js-bem','pug'));
+    gulp.watch(['app/js-expanded/*.js'], gulp.series('js')); // gulp.watch(['app/js-expanded/*.js'], gulp.series('pug'));
+    gulp.watch(['app/BEM-blocks/*/*.js', '!app/BEM-blocks/minjs'], gulp.series('pug')); // gulp.watch(['app/BEM-blocks/*/*.js', '!app/BEM-blocks/minjs'], gulp.series('js-bem','pug'));
 
     gulp.watch(['app/**/*.pug'], gulp.series('pug'));
 

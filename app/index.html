@@ -588,103 +588,128 @@
         </div>
       </section>
       <!-- /SECTION 3-->
-      <!-- ↓↓↓ BEM-blocks: message-to-mentor (start) ↓↓↓-->
-      <div class="message__wrapper message-to-mentor__positioning-wrapper">
-        <div class="message__holder message-to-mentor__holder">
-          <div class="message message-to-mentor">
-            <div class="close-btn message-to-mentor__close-btn">
-              <div class="close-btn__line1"></div>
-              <div class="close-btn__line2"></div>
+      <section class="popups">
+        <!-- ↓↓↓ BEM-blocks: make-lodgement (start) ↓↓↓-->
+        <div class="make-lodgement__positioning-wrapper">
+          <div class="make-lodgement">
+            <div class="make-lodgement__close-btn">
+              <div class="make-lodgement__close-btn-line1"></div>
+              <div class="make-lodgement__close-btn-line2"></div>
             </div>
-            <h5 class="message-to-mentor__header">Написать сообщение администрации</h5>
-            <form class="message-to-mentor__form" action="#" method="#" name="message-to-mentor">
-              <input class="message-to-mentor__subject" type="text" placeholder="тема">
-              <textarea class="message-to-mentor__text" placeholder="сообщение"></textarea>
-              <div class="validation-warning message__validation-warning message-to-mentor__validation-warning">Напишите сообщение!</div>
-              <button class="popup-ok-btn message__btn message-to-mentor__btn" type="button">отправить</button>
-            </form>
+            <div class="make-lodgement__pay-system">MasterCard<img class="make-lodgement__pay-img" src="img/mastercard.png"></div>
+            <div class="make-lodgement__pay-system">VISA<img class="make-lodgement__pay-img" src="img/visa.png"></div>
+            <div class="make-lodgement__triangle"></div>
+            <div class="make-lodgement__pay-block">
+              <form class="make-lodgement-MasterCard" action="#" method="#" name="make-lodgement-MasterCard">
+                <input type="text">
+                <button class="popup-ok-btn" id="make-lodgement-MasterCard-btn" type="submit">оплатить</button>
+              </form>
+              <form class="make-lodgement-VISA" action="#" method="#" name="make-lodgement-VISA">
+                <input type="text">
+                <button class="popup-ok-btn" id="make-lodgement-VISA-btn" type="submit">оплатить</button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- ↑↑↑ BEM-blocks: message-to-mentor (end) ↑↑↑-->
-      <!-- ↓↓↓ BEM-blocks: message-from-mentor (start) ↓↓↓-->
-      <div class="message-from-mentor__positioning-wrapper message__wrapper">
-        <div class="message-from-mentor__holder message__holder">
-          <div class="message-from-mentor message">
-            <div class="close-btn message-from-mentor__close-btn">
-              <div class="close-btn__line1"></div>
-              <div class="close-btn__line2"></div>
-            </div>
-            <h5 class="message-from-mentor__header">Вам сообщение
-              <div class="message-from-mentor__text-wrapper">
-                <div class="message-from-mentor__text">
-                  <p class="Lorem">ipsum dolor sit amet, consectetur adipisicing elit. Expedita corporis eligendi commodi nesciunt dolores minima, enim fuga officiis quae in laborum optio tenetur praesentium quis sit harum mollitia veritatis, maiores excepturi, suscipit soluta eius possimus temporibus! Repudiandae nostrum numquam provident molestias veritatis quas recusandae laudantium, ipsa dolorum dolorem cumque alias excepturi libero ipsum corrupti, quaerat hic. Accusantium autem consequuntur repellat error recusandae sint dolor explicabo, blanditiis odit, cumque cupiditate libero hic eaque porro, laboriosam assumenda obcaecati voluptatem nisi. Aliquam provident laudantium sit. Temporibus magni natus ab nihil atque, ipsum ut? Nemo maxime asperiores cumque similique culpa quia provident inventore optio!</p><br>
-                  <p class="message-from-mentor__mentor_name">Белый Господин</p>
-                </div>
+        <!-- ↑↑↑ BEM-blocks: make-lodgement (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: message-to-mentor (start) ↓↓↓-->
+        <div class="message__wrapper message-to-mentor__positioning-wrapper">
+          <div class="message__holder message-to-mentor__holder">
+            <div class="message message-to-mentor">
+              <div class="close-btn message-to-mentor__close-btn">
+                <div class="close-btn__line1"></div>
+                <div class="close-btn__line2"></div>
               </div>
-              <button class="message-from-mentor__btn message__btn popup-ok-btn" type="button">ок</button>
-            </h5>
-          </div>
-        </div>
-      </div>
-      <!-- ↑↑↑ BEM-blocks: message-from-mentor (end) ↑↑↑-->
-      <!-- ↓↓↓ BEM-blocks: profile-editor (start) ↓↓↓-->
-      <div class="profile-editor__positioning-wrapper">
-        <div class="profile-editor__holder">
-          <div class="profile-editor">
-            <div class="close-btn profile-editor__close-btn">
-              <div class="close-btn__line1"></div>
-              <div class="close-btn__line2"></div>
+              <h5 class="message-to-mentor__header">Написать сообщение администрации</h5>
+              <form class="message-to-mentor__form" action="#" method="#" name="message-to-mentor">
+                <input class="message-to-mentor__subject" type="text" placeholder="тема">
+                <textarea class="message-to-mentor__text" placeholder="сообщение"></textarea>
+                <div class="validation-warning message__validation-warning message-to-mentor__validation-warning">Напишите сообщение!</div>
+                <button class="popup-ok-btn message__btn message-to-mentor__btn" type="button">отправить</button>
+              </form>
             </div>
-            <h5 class="profile-editor__header">Редактор профиля</h5>
-            <form class="profile-editor__form" action="#" method="#" name="profile-editor">
-              <label class="profile-editor__label"><span class="profile-editor__annotation">Имя</span>
-                <input class="profile-editor__input" id="prof-fname" type="text" placeholder="имя"><span></span>
-                <div class="validation-warning profile-editor__validation-warning" id="prof-fname-info">Введите Ваше имя!</div>
-              </label>
-              <label class="profile-editor__label"><span class="profile-editor__annotation">Фамилия</span>
-                <input class="profile-editor__input" id="prof-lname" type="text" placeholder="фамилия"><span></span>
-                <div class="validation-warning profile-editor__validation-warning" id="prof-lname-info">Введите Вашу фамилию!</div>
-              </label>
-              <label class="profile-editor__label"><span class="profile-editor__annotation">Пол</span>
-                <div class="profile-editor__gender-container">
-                  <input class="profile-editor__input" type="radio" name="gender" value="male">мужской
-                  <input class="profile-editor__input" type="radio" name="gender" value="female">женский
-                  <input class="profile-editor__input" type="radio" name="gender" value="none" checked>не указан
-                </div>
-              </label>
-              <label class="profile-editor__label"><span class="profile-editor__annotation">Дата рождения</span>
-                <input class="profile-editor__input" id="datepicker" type="text" placeholder="день рождения">
-              </label>
-              <label class="profile-editor__label"><span class="profile-editor__annotation">Страна</span>
-                <input class="profile-editor__input" id="prof-country" type="text" placeholder="страна"><span></span>
-                <div class="validation-warning profile-editor__validation-warning" id="prof-country-info">Введите страну проживания!</div>
-              </label>
-              <label class="profile-editor__label"><span class="profile-editor__annotation">Город</span>
-                <input class="profile-editor__input" type="text" placeholder="город">
-              </label>
-              <label class="profile-editor__label"><span class="profile-editor__annotation">Адрес</span>
-                <input class="profile-editor__input" type="text" placeholder="адрес">
-              </label>
-              <label class="profile-editor__label"><span class="profile-editor__annotation">Телефон</span>
-                <input class="profile-editor__input" id="prof-phone" type="text" placeholder="телефон"><span></span>
-                <div class="validation-warning profile-editor__validation-warning" id="prof-phone-info">Введите корректный номер телефона!</div>
-              </label>
-              <button class="profile-editor__btn popup-ok-btn" type="button">сохранить</button>
-            </form>
           </div>
         </div>
-      </div>
-      <!-- ↑↑↑ BEM-blocks: profile-editor (end) ↑↑↑-->
-      <!-- ↓↓↓ BEM-blocks: info-message (start) ↓↓↓-->
-      <div class="info-message">
-        <div class="close-btn info-message__close-btn">
-          <div class="close-btn__line1"></div>
-          <div class="close-btn__line2"></div>
+        <!-- ↑↑↑ BEM-blocks: message-to-mentor (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: message-from-mentor (start) ↓↓↓-->
+        <div class="message-from-mentor__positioning-wrapper message__wrapper">
+          <div class="message-from-mentor__holder message__holder">
+            <div class="message-from-mentor message">
+              <div class="close-btn message-from-mentor__close-btn">
+                <div class="close-btn__line1"></div>
+                <div class="close-btn__line2"></div>
+              </div>
+              <h5 class="message-from-mentor__header">Вам сообщение
+                <div class="message-from-mentor__text-wrapper">
+                  <div class="message-from-mentor__text">
+                    <p class="Lorem">ipsum dolor sit amet, consectetur adipisicing elit. Expedita corporis eligendi commodi nesciunt dolores minima, enim fuga officiis quae in laborum optio tenetur praesentium quis sit harum mollitia veritatis, maiores excepturi, suscipit soluta eius possimus temporibus! Repudiandae nostrum numquam provident molestias veritatis quas recusandae laudantium, ipsa dolorum dolorem cumque alias excepturi libero ipsum corrupti, quaerat hic. Accusantium autem consequuntur repellat error recusandae sint dolor explicabo, blanditiis odit, cumque cupiditate libero hic eaque porro, laboriosam assumenda obcaecati voluptatem nisi. Aliquam provident laudantium sit. Temporibus magni natus ab nihil atque, ipsum ut? Nemo maxime asperiores cumque similique culpa quia provident inventore optio!</p><br>
+                    <p class="message-from-mentor__mentor_name">Белый Господин</p>
+                  </div>
+                </div>
+                <button class="message-from-mentor__btn message__btn popup-ok-btn" type="button">ок</button>
+              </h5>
+            </div>
+          </div>
         </div>
-        <p class="info-message__body">Lorem ipsum dolor sit amet.</p>
-      </div>
-      <!-- ↑↑↑ BEM-blocks: info-message (end) ↑↑↑-->
+        <!-- ↑↑↑ BEM-blocks: message-from-mentor (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: profile-editor (start) ↓↓↓-->
+        <div class="profile-editor__positioning-wrapper">
+          <div class="profile-editor__holder">
+            <div class="profile-editor">
+              <div class="close-btn profile-editor__close-btn">
+                <div class="close-btn__line1"></div>
+                <div class="close-btn__line2"></div>
+              </div>
+              <h5 class="profile-editor__header">Редактор профиля</h5>
+              <form class="profile-editor__form" action="#" method="#" name="profile-editor">
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Имя</span>
+                  <input class="profile-editor__input" id="prof-fname" type="text" placeholder="имя"><span></span>
+                  <div class="validation-warning profile-editor__validation-warning" id="prof-fname-info">Введите Ваше имя!</div>
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Фамилия</span>
+                  <input class="profile-editor__input" id="prof-lname" type="text" placeholder="фамилия"><span></span>
+                  <div class="validation-warning profile-editor__validation-warning" id="prof-lname-info">Введите Вашу фамилию!</div>
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Пол</span>
+                  <div class="profile-editor__gender-container">
+                    <input class="profile-editor__input" type="radio" name="gender" value="male">мужской
+                    <input class="profile-editor__input" type="radio" name="gender" value="female">женский
+                    <input class="profile-editor__input" type="radio" name="gender" value="none" checked>не указан
+                  </div>
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Дата рождения</span>
+                  <input class="profile-editor__input" id="datepicker" type="text" placeholder="день рождения">
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Страна</span>
+                  <input class="profile-editor__input" id="prof-country" type="text" placeholder="страна"><span></span>
+                  <div class="validation-warning profile-editor__validation-warning" id="prof-country-info">Введите страну проживания!</div>
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Город</span>
+                  <input class="profile-editor__input" type="text" placeholder="город">
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Адрес</span>
+                  <input class="profile-editor__input" type="text" placeholder="адрес">
+                </label>
+                <label class="profile-editor__label"><span class="profile-editor__annotation">Телефон</span>
+                  <input class="profile-editor__input" id="prof-phone" type="text" placeholder="телефон"><span></span>
+                  <div class="validation-warning profile-editor__validation-warning" id="prof-phone-info">Введите корректный номер телефона!</div>
+                </label>
+                <button class="profile-editor__btn popup-ok-btn" type="button">сохранить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- ↑↑↑ BEM-blocks: profile-editor (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: info-message (start) ↓↓↓-->
+        <div class="info-message">
+          <div class="close-btn info-message__close-btn">
+            <div class="close-btn__line1"></div>
+            <div class="close-btn__line2"></div>
+          </div>
+          <p class="info-message__body">Lorem ipsum dolor sit amet.</p>
+        </div>
+        <!-- ↑↑↑ BEM-blocks: info-message (end) ↑↑↑-->
+      </section>
     </main>
     <!-- /MAIN PART-->
     <!-- FOOTER-->
