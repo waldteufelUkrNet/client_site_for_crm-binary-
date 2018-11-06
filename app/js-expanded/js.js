@@ -82,8 +82,10 @@ setInterval(function() {
 
 /* ↓↓↓ обнулення інвестицій при зміні торгових пар ↓↓↓ */
 $( $('.wares-slider').children('.slick-arrow') ).click(function(){
-  console.log('click');
   clearTimeout(deactivationTimer);
+
+  $('.parlay-slider-deactivation-panel').css({'display':'none'});
+
   // прибирати повідомлення, якщо вони є
   $('.info-message').css({'right':'-290px'});
 
@@ -111,6 +113,8 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
                                                                   ');
       }
 
+  } else {
+    rewriteParlayLists();
   }
   /* ↑↑↑ /відновлння списків після того, як акції їх позатирали (в не робочий час) ↑↑↑ */
 
@@ -123,19 +127,20 @@ $( $('.wares-slider').children('.slick-arrow') ).click(function(){
   $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
   // після unslick на кнопки нового слайдера потрібно навішувати обробники
   $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
-    console.log('click');
     clearTimeout(deactivationTimer);
+
+    $('.parlay-slider-deactivation-panel').css({'display':'none'});
 
     rewriteParlayLists();
 
     deactivationTimer = setTimeout(function(){
-      console.log('заблокувати');
-    },5000);
+      deactivationParlays()
+    },30000);
   });
 
-  deactivationTimer = setTimeout(function(){
-    console.log('заблокувати');
-  },5000);
+  deactivationTimer = setTimeout( function(){
+    deactivationParlays()
+  },30000);
 });
 /* ↑↑↑ /обнулення інвестицій при зміні торгових пар ↑↑↑ */
 
@@ -231,24 +236,48 @@ $('.parlay-btns__btn').click(function(){
 /* ↓↓↓ динамічне формування списків можливих ставок ↓↓↓ */
 var startTime, finishTime, currentDateTime;
 $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
-  console.log('click');
   clearTimeout(deactivationTimer);
+  $('.parlay-slider-deactivation-panel').css({'display':'none'});
 
   $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
   rewriteParlayLists();
 
-  deactivationTimer = setTimeout(function(){
-    console.log('заблокувати');
-  },5000);
+  deactivationTimer = setTimeout( function(){
+    deactivationParlays()
+  },30000);
 });
 /* ↑↑↑ /динамічне формування списків можливих ставок ↑↑↑ */
 
 /* ↓↓↓ після завантаження сторінки, якщо активна вкладка акцій - розраховувати можливість торгівлі акціями ↓↓↓ */
 $(document).ready(function() {
   rewriteParlayLists();
-  deactivationTimer = setTimeout(function(){
-    console.log('заблокувати');
-  },5000);
+
+  deactivationTimer = setTimeout( function(){
+    deactivationParlays()
+  },30000);
+
+  $('.parlay-slider-deactivation-panel__btn').click(function(){
+    $('.parlay-slider-deactivation-panel').css({'display':'none'});
+
+    rewriteParlayLists();
+  // зробити перший елемент активним та правильно його відпозиціонувати
+  $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
+  // після unslick на кнопки нового слайдера потрібно навішувати обробники
+  $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
+    clearTimeout(deactivationTimer);
+
+    $('.parlay-slider-deactivation-panel').css({'display':'none'});
+
+    rewriteParlayLists();
+
+    deactivationTimer = setTimeout(function(){
+      deactivationParlays()
+    },30000);
+  });
+    deactivationTimer = setTimeout( function(){
+      deactivationParlays()
+    },30000);
+  });
 });
 /* ↑↑↑ /після завантаження сторінки, якщо активна вкладка акцій - розраховувати можливість торгівлі акціями ↑↑↑ */
 
@@ -606,7 +635,7 @@ function deActivationParlayBtns(clickedElem) {
     $('.parlay-btns__cover').css('display','flex');
   }
   /* ↑↑↑ /activation/deactivation btns ↑↑↑ */
-};
+}
 
 function createListOfNormalParlay (startTime, finishTime, currentDateTime) {
   // видаляє старий список нормальних ставок (якщо він є)
@@ -764,6 +793,28 @@ function isActionsTradingPossible(url, dateTime) {
   return answer
 }
 
+function deactivationParlays(){
+  var parlaySliderTop  = getCoords( $('.parlay-slider__item-choice-field')[0] ).top;
+  var parlaySliderLeft = getCoords( $('.parlay-slider')[0] ).left;
+
+  $('.parlay-slider-deactivation-panel').css({
+                                              'top'     : parlaySliderTop,
+                                              'left'    : parlaySliderLeft,
+                                              'display' : 'flex'
+  });
+}
+
+function getCoords(elem) {
+  var box = elem.getBoundingClientRect();
+  return {
+    top    : box.top + pageYOffset,
+    bottom : box.bottom + pageYOffset,
+    left   : box.left + pageXOffset,
+    right  : box.right + pageXOffset,
+    height : box.bottom - box.top
+  };
+}
+
 function getChar(event) {
   if (event.which == null) { // IE
     if (event.keyCode < 32) return null; // спец. символ
@@ -777,5 +828,4 @@ function getChar(event) {
 
   return null; // спец. символ
 }
-
 /* ↑↑↑ /FUNCTIONS DECLARATIONS ↑↑↑ */
