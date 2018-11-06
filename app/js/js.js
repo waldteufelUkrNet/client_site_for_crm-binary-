@@ -281,6 +281,377 @@ $(document).ready(function() {
 });
 /* ↑↑↑ /після завантаження сторінки, якщо активна вкладка акцій - розраховувати можливість торгівлі акціями ↑↑↑ */
 
+/* ↓↓↓ BEM-blocks ↓↓↓ */
+var simpleSwitcherToggle = 'demo';
+$('.simple-switcher__thumb').click(function(){
+  if (simpleSwitcherToggle == 'demo') {
+    $('.simple-switcher__thumb').css({'transition':'.2s','left':'35px'});
+    simpleSwitcherToggle = 'real'
+
+    $('.central-part__account-type span').text('Real');
+
+    return
+  }
+  if (simpleSwitcherToggle == 'real') {
+    $('.simple-switcher__thumb').css({'transition':'.2s','left':'0px'});
+    simpleSwitcherToggle = 'demo'
+
+    $('.central-part__account-type span').text('Demo');
+
+    return
+  }
+});
+
+
+
+var isMenuOpen;
+var isClickAble = true;
+$('.menu-btn').click(function(){
+  toggleBtn();
+});
+
+$(document).click(function(e){
+  if (e.target.className != 'menu-btn' && isMenuOpen == true) {
+    toggleBtn();
+  }
+});
+
+function toggleBtn() {
+  if (isClickAble) {        //блокування натискання кнопки частіше, ніж 0,5с
+    isClickAble = false;
+    setTimeout(function() {
+      isClickAble = true;
+    }, 500);
+
+    $('.menu-btn').click = null;
+
+    if (!isMenuOpen) {
+      $('.menu-btn__1-line').css({'transition':'.5s','top':'9px'});
+      $('.menu-btn__3-line').css({'transition':'.5s','top':'9px'});
+      $('.menu-btn__2-line').css({'transition':'.5s','opacity':'0'});
+      setTimeout(function(){
+        $('.menu-btn__1-line').css({'transition':'.5s','transform':'rotate(45deg)'});
+        $('.menu-btn__3-line').css({'transition':'.5s','transform':'rotate(-45deg)'});
+      },500);
+      isMenuOpen = true;
+
+      toggleMenu(true);
+      return
+    }
+    if (isMenuOpen) {
+      $('.menu-btn__1-line').css({'transition':'.5s','transform':'rotate(0deg)'});
+      $('.menu-btn__3-line').css({'transition':'.5s','transform':'rotate(0deg)'});
+      $('.menu-btn__2-line').css({'transition-delay':'.5s','transition-duration':'.5s','opacity':'1'});
+      setTimeout(function(){
+        $('.menu-btn__1-line').css({'transition-duration':'.5s','top':'0px'});
+        $('.menu-btn__3-line').css({'transition-duration':'.5s','top':'18px'});
+      },500);
+      isMenuOpen = false;
+
+      toggleMenu(false);
+      return
+    }
+  }
+}
+
+function toggleMenu (arg) {
+  var arrOfLinks = $('.menu-list-a');
+
+  if (arg == true) {
+    $('.menu').css({'border-width':'1px'})
+              .css({'transition':'.5s','height':'182px'});
+
+    setTimeout(function(){
+      var temp1 = 0;
+      var temp2 = '0s';
+      for (var i = 0; i < arrOfLinks.length; i++) {
+        $(arrOfLinks[i]).css({'transition':'.2s','transition-delay':temp2,'left':'0%'});
+        temp1 += 0.1;
+        temp2 = temp1 + 's';
+      }
+    },500);
+  }
+  if (arg == false) {
+    var temp1 = 0;
+    var temp2 = '0s';
+    for (var i = 0; i < arrOfLinks.length; i++) {
+      $(arrOfLinks[i]).css({'transition':'.2s','transition-delay':temp2,'left':'100%'});
+      temp1 += 0.1;
+      temp2 = temp1 + 's';
+    }
+    setTimeout(function(){
+      $('.menu').css({'border-width':'0px'})
+        .css({'transition':'.5s','height':'0px'});
+      },600);
+  }
+};
+
+
+
+var isLanguageSwitcherOpen = false;
+var isLanguageSwitcherOpen2 = false;
+var selectedLanguage;
+$('.language-switcher__btn').click(function(){
+  if (isLanguageSwitcherOpen == false) {
+    $('.language-switcher__flag-container').css({'transition':'height .5s','height':'300%','z-index':'8888'});
+    isLanguageSwitcherOpen = true;
+    return
+  }
+
+  $('.language-switcher__flag-container').css({'transition':'height .5s','height':'100%','z-index':'8888'});
+  isLanguageSwitcherOpen = false;
+  return
+});
+
+$('.language-switcher__flag-en').click(function(){
+  if (selectedLanguage == 'en' && isLanguageSwitcherOpen2 == false) {
+    $('.language-switcher__flag-container').css({'transition':'height .5s','height':'200%','z-index':'8888'});
+    $('.language-switcher__flag-ru').css({'display':'block','z-index':'8888'});
+    isLanguageSwitcherOpen2 = true;
+    return
+  }
+  if (isLanguageSwitcherOpen2 == true) {
+    $('.language-switcher__flag-container').css({'transition':'height .5s','height':'100%','z-index':'8888'});
+    $('.language-switcher__flag-ru').css({'display':'none'});
+    isLanguageSwitcherOpen2 = false;
+    return
+  }
+  $('.language-switcher__flag-container').css({'transition':'height .5s','height':'100%','z-index':'8888'});
+  $('.language-switcher__btn').css({'display':'none'});
+  $('.language-switcher__flag-ru').css({'display':'none'});
+  isLanguageSwitcherOpen = false;
+  selectedLanguage = 'en';
+});
+
+$('.language-switcher__flag-ru').click(function(){
+  if (selectedLanguage == 'ru' && isLanguageSwitcherOpen2 == false) {
+    $('.language-switcher__flag-container').css({'transition':'height .5s','height':'200%','z-index':'8888'});
+    $('.language-switcher__flag-en').css({'display':'block'});
+    isLanguageSwitcherOpen2 = true;
+    return
+  }
+  if (isLanguageSwitcherOpen2 == true) {
+    $('.language-switcher__flag-container').css({'transition':'height .5s','height':'100%','z-index':'8888'});
+    $('.language-switcher__flag-en').css({'display':'none'});
+    isLanguageSwitcherOpen2 = false;
+    return
+  }
+  $('.language-switcher__flag-container').css({'transition':'height .5s','height':'100%','z-index':'8888'});
+  $('.language-switcher__btn').css({'display':'none'});
+  $('.language-switcher__flag-en').css({'display':'none'});
+  isLanguageSwitcherOpen = false;
+  selectedLanguage = 'ru';
+});
+
+
+function showInfoMessage(message) {
+
+  $('p.info-message__body').text(message);
+  $('.info-message').css({'right':'0px'});
+
+  $('.info-message__close-btn').click(function(){
+    $('.info-message').css({'right':'-290px'});
+  });
+
+}
+
+
+// message-to-mentor
+// open
+$('.call-us-btn').click(function(){
+
+  // clear previous values
+  $('.message-to-mentor__subject').val('');
+  $('.message-to-mentor__text').val('');
+
+  $('.message-to-mentor__positioning-wrapper').css({'zIndex':'8888','background-color':'rgba(0,0,0,.8)'});
+  $('.message-to-mentor').css({'left':'0%'});
+});
+
+// close
+$('.message-to-mentor__close-btn').click(function(){
+  closeMessageToMentor();
+});
+
+// validation and close
+$('.message-to-mentor__btn').click(function(e){
+  if($('.message-to-mentor__text').val().length < 10) {
+    e.preventDefault();
+    $('.message-to-mentor__validation-warning').css({'height':'30px'});
+  } else {
+    closeMessageToMentor();
+  }
+});
+$('.message-to-mentor__text').keyup(function(){
+  if ($(this).val().length >= 10) {
+    $('.message-to-mentor__validation-warning').css({'height':'0px'});
+  }
+});
+
+function closeMessageToMentor () {
+  $('.message-to-mentor').css({'left':'110%'});
+  var tempMessageToMentorWidth = $('.message-to-mentor__holder').css('width');
+  var tempMessageToMentorPadding = $('.message-to-mentor__holder').css('padding-left');
+  setTimeout(function(){
+    $('.message-to-mentor__holder').css({'width':'0px','padding':'0px'});
+    $('.message-to-mentor__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+    $('.message-to-mentor').css({'left':'-110%'});
+  },500);
+  setTimeout(function(){
+    $('.message-to-mentor__validation-warning').css({'height':'0px'});
+    $('.message-to-mentor__holder').css({'width':tempMessageToMentorWidth,'padding':tempMessageToMentorPadding});
+  },1000);
+}
+
+
+
+// message-from-mentor
+// open
+$('.tempBTN').click(function(){
+
+  $('.message-from-mentor__positioning-wrapper').css({'zIndex':'8888','background-color':'rgba(0,0,0,.8)'});
+  $('.message-from-mentor').css({'left':'0%'});
+});
+
+// close
+$('.message-from-mentor__btn, .message-from-mentor__close-btn').click(function(){
+  $('.message-from-mentor').css({'left':'110%'});
+  var tempMessageFromMentorWidth = $('.message-from-mentor__holder').css('width');
+  var tempMessageFromMentorPadding = $('.message-from-mentor__holder').css('padding-left');
+  setTimeout(function(){
+    $('.message-from-mentor__holder').css({'width':'0px','padding':'0px'});
+    $('.message-from-mentor__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+    $('.message-from-mentor').css({'left':'-110%'});
+  },500);
+  setTimeout(function(){
+    $('.message-from-mentor__holder').css({'width':tempMessageFromMentorWidth,'padding':tempMessageFromMentorPadding});
+  },1000);
+});
+
+
+
+// profile-editor
+//open
+$('#profile-editor').click(function() {
+  $('.profile-editor__positioning-wrapper').css({ 'zIndex': '8888', 'background-color': 'rgba(0,0,0,.8)' });
+  $('.profile-editor').css({ 'left': '0%' });
+});
+
+// simple close
+$('.profile-editor__close-btn').click(function() {
+    closeProfilePopup();
+});
+
+// ↓↓↓ phone-input - number selection ↓↓↓
+$("#prof-phone").keypress(function(e) {
+  e = e || event;
+  if (e.ctrlKey || e.altKey || e.metaKey) return;
+  var chr = getChar(e);
+
+  if(!$("#prof-phone").val()) {
+    if(chr != 1 && chr != 2 && chr != 3 &&
+       chr != 4 && chr != 5 && chr != 6 &&
+       chr != 7 && chr != 8 && chr != 9 &&
+       chr != 0 && chr != '+' && e.keyCode != 8) {
+      return false
+    }
+  } else {
+    if(chr != 1 && chr != 2 && chr != 3 &&
+       chr != 4 && chr != 5 && chr != 6 &&
+       chr != 7 && chr != 8 && chr != 9 &&
+       chr != 0 && e.keyCode != 8) {
+      return false
+    }
+  }
+});
+// ↑↑↑ phone-input - number selection ↑↑↑
+
+// ↓↓↓ validation and close ↓↓↓
+$('.profile-editor__btn').click(function(e) {
+
+  if ($('#prof-fname').val().length < 2) {
+    e.preventDefault();
+    $('#prof-fname-info').css({'transition':'height .5s','height':'30px', 'margin-top':'10px'});
+    return
+  }
+
+  if ($('#prof-lname').val().length < 2) {
+    e.preventDefault();
+    $('#prof-lname-info').css({'transition':'height .5s','height':'30px', 'margin-top':'10px'});
+    return
+  }
+
+  if ($('#prof-country').val().length < 3) {
+    e.preventDefault();
+    $('#prof-country-info').css({'transition':'height .5s','height':'30px', 'margin-top':'10px'});
+    return
+  }
+
+  if ($('#prof-phone').val().length < 13) {
+    e.preventDefault();
+    $('#prof-phone-info').css({'transition':'height .5s','height':'30px', 'margin-top':'10px'});
+    return
+  }
+  closeProfilePopup();
+});
+
+$('#prof-fname').keyup(function(){
+  if ($('#prof-fname').val().length >= 2) {
+    $('#prof-fname-info').css({'transition':'height .5s','height':'0px', 'margin-top':'0px'});
+  }
+});
+
+$('#prof-lname').keyup(function(){
+  if ($('#prof-lname').val().length >= 2) {
+    $('#prof-lname-info').css({'transition':'height .5s','height':'0px', 'margin-top':'0px'});
+  }
+});
+
+$('#prof-country').keyup(function(){
+  if ($('#prof-country').val().length >= 3) {
+    $('#prof-country-info').css({'transition':'height .5s','height':'0px', 'margin-top':'0px'});
+  }
+});
+
+$('#prof-phone').keyup(function(){
+  if ($('#prof-phone').val().length >= 13) {
+    $('#prof-phone-info').css({'transition':'height .5s','height':'0px', 'margin-top':'0px'});
+  }
+});
+// ↑↑↑ validation and close ↑↑↑
+
+function getChar(event) {
+  if (event.which == null) { // IE
+    if (event.keyCode < 32) return null; // спец. символ
+    return String.fromCharCode(event.keyCode)
+  }
+
+  if (event.which != 0 && event.charCode != 0) { // все кроме IE
+    if (event.which < 32) return null; // спец. символ
+    return String.fromCharCode(event.which); // остальные
+  }
+
+  return null; // спец. символ
+}
+
+function closeProfilePopup() {
+  $('.profile-editor').css({ 'left': '110%' });
+  var tempProfileEditorWidth = $('.profile-editor__holder').css('width');
+  var tempProfileEditorPadding = $('.profile-editor__holder').css('padding-left');
+  setTimeout(function() {
+      $('.profile-editor__holder').css({ 'width': '0px', 'padding': '0px' });
+      $('.profile-editor__positioning-wrapper').css({ 'zIndex': '-1', 'background-color': 'rgba(0,0,0,0)' });
+      $('.profile-editor').css({ 'left': '-110%' });
+      //$('#prof-lname, #prof-fname, #prof-country, #prof-phone').val('');
+  }, 500);
+  setTimeout(function() {
+      $('.profile-editor__validation-warning').css({'height':'0px', 'margin-top':'0px'});
+      $('.profile-editor__holder').css({ 'width': tempProfileEditorWidth, 'padding': tempProfileEditorPadding });
+  }, 1000);
+}
+
+/* ↑↑↑ /BEM-blocks ↑↑↑ */
+
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
 function rewriteParlayLists() {
   //

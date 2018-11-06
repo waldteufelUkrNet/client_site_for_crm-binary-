@@ -37,8 +37,17 @@ a, a:hover {
 @import "style_1200+";
 @import "style_1920+";
 
-
 //BEM-blocks
 @import "../BEM-blocks/popup-ok-btn/popup-ok-btn.scss";
 @import "../BEM-blocks/close-btn/close-btn.scss";
 @import "../BEM-blocks/message/message.scss";
+
+@import "../BEM-blocks/simple-switcher/simple-switcher.scss";
+@import "../BEM-blocks/menu-btn/menu-btn.scss";
+@import "../BEM-blocks/language-switcher/language-switcher.scss";
+@import "../BEM-blocks/tug-of-war/tug-of-war.scss";
+@import "../BEM-blocks/popup-info-message/info-message.scss";
+
+@import "../BEM-blocks/popup-message-to-mentor/message-to-mentor.scss";
+@import "../BEM-blocks/popup-message-from-mentor/message-from-mentor.scss";
+@import "../BEM-blocks/popup-profile-editor/profile-editor.scss";

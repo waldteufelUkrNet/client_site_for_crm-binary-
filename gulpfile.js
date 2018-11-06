@@ -21,11 +21,10 @@ var gulp         = require('gulp'),                  //
     pngquant     = require('imagemin-pngquant'),     // потрібен для роботи gulp-imagemin
     pug          = require('gulp-pug'),              // перетворення pug в html
     purge        = require('gulp-css-purge'),        // видалення дублюючого коду css
-    rename       = require('gulp-rename'),            // перейменовування файлів
+    rename       = require('gulp-rename'),           // перейменовування файлів
     sass         = require('gulp-sass'),             // перетворення sass/scss в css
     sourcemaps   = require('gulp-sourcemaps'),       //
     uglify       = require('gulp-uglify');           // мініфікація js-файлів
-
 
 // TASKS
 // перетворення pug в html
@@ -68,34 +67,34 @@ gulp.task('sass', function() {
   .pipe(browserSync.reload({stream:true}))
 });
 
-// препроцесинг scss - BEM-blocks
-gulp.task('sass-bem', function() {
-  return gulp.src(['app/BEM-blocks/*/*.+(scss|sass)'])
-  .pipe(sass({outputStyle: 'compressed'}))
-  .on('error', notify.onError({
-    message: 'Error: <%= error.message %>',
-    title: 'sass error'
-  }))
-  .pipe(autoprefixer({
-    browsers : ['last 10 versions', '> 1%', 'ie 8', 'ie 7'],
-    cascade  : true
-  }))
-  .pipe(csso({
-    restructure : true, // злиття декларацій
-    sourceMap   : false,
-    debug       : false // виведення в консоль детальної інформації
-  }))
-  .pipe(gulp.dest('app/BEM-blocks'))
-  .pipe(browserSync.reload({stream:true}))
-});
+// // препроцесинг scss - BEM-blocks
+// gulp.task('sass-bem', function() {
+//   return gulp.src(['app/BEM-blocks/*/*.+(scss|sass)'])
+//   .pipe(sass({outputStyle: 'compressed'}))
+//   .on('error', notify.onError({
+//     message: 'Error: <%= error.message %>',
+//     title: 'sass error'
+//   }))
+//   .pipe(autoprefixer({
+//     browsers : ['last 10 versions', '> 1%', 'ie 8', 'ie 7'],
+//     cascade  : true
+//   }))
+//   .pipe(csso({
+//     restructure : true, // злиття декларацій
+//     sourceMap   : false,
+//     debug       : false // виведення в консоль детальної інформації
+//   }))
+//   .pipe(gulp.dest('app/BEM-blocks'))
+//   .pipe(browserSync.reload({stream:true}))
+// });
 
-//мініфікація js - style.js
-gulp.task('js', function() {
-  return gulp.src(['app/js-expanded/*.js'])
-    //.pipe(uglify())
-    .pipe(gulp.dest('app/js'))
-    .pipe(browserSync.reload({stream:true}));
-});
+// //мініфікація js - style.js
+// gulp.task('js', function() {
+//   return gulp.src(['app/js-expanded/*.js'])
+//     //.pipe(uglify())
+//     .pipe(gulp.dest('app/js'))
+//     .pipe(browserSync.reload({stream:true}));
+// });
 
 //мініфікація js - BEM-blocks
 gulp.task('js-bem', function() {

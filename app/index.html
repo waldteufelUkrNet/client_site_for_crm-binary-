@@ -35,8 +35,6 @@
               </div>
             </div>
           </div>
-          <style>.simple-switcher,.simple-switcher__thumb{height:18px;-webkit-border-radius:4px;border-radius:4px}.simple-switcher{margin:0 auto;font-size:13px;color:#1e90ff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-justify-content:space-around;-ms-flex-pack:distribute;justify-content:space-around;position:relative;width:70px;background-color:#fff}.simple-switcher span{display:block;cursor:default}.simple-switcher__thumb{position:absolute;top:0;left:0;cursor:pointer;background-color:#d3d3d3;width:35px}.simple-switcher__thumb-line{width:1px;height:10px;background-color:#1d2a38;position:absolute;top:50%;-webkit-transform:translate(0,-50%);-ms-transform:translate(0,-50%);transform:translate(0,-50%)}.simple-switcher__thumb-line-1{left:35%}.simple-switcher__thumb-line-2{left:50%}.simple-switcher__thumb-line-3{left:65%}</style>
-          <script>$(document).ready(function(){var t="demo";$(".simple-switcher__thumb").click(function(){return"demo"==t?($(".simple-switcher__thumb").css({transition:".2s",left:"35px"}),t="real",void $(".central-part__account-type span").text("Real")):"real"==t?($(".simple-switcher__thumb").css({transition:".2s",left:"0px"}),t="demo",void $(".central-part__account-type span").text("Demo")):void 0})});</script>
           <!-- ↑↑↑ BEM-blocks: language-switcher (end) ↑↑↑-->
         </div><img class="central-part__currency-img" src="img/Bitcoin.png" alt="img/Bitcoin.png">
         <div class="central-part__currency-value">9999.99</div>
@@ -52,8 +50,6 @@
             <div class="menu-btn__3-line menu-btn__line"></div>
           </div>
         </div>
-        <style>.menu-btn{width:24px;height:20px;position:relative;cursor:pointer}.menu-btn__line{width:24px;height:2px;background-color:#1e90ff;position:absolute}.menu-btn__1-line{top:0}.menu-btn__2-line{top:9px}.menu-btn__3-line{top:18px}</style>
-        <script>$(document).ready(function(){var t,n=!0;function s(){if(n){if(n=!1,setTimeout(function(){n=!0},500),$(".menu-btn").click=null,!t)return $(".menu-btn__1-line").css({transition:".5s",top:"9px"}),$(".menu-btn__3-line").css({transition:".5s",top:"9px"}),$(".menu-btn__2-line").css({transition:".5s",opacity:"0"}),setTimeout(function(){$(".menu-btn__1-line").css({transition:".5s",transform:"rotate(45deg)"}),$(".menu-btn__3-line").css({transition:".5s",transform:"rotate(-45deg)"})},500),void i(t=!0);if(t)return $(".menu-btn__1-line").css({transition:".5s",transform:"rotate(0deg)"}),$(".menu-btn__3-line").css({transition:".5s",transform:"rotate(0deg)"}),$(".menu-btn__2-line").css({"transition-delay":".5s","transition-duration":".5s",opacity:"1"}),setTimeout(function(){$(".menu-btn__1-line").css({"transition-duration":".5s",top:"0px"}),$(".menu-btn__3-line").css({"transition-duration":".5s",top:"18px"})},500),void i(t=!1)}}function i(n){var i=$(".menu-list-a");if(1==n&&($(".menu").css({"border-width":"1px"}).css({transition:".5s",height:"182px"}),setTimeout(function(){for(var n=0,t="0s",s=0;s<i.length;s++)$(i[s]).css({transition:".2s","transition-delay":t,left:"0%"}),t=(n+=.1)+"s"},500)),0==n){for(var t=0,s="0s",e=0;e<i.length;e++)$(i[e]).css({transition:".2s","transition-delay":s,left:"100%"}),s=(t+=.1)+"s";setTimeout(function(){$(".menu").css({"border-width":"0px"}).css({transition:".5s",height:"0px"})},600)}}$(".menu-btn").click(function(){s()}),$(document).click(function(n){"menu-btn"!=n.target.className&&1==t&&s()})});</script>
         <!-- ↑↑↑ BEM-blocks: menu-btn (end) ↑↑↑--><span id="language-span">Lang:</span>
         <!-- ↓↓↓ BEM-blocks: language-switcher (start) ↓↓↓-->
         <div class="language-switcher__positioning-wrapper">
@@ -64,8 +60,6 @@
             </div>
           </div>
         </div>
-        <style>.language-switcher{position:relative;z-index:8666;width:32px;height:24px;cursor:pointer}.language-switcher__flag-container{position:absolute;z-index:8666;top:0;left:0;height:100%;width:32px;overflow:hidden}.language-switcher__btn{display:block;color:#1e90ff;border:0;background-color:#fff;text-align:center;line-height:24px;font-size:18px;-webkit-transition:color .5s;-o-transition:color .5s;transition:color .5s}.language-switcher__btn,.language-switcher__flag-en,.language-switcher__flag-ru{position:relative;z-index:8666;width:32px;height:24px;cursor:pointer}.language-switcher__flag-en{background:url(../../img/language-switcher.jpg) -452px -252px}.language-switcher__flag-ru{background:url(../../img/language-switcher.jpg) -377px -393px}</style>
-        <script>$(document).ready(function(){var n,i=!1,e=!1;$(".language-switcher__btn").click(function(){if(0==i)return $(".language-switcher__flag-container").css({transition:"height .5s",height:"300%","z-index":"8888"}),void(i=!0);$(".language-switcher__flag-container").css({transition:"height .5s",height:"100%","z-index":"8888"}),i=!1}),$(".language-switcher__flag-en").click(function(){return"en"==n&&0==e?($(".language-switcher__flag-container").css({transition:"height .5s",height:"200%","z-index":"8888"}),$(".language-switcher__flag-ru").css({display:"block","z-index":"8888"}),void(e=!0)):1==e?($(".language-switcher__flag-container").css({transition:"height .5s",height:"100%","z-index":"8888"}),$(".language-switcher__flag-ru").css({display:"none"}),void(e=!1)):($(".language-switcher__flag-container").css({transition:"height .5s",height:"100%","z-index":"8888"}),$(".language-switcher__btn").css({display:"none"}),$(".language-switcher__flag-ru").css({display:"none"}),i=!1,void(n="en"))}),$(".language-switcher__flag-ru").click(function(){return"ru"==n&&0==e?($(".language-switcher__flag-container").css({transition:"height .5s",height:"200%","z-index":"8888"}),$(".language-switcher__flag-en").css({display:"block"}),void(e=!0)):1==e?($(".language-switcher__flag-container").css({transition:"height .5s",height:"100%","z-index":"8888"}),$(".language-switcher__flag-en").css({display:"none"}),void(e=!1)):($(".language-switcher__flag-container").css({transition:"height .5s",height:"100%","z-index":"8888"}),$(".language-switcher__btn").css({display:"none"}),$(".language-switcher__flag-en").css({display:"none"}),i=!1,void(n="ru"))})});</script>
         <!-- ↑↑↑ BEM-blocks: language-switcher (end) ↑↑↑-->
         <div class="menu">
           <ul class="menu-list">
@@ -527,7 +521,6 @@
             </div>
             <div class="tug-of-war__img-holder"><img class="tug-of-war__img" src="img/bear1.png" alt="bear1.png" id="bear1"><img class="tug-of-war__img" src="img/bear2.png" alt="bear2.png" id="bear2"></div>
           </div>
-          <style>@-webkit-keyframes lightbulb{0%{background-color:#ff0;border-color:#3d4a58}to{background-color:#3d4a58;border-color:#ff0}}@keyframes lightbulb{0%{background-color:#ff0;border-color:#3d4a58}to{background-color:#3d4a58;border-color:#ff0}}.tug-of-war__wrapper{width:100%;max-width:220px;height:40px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;overflow:hidden;margin:-5px 0 5px;position:relative}.tug-of-war__img-holder{height:30px;width:55px;position:relative}.tug-of-war__img-holder img:first-of-type{display:none}.tug-of-war__img{height:30px;position:absolute}.tug-of-war__indicator-wrapper{position:relative}.tug-of-war__indicator,.tug-of-war__indicator-holder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex}.tug-of-war__indicator-holder{overflow-x:hidden;overflow-y:visible;-webkit-border-radius:2px;border-radius:2px;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;width:120px;height:4px;position:relative}.tug-of-war__indicator{width:200%;height:100%;position:absolute;left:50%;-webkit-transform:translate(-50%);-ms-transform:translate(-50%);transform:translate(-50%)}.tug-of-war__indicator-line{width:50%;height:100%}.tug-of-war__indicator-line:first-of-type{background-color:#1e90ff}.tug-of-war__indicator-line:last-of-type{background-color:red}.tug-of-war__lightbulb{width:8px;height:8px;-webkit-border-radius:50%;border-radius:50%;border:1px solid #ff0;background-color:#ff0;position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-animation-name:lightbulb;animation-name:lightbulb;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-direction:alternate;animation-direction:alternate}</style>
           <!-- ↑↑↑ BEM-blocks: tug-of-war (end) ↑↑↑-->
           <div class="investment-calculator">
             <label for="#investment-input">инвестиции:</label>
@@ -595,6 +588,94 @@
         </div>
       </section>
       <!-- /SECTION 3-->
+      <!-- ↓↓↓ BEM-blocks: message-to-mentor (start) ↓↓↓-->
+      <div class="message__wrapper message-to-mentor__positioning-wrapper">
+        <div class="message__holder message-to-mentor__holder">
+          <div class="message message-to-mentor">
+            <div class="close-btn message-to-mentor__close-btn">
+              <div class="close-btn__line1"></div>
+              <div class="close-btn__line2"></div>
+            </div>
+            <h5 class="message-to-mentor__header">Написать сообщение администрации</h5>
+            <form class="message-to-mentor__form" action="#" method="#" name="message-to-mentor">
+              <input class="message-to-mentor__subject" type="text" placeholder="тема">
+              <textarea class="message-to-mentor__text" placeholder="сообщение"></textarea>
+              <div class="validation-warning message__validation-warning message-to-mentor__validation-warning">Напишите сообщение!</div>
+              <button class="popup-ok-btn message__btn message-to-mentor__btn" type="button">отправить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- ↑↑↑ BEM-blocks: message-to-mentor (end) ↑↑↑-->
+      <!-- ↓↓↓ BEM-blocks: message-from-mentor (start) ↓↓↓-->
+      <div class="message-from-mentor__positioning-wrapper message__wrapper">
+        <div class="message-from-mentor__holder message__holder">
+          <div class="message-from-mentor message">
+            <div class="close-btn message-from-mentor__close-btn">
+              <div class="close-btn__line1"></div>
+              <div class="close-btn__line2"></div>
+            </div>
+            <h5 class="message-from-mentor__header">Вам сообщение
+              <div class="message-from-mentor__text-wrapper">
+                <div class="message-from-mentor__text">
+                  <p class="Lorem">ipsum dolor sit amet, consectetur adipisicing elit. Expedita corporis eligendi commodi nesciunt dolores minima, enim fuga officiis quae in laborum optio tenetur praesentium quis sit harum mollitia veritatis, maiores excepturi, suscipit soluta eius possimus temporibus! Repudiandae nostrum numquam provident molestias veritatis quas recusandae laudantium, ipsa dolorum dolorem cumque alias excepturi libero ipsum corrupti, quaerat hic. Accusantium autem consequuntur repellat error recusandae sint dolor explicabo, blanditiis odit, cumque cupiditate libero hic eaque porro, laboriosam assumenda obcaecati voluptatem nisi. Aliquam provident laudantium sit. Temporibus magni natus ab nihil atque, ipsum ut? Nemo maxime asperiores cumque similique culpa quia provident inventore optio!</p><br>
+                  <p class="message-from-mentor__mentor_name">Белый Господин</p>
+                </div>
+              </div>
+              <button class="message-from-mentor__btn message__btn popup-ok-btn" type="button">ок</button>
+            </h5>
+          </div>
+        </div>
+      </div>
+      <!-- ↑↑↑ BEM-blocks: message-from-mentor (end) ↑↑↑-->
+      <!-- ↓↓↓ BEM-blocks: profile-editor (start) ↓↓↓-->
+      <div class="profile-editor__positioning-wrapper">
+        <div class="profile-editor__holder">
+          <div class="profile-editor">
+            <div class="close-btn profile-editor__close-btn">
+              <div class="close-btn__line1"></div>
+              <div class="close-btn__line2"></div>
+            </div>
+            <h5 class="profile-editor__header">Редактор профиля</h5>
+            <form class="profile-editor__form" action="#" method="#" name="profile-editor">
+              <label class="profile-editor__label"><span class="profile-editor__annotation">Имя</span>
+                <input class="profile-editor__input" id="prof-fname" type="text" placeholder="имя"><span></span>
+                <div class="validation-warning profile-editor__validation-warning" id="prof-fname-info">Введите Ваше имя!</div>
+              </label>
+              <label class="profile-editor__label"><span class="profile-editor__annotation">Фамилия</span>
+                <input class="profile-editor__input" id="prof-lname" type="text" placeholder="фамилия"><span></span>
+                <div class="validation-warning profile-editor__validation-warning" id="prof-lname-info">Введите Вашу фамилию!</div>
+              </label>
+              <label class="profile-editor__label"><span class="profile-editor__annotation">Пол</span>
+                <div class="profile-editor__gender-container">
+                  <input class="profile-editor__input" type="radio" name="gender" value="male">мужской
+                  <input class="profile-editor__input" type="radio" name="gender" value="female">женский
+                  <input class="profile-editor__input" type="radio" name="gender" value="none" checked>не указан
+                </div>
+              </label>
+              <label class="profile-editor__label"><span class="profile-editor__annotation">Дата рождения</span>
+                <input class="profile-editor__input" id="datepicker" type="text" placeholder="день рождения">
+              </label>
+              <label class="profile-editor__label"><span class="profile-editor__annotation">Страна</span>
+                <input class="profile-editor__input" id="prof-country" type="text" placeholder="страна"><span></span>
+                <div class="validation-warning profile-editor__validation-warning" id="prof-country-info">Введите страну проживания!</div>
+              </label>
+              <label class="profile-editor__label"><span class="profile-editor__annotation">Город</span>
+                <input class="profile-editor__input" type="text" placeholder="город">
+              </label>
+              <label class="profile-editor__label"><span class="profile-editor__annotation">Адрес</span>
+                <input class="profile-editor__input" type="text" placeholder="адрес">
+              </label>
+              <label class="profile-editor__label"><span class="profile-editor__annotation">Телефон</span>
+                <input class="profile-editor__input" id="prof-phone" type="text" placeholder="телефон"><span></span>
+                <div class="validation-warning profile-editor__validation-warning" id="prof-phone-info">Введите корректный номер телефона!</div>
+              </label>
+              <button class="profile-editor__btn popup-ok-btn" type="button">сохранить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- ↑↑↑ BEM-blocks: profile-editor (end) ↑↑↑-->
       <!-- ↓↓↓ BEM-blocks: info-message (start) ↓↓↓-->
       <div class="info-message">
         <div class="close-btn info-message__close-btn">
@@ -603,8 +684,6 @@
         </div>
         <p class="info-message__body">Lorem ipsum dolor sit amet.</p>
       </div>
-      <style>.info-message{width:290px;min-height:65px;background-color:#000;border:1px solid gray;padding:22px;line-height:1.3em;text-align:left;position:absolute;z-index:9999;right:-290px;bottom:2px;-webkit-transition:right .5s;-o-transition:right .5s;transition:right .5s}.info-message__body{position:relative;height:100%;width:-webkit-calc(290px - 44px);width:calc(290px - 44px);left:50%;-webkit-transform:translate(-50%);-ms-transform:translate(-50%);transform:translate(-50%)}</style>
-      <script>function showInfoMessage(s){$("p.info-message__body").text(s),$(".info-message").css({right:"0px"}),$(".info-message__close-btn").click(function(){$(".info-message").css({right:"-290px"})})}</script>
       <!-- ↑↑↑ BEM-blocks: info-message (end) ↑↑↑-->
     </main>
     <!-- /MAIN PART-->
