@@ -297,11 +297,10 @@ function redrawChart () {
   redrawPlotline(chart, YPlotLinesValue);
   tugOfWarAnimation();
   redrawPlotlineValueRectangle(YPlotLinesValue);
-
 }
 
 function redrawPlotline(nameOfChart, currentYCoordValue) {
-  // перемальовує плот-лінію та викликає функцію перемальовування поточного значення
+  // перемальовує плот-лінію
 
   nameOfChart.yAxis[0].addPlotLine({
     color         : 'red',
@@ -369,6 +368,7 @@ function redrawSerie(x,y){
 
   chart.yAxis[0].removePlotLine('plot-line-1');
   redrawPlotline(chart, YPlotLinesValue);
+  redrawPlotlineValueRectangle(YPlotLinesValue);
 
   if (dataType == 'areaspline') {
 
@@ -435,10 +435,10 @@ function calculateMinorTickInterval () {
   chart.xAxis[0].minorTickInterval = minorTickXInterval;
 }
 
-function sleep(ms) {
-  ms += new Date().getTime();
-  while (new Date() < ms){}
-}
+// function sleep(ms) {
+//   ms += new Date().getTime();
+//   while (new Date() < ms){}
+// }
 // ↑↑↑ functions declarations ↑↑↑
 
 // ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓

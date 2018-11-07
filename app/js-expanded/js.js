@@ -1309,3 +1309,5 @@ function getChar(event) {
   return null; // спец. символ
 }
 /* ↑↑↑ /FUNCTIONS DECLARATIONS ↑↑↑ */
+
+// made by waldteufel@ukr.net
