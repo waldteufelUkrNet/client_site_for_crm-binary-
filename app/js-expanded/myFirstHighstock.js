@@ -73,6 +73,7 @@ $('.timer-buttons-li').click(function(){
 
 // ↓↓↓ functions declarations ↓↓↓
 function getDataArr(){
+console.log("start getDataArr");
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
@@ -81,6 +82,7 @@ function getDataArr(){
   $.ajax({
     url: dataArr,
     success: function (data) {
+console.log("start getDataArr-ajax-success");
       resultArr  = [];
       pointStart = 0;
       startTime  = 0;
@@ -149,11 +151,14 @@ function getDataArr(){
       drawChart();
       calculateMinorTickInterval();
       drawChart();
+      console.log("end getDataArr-ajax-success");
     }
   });
+console.log("finish getDataArr");
 }
 
 function drawChart() {
+console.log("start drawChart");
   // створює графік
 
   chart = Highcharts.stockChart({
@@ -163,7 +168,7 @@ function drawChart() {
       spacingRight         : 50,
       events               : {
         load               :  function () {
-
+console.log("start drawChart-load");
                                 // через появу зв'язки drawChart() - calculateMinorTickInterval() - drawChart()
                                 // потрібно відсікати перший drawChart()
                                 if (!isDrawing) {
@@ -179,7 +184,7 @@ function drawChart() {
                                 clearInterval(interval);
 
                                 interval = setInterval(function () {
-
+console.log("start drawChart-load-setInterval");
                                   $.getJSON(dataOne, function (data) { // data = [{Sumbol,Value,'date'}]
                                     var x = new Date(data[0].Date),
                                         y = data[0].Value;
@@ -262,9 +267,11 @@ function drawChart() {
       style                : { color : '#F0F0F0' }
     }
   });
+console.log("end drawChart");
 }
 
 function redrawChart () {
+console.log("start redrawChart");
   // видаляє графік, перемальовує графік
 
   chart.series[0].remove();
@@ -297,9 +304,11 @@ function redrawChart () {
   redrawPlotline(chart, YPlotLinesValue);
   tugOfWarAnimation();
   redrawPlotlineValueRectangle(YPlotLinesValue);
+console.log("end redrawChart");
 }
 
 function redrawPlotline(nameOfChart, currentYCoordValue) {
+console.log("start redrawPlotline");
   // перемальовує плот-лінію
 
   nameOfChart.yAxis[0].addPlotLine({
@@ -321,9 +330,11 @@ function redrawPlotline(nameOfChart, currentYCoordValue) {
     },
     value         : currentYCoordValue
   });
+console.log("end redrawPlotline");
 }
 
 function redrawPlotlineValueRectangle(Value) {
+console.log("start redrawPlotlineValueRectangle");
   // функція перемальовує поточне значення плот-лінії
 
   var labelCoordTop  = $('.highcharts-plot-line-label').position().top;
@@ -354,9 +365,11 @@ function redrawPlotlineValueRectangle(Value) {
                             'top'          :labelCoordTop+8,
                             'left'         :labelCoordLeft-7
                       });
+console.log("end redrawPlotlineValueRectangle");
 };
 
 function redrawSerie(x,y){
+console.log("start redrawSerie");
   // приймає поточні значення котировки, визначає тип графіка, формує тимчасову точку та
   // запускає функцію redrawChart(), яка перемальовує графік. Якщо час тимчасової точки
   // більше за час останньої точки більше ніж на крок графіка, додає точку до масиву значень
@@ -401,9 +414,11 @@ function redrawSerie(x,y){
     tempPoint = null;
   }
   redrawChart ();
+console.log("end redrawSerie");
 }
 
 function calculateMinorTickInterval () {
+console.log("start calculateMinorTickInterval");
   // функція розраховує ціну поділки для допоміжних ліній
 
   // yAxis
@@ -433,6 +448,7 @@ function calculateMinorTickInterval () {
 
   minorTickXInterval = (xAxisSecondLabelsValue - xAxisFirstLabelsValue) * 60 * 60 * 1000 / 6;
   chart.xAxis[0].minorTickInterval = minorTickXInterval;
+console.log("end calculateMinorTickInterval");
 }
 
 // function sleep(ms) {
@@ -443,6 +459,7 @@ function calculateMinorTickInterval () {
 
 // ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓
 function tugOfWarAnimation() {
+console.log("start tugOfWarAnimation");
   // функція циклом визначає найбільшу і найменшу точки графіку, приймає їх за 100% та 0% відповідно,
   // потім бере першу і останню точки, переводить їх у проценти, знаходить їх різницю і ділить на два,
   // отримане значення або додає, або віднімає від 50% у залежності від тенденції.
@@ -514,6 +531,7 @@ function tugOfWarAnimation() {
 
   $('.tug-of-war__indicator').css({'left':shiftTOW});
   $('.tug-of-war__lightbulb').css({'left':shiftTOW});
+console.log("end tugOfWarAnimation");
 }
 // ↑↑↑ BEM-blocks: tug-of-war (end) ↑↑↑
 
