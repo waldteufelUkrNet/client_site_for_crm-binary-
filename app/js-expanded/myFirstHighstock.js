@@ -26,8 +26,7 @@ getDataArr();
 var arrOfTimerBtns = $('.timer-buttons-li');
 var arrOfTypeBtns  = $('.type-buttons-li');
 
-$('.type-buttons-li').click(function(){
-
+$(arrOfTypeBtns).click(function(){
   // type-buttons highlighting
   for (var i = 0; i < arrOfTypeBtns.length; i++) {
     $(arrOfTypeBtns[i]).removeClass('type-buttons-li_active');
@@ -54,26 +53,23 @@ $('.type-buttons-li').click(function(){
     }
     stringType = '?';
   }
-
   getDataArr();
 });
 
-$('.timer-buttons-li').click(function(){
+$(arrOfTimerBtns).click(function(){
 
   for (var i = 0; i < arrOfTimerBtns.length; i++) {
     $(arrOfTimerBtns[i]).removeClass('timer-buttons-li_active');
     $(this).addClass('timer-buttons-li_active');
   }
   timeStep = +$(this).attr('data-time');
-
-  getDataArr();
+  drawChart();
 });
 // ↑↑↑ type/time-switch-buttons behavior ↑↑↑
 
 
 // ↓↓↓ functions declarations ↓↓↓
 function getDataArr(){
-console.log("start getDataArr");
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
@@ -82,7 +78,6 @@ console.log("start getDataArr");
   $.ajax({
     url: dataArr,
     success: function (data) {
-console.log("start getDataArr-ajax-success");
       resultArr  = [];
       pointStart = 0;
       startTime  = 0;
@@ -102,7 +97,7 @@ console.log("start getDataArr-ajax-success");
         // в перший раз тимчасова точка (145 рандомна) = 144
         resultArr.push(resultArr[resultArr.length-1]);
 
-      } else if (dataType == 'candlestick' || dataType == 'ohlc') {
+      } else if (dataType == 'candlestick' || dataType == 'ohlc') { console.log(dataType);
 
         YPlotLinesValue = data[data.length-1].Close;
 
@@ -151,14 +146,11 @@ console.log("start getDataArr-ajax-success");
       drawChart();
       calculateMinorTickInterval();
       drawChart();
-      console.log("end getDataArr-ajax-success");
     }
   });
-console.log("finish getDataArr");
 }
 
 function drawChart() {
-console.log("start drawChart");
   // створює графік
 
   chart = Highcharts.stockChart({
@@ -168,7 +160,6 @@ console.log("start drawChart");
       spacingRight         : 50,
       events               : {
         load               :  function () {
-console.log("start drawChart-load");
                                 // через появу зв'язки drawChart() - calculateMinorTickInterval() - drawChart()
                                 // потрібно відсікати перший drawChart()
                                 if (!isDrawing) {
@@ -184,7 +175,6 @@ console.log("start drawChart-load");
                                 clearInterval(interval);
 
                                 interval = setInterval(function () {
-console.log("start drawChart-load-setInterval");
                                   $.getJSON(dataOne, function (data) { // data = [{Sumbol,Value,'date'}]
                                     var x = new Date(data[0].Date),
                                         y = data[0].Value;
@@ -267,11 +257,9 @@ console.log("start drawChart-load-setInterval");
       style                : { color : '#F0F0F0' }
     }
   });
-console.log("end drawChart");
 }
 
 function redrawChart () {
-console.log("start redrawChart");
   // видаляє графік, перемальовує графік
 
   chart.series[0].remove();
@@ -304,11 +292,9 @@ console.log("start redrawChart");
   redrawPlotline(chart, YPlotLinesValue);
   tugOfWarAnimation();
   redrawPlotlineValueRectangle(YPlotLinesValue);
-console.log("end redrawChart");
 }
 
 function redrawPlotline(nameOfChart, currentYCoordValue) {
-console.log("start redrawPlotline");
   // перемальовує плот-лінію
 
   nameOfChart.yAxis[0].addPlotLine({
@@ -330,15 +316,18 @@ console.log("start redrawPlotline");
     },
     value         : currentYCoordValue
   });
-console.log("end redrawPlotline");
 }
 
 function redrawPlotlineValueRectangle(Value) {
-console.log("start redrawPlotlineValueRectangle");
   // функція перемальовує поточне значення плот-лінії
 
-  var labelCoordTop  = $('.highcharts-plot-line-label').position().top;
-  var labelCoordLeft = $('.highcharts-plot-line-label').position().left;
+  // if ( $('.highcharts-plot-line-label') ) {
+  //   var labelCoordTop  = $('.highcharts-plot-line-label').position().top;
+  //   var labelCoordLeft = $('.highcharts-plot-line-label').position().left;
+  // } else {
+    var labelCoordTop  = $('.highcharts-plot-lines-9988').position().top - 9; // highcharts-plot-line-label
+    var labelCoordLeft = $('#container').width() + 183;                             // highcharts-plot-line-label
+  // }
 
   if (labelValue1 > labelValue2) {
     labelBorderColor = 'red';
@@ -363,13 +352,11 @@ console.log("start redrawPlotlineValueRectangle");
   $('#labelIndicator').css({'width'        :'4px',
                             'height'       :'4px',
                             'top'          :labelCoordTop+8,
-                            'left'         :labelCoordLeft-7
+                            'left'         :labelCoordLeft-5
                       });
-console.log("end redrawPlotlineValueRectangle");
 };
 
 function redrawSerie(x,y){
-console.log("start redrawSerie");
   // приймає поточні значення котировки, визначає тип графіка, формує тимчасову точку та
   // запускає функцію redrawChart(), яка перемальовує графік. Якщо час тимчасової точки
   // більше за час останньої точки більше ніж на крок графіка, додає точку до масиву значень
@@ -414,11 +401,9 @@ console.log("start redrawSerie");
     tempPoint = null;
   }
   redrawChart ();
-console.log("end redrawSerie");
 }
 
 function calculateMinorTickInterval () {
-console.log("start calculateMinorTickInterval");
   // функція розраховує ціну поділки для допоміжних ліній
 
   // yAxis
@@ -448,18 +433,16 @@ console.log("start calculateMinorTickInterval");
 
   minorTickXInterval = (xAxisSecondLabelsValue - xAxisFirstLabelsValue) * 60 * 60 * 1000 / 6;
   chart.xAxis[0].minorTickInterval = minorTickXInterval;
-console.log("end calculateMinorTickInterval");
 }
 
-// function sleep(ms) {
-//   ms += new Date().getTime();
-//   while (new Date() < ms){}
-// }
+function sleep(ms) {
+  ms += new Date().getTime();
+  while (new Date() < ms){}
+}
 // ↑↑↑ functions declarations ↑↑↑
 
 // ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓
 function tugOfWarAnimation() {
-console.log("start tugOfWarAnimation");
   // функція циклом визначає найбільшу і найменшу точки графіку, приймає їх за 100% та 0% відповідно,
   // потім бере першу і останню точки, переводить їх у проценти, знаходить їх різницю і ділить на два,
   // отримане значення або додає, або віднімає від 50% у залежності від тенденції.
@@ -531,7 +514,6 @@ console.log("start tugOfWarAnimation");
 
   $('.tug-of-war__indicator').css({'left':shiftTOW});
   $('.tug-of-war__lightbulb').css({'left':shiftTOW});
-console.log("end tugOfWarAnimation");
 }
 // ↑↑↑ BEM-blocks: tug-of-war (end) ↑↑↑
 
