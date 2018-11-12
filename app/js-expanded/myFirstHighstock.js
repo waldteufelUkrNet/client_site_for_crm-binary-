@@ -36,7 +36,6 @@ $(arrOfTypeBtns).click(function(){
 
   // time-buttons highlighting
   if (dataType == 'candlestick' || dataType == 'ohlc') {
-
     for (var i = 0; i < arrOfTimerBtns.length; i++) {
       if ($(arrOfTimerBtns[i]).attr('data-time') != '30' && $(arrOfTimerBtns[i]).attr('data-time') != '60') {
           if ($(arrOfTimerBtns[i]).hasClass('timer-buttons-li_active')) {
@@ -54,6 +53,8 @@ $(arrOfTypeBtns).click(function(){
     stringType = '?';
   }
   getDataArr();
+  // redrawChart();
+  // drawChart();
 });
 
 $(arrOfTimerBtns).click(function(){
@@ -63,13 +64,14 @@ $(arrOfTimerBtns).click(function(){
     $(this).addClass('timer-buttons-li_active');
   }
   timeStep = +$(this).attr('data-time');
-  drawChart();
+
+  getDataArr();
 });
 // ↑↑↑ type/time-switch-buttons behavior ↑↑↑
 
 
 // ↓↓↓ functions declarations ↓↓↓
-function getDataArr(){
+function getDataArr() {
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
@@ -97,7 +99,7 @@ function getDataArr(){
         // в перший раз тимчасова точка (145 рандомна) = 144
         resultArr.push(resultArr[resultArr.length-1]);
 
-      } else if (dataType == 'candlestick' || dataType == 'ohlc') { console.log(dataType);
+      } else if (dataType == 'candlestick' || dataType == 'ohlc') {
 
         YPlotLinesValue = data[data.length-1].Close;
 
@@ -321,13 +323,9 @@ function redrawPlotline(nameOfChart, currentYCoordValue) {
 function redrawPlotlineValueRectangle(Value) {
   // функція перемальовує поточне значення плот-лінії
 
-  // if ( $('.highcharts-plot-line-label') ) {
-  //   var labelCoordTop  = $('.highcharts-plot-line-label').position().top;
-  //   var labelCoordLeft = $('.highcharts-plot-line-label').position().left;
-  // } else {
-    var labelCoordTop  = $('.highcharts-plot-lines-9988').position().top - 9; // highcharts-plot-line-label
-    var labelCoordLeft = $('#container').width() + 183;                             // highcharts-plot-line-label
-  // }
+  // highcharts-plot-line-label - перестало працювати усюди, крім edge
+  var labelCoordTop  = $('.highcharts-plot-lines-9988').position().top - 11;
+  var labelCoordLeft = getCoords( $('.highcharts-plot-lines-9988')[0] ).right + 3;
 
   if (labelValue1 > labelValue2) {
     labelBorderColor = 'red';
@@ -400,7 +398,7 @@ function redrawSerie(x,y){
     resultArr.push(tempPoint);
     tempPoint = null;
   }
-  redrawChart ();
+  redrawChart();
 }
 
 function calculateMinorTickInterval () {
@@ -431,7 +429,7 @@ function calculateMinorTickInterval () {
     xAxisSecondLabelsValue = 24;
   }
 
-  minorTickXInterval = (xAxisSecondLabelsValue - xAxisFirstLabelsValue) * 60 * 60 * 1000 / 6;
+  minorTickXInterval = (xAxisSecondLabelsValue - xAxisFirstLabelsValue) * 60 * 60 * 1000 / 5;
   chart.xAxis[0].minorTickInterval = minorTickXInterval;
 }
 
@@ -439,6 +437,19 @@ function sleep(ms) {
   ms += new Date().getTime();
   while (new Date() < ms){}
 }
+
+function getCoords(elem) {
+  var box = elem.getBoundingClientRect();
+  return {
+    top    : box.top + pageYOffset,
+    bottom : box.bottom + pageYOffset,
+    left   : box.left + pageXOffset,
+    right  : box.right + pageXOffset,
+    height : box.bottom - box.top,
+    width  : box.right - box.left
+  };
+}
+
 // ↑↑↑ functions declarations ↑↑↑
 
 // ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓

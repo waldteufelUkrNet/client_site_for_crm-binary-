@@ -233,17 +233,18 @@
       font-size                  : 11px;
       line-height                : 18px;
       color                      : black;
+      user-select                : none;
     }
-    #labelIndicator {
-      position                   : fixed;
-      z-index                    : 9999;
-      border-radius              : 50px;
-      animation-name             : lightbulb;
-      animation-duration         : .5s;
-      animation-iteration-count  : infinite;
-      animation-direction        : alternate;
-      background-color: red;
-    }
+    // #labelIndicator {
+    //   position                   : fixed;
+    //   z-index                    : 9999;
+    //   border-radius              : 50px;
+    //   animation-name             : lightbulb;
+    //   animation-duration         : .5s;
+    //   animation-iteration-count  : infinite;
+    //   animation-direction        : alternate;
+    //   background-color: red;
+    // }
     .slider-area {
       width                      : calc( 100% - 30px);
       height                     : 200px;
