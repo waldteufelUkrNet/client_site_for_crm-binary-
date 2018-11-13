@@ -11,7 +11,9 @@ var startTime,
     dataType           = 'areaspline',
     timeStep           = 5,
     dataArr            = 'http://god.ares.local/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol,
+    // dataArr            = 'http://62.216.34.146:9000/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol,
     dataOne            = 'http://god.ares.local/api/Stock?timer=realOne&symbol=' + stringSymbol,
+    // dataOne            = 'http://62.216.34.146:9000/api/Stock?timer=realOne&symbol=' + stringSymbol,
     isDrawing          = false,
     labelValue1        = labelValue2 = YPlotLinesValue,
     labelBorderColor   = 'white',
@@ -24,8 +26,7 @@ getDataArr();
 var arrOfTimerBtns = $('.timer-buttons-li');
 var arrOfTypeBtns  = $('.type-buttons-li');
 
-$('.type-buttons-li').click(function(){
-
+$(arrOfTypeBtns).click(function(){
   // type-buttons highlighting
   for (var i = 0; i < arrOfTypeBtns.length; i++) {
     $(arrOfTypeBtns[i]).removeClass('type-buttons-li_active');
@@ -35,7 +36,6 @@ $('.type-buttons-li').click(function(){
 
   // time-buttons highlighting
   if (dataType == 'candlestick' || dataType == 'ohlc') {
-
     for (var i = 0; i < arrOfTimerBtns.length; i++) {
       if ($(arrOfTimerBtns[i]).attr('data-time') != '30' && $(arrOfTimerBtns[i]).attr('data-time') != '60') {
           if ($(arrOfTimerBtns[i]).hasClass('timer-buttons-li_active')) {
@@ -52,11 +52,12 @@ $('.type-buttons-li').click(function(){
     }
     stringType = '?';
   }
-
   getDataArr();
+  // redrawChart();
+  // drawChart();
 });
 
-$('.timer-buttons-li').click(function(){
+$(arrOfTimerBtns).click(function(){
 
   for (var i = 0; i < arrOfTimerBtns.length; i++) {
     $(arrOfTimerBtns[i]).removeClass('timer-buttons-li_active');
@@ -70,11 +71,12 @@ $('.timer-buttons-li').click(function(){
 
 
 // ↓↓↓ functions declarations ↓↓↓
-function getDataArr(){
+function getDataArr() {
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
   dataArr = 'http://god.ares.local/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
+  // dataArr = 'http://62.216.34.146:9000/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
   $.ajax({
     url: dataArr,
     success: function (data) {
@@ -160,7 +162,6 @@ function drawChart() {
       spacingRight         : 50,
       events               : {
         load               :  function () {
-
                                 // через появу зв'язки drawChart() - calculateMinorTickInterval() - drawChart()
                                 // потрібно відсікати перший drawChart()
                                 if (!isDrawing) {
@@ -176,7 +177,6 @@ function drawChart() {
                                 clearInterval(interval);
 
                                 interval = setInterval(function () {
-
                                   $.getJSON(dataOne, function (data) { // data = [{Sumbol,Value,'date'}]
                                     var x = new Date(data[0].Date),
                                         y = data[0].Value;
@@ -294,11 +294,10 @@ function redrawChart () {
   redrawPlotline(chart, YPlotLinesValue);
   tugOfWarAnimation();
   redrawPlotlineValueRectangle(YPlotLinesValue);
-
 }
 
 function redrawPlotline(nameOfChart, currentYCoordValue) {
-  // перемальовує плот-лінію та викликає функцію перемальовування поточного значення
+  // перемальовує плот-лінію
 
   nameOfChart.yAxis[0].addPlotLine({
     color         : 'red',
@@ -324,8 +323,9 @@ function redrawPlotline(nameOfChart, currentYCoordValue) {
 function redrawPlotlineValueRectangle(Value) {
   // функція перемальовує поточне значення плот-лінії
 
-  var labelCoordTop  = $('.highcharts-plot-line-label').position().top;
-  var labelCoordLeft = $('.highcharts-plot-line-label').position().left;
+  // highcharts-plot-line-label - перестало працювати усюди, крім edge
+  var labelCoordTop  = $('.highcharts-plot-lines-9988').position().top - 11;
+  var labelCoordLeft = getCoords( $('.highcharts-plot-lines-9988')[0] ).right + 3;
 
   if (labelValue1 > labelValue2) {
     labelBorderColor = 'red';
@@ -350,7 +350,7 @@ function redrawPlotlineValueRectangle(Value) {
   $('#labelIndicator').css({'width'        :'4px',
                             'height'       :'4px',
                             'top'          :labelCoordTop+8,
-                            'left'         :labelCoordLeft-7
+                            'left'         :labelCoordLeft-5
                       });
 };
 
@@ -366,6 +366,7 @@ function redrawSerie(x,y){
 
   chart.yAxis[0].removePlotLine('plot-line-1');
   redrawPlotline(chart, YPlotLinesValue);
+  redrawPlotlineValueRectangle(YPlotLinesValue);
 
   if (dataType == 'areaspline') {
 
@@ -397,14 +398,14 @@ function redrawSerie(x,y){
     resultArr.push(tempPoint);
     tempPoint = null;
   }
-  redrawChart ();
+  redrawChart();
 }
 
 function calculateMinorTickInterval () {
   // функція розраховує ціну поділки для допоміжних ліній
 
   // yAxis
-  minorTickYInterval = ($('.highcharts-yaxis-labels > text')[1].innerHTML - $('.highcharts-yaxis-labels > text')[0].innerHTML).toFixed(5) / 5;
+  minorTickYInterval = ($('.highcharts-yaxis-labels > text')[1].innerHTML - $('.highcharts-yaxis-labels > text')[0].innerHTML).toFixed(5) / 4;
   chart.yAxis[0].minorTickInterval = minorTickYInterval;
 
   // xAxis
@@ -428,7 +429,7 @@ function calculateMinorTickInterval () {
     xAxisSecondLabelsValue = 24;
   }
 
-  minorTickXInterval = (xAxisSecondLabelsValue - xAxisFirstLabelsValue) * 60 * 60 * 1000 / 6;
+  minorTickXInterval = (xAxisSecondLabelsValue - xAxisFirstLabelsValue) * 60 * 60 * 1000 / 4;
   chart.xAxis[0].minorTickInterval = minorTickXInterval;
 }
 
@@ -436,6 +437,19 @@ function sleep(ms) {
   ms += new Date().getTime();
   while (new Date() < ms){}
 }
+
+function getCoords(elem) {
+  var box = elem.getBoundingClientRect();
+  return {
+    top    : box.top + pageYOffset,
+    bottom : box.bottom + pageYOffset,
+    left   : box.left + pageXOffset,
+    right  : box.right + pageXOffset,
+    height : box.bottom - box.top,
+    width  : box.right - box.left
+  };
+}
+
 // ↑↑↑ functions declarations ↑↑↑
 
 // ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓

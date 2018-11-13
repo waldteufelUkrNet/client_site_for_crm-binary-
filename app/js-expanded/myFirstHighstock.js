@@ -80,11 +80,12 @@ function getDataArr() {
   $.ajax({
     url: dataArr,
     success: function (data) {
+      console.log("data", data);
       resultArr  = [];
       pointStart = 0;
       startTime  = 0;
 
-      if (dataType == 'areaspline') {
+      if (dataType == 'areaspline') { console.log('areaspline');
 
         YPlotLinesValue = data[data.length-1].Value;
 
@@ -96,6 +97,9 @@ function getDataArr() {
           tempArr.push(data[i].Value);
           resultArr.push(tempArr);
         }
+        console.log("resultArr", resultArr);
+        console.log(resultArr[143][0]);
+        console.log(resultArr[143][0].getUTCHours());
         // в перший раз тимчасова точка (145 рандомна) = 144
         resultArr.push(resultArr[resultArr.length-1]);
 
@@ -126,8 +130,6 @@ function getDataArr() {
       } else {
         console.log('dataType is not "areaspline", "candlestick" or "ohlc"')
       }
-      pointStart = resultArr[0];
-      startTime  = pointStart[0].getTime();
 
       // якщо точок забагато, контейнер їх не вміщує, і свічки замість 30/60 хв. стають по 1 - 6 годині
       var containerWidth = $('#container').width();
@@ -144,6 +146,9 @@ function getDataArr() {
       } else if (containerWidth < 340) {
         resultArr = resultArr.slice(124);
       } else {}
+
+      pointStart = resultArr[0];
+      startTime  = pointStart[0].getTime();
 
       drawChart();
       calculateMinorTickInterval();
@@ -204,7 +209,7 @@ function drawChart() {
       color                : 'dodgerblue',
       showInNavigator      : false,
       pointStart           : startTime,
-      pointInterval        : timeStep * 60 * 1000,
+      pointInterval        : timeStep * 60 * 1000 + 20000,
       fillColor            : {
         linearGradient     : {
           x1               : 0,
@@ -218,27 +223,11 @@ function drawChart() {
         ]
       }
     }],
-    yAxis                  : {
-      crosshair            : true,
-      scrollbar            : { enabled: false },
-      opposite             : true,
-      lineColor            : 'rgba(111, 111, 115, 0.2)',
-      gridLineColor        : 'rgba(111, 111, 115, 0.3)',
-      gridLineWidth        : 1,
-      labels               : {
-        style              : { color: '#E0E0E3' },
-        align              : 'left',
-        x                  : 8,
-        y                  : 4
-      },
-      tickColor            : 'rgba(111, 111, 115, 0.2)',
-      tickWidth            : 0,
-      minorGridLineColor   : 'rgba(111, 111, 115, 0.1)',
-      minorTickInterval    : minorTickYInterval,
-      minorTickLength      : 0
-    },
     xAxis                  : {
       type                 : 'datetime',
+      dateTimeLabelFormats: {
+        day: '%e of %b'
+      },
       crosshair            : true,
       scrollbar            : { enabled: false },
       lineColor            : 'rgba(111, 111, 115, 0.2)',
@@ -257,6 +246,25 @@ function drawChart() {
     tooltip                : {
       backgroundColor      : 'rgba(0, 0, 0, 0.85)',
       style                : { color : '#F0F0F0' }
+    },
+    yAxis                  : {
+      crosshair            : true,
+      scrollbar            : { enabled: false },
+      opposite             : true,
+      lineColor            : 'rgba(111, 111, 115, 0.2)',
+      gridLineColor        : 'rgba(111, 111, 115, 0.3)',
+      gridLineWidth        : 1,
+      labels               : {
+        style              : { color: '#E0E0E3' },
+        align              : 'left',
+        x                  : 8,
+        y                  : 4
+      },
+      tickColor            : 'rgba(111, 111, 115, 0.2)',
+      tickWidth            : 0,
+      minorGridLineColor   : 'rgba(111, 111, 115, 0.1)',
+      minorTickInterval    : minorTickYInterval,
+      minorTickLength      : 0
     }
   });
 }
@@ -273,7 +281,7 @@ function redrawChart () {
     color                : 'dodgerblue',
     showInNavigator      : false,
     pointStart           : startTime,
-    pointInterval        : timeStep * 60 * 1000,
+    pointInterval        : timeStep * 60 * 1000 + 20000,
     fillColor            : {
       linearGradient     : {
         x1               : 0,
@@ -405,7 +413,7 @@ function calculateMinorTickInterval () {
   // функція розраховує ціну поділки для допоміжних ліній
 
   // yAxis
-  minorTickYInterval = ($('.highcharts-yaxis-labels > text')[1].innerHTML - $('.highcharts-yaxis-labels > text')[0].innerHTML).toFixed(5) / 5;
+  minorTickYInterval = ($('.highcharts-yaxis-labels > text')[1].innerHTML - $('.highcharts-yaxis-labels > text')[0].innerHTML).toFixed(5) / 4;
   chart.yAxis[0].minorTickInterval = minorTickYInterval;
 
   // xAxis
@@ -429,7 +437,7 @@ function calculateMinorTickInterval () {
     xAxisSecondLabelsValue = 24;
   }
 
-  minorTickXInterval = (xAxisSecondLabelsValue - xAxisFirstLabelsValue) * 60 * 60 * 1000 / 5;
+  minorTickXInterval = (xAxisSecondLabelsValue - xAxisFirstLabelsValue) * 60 * 60 * 1000 / 4;
   chart.xAxis[0].minorTickInterval = minorTickXInterval;
 }
 

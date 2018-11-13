@@ -1229,7 +1229,7 @@ function isActionsTradingPossible(url, dateTime) {
     success :  function ( data ) {
                 if (!!data == true) {
                   answer = true;
-                } else { console.log('else');
+                } else {
                   answer = false;
                 }
               },
