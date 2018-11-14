@@ -108,7 +108,7 @@ gulp.task('watch', gulp.parallel(
   gulp.series('sass', 'js', 'pug', 'browser-sync'), // gulp.series('sass', 'sass-bem', 'js', 'js-bem', 'pug', 'browser-sync'),
   function() {
     gulp.watch(['app/scss/*.+(scss|sass)'], gulp.series('sass'));
-    gulp.watch(['app/BEM-blocks/*/*.+(scss|sass)'], gulp.series('pug')); // gulp.watch(['app/BEM-blocks/*/*.+(scss|sass)'], gulp.series('sass-bem','pug'));
+    gulp.watch(['app/BEM-blocks/*/*.+(scss|sass)'], gulp.series('sass', 'pug')); // gulp.watch(['app/BEM-blocks/*/*.+(scss|sass)'], gulp.series('sass-bem','pug'));
 
     gulp.watch(['app/js-expanded/*.js'], gulp.series('js')); // gulp.watch(['app/js-expanded/*.js'], gulp.series('pug'));
     gulp.watch(['app/BEM-blocks/*/*.js', '!app/BEM-blocks/minjs'], gulp.series('pug')); // gulp.watch(['app/BEM-blocks/*/*.js', '!app/BEM-blocks/minjs'], gulp.series('js-bem','pug'));

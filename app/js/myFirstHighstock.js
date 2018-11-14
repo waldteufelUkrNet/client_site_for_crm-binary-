@@ -26,7 +26,7 @@ getDataArr();
 var arrOfTimerBtns = $('.timer-buttons-li');
 var arrOfTypeBtns  = $('.type-buttons-li');
 
-$(arrOfTypeBtns).click(function(){
+$(arrOfTypeBtns).click(function(){ isDrawing = false;
   // type-buttons highlighting
   for (var i = 0; i < arrOfTypeBtns.length; i++) {
     $(arrOfTypeBtns[i]).removeClass('type-buttons-li_active');
@@ -53,8 +53,6 @@ $(arrOfTypeBtns).click(function(){
     stringType = '?';
   }
   getDataArr();
-  // redrawChart();
-  // drawChart();
 });
 
 $(arrOfTimerBtns).click(function(){
@@ -72,6 +70,7 @@ $(arrOfTimerBtns).click(function(){
 
 // ↓↓↓ functions declarations ↓↓↓
 function getDataArr() {
+  console.log('start getDataArr');
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
@@ -80,12 +79,11 @@ function getDataArr() {
   $.ajax({
     url: dataArr,
     success: function (data) {
-      console.log("data", data);
       resultArr  = [];
       pointStart = 0;
       startTime  = 0;
 
-      if (dataType == 'areaspline') { console.log('areaspline');
+      if (dataType == 'areaspline') {
 
         YPlotLinesValue = data[data.length-1].Value;
 
@@ -93,13 +91,11 @@ function getDataArr() {
         for (var i = 0; i < data.length; i++) {
           var tempArr = [];
           var tempTime = new Date(data[i].Date);
+          tempTime = new Date( tempTime.setSeconds(0) ); // обнулюємо секунди (для Highcharts потрібні чіткі інтервали аж до секунди)
           tempArr.push(tempTime);
           tempArr.push(data[i].Value);
           resultArr.push(tempArr);
         }
-        console.log("resultArr", resultArr);
-        console.log(resultArr[143][0]);
-        console.log(resultArr[143][0].getUTCHours());
         // в перший раз тимчасова точка (145 рандомна) = 144
         resultArr.push(resultArr[resultArr.length-1]);
 
@@ -133,19 +129,19 @@ function getDataArr() {
 
       // якщо точок забагато, контейнер їх не вміщує, і свічки замість 30/60 хв. стають по 1 - 6 годині
       var containerWidth = $('#container').width();
-      if (872 <= containerWidth && containerWidth < 1032) {
-        resultArr = resultArr.slice(24);
-      } else if (742 <= containerWidth && containerWidth < 872) {
-        resultArr = resultArr.slice(44);
-      } else if (621 <= containerWidth && containerWidth < 742) {
-        resultArr = resultArr.slice(64);
-      } else if (468 <= containerWidth && containerWidth < 621) {
-        resultArr = resultArr.slice(84);
-      } else if (340 <= containerWidth && containerWidth < 468) {
-        resultArr = resultArr.slice(104);
-      } else if (containerWidth < 340) {
-        resultArr = resultArr.slice(124);
-      } else {}
+      // if (872 <= containerWidth && containerWidth < 1032) {
+      //   resultArr = resultArr.slice(24);
+      // } else if (742 <= containerWidth && containerWidth < 872) {
+      //   resultArr = resultArr.slice(44);
+      // } else if (621 <= containerWidth && containerWidth < 742) {
+      //   resultArr = resultArr.slice(64);
+      // } else if (468 <= containerWidth && containerWidth < 621) {
+      //   resultArr = resultArr.slice(84);
+      // } else if (340 <= containerWidth && containerWidth < 468) {
+      //   resultArr = resultArr.slice(104);
+      // } else if (containerWidth < 340) {
+      //   resultArr = resultArr.slice(124);
+      // }
 
       pointStart = resultArr[0];
       startTime  = pointStart[0].getTime();
@@ -158,6 +154,7 @@ function getDataArr() {
 }
 
 function drawChart() {
+  // console.log('start drawChart');
   // створює графік
 
   chart = Highcharts.stockChart({
@@ -181,7 +178,7 @@ function drawChart() {
 
                                 clearInterval(interval);
 
-                                interval = setInterval(function () {
+                                interval = setInterval(function () { //console.log('setInterval');
                                   $.getJSON(dataOne, function (data) { // data = [{Sumbol,Value,'date'}]
                                     var x = new Date(data[0].Date),
                                         y = data[0].Value;
@@ -209,7 +206,7 @@ function drawChart() {
       color                : 'dodgerblue',
       showInNavigator      : false,
       pointStart           : startTime,
-      pointInterval        : timeStep * 60 * 1000 + 20000,
+      pointInterval        : timeStep * 60 * 1000,
       fillColor            : {
         linearGradient     : {
           x1               : 0,
@@ -270,6 +267,7 @@ function drawChart() {
 }
 
 function redrawChart () {
+  // console.log('start redrawChart');
   // видаляє графік, перемальовує графік
 
   chart.series[0].remove();
@@ -281,7 +279,7 @@ function redrawChart () {
     color                : 'dodgerblue',
     showInNavigator      : false,
     pointStart           : startTime,
-    pointInterval        : timeStep * 60 * 1000 + 20000,
+    pointInterval        : timeStep * 60 * 1000,
     fillColor            : {
       linearGradient     : {
         x1               : 0,
@@ -305,6 +303,7 @@ function redrawChart () {
 }
 
 function redrawPlotline(nameOfChart, currentYCoordValue) {
+  // console.log('start redrawPlotline');
   // перемальовує плот-лінію
 
   nameOfChart.yAxis[0].addPlotLine({
@@ -329,6 +328,7 @@ function redrawPlotline(nameOfChart, currentYCoordValue) {
 }
 
 function redrawPlotlineValueRectangle(Value) {
+  // console.log('start redrawPlotlineValueRectangle');
   // функція перемальовує поточне значення плот-лінії
 
   // highcharts-plot-line-label - перестало працювати усюди, крім edge
@@ -363,6 +363,7 @@ function redrawPlotlineValueRectangle(Value) {
 };
 
 function redrawSerie(x,y){
+  console.log('start redrawSerie');
   // приймає поточні значення котировки, визначає тип графіка, формує тимчасову точку та
   // запускає функцію redrawChart(), яка перемальовує графік. Якщо час тимчасової точки
   // більше за час останньої точки більше ніж на крок графіка, додає точку до масиву значень
@@ -381,7 +382,7 @@ function redrawSerie(x,y){
     tempPoint = [x,y];
     resultArr[resultArr.length-1] = tempPoint;
 
-  } else if (dataType == 'candlestick' || dataType == 'ohlc') {
+  } else if (dataType == 'candlestick' || dataType == 'ohlc') { console.log('ohlc');
 
     if (tempPoint == null) {
       tempPoint = [x, y, y, y, y]; // tempPoint = [x, open, high, low, close];
@@ -410,6 +411,7 @@ function redrawSerie(x,y){
 }
 
 function calculateMinorTickInterval () {
+  // console.log('start calculateMinorTickInterval');
   // функція розраховує ціну поділки для допоміжних ліній
 
   // yAxis
@@ -462,6 +464,7 @@ function getCoords(elem) {
 
 // ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓
 function tugOfWarAnimation() {
+  // console.log('start tugOfWarAnimation');
   // функція циклом визначає найбільшу і найменшу точки графіку, приймає їх за 100% та 0% відповідно,
   // потім бере першу і останню точки, переводить їх у проценти, знаходить їх різницю і ділить на два,
   // отримане значення або додає, або віднімає від 50% у залежності від тенденції.

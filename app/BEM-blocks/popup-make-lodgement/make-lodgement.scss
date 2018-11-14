@@ -79,19 +79,17 @@
     top                  : 74px;
     right                : -12px;
   }
-  &__pay-block form {
+  .make-lodgement-MasterCard,
+  .make-lodgement-VISA {
     display              : grid;
     grid-template-columns: 2fr 1fr;
     grid-gap             : 30px;
     overflow             : hidden;
     height               : 0px;
-    input {
-      height             : 30px;
-      border             : 1px solid #1d2a38;
-      font-family        : rcl;
-      font-size          : 16px;
-      padding-left       : 6px;
-      margin-bottom      : 10px;
+    .make-lodgement__currency {
+      display              : grid;
+      grid-template-columns: 5fr 2fr;
+      grid-gap             : 2px;
     }
   }
 }

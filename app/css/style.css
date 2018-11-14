@@ -1817,7 +1817,8 @@ a, a:hover {
   right: -12px;
 }
 
-.make-lodgement__pay-block form {
+.make-lodgement .make-lodgement-MasterCard,
+.make-lodgement .make-lodgement-VISA {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 30px;
@@ -1825,11 +1826,9 @@ a, a:hover {
   height: 0px;
 }
 
-.make-lodgement__pay-block form input {
-  height: 30px;
-  border: 1px solid #1d2a38;
-  font-family: rcl;
-  font-size: 16px;
-  padding-left: 6px;
-  margin-bottom: 10px;
+.make-lodgement .make-lodgement-MasterCard .make-lodgement__currency,
+.make-lodgement .make-lodgement-VISA .make-lodgement__currency {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  grid-gap: 2px;
 }
