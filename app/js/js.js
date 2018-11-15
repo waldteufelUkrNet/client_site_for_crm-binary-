@@ -531,12 +531,11 @@ $('.message-from-mentor__btn, .message-from-mentor__close-btn').click(function()
 // change-password
 // open
 $('.tempBTN3').click(function(){
-
   $('.change-password__positioning-wrapper').css({'zIndex':'8888','background-color':'rgba(0,0,0,.8)'});
   $('.change-password').css({'left':'0%'});
 });
 // close
-$('.change-password__btn, .change-password__close-btn').click(function(){
+$('.change-password__btn-close, .change-password__close-btn').click(function(){
   $('.change-password').css({'left':'110%'});
   var tempChangePasswordWidth = $('.change-password__holder').css('width');
   var tempChangePasswordPadding = $('.change-password__holder').css('padding-left');
@@ -548,6 +547,29 @@ $('.change-password__btn, .change-password__close-btn').click(function(){
   setTimeout(function(){
     $('.change-password__holder').css({'width':tempChangePasswordWidth,'padding':tempChangePasswordPadding});
   },1000);
+});
+// validation
+$('.change-password__btn-send').click(function(e){
+  console.log($('#change-password-input').val().length);
+  if ( $('#change-password-input').val().length < 6 ) {
+    e.preventDefault();
+    console.log( 'пароль повинен бути не менше ніж 6 символів' );
+  } else if ( $('#change-password-input').val() != $('#new-password-input').val() ) {
+    e.preventDefault();
+    console.log( 'паролі не співпадають' );
+  } else {
+    $('.change-password').css({'left':'110%'});
+    var tempChangePasswordWidth = $('.change-password__holder').css('width');
+    var tempChangePasswordPadding = $('.change-password__holder').css('padding-left');
+    setTimeout(function(){
+      $('.change-password__holder').css({'width':'0px','padding':'0px'});
+      $('.change-password__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+      $('.change-password').css({'left':'-110%'});
+    },500);
+    setTimeout(function(){
+      $('.change-password__holder').css({'width':tempChangePasswordWidth,'padding':tempChangePasswordPadding});
+    },1000);
+  }
 });
 
 

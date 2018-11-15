@@ -642,7 +642,7 @@
               <h5 class="make-cash-withdrawal__header">Создать запрос на вывод</h5>
               <form class="make-cash-withdrawal__form" name="make-cash-withdrawal-form" action="#" method="get">
                 <div class="make-cash-withdrawal__form-fields-wrapper">
-                  <input class="make-cash-withdrawal__input" type="text" placeholder="введи сумму">
+                  <input class="make-cash-withdrawal__input" type="text" placeholder="введи сумму" name="currencyValue">
                   <select class="make-cash-withdrawal__select" name="currency">
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
@@ -764,8 +764,8 @@
                 <div class="change-password__form-fields-wrapper">
                   <label for="change-password-input">новый пароль:</label>
                   <input class="change-password__input" id="change-password-input" type="password">
-                  <label for="new-password-input">повтори пароль:</label>
-                  <input class="change-password__input" id="new-password-input" type="password">
+                  <label for="new-password-input">повторите пароль:</label>
+                  <input class="change-password__input" id="new-password-input" type="password" name="newPassword">
                 </div>
                 <div class="change-password__form-buttons-wrapper">
                   <button class="change-password__btn change-password__btn-close" type="button">отмена</button>
