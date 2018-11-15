@@ -1,4 +1,4 @@
-$(document).ready(function(){
+// $(document).ready(function(){
 
   var isLanguageSwitcherOpen = false;
   var isLanguageSwitcherOpen2 = false;
@@ -55,4 +55,4 @@ $(document).ready(function(){
     selectedLanguage = 'ru';
   });
 
-});
+// });

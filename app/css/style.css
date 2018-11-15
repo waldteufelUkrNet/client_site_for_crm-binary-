@@ -1594,7 +1594,7 @@ a, a:hover {
   width: calc( 100% + 18px);
   height: 150px;
   color: white;
-  padding: 2px 10px;
+  padding: 2px 28px 2px 10px;
   font-family: rcl;
   font-size: 14px;
   line-height: 1.3em;
@@ -1831,4 +1831,159 @@ a, a:hover {
   display: grid;
   grid-template-columns: 5fr 2fr;
   grid-gap: 2px;
+}
+
+.make-cash-withdrawal__holder {
+  z-index: 9050;
+}
+
+.make-cash-withdrawal__header {
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.make-cash-withdrawal__form {
+  width: 234px;
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+}
+
+.make-cash-withdrawal__input {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 6px;
+  outline: none;
+  font-family: rcl;
+  font-size: 14px;
+}
+
+.make-cash-withdrawal__select {
+  position: relative;
+  top: -1px;
+}
+
+.make-cash-withdrawal__select option {
+  height: 26px;
+  line-height: 26px;
+}
+
+.make-cash-withdrawal__form-buttons-wrapper {
+  width: 234px;
+  padding: 0 14px 0 10px;
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.make-cash-withdrawal__btn {
+  height: 30px;
+  min-width: 90px;
+  border: 1px solid dodgerblue;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: white;
+  background-color: dodgerblue;
+  font-family: rcl;
+  font-size: 14px;
+  -webkit-transition: background-color .5s, border-color .5s;
+  -o-transition: background-color .5s, border-color .5s;
+  transition: background-color .5s, border-color .5s;
+}
+
+.make-cash-withdrawal__btn:hover {
+  background-color: #1d2a38;
+  border-color: white;
+}
+
+.change-password__holder {
+  z-index: 9050;
+}
+
+.change-password__header {
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.change-password__form {
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+}
+
+.change-password__form-fields-wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 6px;
+}
+
+.change-password label, .change-password__input {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 6px;
+  outline: none;
+  font-family: rcl;
+  font-size: 14px;
+}
+
+.change-password__form-buttons-wrapper {
+  width: 234px;
+  padding: 0 14px 0 10px;
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.change-password__btn {
+  height: 30px;
+  min-width: 90px;
+  border: 1px solid dodgerblue;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: white;
+  background-color: dodgerblue;
+  font-family: rcl;
+  font-size: 14px;
+  -webkit-transition: background-color .5s, border-color .5s;
+  -o-transition: background-color .5s, border-color .5s;
+  transition: background-color .5s, border-color .5s;
+}
+
+.change-password__btn:hover {
+  background-color: #1d2a38;
+  border-color: white;
 }

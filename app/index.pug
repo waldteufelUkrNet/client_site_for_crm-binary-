@@ -20,8 +20,10 @@ html(lang='en')
   body
     //- include BEM-blocks/size-info/size-info.pug
 
-    //- button.tempBTN(style='width: 120px; height: 30px; position: fixed; left: 10px; bottom: 120px; z-index: 9999; cursor: pointer') temp-btn
-    //- button.tempBTN2(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer') temp-btn2
+    button.tempBTN(style='width: 120px; height: 30px; position: fixed; left: 10px; bottom: 120px; z-index: 9999; cursor: pointer') temp-btn
+    button.tempBTN2(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer') temp-btn2
+    button.tempBTN3(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 60px; z-index: 9999; cursor: pointer') temp-btn3
+    button.tempBTN4(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 30px; z-index: 9999; cursor: pointer') temp-btn4
 
     // HEADER
     header.header
@@ -690,15 +692,16 @@ html(lang='en')
             i.fas.fa-redo-alt
       // /SECTION 3
 
-      //- // SECTION 4 (popups)
+      // SECTION 4 (popups)
       section.popups
         include BEM-Blocks/popup-make-lodgement/make-lodgement.pug
-        //-   include BEM-Blocks/popup-buy-sell-ok-info/buy-sell-ok-info.pug
+        include BEM-Blocks/popup-make-cash-withdrawal/make-cash-withdrawal.pug
         include BEM-blocks/popup-message-to-mentor/message-to-mentor.pug
         include BEM-blocks/popup-message-from-mentor/message-from-mentor.pug
         include BEM-blocks/popup-profile-editor/profile-editor.pug
         include BEM-blocks/popup-info-message/info-message.pug
-      //- // /SECTION 4
+        include BEM-blocks/popup-change-password/change-password.pug
+      // /SECTION 4
     // /MAIN PART
 
     // FOOTER
@@ -711,6 +714,7 @@ html(lang='en')
     script(src='libs/jquery-ui.js')
     script(src='libs/slick.js')
     script(src='libs/TimeCircles.js')
+    script(src='libs/formValidationJs.js)
 
     // own js
     script(src='js/js.js')

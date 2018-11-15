@@ -601,11 +601,25 @@
             <div class="make-lodgement__triangle"></div>
             <div class="make-lodgement__pay-block">
               <form class="make-lodgement-MasterCard" action="#" method="#" name="make-lodgement-MasterCard">
-                <input type="text">
+                <div class="make-lodgement__currency">
+                  <input type="text">
+                  <select name="currency-MC">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="RUB">RUB</option>
+                  </select>
+                </div>
                 <button class="popup-ok-btn" id="make-lodgement-MasterCard-btn" type="submit">оплатить</button>
               </form>
               <form class="make-lodgement-VISA" action="#" method="#" name="make-lodgement-VISA">
-                <input type="text">
+                <div class="make-lodgement__currency">
+                  <input type="text">
+                  <select name="currency-V">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="RUB">RUB</option>
+                  </select>
+                </div>
                 <button class="popup-ok-btn" id="make-lodgement-VISA-btn" type="submit">оплатить</button>
               </form>
             </div>
@@ -676,9 +690,6 @@
                     <input class="profile-editor__input" type="radio" name="gender" value="female">женский
                     <input class="profile-editor__input" type="radio" name="gender" value="none" checked>не указан
                   </div>
-                </label>
-                <label class="profile-editor__label"><span class="profile-editor__annotation">Дата рождения</span>
-                  <input class="profile-editor__input" id="datepicker" type="text" placeholder="день рождения">
                 </label>
                 <label class="profile-editor__label"><span class="profile-editor__annotation">Страна</span>
                   <input class="profile-editor__input" id="prof-country" type="text" placeholder="страна"><span></span>

@@ -70,7 +70,7 @@ $(arrOfTimerBtns).click(function(){
 
 // ↓↓↓ functions declarations ↓↓↓
 function getDataArr() {
-  console.log('start getDataArr');
+  // console.log('start getDataArr');
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
@@ -363,7 +363,7 @@ function redrawPlotlineValueRectangle(Value) {
 };
 
 function redrawSerie(x,y){
-  console.log('start redrawSerie');
+  // console.log('start redrawSerie');
   // приймає поточні значення котировки, визначає тип графіка, формує тимчасову точку та
   // запускає функцію redrawChart(), яка перемальовує графік. Якщо час тимчасової точки
   // більше за час останньої точки більше ніж на крок графіка, додає точку до масиву значень

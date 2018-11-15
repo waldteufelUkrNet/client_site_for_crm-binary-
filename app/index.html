@@ -16,6 +16,10 @@
     <script src="libs/jquery 3.3.1.js"></script>
   </head>
   <body>
+    <button class="tempBTN" style="width: 120px; height: 30px; position: fixed; left: 10px; bottom: 120px; z-index: 9999; cursor: pointer">temp-btn</button>
+    <button class="tempBTN2" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer">temp-btn2</button>
+    <button class="tempBTN3" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 60px; z-index: 9999; cursor: pointer">temp-btn3</button>
+    <button class="tempBTN4" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 30px; z-index: 9999; cursor: pointer">temp-btn4</button>
     <!-- HEADER-->
     <header class="header">
       <div class="logo_part">LOGOGO</div>
@@ -588,6 +592,7 @@
         </div>
       </section>
       <!-- /SECTION 3-->
+      <!-- SECTION 4 (popups)-->
       <section class="popups">
         <!-- ↓↓↓ BEM-blocks: make-lodgement (start) ↓↓↓-->
         <div class="make-lodgement__positioning-wrapper">
@@ -626,6 +631,33 @@
           </div>
         </div>
         <!-- ↑↑↑ BEM-blocks: make-lodgement (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: popup-make-cash-withdrawal (start) ↓↓↓-->
+        <div class="make-cash-withdrawal__positioning-wrapper message__wrapper">
+          <div class="make-cash-withdrawal__holder message__holder">
+            <div class="make-cash-withdrawal message">
+              <div class="close-btn make-cash-withdrawal__close-btn">
+                <div class="close-btn__line1"></div>
+                <div class="close-btn__line2"></div>
+              </div>
+              <h5 class="make-cash-withdrawal__header">Создать запрос на вывод</h5>
+              <form class="make-cash-withdrawal__form" name="make-cash-withdrawal-form" action="#" method="get">
+                <div class="make-cash-withdrawal__form-fields-wrapper">
+                  <input class="make-cash-withdrawal__input" type="text" placeholder="введи сумму">
+                  <select class="make-cash-withdrawal__select" name="currency">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="RUB">RUB</option>
+                  </select>
+                </div>
+                <div class="make-cash-withdrawal__form-buttons-wrapper">
+                  <button class="make-cash-withdrawal__btn make-cash-withdrawal__btn-close" type="button">отмена</button>
+                  <button class="make-cash-withdrawal__btn make-cash-withdrawal__btn-send" type="submit">создать</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- ↑↑↑ BEM-blocks: popup-make-cash-withdrawal (end) ↑↑↑-->
         <!-- ↓↓↓ BEM-blocks: message-to-mentor (start) ↓↓↓-->
         <div class="message__wrapper message-to-mentor__positioning-wrapper">
           <div class="message__holder message-to-mentor__holder">
@@ -653,15 +685,14 @@
                 <div class="close-btn__line1"></div>
                 <div class="close-btn__line2"></div>
               </div>
-              <h5 class="message-from-mentor__header">Вам сообщение
-                <div class="message-from-mentor__text-wrapper">
-                  <div class="message-from-mentor__text">
-                    <p class="Lorem">ipsum dolor sit amet, consectetur adipisicing elit. Expedita corporis eligendi commodi nesciunt dolores minima, enim fuga officiis quae in laborum optio tenetur praesentium quis sit harum mollitia veritatis, maiores excepturi, suscipit soluta eius possimus temporibus! Repudiandae nostrum numquam provident molestias veritatis quas recusandae laudantium, ipsa dolorum dolorem cumque alias excepturi libero ipsum corrupti, quaerat hic. Accusantium autem consequuntur repellat error recusandae sint dolor explicabo, blanditiis odit, cumque cupiditate libero hic eaque porro, laboriosam assumenda obcaecati voluptatem nisi. Aliquam provident laudantium sit. Temporibus magni natus ab nihil atque, ipsum ut? Nemo maxime asperiores cumque similique culpa quia provident inventore optio!</p><br>
-                    <p class="message-from-mentor__mentor_name">Белый Господин</p>
-                  </div>
+              <h5 class="message-from-mentor__header">Вам сообщение</h5>
+              <div class="message-from-mentor__text-wrapper">
+                <div class="message-from-mentor__text">
+                  <p class="Lorem">ipsum dolor sit amet, consectetur adipisicing elit. Expedita corporis eligendi commodi nesciunt dolores minima, enim fuga officiis quae in laborum optio tenetur praesentium quis sit harum mollitia veritatis, maiores excepturi, suscipit soluta eius possimus temporibus! Repudiandae nostrum numquam provident molestias veritatis quas recusandae laudantium, ipsa dolorum dolorem cumque alias excepturi libero ipsum corrupti, quaerat hic. Accusantium autem consequuntur repellat error recusandae sint dolor explicabo, blanditiis odit, cumque cupiditate libero hic eaque porro, laboriosam assumenda obcaecati voluptatem nisi. Aliquam provident laudantium sit. Temporibus magni natus ab nihil atque, ipsum ut? Nemo maxime asperiores cumque similique culpa quia provident inventore optio!</p><br>
+                  <p class="message-from-mentor__mentor_name">Белый Господин</p>
                 </div>
                 <button class="message-from-mentor__btn message__btn popup-ok-btn" type="button">ок</button>
-              </h5>
+              </div>
             </div>
           </div>
         </div>
@@ -720,7 +751,33 @@
           <p class="info-message__body">Lorem ipsum dolor sit amet.</p>
         </div>
         <!-- ↑↑↑ BEM-blocks: info-message (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: change-password (start) ↓↓↓-->
+        <div class="change-password__positioning-wrapper message__wrapper">
+          <div class="change-password__holder message__holder">
+            <div class="change-password message">
+              <div class="close-btn change-password__close-btn">
+                <div class="close-btn__line1"></div>
+                <div class="close-btn__line2"></div>
+              </div>
+              <h5 class="change-password__header">Смена пароля</h5>
+              <form class="change-password__form" name="make-cash-withdrawal-form" action="#" method="get">
+                <div class="change-password__form-fields-wrapper">
+                  <label for="change-password-input">новый пароль:</label>
+                  <input class="change-password__input" id="change-password-input" type="password">
+                  <label for="new-password-input">повтори пароль:</label>
+                  <input class="change-password__input" id="new-password-input" type="password">
+                </div>
+                <div class="change-password__form-buttons-wrapper">
+                  <button class="change-password__btn change-password__btn-close" type="button">отмена</button>
+                  <button class="change-password__btn change-password__btn-send" type="submit">сохранить</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- ↑↑↑ BEM-blocks: change-password (end) ↑↑↑-->
       </section>
+      <!-- /SECTION 4-->
     </main>
     <!-- /MAIN PART-->
     <!-- FOOTER-->
