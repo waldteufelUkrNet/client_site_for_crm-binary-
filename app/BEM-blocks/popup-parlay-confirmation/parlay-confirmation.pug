@@ -1,0 +1,35 @@
+// ↓↓↓ BEM-blocks: parlay-confirmation (start) ↓↓↓
+
+.parlay-confirmation__positioning-wrapper.message__wrapper
+  .parlay-confirmation__holder.message__holder
+    .parlay-confirmation.message
+      .close-btn.parlay-confirmation__close-btn
+        .close-btn__line1
+        .close-btn__line2
+      h5.parlay-confirmation__header Подтверждение ставки
+      .parlay-confirmation__text-wrapper
+        p.parlay-confirmation__question Вы точно хотите сделать данную ставку?
+
+        .parlay-confirmation__info-field
+          label(for='tradePair') пара:
+          span#tradePair BTCUSD
+
+          label(for='tradeSumm') сумма:
+          span#tradeSumm 100
+
+          label(for='tradeTime') время:
+          span#tradeTime 2018-12-12
+
+          label(for='tradeParlay') ставка:
+          span#tradeParlay вниз
+
+      .parlay-confirmation__form-buttons-wrapper
+        button(type='button').parlay-confirmation__btn.parlay-confirmation__btn-no нет
+        button(type='submit').parlay-confirmation__btn.parlay-confirmation__btn-yes да
+
+//- style
+//-   include parlay-confirmation.css
+//- script
+//-   include ../minjs/popup-parlay-confirmation/parlay-confirmation.js
+
+// ↑↑↑ BEM-blocks: parlay-confirmation (end) ↑↑↑

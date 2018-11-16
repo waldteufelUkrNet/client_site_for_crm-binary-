@@ -1594,7 +1594,7 @@ a, a:hover {
   width: calc( 100% + 18px);
   height: 150px;
   color: white;
-  padding: 2px 10px;
+  padding: 2px 28px 2px 10px;
   font-family: rcl;
   font-size: 14px;
   line-height: 1.3em;
@@ -1819,16 +1819,324 @@ a, a:hover {
 
 .make-lodgement .make-lodgement-MasterCard,
 .make-lodgement .make-lodgement-VISA {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 30px;
+  width: 345px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   overflow: hidden;
   height: 0px;
 }
 
-.make-lodgement .make-lodgement-MasterCard .make-lodgement__currency,
-.make-lodgement .make-lodgement-VISA .make-lodgement__currency {
+.make-lodgement .make-lodgement-MasterCard .make-lodgement__currency input,
+.make-lodgement .make-lodgement-VISA .make-lodgement__currency input {
+  height: 30px;
+  width: 155px;
+}
+
+.make-lodgement .make-lodgement-MasterCard .make-lodgement__currency select,
+.make-lodgement .make-lodgement-VISA .make-lodgement__currency select {
+  height: 30px;
+  width: 55px;
+}
+
+.make-cash-withdrawal__holder {
+  z-index: 9050;
+}
+
+.make-cash-withdrawal__header {
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.make-cash-withdrawal__form {
+  width: 234px;
+  display: block;
+  margin: 10px auto;
+  padding: 10px 0;
+}
+
+.make-cash-withdrawal__form-fields-wrapper {
+  position: relative;
+}
+
+.make-cash-withdrawal__input {
+  height: 30px;
+  width: 155px;
+  line-height: 30px;
+  padding: 0 6px;
+  outline: none;
+  font-family: rcl;
+  font-size: 14px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.make-cash-withdrawal__select {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 30px;
+  width: 55px;
+}
+
+.make-cash-withdrawal__select option {
+  height: 26px;
+  line-height: 26px;
+}
+
+.make-cash-withdrawal__form-buttons-wrapper {
+  width: 234px;
+  padding: 0 10px 0 10px;
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.make-cash-withdrawal__btn {
+  height: 30px;
+  min-width: 90px;
+  border: 1px solid dodgerblue;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: white;
+  background-color: dodgerblue;
+  font-family: rcl;
+  font-size: 14px;
+  -webkit-transition: background-color .5s, border-color .5s;
+  -o-transition: background-color .5s, border-color .5s;
+  transition: background-color .5s, border-color .5s;
+}
+
+.make-cash-withdrawal__btn:hover {
+  background-color: #1d2a38;
+  border-color: white;
+}
+
+.change-password__holder {
+  z-index: 9050;
+}
+
+.change-password__header {
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.change-password__form {
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+}
+
+.change-password__form-fields-wrapper {
   display: grid;
-  grid-template-columns: 5fr 2fr;
-  grid-gap: 2px;
+  grid-template-columns: auto 1fr;
+  grid-gap: 6px;
+}
+
+.change-password label, .change-password__input {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 6px;
+  outline: none;
+  font-family: rcl;
+  font-size: 14px;
+}
+
+.change-password__form-buttons-wrapper {
+  width: 234px;
+  padding: 0 14px 0 10px;
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.change-password__btn {
+  height: 30px;
+  min-width: 90px;
+  border: 1px solid dodgerblue;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: white;
+  background-color: dodgerblue;
+  font-family: rcl;
+  font-size: 14px;
+  -webkit-transition: background-color .5s, border-color .5s;
+  -o-transition: background-color .5s, border-color .5s;
+  transition: background-color .5s, border-color .5s;
+}
+
+.change-password__btn:hover {
+  background-color: #1d2a38;
+  border-color: white;
+}
+
+.change-password-validation-label {
+  height: 0px;
+}
+
+#change-password-input-validation,
+#new-password-input-validation {
+  border: none;
+  border-left: 6px solid red;
+  background-color: #111922;
+  overflow: hidden;
+  height: 0px;
+  line-height: 30px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  padding-left: 6px;
+  -webkit-transition: height .5s;
+  -o-transition: height .5s;
+  transition: height .5s;
+}
+
+.parlay-confirmation__holder {
+  z-index: 9050;
+}
+
+.parlay-confirmation__header {
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.parlay-confirmation__text-wrapper {
+  width: 100%;
+  height: 170px;
+  display: block;
+  margin: 10px 0 0;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.parlay-confirmation__question {
+  text-align: center;
+}
+
+.parlay-confirmation__info-field {
+  border: 1px solid grey;
+  padding: 10px;
+  width: 214px;
+  margin: 20px auto 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 10px;
+}
+
+.parlay-confirmation__form-buttons-wrapper {
+  width: 234px;
+  padding: 0 10px 0 10px;
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.parlay-confirmation__btn {
+  height: 30px;
+  min-width: 90px;
+  border: 1px solid dodgerblue;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: white;
+  background-color: dodgerblue;
+  font-family: rcl;
+  font-size: 14px;
+  -webkit-transition: background-color .5s, border-color .5s;
+  -o-transition: background-color .5s, border-color .5s;
+  transition: background-color .5s, border-color .5s;
+}
+
+.parlay-confirmation__btn:hover {
+  background-color: #1d2a38;
+  border-color: white;
+}
+
+.info-parlay-result {
+  width: 290px;
+  min-height: 65px;
+  background-color: black;
+  border: 1px solid grey;
+  padding: 22px;
+  line-height: 1.3em;
+  text-align: left;
+  position: absolute;
+  z-index: 9999;
+  right: 0px;
+  bottom: 2px;
+  -webkit-transition: right .5s;
+  -o-transition: right .5s;
+  transition: right .5s;
+}
+
+.info-parlay-result__body {
+  position: relative;
+  height: 100%;
+  width: -webkit-calc( 290px - 44px);
+  width: calc( 290px - 44px);
+  left: 50%;
+  -webkit-transform: translate(-50%);
+      -ms-transform: translate(-50%);
+          transform: translate(-50%);
+}
+
+.info-parlay-result__price-info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 6px;
 }

@@ -1,0 +1,26 @@
+.info-parlay-result {
+  width            : 290px;
+  min-height       : 65px;
+  background-color : black;
+  border           : 1px solid grey;
+  padding          : 22px;
+  line-height      : 1.3em;
+  text-align       : left;
+  position         : absolute;
+  z-index          : 9999;
+  right            : 0px;//-290px;
+  bottom           : 2px;
+  transition       : right .5s;
+  &__body {
+    position       : relative;
+    height         : 100%;
+    width          : calc( 290px - 44px );
+    left           : 50%;
+    transform      : translate(-50%);
+  }
+  &__price-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 6px;
+  }
+}

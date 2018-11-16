@@ -16,10 +16,11 @@
     <script src="libs/jquery 3.3.1.js"></script>
   </head>
   <body>
-    <button class="tempBTN" style="width: 120px; height: 30px; position: fixed; left: 10px; bottom: 120px; z-index: 9999; cursor: pointer">temp-btn</button>
-    <button class="tempBTN2" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer">temp-btn2</button>
-    <button class="tempBTN3" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 60px; z-index: 9999; cursor: pointer">temp-btn3</button>
-    <button class="tempBTN4" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 30px; z-index: 9999; cursor: pointer">temp-btn4</button>
+    <button class="tempBTN" style="width: 120px; height: 30px; position: fixed; left: 10px; bottom: 150px; z-index: 9999; cursor: pointer">message</button>
+    <button class="tempBTN2" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 120px; z-index: 9999; cursor: pointer">withdrawal</button>
+    <button class="tempBTN3" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer">change pass</button>
+    <button class="tempBTN4" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 60px; z-index: 9999; cursor: pointer">parlay confirm</button>
+    <button class="tempBTN5" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 30px; z-index: 9999; cursor: pointer">parlay result</button>
     <!-- HEADER-->
     <header class="header">
       <div class="logo_part">LOGOGO</div>
@@ -642,7 +643,7 @@
               <h5 class="make-cash-withdrawal__header">Создать запрос на вывод</h5>
               <form class="make-cash-withdrawal__form" name="make-cash-withdrawal-form" action="#" method="get">
                 <div class="make-cash-withdrawal__form-fields-wrapper">
-                  <input class="make-cash-withdrawal__input" type="text" placeholder="введи сумму" name="currencyValue">
+                  <input class="make-cash-withdrawal__input" type="text" placeholder="введите сумму" name="currencyValue">
                   <select class="make-cash-withdrawal__select" name="currency">
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
@@ -776,6 +777,45 @@
           </div>
         </div>
         <!-- ↑↑↑ BEM-blocks: change-password (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: parlay-confirmation (start) ↓↓↓-->
+        <div class="parlay-confirmation__positioning-wrapper message__wrapper">
+          <div class="parlay-confirmation__holder message__holder">
+            <div class="parlay-confirmation message">
+              <div class="close-btn parlay-confirmation__close-btn">
+                <div class="close-btn__line1"></div>
+                <div class="close-btn__line2"></div>
+              </div>
+              <h5 class="parlay-confirmation__header">Подтверждение ставки</h5>
+              <div class="parlay-confirmation__text-wrapper">
+                <p class="parlay-confirmation__question">Вы точно хотите сделать данную ставку?</p>
+                <div class="parlay-confirmation__info-field">
+                  <label for="tradePair">пара:</label><span id="tradePair">BTCUSD</span>
+                  <label for="tradeSumm">сумма:</label><span id="tradeSumm">100</span>
+                  <label for="tradeTime">время:</label><span id="tradeTime">2018-12-12</span>
+                  <label for="tradeParlay">ставка:</label><span id="tradeParlay">вниз</span>
+                </div>
+              </div>
+              <div class="parlay-confirmation__form-buttons-wrapper">
+                <button class="parlay-confirmation__btn parlay-confirmation__btn-no" type="button">нет</button>
+                <button class="parlay-confirmation__btn parlay-confirmation__btn-yes" type="submit">да</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ↑↑↑ BEM-blocks: parlay-confirmation (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: info-parlay-result (start) ↓↓↓-->
+        <div class="info-parlay-result">
+          <div class="close-btn info-parlay-result__close-btn">
+            <div class="close-btn__line1"></div>
+            <div class="close-btn__line2"></div>
+          </div>
+          <div class="info-parlay-result__body">
+            <div class="info-parlay-result__body-header"><span class="info-parlay-result__short-info">Выигрыш</span><span class="info-parlay-result__amount">300</span></div>
+            <div>BTC/ETH 30 ^^</div>
+            <div class="info-parlay-result__price-info"><span>цена открытия:</span><span id="info-parlay-result__startPrice">12345.67890</span><span>цена закрытия:</span><span id="info-parlay-result__endPrice">90786.45231</span></div>
+          </div>
+        </div>
+        <!-- ↑↑↑ BEM-blocks: info-parlay-result (end) ↑↑↑-->
       </section>
       <!-- /SECTION 4-->
     </main>

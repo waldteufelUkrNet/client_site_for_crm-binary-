@@ -14,7 +14,15 @@ var exchangeDontWork   = [
     noAccessibleParlay = [
                           'Нет доступных ставок',
                           'No parlays available'
-                         ];
+                         ],
+    min6Symb           = [
+                          'минимум 6 символов',
+                          'minimum 6 characters'
+    ],
+    notSamePass        = [
+                          'пароли не совпадают',
+                          'passwords do not match'
+    ];
 /* ↑↑↑ /GLOBAL VARIABLES ↑↑↑ */
 
 /* ↓↓↓ активація анімованих таймерів ↓↓↓ */
@@ -80,69 +88,69 @@ setInterval(function() {
 }, 1000);
 /* ↑↑↑ /datetimer ↑↑↑ */
 
-/* ↓↓↓ обнулення інвестицій при зміні торгових пар ↓↓↓ */
-$( $('.wares-slider').children('.slick-arrow') ).click(function(){
-  clearTimeout(deactivationTimer);
+// /* ↓↓↓ обнулення інвестицій при зміні торгових пар ↓↓↓ */
+// $( $('.wares-slider').children('.slick-arrow') ).click(function(){
+//   clearTimeout(deactivationTimer);
 
-  $('.parlay-slider-deactivation-panel').css({'display':'none'});
+//   $('.parlay-slider-deactivation-panel').css({'display':'none'});
 
-  // прибирати повідомлення, якщо вони є
-  $('.info-message').css({'right':'-290px'});
+//   // прибирати повідомлення, якщо вони є
+//   $('.info-message').css({'right':'-290px'});
 
-  /* ↓↓↓ відновлння списків після того, як акції їх позатирали (в не робочий час) ↓↓↓ */
-  if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() != 'акции' &&
-    $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() != 'actions' ) {
+//   /* ↓↓↓ відновлння списків після того, як акції їх позатирали (в не робочий час) ↓↓↓ */
+//   if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() != 'акции' &&
+//     $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() != 'actions' ) {
 
-    $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-    $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-    $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+//     $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+//     $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+//     $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
 
-      if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
-        $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
-                                                          .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
-                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
-                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
-                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
-                                                                  ');
-      } else {
-        $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
-                                                          .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
-                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 minute</div>\
-                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 minutes</div>\
-                                                                   <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
-                                                                  ');
-      }
+//       if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+//         $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+//                                                           .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
+//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
+//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
+//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
+//                                                                   ');
+//       } else {
+//         $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+//                                                           .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
+//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 minute</div>\
+//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 minutes</div>\
+//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
+//                                                                   ');
+//       }
 
-  } else {
-    rewriteParlayLists();
-  }
-  /* ↑↑↑ /відновлння списків після того, як акції їх позатирали (в не робочий час) ↑↑↑ */
+//   } else {
+//     rewriteParlayLists();
+//   }
+//   /* ↑↑↑ /відновлння списків після того, як акції їх позатирали (в не робочий час) ↑↑↑ */
 
-  $('#investment-input').val('25');
-  $('.parlay-btns__cover').css('display','flex');
-  parlayTime = 0;
-  $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
+//   $('#investment-input').val('25');
+//   $('.parlay-btns__cover').css('display','flex');
+//   parlayTime = 0;
+//   $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
 
-  // зробити перший елемент активним та правильно його відпозиціонувати
-  $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
-  // після unslick на кнопки нового слайдера потрібно навішувати обробники
-  $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
-    clearTimeout(deactivationTimer);
+//   // зробити перший елемент активним та правильно його відпозиціонувати
+//   $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
+//   // після unslick на кнопки нового слайдера потрібно навішувати обробники
+//   $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
+//     clearTimeout(deactivationTimer);
 
-    $('.parlay-slider-deactivation-panel').css({'display':'none'});
+//     $('.parlay-slider-deactivation-panel').css({'display':'none'});
 
-    rewriteParlayLists();
+//     rewriteParlayLists();
 
-    deactivationTimer = setTimeout(function(){
-      deactivationParlays()
-    },30000);
-  });
+//     deactivationTimer = setTimeout(function(){
+//       deactivationParlays()
+//     },30000);
+//   });
 
-  deactivationTimer = setTimeout( function(){
-    deactivationParlays()
-  },30000);
-});
-/* ↑↑↑ /обнулення інвестицій при зміні торгових пар ↑↑↑ */
+//   deactivationTimer = setTimeout( function(){
+//     deactivationParlays()
+//   },30000);
+// });
+// /* ↑↑↑ /обнулення інвестицій при зміні торгових пар ↑↑↑ */
 
 /* ↓↓↓ investment calculator + activation/deactivation btns ↓↓↓ */
 $('#investment-input').bind('keypress keyup blur', function(e) {
@@ -443,17 +451,6 @@ $('.language-switcher__flag-ru').click(function(){
 });
 
 
-function showInfoMessage(message) {
-
-  $('p.info-message__body').text(message);
-  $('.info-message').css({'right':'0px'});
-
-  $('.info-message__close-btn').click(function(){
-    $('.info-message').css({'right':'-290px'});
-  });
-
-}
-
 
 // message-to-mentor
 // open
@@ -466,12 +463,10 @@ $('.call-us-btn').click(function(){
   $('.message-to-mentor__positioning-wrapper').css({'zIndex':'8888','background-color':'rgba(0,0,0,.8)'});
   $('.message-to-mentor').css({'left':'0%'});
 });
-
 // close
 $('.message-to-mentor__close-btn').click(function(){
   closeMessageToMentor();
 });
-
 // validation and close
 $('.message-to-mentor__btn').click(function(e){
   if($('.message-to-mentor__text').val().length < 10) {
@@ -511,7 +506,6 @@ $('.tempBTN').click(function(){
   $('.message-from-mentor__positioning-wrapper').css({'zIndex':'8888','background-color':'rgba(0,0,0,.8)'});
   $('.message-from-mentor').css({'left':'0%'});
 });
-
 // close
 $('.message-from-mentor__btn, .message-from-mentor__close-btn').click(function(){
   $('.message-from-mentor').css({'left':'110%'});
@@ -527,6 +521,191 @@ $('.message-from-mentor__btn, .message-from-mentor__close-btn').click(function()
   },1000);
 });
 
+
+
+// parlay-confirmation
+// open
+$('.tempBTN4').click(function(){
+
+  $('.parlay-confirmation__positioning-wrapper').css({'zIndex':'8888','background-color':'rgba(0,0,0,.8)'});
+  $('.parlay-confirmation').css({'left':'0%'});
+});
+
+// close
+$('.parlay-confirmation__btn-no, .parlay-confirmation__close-btn').click(function(){
+  $('.parlay-confirmation').css({'left':'110%'});
+  var tempParlayConfirmationWidth = $('.parlay-confirmation__holder').css('width');
+  var tempParlayConfirmationPadding = $('.parlay-confirmation__holder').css('padding-left');
+  setTimeout(function(){
+    $('.parlay-confirmation__holder').css({'width':'0px','padding':'0px'});
+    $('.parlay-confirmation__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+    $('.parlay-confirmation').css({'left':'-110%'});
+  },500);
+  setTimeout(function(){
+    $('.parlay-confirmation__holder').css({'width':tempParlayConfirmationWidth,'padding':tempParlayConfirmationPadding});
+  },1000);
+});
+// do something
+$('.parlay-confirmation__btn-yes').click(function(){
+  console.log('do something');
+
+  $('.parlay-confirmation').css({'left':'110%'});
+  var tempParlayConfirmationWidth = $('.parlay-confirmation__holder').css('width');
+  var tempParlayConfirmationPadding = $('.parlay-confirmation__holder').css('padding-left');
+  setTimeout(function(){
+    $('.parlay-confirmation__holder').css({'width':'0px','padding':'0px'});
+    $('.parlay-confirmation__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+    $('.parlay-confirmation').css({'left':'-110%'});
+  },500);
+  setTimeout(function(){
+    $('.parlay-confirmation__holder').css({'width':tempParlayConfirmationWidth,'padding':tempParlayConfirmationPadding});
+  },1000);
+});
+
+
+
+// change-password
+// open
+$('.tempBTN3').click(function(){
+  // видалити старі підказки, якщо вони були
+  $('#change-password-validation-label, #change-password-input-validation, #new-password-validation-label, #new-password-input-validation').remove();
+  $('#change-password-input, #new-password-input').val('');
+  // проанімувати
+  $('.change-password__positioning-wrapper').css({'zIndex':'8888','background-color':'rgba(0,0,0,.8)'});
+  $('.change-password').css({'left':'0%'});
+});
+// close
+$('.change-password__btn-close, .change-password__close-btn').click(function(){
+  $('.change-password').css({'left':'110%'});
+  var tempChangePasswordWidth = $('.change-password__holder').css('width');
+  var tempChangePasswordPadding = $('.change-password__holder').css('padding-left');
+  setTimeout(function(){
+    $('.change-password__holder').css({'width':'0px','padding':'0px'});
+    $('.change-password__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+    $('.change-password').css({'left':'-110%'});
+  },500);
+  setTimeout(function(){
+    $('.change-password__holder').css({'width':tempChangePasswordWidth,'padding':tempChangePasswordPadding});
+  },1000);
+});
+// validation
+$('.change-password__btn-send').click(function(e){
+  if ( $('#change-password-input').val().length < 6 ) {
+    e.preventDefault();
+
+    if ( !$('#change-password-input-validation')[0] ) {
+      if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+        var tempLang = min6Symb[0]
+      } else {
+        var tempLang = min6Symb[1]
+      }
+
+      $('#change-password-input').after('<label id="change-password-validation-label"></label>\
+                                         <div id="change-password-input-validation">'
+                                             + tempLang +
+                                         '</div>');
+      $('#change-password-input-validation').css('height','30px');
+    }
+
+  } else if ( $('#change-password-input').val() != $('#new-password-input').val() ) {
+    e.preventDefault();
+
+    if ( !$('#new-password-input-validation')[0] ) {
+      if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+        var tempLang = notSamePass[0]
+      } else {
+        var tempLang = notSamePass[1]
+      }
+      $('#new-password-input').after('<label></label>\
+                                      <div id="new-password-input-validation">'
+                                          + tempLang +
+                                      '</div>');
+      $('#new-password-input-validation').css('height','30px');
+    }
+
+  } else {
+    $('.change-password').css({'left':'110%'});
+    var tempChangePasswordWidth = $('.change-password__holder').css('width');
+    var tempChangePasswordPadding = $('.change-password__holder').css('padding-left');
+    setTimeout(function(){
+      $('.change-password__holder').css({'width':'0px','padding':'0px'});
+      $('.change-password__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+      $('.change-password').css({'left':'-110%'});
+    },500);
+    setTimeout(function(){
+      $('.change-password__holder').css({'width':tempChangePasswordWidth,'padding':tempChangePasswordPadding});
+    },1000);
+  }
+});
+$('#change-password-input').keyup(function(e) {
+  if ( $('#change-password-input').val().length >= 6 ) {
+    $('#change-password-input-validation').css('height','0px');
+    setTimeout(function(){
+      $('#change-password-validation-label, #change-password-input-validation').remove();
+    }, 500);
+  }
+});
+$('#new-password-input').keyup(function(e) {
+  if ( $('#change-password-input').val() != $('#new-password-input').val() ) {
+    $('#new-password-input-validation').css('height','0px');
+    setTimeout(function(){
+      $('#new-password-validation-label, #new-password-input-validation').remove();
+    }, 500);
+  }
+});
+
+
+
+// make-cash-withdrawal
+// open
+$('.tempBTN2').click(function(){
+  $('.make-cash-withdrawal__input').val('');
+  $('.make-cash-withdrawal__positioning-wrapper').css({'zIndex':'8888','background-color':'rgba(0,0,0,.8)'});
+  $('.make-cash-withdrawal').css({'left':'0%'});
+});
+// close
+$('.make-cash-withdrawal__btn-close, .make-cash-withdrawal__close-btn').click(function(){
+  $('.make-cash-withdrawal').css({'left':'110%'});
+  var tempMakeCashWithdrawalWidth = $('.make-cash-withdrawal__holder').css('width');
+  var tempMakeCashWithdrawalPadding = $('.make-cash-withdrawal__holder').css('padding-left');
+  setTimeout(function(){
+    $('.make-cash-withdrawal__holder').css({'width':'0px','padding':'0px'});
+    $('.make-cash-withdrawal__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+    $('.make-cash-withdrawal').css({'left':'-110%'});
+  },500);
+  setTimeout(function(){
+    $('.make-cash-withdrawal__holder').css({'width':tempMakeCashWithdrawalWidth,'padding':tempMakeCashWithdrawalPadding});
+  },1000);
+});
+// validation
+$('.make-cash-withdrawal__btn-send').click(function(e){
+  if ( $('.make-cash-withdrawal__input').val() == '' ) {
+    e.preventDefault();
+  } else {
+    $('.make-cash-withdrawal').css({'left':'110%'});
+    var tempMakeCashWithdrawalWidth = $('.make-cash-withdrawal__holder').css('width');
+    var tempMakeCashWithdrawalPadding = $('.make-cash-withdrawal__holder').css('padding-left');
+    setTimeout(function(){
+      $('.make-cash-withdrawal__holder').css({'width':'0px','padding':'0px'});
+      $('.make-cash-withdrawal__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+      $('.make-cash-withdrawal').css({'left':'-110%'});
+    },500);
+    setTimeout(function(){
+      $('.make-cash-withdrawal__holder').css({'width':tempMakeCashWithdrawalWidth,'padding':tempMakeCashWithdrawalPadding});
+    },1000);
+  }
+});
+// input - only for numbers
+$('.make-cash-withdrawal__input').keypress(function(e){
+  e = e || event;
+  if (e.ctrlKey || e.altKey || e.metaKey) return;
+  var chr = getChar(e);
+  // с null надо осторожно в неравенствах, т.к. например null >= '0' => true на всякий случай лучше вынести проверку chr == null отдельно
+  if (chr == null) return;
+  if (chr < '0' || chr > '9') {
+    return false;
+  }
+});
 
 
 // profile-editor
@@ -618,20 +797,6 @@ $('#prof-phone').keyup(function(){
   }
 });
 // ↑↑↑ validation and close ↑↑↑
-
-function getChar(event) {
-  if (event.which == null) { // IE
-    if (event.keyCode < 32) return null; // спец. символ
-    return String.fromCharCode(event.keyCode)
-  }
-
-  if (event.which != 0 && event.charCode != 0) { // все кроме IE
-    if (event.which < 32) return null; // спец. символ
-    return String.fromCharCode(event.which); // остальные
-  }
-
-  return null; // спец. символ
-}
 
 function closeProfilePopup() {
   $('.profile-editor').css({ 'left': '110%' });
@@ -734,7 +899,7 @@ $('.make-lodgement__close-btn').click(function(){
   },1800);
 });
 
-// inputs - only for numbers and dots
+// inputs - only for numbers
 $('.make-lodgement__pay-block input').keypress(function(e){
   e = e || event;
   if (e.ctrlKey || e.altKey || e.metaKey) return;
@@ -743,17 +908,6 @@ $('.make-lodgement__pay-block input').keypress(function(e){
   if (chr == null) return;
   if (chr < '0' || chr > '9') {
     return false;
-  }
-  function getChar(event) {
-    if (event.which == null) {
-      if (event.keyCode < 32) return null;
-      return String.fromCharCode(event.keyCode) // IE
-    }
-    if (event.which != 0 && event.charCode != 0) {
-      if (event.which < 32) return null;
-      return String.fromCharCode(event.which) // остальные
-    }
-    return null; // специальная клавиша
   }
 });
 
@@ -1281,6 +1435,28 @@ function deactivationParlays(){
                                               'display' : 'flex'
   });
 }
+
+function showInfoMessage(message) {
+
+  $('p.info-message__body').text(message);
+  $('.info-message').css({'right':'0px'});
+
+  $('.info-message__close-btn').click(function(){
+    $('.info-message').css({'right':'-290px'});
+  });
+
+}
+
+// function showParlayInfoMessage(message) {
+
+//   $('p.info-message__body').text(message);
+//   $('.info-message').css({'right':'0px'});
+
+//   $('.info-message__close-btn').click(function(){
+//     $('.info-message').css({'right':'-290px'});
+//   });
+
+// }
 
 function getCoords(elem) {
   var box = elem.getBoundingClientRect();
