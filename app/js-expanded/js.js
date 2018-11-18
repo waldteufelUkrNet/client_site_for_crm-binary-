@@ -290,6 +290,7 @@ $(document).ready(function() {
 /* ↑↑↑ /після завантаження сторінки, якщо активна вкладка акцій - розраховувати можливість торгівлі акціями ↑↑↑ */
 
 /* ↓↓↓ BEM-blocks ↓↓↓ */
+/* ↓↓↓ BEM-block: simple-switcher ↓↓↓ */
 var simpleSwitcherToggle = 'demo';
 $('.simple-switcher__thumb').click(function(){
   if (simpleSwitcherToggle == 'demo') {
@@ -309,9 +310,9 @@ $('.simple-switcher__thumb').click(function(){
     return
   }
 });
+/* ↑↑↑ /BEM-block: simple-switcher ↑↑↑ */
 
-
-
+/* ↓↓↓ BEM-block: menu-btn ↓↓↓ */
 var isMenuOpen;
 var isClickAble = true;
 $('.menu-btn').click(function(){
@@ -393,8 +394,9 @@ function toggleMenu (arg) {
       },600);
   }
 };
+/* ↑↑↑ /BEM-block: menu-btn ↑↑↑ */
 
-
+/* ↓↓↓ BEM-block: language-switcher ↓↓↓ */
 var isLanguageSwitcherOpen  = false;
 var isLanguageSwitcherOpen2 = false;
 var selectedLanguage;
@@ -449,10 +451,9 @@ $('.language-switcher__flag-ru').click(function(){
   isLanguageSwitcherOpen = false;
   selectedLanguage = 'ru';
 });
+/* ↑↑↑ /BEM-block: language-switcher ↑↑↑ */
 
-
-
-// message-to-mentor
+/* ↓↓↓ BEM-block: message-to-mentor ↓↓↓ */
 // open
 $('.call-us-btn').click(function(){
 
@@ -496,10 +497,9 @@ function closeMessageToMentor () {
     $('.message-to-mentor__holder').css({'width':tempMessageToMentorWidth,'padding':tempMessageToMentorPadding});
   },1000);
 }
+/* ↑↑↑ /BEM-block: message-to-mentor ↑↑↑ */
 
-
-
-// message-from-mentor
+/* ↓↓↓ BEM-block: message-from-mentor ↓↓↓ */
 // open
 $('.tempBTN').click(function(){
 
@@ -520,51 +520,9 @@ $('.message-from-mentor__btn, .message-from-mentor__close-btn').click(function()
     $('.message-from-mentor__holder').css({'width':tempMessageFromMentorWidth,'padding':tempMessageFromMentorPadding});
   },1000);
 });
+/* ↑↑↑ /BEM-block: message-from-mentor ↑↑↑ */
 
-
-
-// parlay-confirmation
-// open
-$('.tempBTN4').click(function(){
-
-  $('.parlay-confirmation__positioning-wrapper').css({'zIndex':'8888','background-color':'rgba(0,0,0,.8)'});
-  $('.parlay-confirmation').css({'left':'0%'});
-});
-
-// close
-$('.parlay-confirmation__btn-no, .parlay-confirmation__close-btn').click(function(){
-  $('.parlay-confirmation').css({'left':'110%'});
-  var tempParlayConfirmationWidth = $('.parlay-confirmation__holder').css('width');
-  var tempParlayConfirmationPadding = $('.parlay-confirmation__holder').css('padding-left');
-  setTimeout(function(){
-    $('.parlay-confirmation__holder').css({'width':'0px','padding':'0px'});
-    $('.parlay-confirmation__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
-    $('.parlay-confirmation').css({'left':'-110%'});
-  },500);
-  setTimeout(function(){
-    $('.parlay-confirmation__holder').css({'width':tempParlayConfirmationWidth,'padding':tempParlayConfirmationPadding});
-  },1000);
-});
-// do something
-$('.parlay-confirmation__btn-yes').click(function(){
-  console.log('do something');
-
-  $('.parlay-confirmation').css({'left':'110%'});
-  var tempParlayConfirmationWidth = $('.parlay-confirmation__holder').css('width');
-  var tempParlayConfirmationPadding = $('.parlay-confirmation__holder').css('padding-left');
-  setTimeout(function(){
-    $('.parlay-confirmation__holder').css({'width':'0px','padding':'0px'});
-    $('.parlay-confirmation__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
-    $('.parlay-confirmation').css({'left':'-110%'});
-  },500);
-  setTimeout(function(){
-    $('.parlay-confirmation__holder').css({'width':tempParlayConfirmationWidth,'padding':tempParlayConfirmationPadding});
-  },1000);
-});
-
-
-
-// change-password
+/* ↓↓↓ BEM-block: change-password ↓↓↓ */
 // open
 $('.tempBTN3').click(function(){
   // видалити старі підказки, якщо вони були
@@ -576,17 +534,7 @@ $('.tempBTN3').click(function(){
 });
 // close
 $('.change-password__btn-close, .change-password__close-btn').click(function(){
-  $('.change-password').css({'left':'110%'});
-  var tempChangePasswordWidth = $('.change-password__holder').css('width');
-  var tempChangePasswordPadding = $('.change-password__holder').css('padding-left');
-  setTimeout(function(){
-    $('.change-password__holder').css({'width':'0px','padding':'0px'});
-    $('.change-password__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
-    $('.change-password').css({'left':'-110%'});
-  },500);
-  setTimeout(function(){
-    $('.change-password__holder').css({'width':tempChangePasswordWidth,'padding':tempChangePasswordPadding});
-  },1000);
+  closeChangePasswordPopup()
 });
 // validation
 $('.change-password__btn-send').click(function(e){
@@ -624,17 +572,7 @@ $('.change-password__btn-send').click(function(e){
     }
 
   } else {
-    $('.change-password').css({'left':'110%'});
-    var tempChangePasswordWidth = $('.change-password__holder').css('width');
-    var tempChangePasswordPadding = $('.change-password__holder').css('padding-left');
-    setTimeout(function(){
-      $('.change-password__holder').css({'width':'0px','padding':'0px'});
-      $('.change-password__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
-      $('.change-password').css({'left':'-110%'});
-    },500);
-    setTimeout(function(){
-      $('.change-password__holder').css({'width':tempChangePasswordWidth,'padding':tempChangePasswordPadding});
-    },1000);
+    closeChangePasswordPopup()
   }
 });
 $('#change-password-input').keyup(function(e) {
@@ -654,9 +592,22 @@ $('#new-password-input').keyup(function(e) {
   }
 });
 
+function closeChangePasswordPopup () {
+  $('.change-password').css({'left':'110%'});
+  var tempChangePasswordWidth = $('.change-password__holder').css('width');
+  var tempChangePasswordPadding = $('.change-password__holder').css('padding-left');
+  setTimeout(function(){
+    $('.change-password__holder').css({'width':'0px','padding':'0px'});
+    $('.change-password__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+    $('.change-password').css({'left':'-110%'});
+  },500);
+  setTimeout(function(){
+    $('.change-password__holder').css({'width':tempChangePasswordWidth,'padding':tempChangePasswordPadding});
+  },1000);
+}
+/* ↑↑↑ /BEM-block: change-password ↑↑↑ */
 
-
-// make-cash-withdrawal
+/* ↓↓↓ BEM-block: make-cash-withdrawal ↓↓↓ */
 // open
 $('.tempBTN2').click(function(){
   $('.make-cash-withdrawal__input').val('');
@@ -665,34 +616,14 @@ $('.tempBTN2').click(function(){
 });
 // close
 $('.make-cash-withdrawal__btn-close, .make-cash-withdrawal__close-btn').click(function(){
-  $('.make-cash-withdrawal').css({'left':'110%'});
-  var tempMakeCashWithdrawalWidth = $('.make-cash-withdrawal__holder').css('width');
-  var tempMakeCashWithdrawalPadding = $('.make-cash-withdrawal__holder').css('padding-left');
-  setTimeout(function(){
-    $('.make-cash-withdrawal__holder').css({'width':'0px','padding':'0px'});
-    $('.make-cash-withdrawal__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
-    $('.make-cash-withdrawal').css({'left':'-110%'});
-  },500);
-  setTimeout(function(){
-    $('.make-cash-withdrawal__holder').css({'width':tempMakeCashWithdrawalWidth,'padding':tempMakeCashWithdrawalPadding});
-  },1000);
+  closemakeCashWithdrawalPopup ()
 });
 // validation
 $('.make-cash-withdrawal__btn-send').click(function(e){
   if ( $('.make-cash-withdrawal__input').val() == '' ) {
     e.preventDefault();
   } else {
-    $('.make-cash-withdrawal').css({'left':'110%'});
-    var tempMakeCashWithdrawalWidth = $('.make-cash-withdrawal__holder').css('width');
-    var tempMakeCashWithdrawalPadding = $('.make-cash-withdrawal__holder').css('padding-left');
-    setTimeout(function(){
-      $('.make-cash-withdrawal__holder').css({'width':'0px','padding':'0px'});
-      $('.make-cash-withdrawal__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
-      $('.make-cash-withdrawal').css({'left':'-110%'});
-    },500);
-    setTimeout(function(){
-      $('.make-cash-withdrawal__holder').css({'width':tempMakeCashWithdrawalWidth,'padding':tempMakeCashWithdrawalPadding});
-    },1000);
+    closemakeCashWithdrawalPopup ()
   }
 });
 // input - only for numbers
@@ -707,8 +638,22 @@ $('.make-cash-withdrawal__input').keypress(function(e){
   }
 });
 
+function closemakeCashWithdrawalPopup () {
+  $('.make-cash-withdrawal').css({'left':'110%'});
+  var tempMakeCashWithdrawalWidth = $('.make-cash-withdrawal__holder').css('width');
+  var tempMakeCashWithdrawalPadding = $('.make-cash-withdrawal__holder').css('padding-left');
+  setTimeout(function(){
+    $('.make-cash-withdrawal__holder').css({'width':'0px','padding':'0px'});
+    $('.make-cash-withdrawal__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+    $('.make-cash-withdrawal').css({'left':'-110%'});
+  },500);
+  setTimeout(function(){
+    $('.make-cash-withdrawal__holder').css({'width':tempMakeCashWithdrawalWidth,'padding':tempMakeCashWithdrawalPadding});
+  },1000);
+}
+/* ↑↑↑ /BEM-block: make-cash-withdrawal ↑↑↑ */
 
-// profile-editor
+/* ↓↓↓ BEM-block: profile-editor ↓↓↓ */
 //open
 $('#profile-editor').click(function() {
   $('.profile-editor__positioning-wrapper').css({ 'zIndex': '8888', 'background-color': 'rgba(0,0,0,.8)' });
@@ -813,10 +758,9 @@ function closeProfilePopup() {
       $('.profile-editor__holder').css({ 'width': tempProfileEditorWidth, 'padding': tempProfileEditorPadding });
   }, 1000);
 }
+/* ↑↑↑ /BEM-block: profile-editor ↑↑↑ */
 
-
-
-// make-lodgement
+/* ↓↓↓ BEM-block: make-lodgement ↓↓↓ */
 // поява
 $('.central-part__btn').click(function(){
 
@@ -910,11 +854,10 @@ $('.make-lodgement__pay-block input').keypress(function(e){
     return false;
   }
 });
+/* ↑↑↑ /BEM-block: make-lodgement ↑↑↑ */
+/* ↑↑↑ /BEM-blocks ↑↑↑ */
 
-
-
-
-// showParlayInfoMessage
+/* ↓↓↓ showParlayInfoMessage ↓↓↓ */
 $('.tempBTN5').click(function(){
   $('.info-parlay-result').css('right','0px');
 });
@@ -922,10 +865,7 @@ $('.tempBTN5').click(function(){
 $('.info-parlay-result__close-btn').click(function() {
   $('.info-parlay-result').css('right','-290px');
 });
-
-
-
-/* ↑↑↑ /BEM-blocks ↑↑↑ */
+/* ↑↑↑ /showParlayInfoMessage ↑↑↑ */
 
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
 function rewriteParlayLists() {
@@ -1152,11 +1092,21 @@ function rewriteParlayLists() {
 function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parlayTime, parlayCurrentPrice) {
   // створює активну ставку - елемент акордеону
   // контролює, щоб ставок було не більше 10
-
+  var parlayAnticipationForPopup;
   if ( parlayAnticipation == 'up') {
     parlayAnticipation = 'class="fas fa-angle-double-up" style="color:dodgerblue"';
+    if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+      parlayAnticipationForPopup = 'вверх'
+    } else {
+      parlayAnticipationForPopup = 'up'
+    }
   } else {
     parlayAnticipation = 'class="fas fa-angle-double-down" style="color:red"';
+    if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
+      parlayAnticipationForPopup = 'вниз'
+    } else {
+      parlayAnticipationForPopup = 'down'
+    }
   }
 
   // активних ставок - не більше 10
@@ -1165,6 +1115,22 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
                      Для открытия новой ставки дождитесь, пожалуйста, закрытия активных торгов.")
   }
   else {
+
+  /* ↓↓↓ BEM-block: parlay-confirmation ↓↓↓ */
+  $('#tradePair').text(parlayPairName);
+  $('#tradeSumm').text(parlayInvestment);
+  $('#tradeTime').text(parlayTime);
+  $('#tradeParlay').text(parlayAnticipationForPopup);
+  // open
+    $('.parlay-confirmation__positioning-wrapper').css({'zIndex':'8888','background-color':'rgba(0,0,0,.8)'});
+    $('.parlay-confirmation').css({'left':'0%'});
+  // close
+  $('.parlay-confirmation__btn-no, .parlay-confirmation__close-btn').click(function(){
+    closeParlayConfirmationPopup ()
+  });
+  // create parlay
+  $('.parlay-confirmation__btn-yes').click(function(){
+
     // зупинити slick
     $( '#active-slider' ).slick('unslick');
     // створити ставку
@@ -1227,6 +1193,24 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
       text_size          : 0.15,
       number_size        : 0.3
     });
+
+    closeParlayConfirmationPopup ()
+  });
+
+  function closeParlayConfirmationPopup () {
+    $('.parlay-confirmation').css({'left':'110%'});
+    var tempParlayConfirmationWidth = $('.parlay-confirmation__holder').css('width');
+    var tempParlayConfirmationPadding = $('.parlay-confirmation__holder').css('padding-left');
+    setTimeout(function(){
+      $('.parlay-confirmation__holder').css({'width':'0px','padding':'0px'});
+      $('.parlay-confirmation__positioning-wrapper').css({'zIndex':'-1','background-color':'rgba(0,0,0,0)'});
+      $('.parlay-confirmation').css({'left':'-110%'});
+    },500);
+    setTimeout(function(){
+      $('.parlay-confirmation__holder').css({'width':tempParlayConfirmationWidth,'padding':tempParlayConfirmationPadding});
+    },1000);
+  }
+  /* ↑↑↑ /BEM-block: parlay-confirmation ↑↑↑ */
 
   }
 }
@@ -1458,7 +1442,6 @@ function showInfoMessage(message) {
   $('.info-message__close-btn').click(function(){
     $('.info-message').css({'right':'-290px'});
   });
-
 }
 
 function getCoords(elem) {
