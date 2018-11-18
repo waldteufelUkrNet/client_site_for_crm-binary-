@@ -1,26 +1,53 @@
 .info-parlay-result {
-  width            : 290px;
-  min-height       : 65px;
-  background-color : black;
-  border           : 1px solid grey;
-  padding          : 22px;
-  line-height      : 1.3em;
-  text-align       : left;
-  position         : absolute;
-  z-index          : 9999;
-  right            : 0px;//-290px;
-  bottom           : 2px;
-  transition       : right .5s;
+  width                   : 290px;
+  min-height              : 65px;
+  background-color        : black;
+  border                  : 1px solid dodgerblue;
+  padding                 : 22px;
+  line-height             : 1.3em;
+  text-align              : left;
+  position                : absolute;
+  z-index                 : 9999;
+  right                   : -290px;
+  bottom                  : 2px;
+  transition              : right .5s;
   &__body {
-    position       : relative;
-    height         : 100%;
-    width          : calc( 290px - 44px );
-    left           : 50%;
-    transform      : translate(-50%);
+    position              : relative;
+    height                : 100%;
+    width                 : calc( 290px - 44px );
+    left                  : 50%;
+    transform             : translate(-50%);
+  }
+  &__short-info {
+    font-family           : rcb;
+    font-size             : 18px;
+    letter-spacing        : 3px;
+    text-transform        : uppercase;
+    color                 : dodgerblue;
+  }
+  &__amount {
+    font-family           : rcl;
+    font-size             : 18px;
+    letter-spacing        : 2px;
+    text-transform        : uppercase;
+    color                 : white;
+    padding-left          : 10px;
+  }
+  &__details {
+    display               : inline-block;
+    border                : 1px solid white;
+    border-radius         : 4px;
+    padding               : 6px 12px;
+    background-color      : rgba(0,0,0,.5);
+    margin                : 10px 0;
+    letter-spacing        : 2px;
+    .fa-angle-double-up {
+      color               : dodgerblue;
+    }
   }
   &__price-info {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-gap: 6px;
+    display               : grid;
+    grid-template-columns : auto 1fr;
+    grid-gap              : 6px;
   }
 }

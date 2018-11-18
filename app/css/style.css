@@ -2111,13 +2111,13 @@ a, a:hover {
   width: 290px;
   min-height: 65px;
   background-color: black;
-  border: 1px solid grey;
+  border: 1px solid dodgerblue;
   padding: 22px;
   line-height: 1.3em;
   text-align: left;
   position: absolute;
   z-index: 9999;
-  right: 0px;
+  right: -290px;
   bottom: 2px;
   -webkit-transition: right .5s;
   -o-transition: right .5s;
@@ -2133,6 +2133,38 @@ a, a:hover {
   -webkit-transform: translate(-50%);
       -ms-transform: translate(-50%);
           transform: translate(-50%);
+}
+
+.info-parlay-result__short-info {
+  font-family: rcb;
+  font-size: 18px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: dodgerblue;
+}
+
+.info-parlay-result__amount {
+  font-family: rcl;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: white;
+  padding-left: 10px;
+}
+
+.info-parlay-result__details {
+  display: inline-block;
+  border: 1px solid white;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  padding: 6px 12px;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 10px 0;
+  letter-spacing: 2px;
+}
+
+.info-parlay-result__details .fa-angle-double-up {
+  color: dodgerblue;
 }
 
 .info-parlay-result__price-info {

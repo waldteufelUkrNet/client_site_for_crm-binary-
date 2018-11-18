@@ -911,6 +911,20 @@ $('.make-lodgement__pay-block input').keypress(function(e){
   }
 });
 
+
+
+
+// showParlayInfoMessage
+$('.tempBTN5').click(function(){
+  $('.info-parlay-result').css('right','0px');
+});
+// close
+$('.info-parlay-result__close-btn').click(function() {
+  $('.info-parlay-result').css('right','-290px');
+});
+
+
+
 /* ↑↑↑ /BEM-blocks ↑↑↑ */
 
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
@@ -1446,17 +1460,6 @@ function showInfoMessage(message) {
   });
 
 }
-
-// function showParlayInfoMessage(message) {
-
-//   $('p.info-message__body').text(message);
-//   $('.info-message').css({'right':'0px'});
-
-//   $('.info-message__close-btn').click(function(){
-//     $('.info-message').css({'right':'-290px'});
-//   });
-
-// }
 
 function getCoords(elem) {
   var box = elem.getBoundingClientRect();
