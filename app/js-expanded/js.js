@@ -6,11 +6,12 @@ var parlayInvestment,     // розмір ставки
     parlayPairName,       // назва пари
     parlayCurrentPrice,   // поточна котировка
     deactivationTimer,    // таймер для деактивації списків можливих ставок
-    orderTypeForBackEnd;  // позначення класу ставок (довгi, нормальнi, короткi)
+    orderTypeForBackEnd,  // позначення класу ставок (довгi, нормальнi, короткi)
+    flag;                 // опредиляет было ли нажатие на пару
 
 var exchangeDontWork = [
-    'Торги невозможны по причине того, что на данный момент биржа закрыта. Акционная биржа работает с 13:30 до 20:00 по UTC-времени с понедельника по пятницу с учетом государственных праздников США.',
-    'Trades are not possible at the moment because the exchange is closed. Stock exchange is open from 13:30 to 20:00 UTC-time from Monday to Friday, considering US public holidays.'
+    'Торги невозможны, на данный момент биржа закрыта. Акционная биржа работает с 13:30 до 20:00 по UTC с понедельника по пятницу с учетом государственных праздников США.',
+    'Trades are not possible because the exchange is closed. Stock exchange is open from 13:30 to 20:00 UTC from Monday to Friday, considering US public holidays.'
 ],
     noAccessibleParlay = [
         'Нет доступных ставок',
@@ -88,70 +89,6 @@ setInterval(function () {
     datetimer.innerHTML = dd + "." + mm + "." + yy + "   " + hh + ":" + mn + ":" + ss;
 }, 1000);
 /* ↑↑↑ /datetimer ↑↑↑ */
-
-// /* ↓↓↓ обнулення інвестицій при зміні торгових пар ↓↓↓ */
-// $( $('.wares-slider').children('.slick-arrow') ).click(function(){
-//   clearTimeout(deactivationTimer);
-
-//   $('.parlay-slider-deactivation-panel').css({'display':'none'});
-
-//   // прибирати повідомлення, якщо вони є
-//   $('.info-message').css({'right':'-290px'});
-
-//   /* ↓↓↓ відновлння списків після того, як акції їх позатирали (в не робочий час) ↓↓↓ */
-//   if( $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() != 'акции' &&
-//     $( $('.slick-current').children('.wares-slider__item-header')[0] ).text().toLowerCase() != 'actions' ) {
-
-//     $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-//     $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-//     $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-
-//       if ( $('#language-span').text().toLowerCase() == 'язык:' ) {
-//         $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
-//                                                           .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
-//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
-//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
-//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
-//                                                                   ');
-//       } else {
-//         $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
-//                                                           .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
-//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 minute</div>\
-//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 minutes</div>\
-//                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
-//                                                                   ');
-//       }
-
-//   } else {
-//     rewriteParlayLists();
-//   }
-//   /* ↑↑↑ /відновлння списків після того, як акції їх позатирали (в не робочий час) ↑↑↑ */
-
-//   $('#investment-input').val('25');
-//   $('.parlay-btns__cover').css('display','flex');
-//   parlayTime = 0;
-//   $('.parlay-slider__parlay-choise-btn').css('background-color','transparent');
-
-//   // зробити перший елемент активним та правильно його відпозиціонувати
-//   $('.parlay-slider').slick('unslick').slick({'draggable':'false'});
-//   // після unslick на кнопки нового слайдера потрібно навішувати обробники
-//   $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
-//     clearTimeout(deactivationTimer);
-
-//     $('.parlay-slider-deactivation-panel').css({'display':'none'});
-
-//     rewriteParlayLists();
-
-//     deactivationTimer = setTimeout(function(){
-//       deactivationParlays()
-//     },30000);
-//   });
-
-//   deactivationTimer = setTimeout( function(){
-//     deactivationParlays()
-//   },30000);
-// });
-// /* ↑↑↑ /обнулення інвестицій при зміні торгових пар ↑↑↑ */
 
 /* ↓↓↓ investment calculator + activation/deactivation btns ↓↓↓ */
 $('#investment-input').bind('keypress keyup blur', function (e) {
@@ -254,6 +191,7 @@ $($('.parlay-slider').children('.slick-arrow')).click(function () {
     $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
 
     $('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
+    
     rewriteParlayLists();
 
     deactivationTimer = setTimeout(function () {
@@ -272,7 +210,7 @@ $(document).ready(function () {
 
     $('.parlay-slider-deactivation-panel__btn').click(function () {
         $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
-
+        
         rewriteParlayLists();
         // зробити перший елемент активним та правильно його відпозиціонувати
         $('.parlay-slider').slick('unslick').slick({ 'draggable': 'false' });
@@ -281,7 +219,7 @@ $(document).ready(function () {
             clearTimeout(deactivationTimer);
 
             $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
-
+            
             rewriteParlayLists();
 
             deactivationTimer = setTimeout(function () {
@@ -972,7 +910,13 @@ function rewriteParlayLists() {
     // прибирати повідомлення, якщо воно є
     $('.info-message').css({ 'right': '-290px' });
 
-    parlayType = $($('.parlay-slider').find('.slick-current')[0]).attr('data-parlayType');
+    if (!flag) {
+        parlayType = $($('.parlay-slider').find('.slick-current')[0]).attr('data-parlayType');
+    } else {
+        flag = false;
+        parlayType = 'short';
+    }
+    
     currentDateTime = new Date();
 
     var tempUTCYear = currentDateTime.getUTCFullYear();
@@ -991,18 +935,18 @@ function rewriteParlayLists() {
     var currentUTCDateString = tempUTCYear + '-' +
         tempUTCMonth + '-' +
         tempUTCDate;
-
+    var breakInTrade = $('#currentStockPairId').attr('data-break'); 
     if (parlayType == 'short') {
         orderTypeForBackEnd = 0;
         // контроль для акцій: контроль, чи працює поставник котирувань - ajax, якщо так - максимально можлива ставка - за 5 хв до закриття біржі, робочий день - 13:30-20:00 по UTC
-        if ($($('.slick-current').children('.wares-slider__item-header')[0]).text().toLowerCase() == 'акции' ||
-            $($('.slick-current').children('.wares-slider__item-header')[0]).text().toLowerCase() == 'actions') {
-
+        // data-typeStock: Тип символа: 0 - ВАЛЮТЫ, 1 - АКЦИИ, 2 - ТОВАРЫ, 3 - крипта
+        //if ($($('.slick-current').children('.wares-slider__item-header')[0]).text().toLowerCase() == 'акции' ||
+        //    $($('.slick-current').children('.wares-slider__item-header')[0]).text().toLowerCase() == 'actions') {
+        if ($('#currentStockPairId').attr('data-typestock') == 1 ) {
             // очистити старий список ставок
             $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
 
-            if (isActionsTradingPossible()) {
-
+            if (breakInTrade!=false) {
                 if ((13 * 60 + 30) <= (+tempUTCHour * 60 + +tempUTCMinutes) && (+tempUTCHour * 60 + +tempUTCMinutes) < (19 * 60 + 50)) {
 
                     if ($('#language-span').text().toLowerCase() == 'язык:') {
@@ -1037,8 +981,29 @@ function rewriteParlayLists() {
                 }
             }
 
+        } else {
+            $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+            $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+            $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
+
+            if ($('#language-span').text().toLowerCase() == 'язык:') {
+                $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+                    .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
+                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
+                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
+                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
+                                                                   ');
+            } else {
+                $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
+                    .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
+                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 minute</div>\
+                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 minutes</div>\
+                                                                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
+                                                                   ');
+            }
         }
     } else if (parlayType == 'long') {
+       
         orderTypeForBackEnd = 2;
 
         // очистити старий список ставок
@@ -1047,13 +1012,11 @@ function rewriteParlayLists() {
 
 
         // контроль для акцій: контроль, чи працює поставник котирувань - ajax, якщо так - перевірка, чи час закриття припадає на робочий час
-        if ($($('.slick-current').children('.wares-slider__item-header')[0]).text().toLowerCase() == 'акции' ||
-            $($('.slick-current').children('.wares-slider__item-header')[0]).text().toLowerCase() == 'actions') {
-
+        if ($('#currentStockPairId').attr('data-typestock') == 1) {
+            
             var isLongParlayListNotEmptyMarker = false;
 
-            if (isActionsTradingPossible()) {
-
+            if (breakInTrade != false) {
                 var endTime = new Date(+new Date(new Date()) + 24 * 60 * 60 * 1000); // 86400000
 
                 for (var i = 0; i < 31; i++) {
@@ -1081,7 +1044,7 @@ function rewriteParlayLists() {
 
                     var url = 'http://god.ares.local/api/Hol/GetDate?value=' + endTimeString; // на роботі (локалка)
                     // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + endTimeString; // вдома (інет)
-
+                   
                     if (isActionsTradingPossible(url, endTime)) {
                         $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
@@ -1150,8 +1113,7 @@ function rewriteParlayLists() {
         orderTypeForBackEnd = 1;
         // побудова списку можливих ставок
         // контроль можливості торгівлі акціями (торги на них не цілодобові)
-        if ($($('.slick-current').children('.wares-slider__item-header')[0]).text().toLowerCase() == 'акции' ||
-            $($('.slick-current').children('.wares-slider__item-header')[0]).text().toLowerCase() == 'actions') {
+        if ($('#currentStockPairId').attr('data-typestock') == 1) {
 
             // очистити старий список ставок
             $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
@@ -1219,7 +1181,6 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
                      Для открытия новой ставки дождитесь, пожалуйста, закрытия активных торгов.")
     }
     else {
-
         /* ↓↓↓ BEM-block: parlay-confirmation ↓↓↓ */
         $('#tradePair').text(parlayPairName);
         $('#tradeSumm').text(parlayInvestment);
@@ -1493,59 +1454,41 @@ function createListOfNormalParlay(startTime, finishTime, currentDateTime) {
 }
 
 function isActionsTradingPossible(url, dateTime) {
-    // перевіряє, чи працює поставник котирувань
-    // якщо ні - видає return false
-    // якщо так - перевіряє, чи робочий день і час
+    // перевіряє, чи робочий день і час
     var isActions = arguments[2];
-    var answer;
-    $.ajax({
-        url: 'http://god.ares.local/api/status/get',
-        async: false,
-        success: function (data) {
-            if (!!data == true) {
-                answer = true;
-            } else {
-                answer = false;
-            }
-        },
-        error: function () {
-            answer = false;
-        }
-    });
-
-    if (answer == false) return answer;
-
     $.ajax({
         url: url,
-        async: false,
         success: function (data) {
+            //debugger 
             if (isActions == 'noActions') {
-                answer = true
+                debugger 
+                return true;
             } else {
                 if (data == 1) { // святковий день
-                    answer = false
+                    //debugger 
+                    return false;
                 }
                 if (data == 0) { // не святковий день
+                   // debugger 
                     // перевірка на вихідний день (субота/неділя)
                     if (dateTime.getUTCDay() == 6 || dateTime.getUTCDay() == 0) { // вихідний день (субота/неділя)
-                        answer = false
+                      //  debugger 
+                        return false;
                     } else { // робочий день - 13:30-20:00 по UTC noActions
                         // перевести години в хвилини, додати до хвилин
                         var timeInMinutes = dateTime.getUTCHours() * 60 + dateTime.getUTCMinutes();
                         if (timeInMinutes >= 1200 || timeInMinutes < 810) { // неробочий час
-                            answer = false
+                           // debugger 
+                            return false;
                         } else { // робочий час
-                            answer = true
+                            //debugger 
+                            return true;
                         }
                     }
                 }
             }
-        },
-        error: function () {
-            answer = false;
         }
-    })
-    return answer
+    });
 }
 
 function deactivationParlays() {
@@ -1567,6 +1510,50 @@ function showInfoMessage(message) {
     $('.info-message__close-btn').click(function () {
         $('.info-message').css({ 'right': '-290px' });
     });
+
+    setTimeout(function() {
+        $('.info-message').css({ 'right': '-290px' });
+    }, 3000);
+}
+
+function investmentReset() {
+    // обнулення інвестицій при зміні торгових пар
+    clearTimeout(deactivationTimer);
+
+    $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
+
+    // прибирати повідомлення, якщо вони є
+    $('.info-message').css({ 'right': '-290px' });
+
+    /* ↓↓↓ відновлння списків після того, як акції їх позатирали (в не робочий час) ↓↓↓ */
+   
+        rewriteParlayLists();
+    /* ↑↑↑ /відновлння списків після того, як акції їх позатирали (в не робочий час) ↑↑↑ */
+
+    $('#investment-input').val('25');
+    $('.parlay-btns__cover').css('display', 'flex');
+    parlayTime = 0;
+    $('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
+
+    // зробити перший елемент активним та правильно його відпозиціонувати
+    $('.parlay-slider').slick('unslick').slick({ 'draggable': 'false' });
+    // після unslick на кнопки нового слайдера потрібно навішувати обробники
+    $($('.parlay-slider').children('.slick-arrow')).click(function () {
+
+        clearTimeout(deactivationTimer);
+
+        $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
+
+        rewriteParlayLists();
+
+        deactivationTimer = setTimeout(function () {
+            deactivationParlays()
+        }, 30000);
+    });
+
+    deactivationTimer = setTimeout(function () {
+        deactivationParlays()
+    }, 30000);
 }
 
 function getCoords(elem) {
