@@ -50,9 +50,17 @@
     font-family        : rcl;
     font-size          : 14px;
     transition         : background-color .5s, border-color .5s;
+    position           : relative;
     &:hover {
       background-color : #1d2a38;
       border-color     : white;
     }
+  }
+  &__timer {
+    font-family      : rcb;
+    font-size        : 1.4em;
+    position         : absolute;
+    right            : 6px;
+    top              : 0px;
   }
 }

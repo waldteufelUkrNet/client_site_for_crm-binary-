@@ -191,7 +191,7 @@ $($('.parlay-slider').children('.slick-arrow')).click(function () {
     $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
 
     $('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
-    
+
     rewriteParlayLists();
 
     deactivationTimer = setTimeout(function () {
@@ -210,7 +210,7 @@ $(document).ready(function () {
 
     $('.parlay-slider-deactivation-panel__btn').click(function () {
         $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
-        
+
         rewriteParlayLists();
         // зробити перший елемент активним та правильно його відпозиціонувати
         $('.parlay-slider').slick('unslick').slick({ 'draggable': 'false' });
@@ -219,7 +219,7 @@ $(document).ready(function () {
             clearTimeout(deactivationTimer);
 
             $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
-            
+
             rewriteParlayLists();
 
             deactivationTimer = setTimeout(function () {
@@ -916,7 +916,7 @@ function rewriteParlayLists() {
         flag = false;
         parlayType = 'short';
     }
-    
+
     currentDateTime = new Date();
 
     var tempUTCYear = currentDateTime.getUTCFullYear();
@@ -1004,7 +1004,7 @@ function rewriteParlayLists() {
             }
         }
     } else if (parlayType == 'long') {
-       
+
         orderTypeForBackEnd = 2;
 
         // очистити старий список ставок
@@ -1014,7 +1014,7 @@ function rewriteParlayLists() {
 
         // контроль для акцій: контроль, чи працює поставник котирувань - ajax, якщо так - перевірка, чи час закриття припадає на робочий час
         if ($('#currentStockPairId').attr('data-typestock') == 1) {
-            
+
             var isLongParlayListNotEmptyMarker = false;
 
             if (breakInTrade == 0) {
@@ -1045,7 +1045,7 @@ function rewriteParlayLists() {
 
                     var url = 'http://god.ares.local/api/Hol/GetDate?value=' + endTimeString; // на роботі (локалка)
                     // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + endTimeString; // вдома (інет)
-                   
+
                     if (isActionsTradingPossible(url, endTime)) {
                         $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
                             .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="'
@@ -1118,7 +1118,7 @@ function rewriteParlayLists() {
 
             // очистити старий список ставок
             $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-            
+
             // перевірка на державні свята США / короткі робочі дні в США
             var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
             // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
@@ -1182,6 +1182,7 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
                      Для открытия новой ставки дождитесь, пожалуйста, закрытия активных торгов.")
     }
     else {
+
         /* ↓↓↓ BEM-block: parlay-confirmation ↓↓↓ */
         $('#tradePair').text(parlayPairName);
         $('#tradeSumm').text(parlayInvestment);
@@ -1190,6 +1191,17 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
         // open
         $('.parlay-confirmation__positioning-wrapper').css({ 'zIndex': '8888', 'background-color': 'rgba(0,0,0,.8)' });
         $('.parlay-confirmation').css({ 'left': '0%' });
+
+        var parlayConfirmationCount = 11;
+        var parlayConfirmationInterval = setInterval(function(){
+          if (parlayConfirmationCount > 1) {
+            parlayConfirmationCount -= 1;
+            $('.parlay-confirmation__timer').text(parlayConfirmationCount);
+          } else {
+            closeParlayConfirmationPopup();
+          }
+        },1000);
+
         // close
         $('.parlay-confirmation__btn-no, .parlay-confirmation__close-btn').click(function () {
             closeParlayConfirmationPopup()
@@ -1285,6 +1297,9 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
         });
 
         function closeParlayConfirmationPopup() {
+            $('.parlay-confirmation__timer').text('');
+            clearInterval(parlayConfirmationInterval);
+
             $('.parlay-confirmation').css({ 'left': '110%' });
             var tempParlayConfirmationWidth = $('.parlay-confirmation__holder').css('width');
             var tempParlayConfirmationPadding = $('.parlay-confirmation__holder').css('padding-left');
@@ -1460,29 +1475,29 @@ function isActionsTradingPossible(url, dateTime) {
     $.ajax({
         url: url,
         success: function (data) {
-            //debugger 
+            //debugger
             if (isActions == 'noActions') {
-                debugger 
+                debugger
                 return true;
             } else {
                 if (data == 1) { // святковий день
-                    //debugger 
+                    //debugger
                     return false;
                 }
                 if (data == 0) { // не святковий день
-                   // debugger 
+                   // debugger
                     // перевірка на вихідний день (субота/неділя)
                     if (dateTime.getUTCDay() == 6 || dateTime.getUTCDay() == 0) { // вихідний день (субота/неділя)
-                      //  debugger 
+                      //  debugger
                         return false;
                     } else { // робочий день - 13:30-20:00 по UTC noActions
                         // перевести години в хвилини, додати до хвилин
                         var timeInMinutes = dateTime.getUTCHours() * 60 + dateTime.getUTCMinutes();
                         if (timeInMinutes >= 1200 || timeInMinutes < 810) { // неробочий час
-                           // debugger 
+                           // debugger
                             return false;
                         } else { // робочий час
-                            //debugger 
+                            //debugger
                             return true;
                         }
                     }
@@ -1527,7 +1542,7 @@ function investmentReset() {
     $('.info-message').css({ 'right': '-290px' });
 
     /* ↓↓↓ відновлння списків після того, як акції їх позатирали (в не робочий час) ↓↓↓ */
-   
+
         rewriteParlayLists();
     /* ↑↑↑ /відновлння списків після того, як акції їх позатирали (в не робочий час) ↑↑↑ */
 

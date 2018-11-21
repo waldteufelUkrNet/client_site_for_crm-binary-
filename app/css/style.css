@@ -2100,11 +2100,20 @@ a, a:hover {
   -webkit-transition: background-color .5s, border-color .5s;
   -o-transition: background-color .5s, border-color .5s;
   transition: background-color .5s, border-color .5s;
+  position: relative;
 }
 
 .parlay-confirmation__btn:hover {
   background-color: #1d2a38;
   border-color: white;
+}
+
+.parlay-confirmation__timer {
+  font-family: rcb;
+  font-size: 1.4em;
+  position: absolute;
+  right: 6px;
+  top: 0px;
 }
 
 .info-parlay-result {
