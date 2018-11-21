@@ -935,7 +935,7 @@ function rewriteParlayLists() {
     var currentUTCDateString = tempUTCYear + '-' +
         tempUTCMonth + '-' +
         tempUTCDate;
-    var breakInTrade = $('#currentStockPairId').attr('data-break'); 
+    var breakInTrade = $('#currentStockPairId').attr('data-break'); // тут мы получаем 0 - биржа активна, 1 - перерыв у выбранной активной пары.
     if (parlayType == 'short') {
         orderTypeForBackEnd = 0;
         // контроль для акцій: контроль, чи працює поставник котирувань - ajax, якщо так - максимально можлива ставка - за 5 хв до закриття біржі, робочий день - 13:30-20:00 по UTC
@@ -946,7 +946,7 @@ function rewriteParlayLists() {
             // очистити старий список ставок
             $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
 
-            if (breakInTrade!=false) {
+            if (breakInTrade == 0) {
                 if ((13 * 60 + 30) <= (+tempUTCHour * 60 + +tempUTCMinutes) && (+tempUTCHour * 60 + +tempUTCMinutes) < (19 * 60 + 50)) {
 
                     if ($('#language-span').text().toLowerCase() == 'язык:') {
@@ -972,7 +972,8 @@ function rewriteParlayLists() {
                         showInfoMessage(exchangeDontWork[1]);
                     }
                 }
-            } else {
+            }
+            else {
                 //біржа не працює
                 if ($('#language-span').text().toLowerCase() == 'язык:') {
                     showInfoMessage(exchangeDontWork[0]);
@@ -1016,7 +1017,7 @@ function rewriteParlayLists() {
             
             var isLongParlayListNotEmptyMarker = false;
 
-            if (breakInTrade != false) {
+            if (breakInTrade == 0) {
                 var endTime = new Date(+new Date(new Date()) + 24 * 60 * 60 * 1000); // 86400000
 
                 for (var i = 0; i < 31; i++) {
@@ -1117,7 +1118,7 @@ function rewriteParlayLists() {
 
             // очистити старий список ставок
             $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-
+            
             // перевірка на державні свята США / короткі робочі дні в США
             var url = 'http://god.ares.local/api/Hol/GetDate?value=' + currentUTCDateString; // на роботі (локалка)
             // var url = 'http://62.216.34.146:9000/api/Hol/GetDate?value=' + currentUTCDateString; // вдома (інет)
@@ -1513,7 +1514,7 @@ function showInfoMessage(message) {
 
     setTimeout(function() {
         $('.info-message').css({ 'right': '-290px' });
-    }, 3000);
+    }, 5000);
 }
 
 function investmentReset() {
