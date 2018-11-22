@@ -1,30 +1,37 @@
 var tempObj = {
-    IdOrder     : 1,           // id контейнера
-    Investments : 5555,        // зроблена ставка
-    Simbol      : 'BTC/ETH',   // пара
-    OpenPrise   : 145.678,     // початкова ціна
-    TypeOrder   : true,        // очікування, угору - true, вниз - false
-    Time        : 180,        // поточний час до закінчення
-    StartTime   : 180,        // початковий час до закінчення (тривалість ставки)
-    graphicArr  : []           // масив для побудови графіка
+    IdOrder      : 1,           // id контейнера
+    Investments  : 5555,        // зроблена ставка
+    Simbol       : 'BTC/ETH',   // пара
+    OpenPrise    : 145.678,     // початкова ціна
+    CurrentPrise : 146.222,     // поточна ціна
+    TypeOrder    : true,        // очікування, угору - true, вниз - false
+    Time         : 150,          // поточний час до закінчення
+    StartTime    : 150,          // початковий час до закінчення (тривалість ставки)
+    graphicArr   : []           // масив для побудови графіка
 };
 
 // .active-slider__time-candle-wrapper
 $('.tempBTN6').click(function(){
   var timer = setInterval(function () {
     if ($('#order' + 1)[0]) {
-      // if exist - change
+      // якщо такий div існує - змінити висолу полоси прогресу
       tempObj.Time -= 1;
       if ( tempObj.Time <= 0 ) {
-        console.log(1);
         $( $('#order' + 1)[0] ).remove();
         clearInterval(timer);
       }
       var indicator = 186 * tempObj.Time / tempObj.StartTime + 'px';
       $( $('#order' + 1)[0] ).find('.active-slider__time-candle-wrapper').css('height', indicator);
 
+      // якщо клієнт вгадує (ставка вверх і котирування вверх, або ставка вниз і котирування вниз)
+      if ( (tempObj.TypeOrder == true && tempObj.CurrentPrise > tempObj.OpenPrise) || (tempObj.TypeOrder == false && tempObj.CurrentPrise <= tempObj.OpenPrise) ) {
+        $('#order' + 1).css('border-color','dodgerblue');
+      } else {
+        $('#order' + 1).css('border-color','red');
+      }
+
     } else {
-      // if don't exist - create
+      // якщо такого div не існує - створити
       // формуємо значки вверх/вниз
       var parlayAnticipation;
       if (tempObj.TypeOrder == true) {

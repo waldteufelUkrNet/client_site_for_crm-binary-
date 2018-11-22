@@ -322,14 +322,13 @@
           border-radius          : 4px;
           padding                : 5px;
           display                : grid;
-          grid-template-columns  : 47px 1fr;
-          grid-column-gap        : 5px;
+          grid-template-columns  : 40px 1fr;
+          grid-column-gap        : 4px;
           margin                 : 0 20px;
           position               : relative;
         }
         &__item-timer-wrapper {
           max-height             : 100%;
-          width                  : 40px;
           display                : flex;
           flex-direction         : column;
           justify-content        : start;
@@ -357,7 +356,9 @@
           bottom                 : 0px;
           background-image       : linear-gradient( rgba(30, 144, 255, .1), rgba(30, 144, 255, .4), rgba(30, 144, 255, .9) );
         }
-        &__item-graphic {border: 1px dotted yellow;
+        &__item-graphic {
+          border                 : 1px solid white;
+          border-radius          : 4px;
         }
         &__info {
           position               : absolute;
@@ -371,7 +372,6 @@
         &__start-price {
           font-size              : 12px;
         }
-
       }
       #history-slider {}
       #deposit-slider {
