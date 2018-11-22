@@ -329,6 +329,7 @@
         }
         &__item-timer-wrapper {
           max-height             : 100%;
+          width                  : 40px;
           display                : flex;
           flex-direction         : column;
           justify-content        : start;
@@ -336,37 +337,39 @@
           background-color       : rgba(0,0,0,.5);
           border                 : 1px solid white;
           border-radius          : 4px;
-        }
-
-        &__item-timer {
-          height                 : 47px;
-          width                  : 180px;
           position               : relative;
-          &_hours {
-            left                 : -45px;
-          }
-          &_minutes {
-            left                 : -90px;
-          }
-          &_seconds {
-            left                 : -135px;
-          }
         }
-        &__item-graphic {//border: 1px dotted yellow;
+        &__time-candle-wrapper {
+          height                 : 186px;
+          width                  : 100%;
+          border-top             : 1px solid dodgerblue;
+          margin                 : 0 auto;
+          position               : absolute;
+          left                   : 0px;
+          bottom                 : 0px;
+          overflow               : hidden;
+        }
+        &__time-candle {
+          width                  : 100%;
+          height                 : 186px;
+          position               : absolute;
+          left                   : 0px;
+          bottom                 : 0px;
+          background-image       : linear-gradient( rgba(30, 144, 255, .1), rgba(30, 144, 255, .4), rgba(30, 144, 255, .9) );
+        }
+        &__item-graphic {border: 1px dotted yellow;
         }
         &__info {
-          position: absolute;
-          top: 5px;
-          left: 57px;
-          border: 1px solid white;
-          border-radius: 4px;
-          padding: 3px;
-          background-color: rgba(0,0,0,.5)
+          position               : absolute;
+          top                    : 5px;
+          left                   : 49px;
+          border                 : 1px solid white;
+          border-radius          : 4px;
+          padding                : 3px;
+          background-color       : rgba(0,0,0,.5)
         }
-        &__pair-name {}
-        &__parlay {}
         &__start-price {
-          font-size: 12px;
+          font-size              : 12px;
         }
 
       }

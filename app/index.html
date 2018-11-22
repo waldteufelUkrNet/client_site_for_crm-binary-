@@ -20,6 +20,7 @@
     <button class="tempBTN2" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 120px; z-index: 9999; cursor: pointer">withdrawal</button>
     <button class="tempBTN3" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer">change pass</button>
     <button class="tempBTN5" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 60px; z-index: 9999; cursor: pointer">parlay result</button>
+    <button class="tempBTN6" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 30px; z-index: 9999; cursor: pointer">timer-candle test</button>
     <!-- HEADER-->
     <header class="header">
       <div class="logo_part">LOGOGO</div>
@@ -107,10 +108,9 @@
           <div class="slider-area__slider" id="active-slider">
             <div class="active-slider__item">
               <div class="active-slider__item-timer-wrapper">
-                <div class="active-slider__item-timer active-slider__item-timer_days" data-date="2018-12-01 00:00:00"></div>
-                <div class="active-slider__item-timer active-slider__item-timer_hours" data-date="2018-12-01 00:00:00"></div>
-                <div class="active-slider__item-timer active-slider__item-timer_minutes" data-date="2018-12-01 00:00:00"></div>
-                <div class="active-slider__item-timer active-slider__item-timer_seconds" data-date="2018-12-01 00:00:00"></div>
+                <div class="active-slider__time-candle-wrapper">
+                  <div class="active-slider__time-candle"></div>
+                </div>
               </div>
               <div class="active-slider__item-graphic"></div>
               <div class="active-slider__info"><span class="active-slider__pair-name">
@@ -829,9 +829,10 @@
     <script src="libs/highstock.js"></script>
     <script src="libs/jquery-ui.js"></script>
     <script src="libs/slick.js"></script>
-    <script src="libs/TimeCircles.js"></script>
+    <!--script(src='libs/TimeCircles.js')-->
     <!-- own js-->
     <script src="js/js.js"></script>
     <script src="js/myFirstHighstock.js"></script>
+    <script src="js/testJs.js"></script>
   </body>
 </html>

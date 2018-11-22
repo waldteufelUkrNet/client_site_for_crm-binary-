@@ -27,14 +27,6 @@ var exchangeDontWork = [
     ];
 /* ↑↑↑ /GLOBAL VARIABLES ↑↑↑ */
 
-/* ↓↓↓ активація анімованих таймерів ↓↓↓ */
-$(".active-slider__item-timer").TimeCircles({
-    fg_width: 0.03,
-    text_size: 0.15,
-    number_size: 0.3
-});
-/* ↑↑↑ /активація анімованих таймерів ↑↑↑ */
-
 /* ↓↓↓ активація слайдерів ↓↓↓ */
 $('.wares-slider, .parlay-slider').slick({
     draggable: false
@@ -1286,12 +1278,6 @@ function createParlay(parlayPairName, parlayInvestment, parlayAnticipation, parl
                 $('#active-slider .slick-track').css({ 'transition': 'transform .3s', 'transform': translateValue });
             }, 501);
 
-            // перезапустити таймери
-            $(".active-slider__item-timer").TimeCircles({ // slick-current slick-center
-                fg_width: 0.03,
-                text_size: 0.15,
-                number_size: 0.3
-            });
 
             closeParlayConfirmationPopup()
         });

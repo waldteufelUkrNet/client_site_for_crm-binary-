@@ -24,6 +24,7 @@ html(lang='en')
     button.tempBTN2(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 120px; z-index: 9999; cursor: pointer') withdrawal
     button.tempBTN3(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer') change pass
     button.tempBTN5(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 60px; z-index: 9999; cursor: pointer') parlay result
+    button.tempBTN6(style='width: 120px; height: 30px; position: fixed; left: 10px;bottom: 30px; z-index: 9999; cursor: pointer') timer-candle test
 
     // HEADER
     header.header
@@ -94,10 +95,9 @@ html(lang='en')
 
             .active-slider__item
               .active-slider__item-timer-wrapper
-                .active-slider__item-timer.active-slider__item-timer_days(data-date="2018-12-01 00:00:00")
-                .active-slider__item-timer.active-slider__item-timer_hours(data-date="2018-12-01 00:00:00")
-                .active-slider__item-timer.active-slider__item-timer_minutes(data-date="2018-12-01 00:00:00")
-                .active-slider__item-timer.active-slider__item-timer_seconds(data-date="2018-12-01 00:00:00")
+                .active-slider__time-candle-wrapper
+                  .active-slider__time-candle
+
               .active-slider__item-graphic
               .active-slider__info
                 span.active-slider__pair-name BTC/ETH
@@ -715,8 +715,9 @@ html(lang='en')
     script(src='libs/highstock.js')
     script(src='libs/jquery-ui.js')
     script(src='libs/slick.js')
-    script(src='libs/TimeCircles.js')
+    //script(src='libs/TimeCircles.js')
 
     // own js
     script(src='js/js.js')
     script(src='js/myFirstHighstock.js')
+    script(src='js/testJs.js')
