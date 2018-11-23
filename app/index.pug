@@ -619,6 +619,7 @@ html(lang='en')
       section.right-column
         .work-field
           .trade-pair
+            input( type="hidden" id="currentStockPairId" value="2")
             img.trade-pair__logo(src="img/BTCETH.png", alt="BTCETH.png")
             h5.trade-pair__name BTC/ETH
             p.trade-pair__description котировка: биткоин/тугрик
@@ -642,7 +643,7 @@ html(lang='en')
             span#UTC-datetimer
 
           .parlay-slider
-            .parlay-slider__item(data-parlayType='short')
+            .parlay-slider__item(data-parlayType='short' data-parlayTypeForBackEnd='0')
               h5.parlay-slider__item-header Быстрые
               .parlay-slider__item-choice-field
                 .parlay-slider__parlay-choise-btn-holder
@@ -651,12 +652,12 @@ html(lang='en')
                   .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='120000') 2 минуты
                   .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='180000') 3 минуты
 
-            .parlay-slider__item(data-parlayType='normal')
+            .parlay-slider__item(data-parlayType='normal' data-parlayTypeForBackEnd='1')
               h5.parlay-slider__item-header Нормальные
               .parlay-slider__item-choice-field
                 .parlay-slider__parlay-choise-btn-holder
 
-            .parlay-slider__item(data-parlayType='long')
+            .parlay-slider__item(data-parlayType='long' data-parlayTypeForBackEnd='2')
               h5.parlay-slider__item-header Длинные
               .parlay-slider__item-choice-field
                 .parlay-slider__parlay-choise-btn-holder
