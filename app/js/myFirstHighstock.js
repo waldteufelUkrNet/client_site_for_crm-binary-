@@ -3,7 +3,7 @@ var pointStart,                                                                 
     lastPoint,                                                                                                                    //
     tempPoint,                                                                                                                    //
     YPlotLinesValue,                                                                                                              // величина, від якої малюється положення червоної лінії
-    interval,                                                                                                                     //
+    interval,                                                                                                                     // setInterval
     resultArr          = [],                                                                                                      // масив з перероблених вхідних даних, придатний для обробки бібліотекою
     stringType         = '?',                                                                                                     // тип даних: ? для areaspline та Ohlc? для candlestick/ohlc
     stringSymbol       = 'BTCETH',                                                                                                // назва торгової пари, потрібна для формування рядка запиту
@@ -70,7 +70,6 @@ $(arrOfTimerBtns).click(function(){
 
 // ↓↓↓ functions declarations ↓↓↓
 function getDataArr() {
-  // console.log('start getDataArr');
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
@@ -110,7 +109,7 @@ function getDataArr() {
 
         for (var i = 0; i < data.length; i++) {
           var tempArr = [];
-          var tempTime = new Date(data[i].DateClose);
+          var tempTime = new Date(data[i].DateOpen); // раніше було var tempTime = new Date(data[i].DateClose);
           tempArr.push(tempTime);
           tempArr.push(data[i].Open);
           tempArr.push(data[i].Hight);
@@ -151,7 +150,6 @@ function getDataArr() {
 }
 
 function drawChart() {
-  // console.log('start drawChart');
   // створює графік
 
   chart = Highcharts.stockChart({
@@ -162,25 +160,22 @@ function drawChart() {
       events               : {
         load               :  function () {
 
-                                // var series = this.series[0];
+                                redrawPlotline(this, YPlotLinesValue);
 
-                                 redrawPlotline(this, YPlotLinesValue);
-                                 redrawPlotlineValueRectangle(YPlotLinesValue);
+                                clearInterval(interval); // зупиняє попередні інтервали, бо інакше при натисненні на кнопки часу і типу графік починає сходити з розуму
 
-                                // clearInterval(interval);
+                                interval = setInterval(function () {
+                                dataOne  = 'http://god.ares.local/api/Stock?timer=realOne&symbol=' + stringSymbol,
+                                // dataOne  = 'http://62.216.34.146:9000/api/Stock?timer=realOne&symbol=' + stringSymbol,
+                                  $.getJSON(dataOne, function (data) { // data = [{Sumbol,Value,'date'}]
+                                    var x = new Date(data[0].Date),
+                                        y = data[0].Value;
 
-                                // interval = setInterval(function () { //console.log('setInterval');
-                                // dataOne  = 'http://god.ares.local/api/Stock?timer=realOne&symbol=' + stringSymbol,
-                                // // dataOne  = 'http://62.216.34.146:9000/api/Stock?timer=realOne&symbol=' + stringSymbol,
-                                //   $.getJSON(dataOne, function (data) { // data = [{Sumbol,Value,'date'}]
-                                //     var x = new Date(data[0].Date),
-                                //         y = data[0].Value;
-
-                                //     // зробити окрему функцію без ajax попросили бекендщики
-                                //     // redrawSerie(x,y);
-                                //   });
-                                // }, 3000);
-                                // tugOfWarAnimation();
+                                    // зробити окрему функцію без ajax попросили бекендщики
+                                    redrawSerie(x,y);
+                                  });
+                                }, 3000);
+                                tugOfWarAnimation();
 
                                 // remove "Highcharts.com"-marker
                                 $('.highcharts-credits').remove();
@@ -260,45 +255,43 @@ function drawChart() {
   });
 }
 
-// function redrawChart () {
-//   // console.log('start redrawChart');
-//   // видаляє графік, перемальовує графік
+function redrawChart () {
+  // видаляє графік, перемальовує графік
 
-//   chart.series[0].remove();
-//   chart.addSeries({
-//     type                 : dataType,
-//     threshold            : null,
-//     name                 : stringSymbol,
-//     data                 : resultArr,
-//     color                : 'dodgerblue',
-//     showInNavigator      : false,
-//     pointStart           : startTime,
-//     pointInterval        : timeStep * 60 * 1000,
-//     fillColor            : {
-//       linearGradient     : {
-//         x1               : 0,
-//         y1               : -3,
-//         x2               : 0,
-//         y2               : 1
-//       },
-//       stops              : [
-//         [0, Highcharts.getOptions().colors[0]],
-//         [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-//       ]
-//     }
-//   }, false);
+  chart.series[0].remove();
+  chart.addSeries({
+    type                 : dataType,
+    threshold            : null,
+    name                 : stringSymbol,
+    data                 : resultArr,
+    color                : 'dodgerblue',
+    showInNavigator      : false,
+    pointStart           : startTime,
+    pointInterval        : timeStep * 60 * 1000,
+    fillColor            : {
+      linearGradient     : {
+        x1               : 0,
+        y1               : -3,
+        x2               : 0,
+        y2               : 1
+      },
+      stops              : [
+        [0, Highcharts.getOptions().colors[0]],
+        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+      ]
+    }
+  }, false);
 
-//   chart.redraw();
+  chart.redraw();
 
-//   chart.yAxis[0].removePlotLine('plot-line-1');
-//   redrawPlotline(chart, YPlotLinesValue);
-//   tugOfWarAnimation();
-//   redrawPlotlineValueRectangle(YPlotLinesValue);
-// }
+  chart.yAxis[0].removePlotLine('plot-line-1');
+  redrawPlotline(chart, YPlotLinesValue);
+  tugOfWarAnimation();
+}
 
 function redrawPlotline(nameOfChart, currentYCoordValue) {
   // console.log('start redrawPlotline');
-  // перемальовує плот-лінію
+  // перемальовує плот-лінію та поточне значення
 
   nameOfChart.yAxis[0].addPlotLine({
     color         : 'red',
@@ -319,11 +312,6 @@ function redrawPlotline(nameOfChart, currentYCoordValue) {
     },
     value         : currentYCoordValue
   });
-}
-
-function redrawPlotlineValueRectangle(Value) {
-  // console.log('start redrawPlotlineValueRectangle');
-  // функція перемальовує поточне значення плот-лінії
 
   // highcharts-plot-line-label - перестало працювати усюди, крім edge
   var labelCoordTop  = $('.highcharts-plot-lines-9988').position().top - 11;
@@ -338,7 +326,7 @@ function redrawPlotlineValueRectangle(Value) {
   }
 
   labelValue1 = labelValue2;
-  labelValue2 = Value;
+  labelValue2 = currentYCoordValue;
 
   $('#labelBorder').css({'min-width'       :'10px',
                          'height'          :'20px',
@@ -347,7 +335,7 @@ function redrawPlotlineValueRectangle(Value) {
                          'border'          :'1px solid',
                          'border-color'    : labelBorderColor
                    })
-                   .text(Value.toFixed(5));
+                   .text(currentYCoordValue.toFixed(5));
 
   $('#labelIndicator').css({'width'        :'4px',
                             'height'       :'4px',
@@ -356,53 +344,52 @@ function redrawPlotlineValueRectangle(Value) {
                       });
 };
 
-// function redrawSerie(x,y){
-//   // console.log('start redrawSerie');
-//   // приймає поточні значення котировки, визначає тип графіка, формує тимчасову точку та
-//   // запускає функцію redrawChart(), яка перемальовує графік. Якщо час тимчасової точки
-//   // більше за час останньої точки більше ніж на крок графіка, додає точку до масиву значень
-//   // та видаляє першу точку
+function redrawSerie(x,y){
+  // приймає поточні значення котировки, визначає тип графіка, формує тимчасову точку та запускає
+  // функцію redrawChart(), яка перемальовує графік. Якщо час тимчасової точки більше за час
+  // останньої точки більше ніж на крок графіка, додає точку до масиву значень та видаляє першу точку
 
-//   //x = new Date(x); - так треба бекендщикам, бо у них дата - не рядок з json
-//   YPlotLinesValue = y;
-//   lastPoint = resultArr[resultArr.length-2];
+  //x = new Date(x); // так треба бекендщикам, бо у них дата - не рядок з json
+  YPlotLinesValue = y;
+  lastPoint = resultArr[resultArr.length-2];
 
-//   chart.yAxis[0].removePlotLine('plot-line-1');
-//   redrawPlotline(chart, YPlotLinesValue);
-//   redrawPlotlineValueRectangle(YPlotLinesValue);
+  chart.yAxis[0].removePlotLine('plot-line-1');
+  redrawPlotline(chart, YPlotLinesValue);
 
-//   if (dataType == 'areaspline') {
+  if (dataType == 'areaspline') {
 
-//     tempPoint = [x,y];
-//     resultArr[resultArr.length-1] = tempPoint;
+    tempPoint = [x,y];
+    resultArr[resultArr.length-1] = tempPoint;
 
-//   } else if (dataType == 'candlestick' || dataType == 'ohlc') { console.log('ohlc');
+  } else if (dataType == 'candlestick' || dataType == 'ohlc') {
 
-//     if (tempPoint == null) {
-//       tempPoint = [x, y, y, y, y]; // tempPoint = [x, open, high, low, close];
-//     }
-//     tempPoint[0] = x;
-//     if (tempPoint[2] < y) { tempPoint[2] = y }
-//     if (tempPoint[3] > y) { tempPoint[3] = y }
-//     tempPoint[4] = y;
+    if (tempPoint == null) {
+      tempPoint = [x, y, y, y, y]; // tempPoint = [x, open, high, low, close];
+    }
+    tempPoint[0] = x;
+    if (tempPoint[2] < y) { tempPoint[2] = y }
+    if (tempPoint[3] > y) { tempPoint[3] = y }
+    tempPoint[4] = y;
 
-//     resultArr[resultArr.length-1] = tempPoint;
+    resultArr[resultArr.length-1] = tempPoint;
 
-//   } else {
-//     console.log('dataType is not "areaspline", "candlestick" or "ohlc"')
-//   }
+  }
 
-//   var deltaTime = x.getTime() - lastPoint[0].getTime();
+  var deltaTime = x.getTime() - lastPoint[0].getTime();
+  console.log("x", x);
+  console.log("lastPoint[0]", lastPoint[0]);
 
-//   if (deltaTime >= timeStep * 60 * 1000) {
 
-//     resultArr.shift();
-//     lastPoint = tempPoint;
-//     resultArr.push(tempPoint);
-//     tempPoint = null;
-//   }
-//   redrawChart();
-// }
+  if (deltaTime >= timeStep * 60 * 1000) {
+    console.log(">=");
+
+    resultArr.shift();
+    lastPoint = tempPoint;
+    resultArr.push(tempPoint);
+    tempPoint = null;
+  }
+  redrawChart();
+}
 
 function sleep(ms) {
   ms += new Date().getTime();
@@ -424,80 +411,79 @@ function getCoords(elem) {
 // ↑↑↑ functions declarations ↑↑↑
 
 // ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓
-// function tugOfWarAnimation() {
-//   // console.log('start tugOfWarAnimation');
-//   // функція циклом визначає найбільшу і найменшу точки графіку, приймає їх за 100% та 0% відповідно,
-//   // потім бере першу і останню точки, переводить їх у проценти, знаходить їх різницю і ділить на два,
-//   // отримане значення або додає, або віднімає від 50% у залежності від тенденції.
+function tugOfWarAnimation() {
+  // функція циклом визначає найбільшу і найменшу точки графіку, приймає їх за 100% та 0% відповідно,
+  // потім бере першу і останню точки, переводить їх у проценти, знаходить їх різницю і ділить на два,
+  // отримане значення або додає, або віднімає від 50% у залежності від тенденції.
 
-//   var firstTOWPoint,
-//       lastTOWPoint,
-//       minTOWPoint,
-//       maxTOWPoint,
-//       firstTOWPointInPercent,
-//       lastTOWPointInPercent,
-//       shiftTOW;
+  var firstTOWPoint,
+      lastTOWPoint,
+      minTOWPoint,
+      maxTOWPoint,
+      firstTOWPointInPercent,
+      lastTOWPointInPercent,
+      shiftTOW;
 
-//   $('#bull1').css({'display':'none'});
-//   $('#bull2').css({'display':'block'});
-//   $('#bear1').css({'display':'none'});
-//   $('#bear2').css({'display':'block'});
+  $('#bull1').css({'display':'none'});
+  $('#bull2').css({'display':'block'});
+  $('#bear1').css({'display':'none'});
+  $('#bear2').css({'display':'block'});
 
-//   if (dataType == 'areaspline') {
-//     minTOWPoint = maxTOWPoint = firstTOWPoint = resultArr[0][1];
-//     lastTOWPoint  = resultArr[resultArr.length-2][1];
+  if (dataType == 'areaspline') {
+    minTOWPoint = maxTOWPoint = firstTOWPoint = resultArr[0][1];
+    lastTOWPoint  = resultArr[resultArr.length-2][1];
 
-//     for(var i = 0; i < resultArr.length-1; i++) {
-//       if(resultArr[i][1] > maxTOWPoint) {
-//         maxTOWPoint = resultArr[i][1];
-//       }
-//       if(resultArr[i][1] < minTOWPoint) {
-//         minTOWPoint = resultArr[i][1];
-//       }
-//     }
+    for(var i = 0; i < resultArr.length-1; i++) {
+      if(resultArr[i][1] > maxTOWPoint) {
+        maxTOWPoint = resultArr[i][1];
+      }
+      if(resultArr[i][1] < minTOWPoint) {
+        minTOWPoint = resultArr[i][1];
+      }
+    }
 
-//   }
-//   if (dataType == 'candlestick' || dataType == 'ohlc') {
-//     minTOWPoint = maxTOWPoint = firstTOWPoint = resultArr[0][1];
-//     lastTOWPoint  = resultArr[resultArr.length-2][4];
+  }
+  if (dataType == 'candlestick' || dataType == 'ohlc') {
+    minTOWPoint = maxTOWPoint = firstTOWPoint = resultArr[0][1];
+    lastTOWPoint  = resultArr[resultArr.length-2][4];
 
-//     for(var i = 0; i < resultArr.length-1; i++) {
-//       if(resultArr[i][4] > maxTOWPoint) {
-//         maxTOWPoint = resultArr[i][4];
-//       }
-//       if(resultArr[i][4] < minTOWPoint) {
-//         minTOWPoint = resultArr[i][4];
-//       }
-//     }
-//   }
+    for(var i = 0; i < resultArr.length-1; i++) {
+      if(resultArr[i][4] > maxTOWPoint) {
+        maxTOWPoint = resultArr[i][4];
+      }
+      if(resultArr[i][4] < minTOWPoint) {
+        minTOWPoint = resultArr[i][4];
+      }
+    }
+  }
 
-//   firstTOWPointInPercent = (firstTOWPoint * 100) / (maxTOWPoint - minTOWPoint);
-//   lastTOWPointInPercent  = (lastTOWPoint * 100) / (maxTOWPoint - minTOWPoint);
+  firstTOWPointInPercent = (firstTOWPoint * 100) / (maxTOWPoint - minTOWPoint);
+  lastTOWPointInPercent  = (lastTOWPoint * 100) / (maxTOWPoint - minTOWPoint);
 
-//   if (firstTOWPointInPercent < lastTOWPointInPercent) {
-//     shiftTOW = 50 + (lastTOWPointInPercent - firstTOWPointInPercent) / 2;
-//   } else if (firstTOWPointInPercent > lastTOWPointInPercent) {
-//     shiftTOW = 50 - ((firstTOWPointInPercent - lastTOWPointInPercent) / 2);
-//   } else {
-//     shiftTOW = 50;
-//   }
+  if (firstTOWPointInPercent < lastTOWPointInPercent) {
+    shiftTOW = 50 + (lastTOWPointInPercent - firstTOWPointInPercent) / 2;
+  } else if (firstTOWPointInPercent > lastTOWPointInPercent) {
+    shiftTOW = 50 - ((firstTOWPointInPercent - lastTOWPointInPercent) / 2);
+  } else {
+    shiftTOW = 50;
+  }
 
-//   if (shiftTOW > 80) {
-//     $('#bull1,#bear2').css({'display':'block'});
-//     $('#bull2,#bear1').css({'display':'none'});
-//   } else if (shiftTOW < 20) {
-//     $('#bull1,#bear2').css({'display':'none'});
-//     $('#bull2,#bear1').css({'display':'block'});
-//   } else {
-//     $('#bull1,#bear1').css({'display':'none'});
-//     $('#bull2,#bear2').css({'display':'block'});
-//   }
+  if (shiftTOW > 80) {
+    $('#bull1,#bear2').css({'display':'block'});
+    $('#bull2,#bear1').css({'display':'none'});
+  } else if (shiftTOW < 20) {
+    $('#bull1,#bear2').css({'display':'none'});
+    $('#bull2,#bear1').css({'display':'block'});
+  } else {
+    $('#bull1,#bear1').css({'display':'none'});
+    $('#bull2,#bear2').css({'display':'block'});
+  }
 
-//   shiftTOW += '%';
+  shiftTOW += '%';
 
-//   $('.tug-of-war__indicator').css({'left':shiftTOW});
-//   $('.tug-of-war__lightbulb').css({'left':shiftTOW});
-// }
+  $('.tug-of-war__indicator').css({'left':shiftTOW});
+  $('.tug-of-war__lightbulb').css({'left':shiftTOW});
+}
 // ↑↑↑ BEM-blocks: tug-of-war (end) ↑↑↑
 
 // made by waldteufel@ukr.net
