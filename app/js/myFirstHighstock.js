@@ -255,6 +255,49 @@ function drawChart() {
   });
 }
 
+function redrawSerie(x,y) {
+  // приймає поточні значення котировки, визначає тип графіка, формує тимчасову точку та запускає
+  // функцію redrawChart(), яка перемальовує графік. Якщо час тимчасової точки більше за час
+  // останньої точки більше ніж на крок графіка, додає точку до масиву значень та видаляє першу точку
+
+  //x = new Date(x); // так треба бекендщикам, бо у них дата - не рядок з json
+  YPlotLinesValue = y;
+  lastPoint = resultArr[resultArr.length-2];
+
+  chart.yAxis[0].removePlotLine('plot-line-1');
+  redrawPlotline(chart, YPlotLinesValue);
+
+  if (dataType == 'areaspline') {
+
+    tempPoint = [x,y];
+    resultArr[resultArr.length-1] = tempPoint;
+
+  } else if (dataType == 'candlestick' || dataType == 'ohlc') {
+
+    if (tempPoint == null) {
+      tempPoint = [x, y, y, y, y]; // tempPoint = [x, open, high, low, close];
+    }
+    tempPoint[0] = x;
+    if (tempPoint[2] < y) { tempPoint[2] = y }
+    if (tempPoint[3] > y) { tempPoint[3] = y }
+    tempPoint[4] = y;
+
+    resultArr[resultArr.length-1] = tempPoint;
+
+  }
+
+  var deltaTime = x.getTime() - lastPoint[0].getTime();
+
+  if (deltaTime >= timeStep * 60 * 1000) {
+
+    resultArr.shift();
+    lastPoint = tempPoint;
+    resultArr.push(tempPoint);
+    tempPoint = null;
+  }
+  redrawChart();
+}
+
 function redrawChart () {
   // видаляє графік, перемальовує графік
 
@@ -343,53 +386,6 @@ function redrawPlotline(nameOfChart, currentYCoordValue) {
                             'left'         :labelCoordLeft-5
                       });
 };
-
-function redrawSerie(x,y){
-  // приймає поточні значення котировки, визначає тип графіка, формує тимчасову точку та запускає
-  // функцію redrawChart(), яка перемальовує графік. Якщо час тимчасової точки більше за час
-  // останньої точки більше ніж на крок графіка, додає точку до масиву значень та видаляє першу точку
-
-  //x = new Date(x); // так треба бекендщикам, бо у них дата - не рядок з json
-  YPlotLinesValue = y;
-  lastPoint = resultArr[resultArr.length-2];
-
-  chart.yAxis[0].removePlotLine('plot-line-1');
-  redrawPlotline(chart, YPlotLinesValue);
-
-  if (dataType == 'areaspline') {
-
-    tempPoint = [x,y];
-    resultArr[resultArr.length-1] = tempPoint;
-
-  } else if (dataType == 'candlestick' || dataType == 'ohlc') {
-
-    if (tempPoint == null) {
-      tempPoint = [x, y, y, y, y]; // tempPoint = [x, open, high, low, close];
-    }
-    tempPoint[0] = x;
-    if (tempPoint[2] < y) { tempPoint[2] = y }
-    if (tempPoint[3] > y) { tempPoint[3] = y }
-    tempPoint[4] = y;
-
-    resultArr[resultArr.length-1] = tempPoint;
-
-  }
-
-  var deltaTime = x.getTime() - lastPoint[0].getTime();
-  console.log("x", x);
-  console.log("lastPoint[0]", lastPoint[0]);
-
-
-  if (deltaTime >= timeStep * 60 * 1000) {
-    console.log(">=");
-
-    resultArr.shift();
-    lastPoint = tempPoint;
-    resultArr.push(tempPoint);
-    tempPoint = null;
-  }
-  redrawChart();
-}
 
 function sleep(ms) {
   ms += new Date().getTime();

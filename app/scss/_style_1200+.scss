@@ -359,6 +359,7 @@
         &__item-graphic {
           border                 : 1px solid white;
           border-radius          : 4px;
+          overflow               : hidden;
         }
         &__info {
           position               : absolute;
