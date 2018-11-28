@@ -343,7 +343,7 @@ function redrawPlotline(nameOfChart, currentYCoordValue) {
     width         : 1,
     zIndex        : 9988,
     label         : {
-      text        : currentYCoordValue.toFixed(5),
+      //text        : currentYCoordValue.toFixed(5),
       textAlign   : 'left',
       align       : 'right',
       x           : 5,
@@ -380,11 +380,11 @@ function redrawPlotline(nameOfChart, currentYCoordValue) {
                    })
                    .text(currentYCoordValue.toFixed(5));
 
-  $('#labelIndicator').css({'width'        :'4px',
-                            'height'       :'4px',
-                            'top'          :labelCoordTop+8,
-                            'left'         :labelCoordLeft-5
-                      });
+  // $('#labelIndicator').css({'width'        :'4px',
+  //                           'height'       :'4px',
+  //                           'top'          :labelCoordTop+8,
+  //                           'left'         :labelCoordLeft-5
+  //                     });
 };
 
 function sleep(ms) {
