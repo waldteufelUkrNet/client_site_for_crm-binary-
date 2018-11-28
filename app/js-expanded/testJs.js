@@ -146,26 +146,33 @@ var tempObj2 = {
                    ]           // масив для побудови графіка
 };
 
-var tempTestingValue = 1;
 
 $('.tempBTN6').click(function(){
 
   var timer = setInterval(function () {
-    if ($('#order' + tempTestingValue)[0]) {
+    if ($('#order' + tempObj.IdOrder)[0]) {
       // якщо такий div існує - змінити висоту полоси прогресу
       tempObj.Time -= 1;
       if ( tempObj.Time <= 0 ) {
-        $( $('#order' + tempTestingValue)[0] ).remove();
+        $( $('#order' + tempObj.IdOrder)[0] ).remove();
+
+        $('#active-slider').slick('unslick');
+        $('#active-slider').slick({
+          centerMode: false,
+          variableWidth: true,
+          infinite: false
+        });
+
         clearInterval(timer);
       }
       var indicator = 186 * tempObj.Time / tempObj.StartTime + 'px';
-      $( $('#order' + tempTestingValue)[0] ).find('.active-slider__time-candle-wrapper').css('height', indicator);
+      $( $('#order' + tempObj.IdOrder)[0] ).find('.active-slider__time-candle-wrapper').css('height', indicator);
 
       // якщо клієнт вгадує (ставка вверх і котирування вверх, або ставка вниз і котирування вниз)
       if ( (tempObj.TypeOrder == true && tempObj.CurrentPrise > tempObj.OpenPrise) || (tempObj.TypeOrder == false && tempObj.CurrentPrise <= tempObj.OpenPrise) ) {
-        $('#order' + tempTestingValue).css('border-color','dodgerblue');
+        $('#order' + tempObj.IdOrder).css('border-color','dodgerblue');
       } else {
-        $('#order' + tempTestingValue).css('border-color','red');
+        $('#order' + tempObj.IdOrder).css('border-color','red');
       }
 
     } else {
@@ -194,7 +201,7 @@ $('.tempBTN6').click(function(){
                                        <span class="active-slider__parlay"> ' + tempObj.Investments + ' </span>\
                                          <i ' + parlayAnticipationForFontAwesome + '></i>\
                                        <div class="active-slider__start-price">' + tempObj.OpenPrise + '</div>\
-                                       <div class="active-slider__current-price"></div>\
+                                       <div class="active-slider__current-price" id="currentprice' + tempObj.IdOrder + '"></div>\
                                      </div>\
                                    </div>');
       // перезапустити slick
@@ -204,28 +211,99 @@ $('.tempBTN6').click(function(){
         infinite: false
       });
 
-      drawSmallChart();
+      drawSmallChart(tempObj);
 
     }
   }, 1000);
 
 });
 
+$('.tempBTN7').click(function(){
+
+  var timer = setInterval(function () {
+    if ($('#order' + tempObj2.IdOrder)[0]) {
+      // якщо такий div існує - змінити висоту полоси прогресу
+      tempObj2.Time -= 1;
+      if ( tempObj2.Time <= 0 ) {
+        $( $('#order' + tempObj2.IdOrder)[0] ).remove();
+
+        $('#active-slider').slick('unslick');
+        $('#active-slider').slick({
+          centerMode: false,
+          variableWidth: true,
+          infinite: false
+        });
+
+        clearInterval(timer);
+      }
+      var indicator = 186 * tempObj2.Time / tempObj2.StartTime + 'px';
+      $( $('#order' + tempObj2.IdOrder)[0] ).find('.active-slider__time-candle-wrapper').css('height', indicator);
+
+      // якщо клієнт вгадує (ставка вверх і котирування вверх, або ставка вниз і котирування вниз)
+      if ( (tempObj2.TypeOrder == true && tempObj2.CurrentPrise > tempObj2.OpenPrise) || (tempObj2.TypeOrder == false && tempObj2.CurrentPrise <= tempObj2.OpenPrise) ) {
+        $('#order' + tempObj2.IdOrder).css('border-color','dodgerblue');
+      } else {
+        $('#order' + tempObj2.IdOrder).css('border-color','red');
+      }
+
+    } else {
+      // якщо такого div не існує - створити
+      // формуємо значки вверх/вниз
+      var parlayAnticipationForFontAwesome;
+      if (tempObj2.TypeOrder == true) {
+        parlayAnticipationForFontAwesome = 'class="fas fa-angle-double-up" style="color:dodgerblue"';
+      } else {
+        parlayAnticipationForFontAwesome = 'class="fas fa-angle-double-down" style="color:red"';
+      }
+
+      // зупинити slick
+      $('#active-slider').slick('unslick');
+
+      //додаємо елемент слайдеру
+      $('#active-slider').prepend('<div class="active-slider__item" id="order' + tempObj2.IdOrder + '">\
+                                     <div class="active-slider__item-timer-wrapper">\
+                                       <div class="active-slider__time-candle-wrapper">\
+                                         <div class="active-slider__time-candle"></div>\
+                                       </div>\
+                                     </div>\
+                                     <div class="active-slider__item-graphic" id="smallContainer"></div>\
+                                     <div class="active-slider__info">\
+                                       <span class="active-slider__pair-name">' + tempObj2.Simbol + '</span>\
+                                       <span class="active-slider__parlay"> ' + tempObj2.Investments + ' </span>\
+                                         <i ' + parlayAnticipationForFontAwesome + '></i>\
+                                       <div class="active-slider__start-price">' + tempObj2.OpenPrise + '</div>\
+                                       <div class="active-slider__current-price" id="currentprice' + tempObj2.IdOrder + '"></div>\
+                                     </div>\
+                                   </div>');
+      // перезапустити slick
+      $('#active-slider').slick({
+        centerMode: false,
+        variableWidth: true,
+        infinite: false
+      });
+
+      drawSmallChart(tempObj2);
+
+    }
+  }, 1000);
+
+});
 // // // // //
 
-function drawSmallChart() {
-  var chart,
+function drawSmallChart(currentObj) {
+  var graphicArr         = currentObj.graphicArr,
+      objId              = currentObj.IdOrder,
       resultArrSmall     = [],
       tempresultArrSmall = [],
       pointStartSmall,
       startTimeSmall;
 
   // [{...},{...},{...}] -> [[...],[...],[...]]
-  for (var i = 0; i < tempObj.graphicArr.length; i++) {
+  for (var i = 0; i < graphicArr.length; i++) {
     var tempArr = [];
-    var tempTime = new Date(tempObj.graphicArr[i].TimePoint);
+    var tempTime = new Date(graphicArr[i].TimePoint);
     tempArr.push(tempTime);
-    tempArr.push(tempObj.graphicArr[i].Point);
+    tempArr.push(graphicArr[i].Point);
     tempresultArrSmall.push(tempArr);
   }
 
@@ -235,7 +313,7 @@ function drawSmallChart() {
   resultArrSmall.push(tempresultArrSmall[0]);
   // так помилок в консолі не буде: resultArrSmall  = tempresultArrSmall[0];
 
-  chart1 = Highcharts.stockChart({
+  Highcharts.stockChart({
     chart                  : {
       renderTo             : 'smallContainer',
       backgroundColor      : '#1d2a38',
@@ -246,7 +324,7 @@ function drawSmallChart() {
                                 $('.highcharts-credits').remove();
 
                                 var THIS = this;
-                                redrawSmallPlotline(THIS, tempresultArrSmall[0][1]);
+                                redrawSmallPlotline(THIS, tempresultArrSmall[0][1], objId);
 
                                 var count = 1;
 
@@ -268,11 +346,11 @@ function drawSmallChart() {
                                   count += 1;
 
                                   THIS.yAxis[0].removePlotLine('plot-line-2');
-                                  redrawSmallPlotline(THIS, resultArrSmall[resultArrSmall.length-1][1]);
+                                  redrawSmallPlotline(THIS, resultArrSmall[resultArrSmall.length-1][1], objId);
 
                                   redrawSmallChart (THIS, resultArrSmall, startTimeSmall);
                                   // коли закривається ставка, зупиняти таймер
-                                  if ( !$('#order' + tempTestingValue)[0] ) clearInterval(tempTimer)
+                                  if ( !$('#order' + objId)[0] ) clearInterval(tempTimer)
                                 }, 1000);
 
                               }
@@ -386,7 +464,7 @@ function redrawSmallChart (nameOfChart, currentArr, currentStartTime) {
   nameOfChart.redraw();
 }
 
-function redrawSmallPlotline(nameOfChart, currentYCoordValue) {
+function redrawSmallPlotline(nameOfChart, currentYCoordValue, objId) {
   // перемальовує плот-лінію та поточне значення
 
   nameOfChart.yAxis[0].addPlotLine({
@@ -398,6 +476,6 @@ function redrawSmallPlotline(nameOfChart, currentYCoordValue) {
     value         : currentYCoordValue
   });
 
-  $('.active-slider__current-price').text(currentYCoordValue);
+  $('#currentprice' + objId).text(currentYCoordValue);
 
 };
