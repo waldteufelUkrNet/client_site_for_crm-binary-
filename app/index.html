@@ -18,7 +18,7 @@
   <body>
     <button class="tempBTN" style="width: 120px; height: 30px; position: fixed; left: 10px; bottom: 180px; z-index: 9999; cursor: pointer">message</button>
     <button class="tempBTN2" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 150px; z-index: 9999; cursor: pointer">withdrawal</button>
-    <button class="tempBTN3" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 120px; z-index: 9999; cursor: pointer">change pass</button>
+    <button class="tempBTN3" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 120px; z-index: 9999; cursor: pointer">depo confirm</button>
     <button class="tempBTN5" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer">parlay result</button>
     <button class="tempBTN6" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 60px; z-index: 9999; cursor: pointer">timerCandleTest1</button>
     <button class="tempBTN7" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 30px; z-index: 9999; cursor: pointer">timerCandleTest2</button>
@@ -804,6 +804,27 @@
           </div>
         </div>
         <!-- ↑↑↑ BEM-blocks: parlay-confirmation (end) ↑↑↑-->
+        <!-- ↓↓↓ BEM-blocks: deposit-confirmation (start) ↓↓↓-->
+        <div class="deposit-confirmation__positioning-wrapper message__wrapper">
+          <div class="deposit-confirmation__holder message__holder">
+            <div class="deposit-confirmation message">
+              <div class="close-btn deposit-confirmation__close-btn">
+                <div class="close-btn__line1"></div>
+                <div class="close-btn__line2"></div>
+              </div>
+              <h5 class="deposit-confirmation__header">Подтверждение депозита</h5>
+              <div class="deposit-confirmation__text-wrapper">
+                <p class="deposit-confirmation__question">Вы точно хотите сделать данный депозит?</p>
+                <p class="deposit-confirmation__info-field">1000 тугриков</p>
+              </div>
+              <div class="deposit-confirmation__form-buttons-wrapper">
+                <button class="deposit-confirmation__btn deposit-confirmation__btn-no" type="button">нет, я одумался</button>
+                <button class="deposit-confirmation__btn deposit-confirmation__btn-yes" type="button">да, я идиот</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ↑↑↑ BEM-blocks: deposit-confirmation (end) ↑↑↑-->
         <!-- ↓↓↓ BEM-blocks: info-parlay-result (start) ↓↓↓-->
         <div class="info-parlay-result">
           <div class="close-btn info-parlay-result__close-btn">

@@ -16,11 +16,12 @@
     <script src="libs/jquery 3.3.1.js"></script>
   </head>
   <body>
-    <button class="tempBTN" style="width: 120px; height: 30px; position: fixed; left: 10px; bottom: 150px; z-index: 9999; cursor: pointer">message</button>
-    <button class="tempBTN2" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 120px; z-index: 9999; cursor: pointer">withdrawal</button>
-    <button class="tempBTN3" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer">change pass</button>
-    <button class="tempBTN5" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 60px; z-index: 9999; cursor: pointer">parlay result</button>
-    <button class="tempBTN6" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 30px; z-index: 9999; cursor: pointer">timer-candle test</button>
+    <button class="tempBTN" style="width: 120px; height: 30px; position: fixed; left: 10px; bottom: 180px; z-index: 9999; cursor: pointer">message</button>
+    <button class="tempBTN2" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 150px; z-index: 9999; cursor: pointer">withdrawal</button>
+    <button class="tempBTN3" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 120px; z-index: 9999; cursor: pointer">change pass</button>
+    <button class="tempBTN5" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 90px; z-index: 9999; cursor: pointer">parlay result</button>
+    <button class="tempBTN6" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 60px; z-index: 9999; cursor: pointer">timerCandleTest1</button>
+    <button class="tempBTN7" style="width: 120px; height: 30px; position: fixed; left: 10px;bottom: 30px; z-index: 9999; cursor: pointer">timerCandleTest2</button>
     <!-- HEADER-->
     <header class="header">
       <div class="logo_part">LOGOGO</div>
@@ -507,7 +508,8 @@
       <!-- SECTION 3 (right column)-->
       <section class="right-column">
         <div class="work-field">
-          <div class="trade-pair"><img class="trade-pair__logo" src="img/BTCETH.png" alt="BTCETH.png">
+          <div class="trade-pair">
+            <input type="hidden" id="currentStockPairId" value="2"><img class="trade-pair__logo" src="img/BTCETH.png" alt="BTCETH.png">
             <h5 class="trade-pair__name">BTC/ETH</h5>
             <p class="trade-pair__description">котировка: биткоин/тугрик</p><i class="fas fa-caret-up" style="font-size: 40px; color: green"></i><span class="trade-pair__price">12345.67890</span>
           </div>
@@ -534,7 +536,7 @@
           </div>
           <div id="UTC-datetimer-holder"><span id="UTC-datetimer-info">Время UTC: &nbsp</span><span id="UTC-datetimer"></span></div>
           <div class="parlay-slider">
-            <div class="parlay-slider__item" data-parlayType="short">
+            <div class="parlay-slider__item" data-parlayType="short" data-parlayTypeForBackEnd="0">
               <h5 class="parlay-slider__item-header">Быстрые</h5>
               <div class="parlay-slider__item-choice-field">
                 <div class="parlay-slider__parlay-choise-btn-holder">
@@ -545,13 +547,13 @@
                 </div>
               </div>
             </div>
-            <div class="parlay-slider__item" data-parlayType="normal">
+            <div class="parlay-slider__item" data-parlayType="normal" data-parlayTypeForBackEnd="1">
               <h5 class="parlay-slider__item-header">Нормальные</h5>
               <div class="parlay-slider__item-choice-field">
                 <div class="parlay-slider__parlay-choise-btn-holder"></div>
               </div>
             </div>
-            <div class="parlay-slider__item" data-parlayType="long">
+            <div class="parlay-slider__item" data-parlayType="long" data-parlayTypeForBackEnd="2">
               <h5 class="parlay-slider__item-header">Длинные</h5>
               <div class="parlay-slider__item-choice-field">
                 <div class="parlay-slider__parlay-choise-btn-holder">

@@ -1,0 +1,23 @@
+// ↓↓↓ BEM-blocks: deposit-confirmation (start) ↓↓↓
+
+.deposit-confirmation__positioning-wrapper.message__wrapper
+  .deposit-confirmation__holder.message__holder
+    .deposit-confirmation.message
+      .close-btn.deposit-confirmation__close-btn
+        .close-btn__line1
+        .close-btn__line2
+      h5.deposit-confirmation__header Подтверждение депозита
+      .deposit-confirmation__text-wrapper
+        p.deposit-confirmation__question Вы точно хотите сделать данный депозит?
+        p.deposit-confirmation__info-field 1000 тугриков
+
+      .deposit-confirmation__form-buttons-wrapper
+        button(type='button').deposit-confirmation__btn.deposit-confirmation__btn-no нет, я одумался
+        button(type='button').deposit-confirmation__btn.deposit-confirmation__btn-yes да, я идиот
+
+//- style
+//-   include deposit-confirmation.css
+//- script
+//-   include ../minjs/popup-deposit-confirmation/deposit-confirmation.js
+
+// ↑↑↑ BEM-blocks: deposit-confirmation (end) ↑↑↑
