@@ -3,7 +3,7 @@ var pointStart,                                         // перша точка
     lastPoint,                                          //
     tempPoint,                                          //
     сontrolPoint,                                       // остання точка масиву, потрібна для порівняння: якщо вона не рівна останній точці масиву, значить масив оновився і графік потрібно перемалювати
-    сontrolPoint2,
+    сontrolPoint2,                                      // -- // --  -- // --
     YPlotLinesValue,                                    // величина, від якої малюється положення червоної лінії
     interval,                                           // setInterval
     resultArr          = [],                            // масив з перероблених вхідних даних, придатний для обробки бібліотекою
@@ -16,7 +16,8 @@ var pointStart,                                         // перша точка
     labelValue1        = labelValue2 = YPlotLinesValue, // змінні для визначення тенденції в котировках (потрібні для зафарбовування рамки поточного значення)
     labelBorderColor   = 'white',                       // колір рамки поточного значення
     minorTickXInterval = 0,                             // відстань між допоміжними лініями по осі абсцис
-    minorTickYInterval = 0;                             // відстань між допоміжними лініями по осі ординат
+    minorTickYInterval = 0,                             // відстань між допоміжними лініями по осі ординат
+    chart;                                              // об'єкт Highcharts робимо доступним глобально для усіх функцій
 
 getDataArr();
 
@@ -73,10 +74,6 @@ function getDataArr() {
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
-  // if (сontrolPoint) {
-  //   сontrolPoint2 = сontrolPoint;
-  // }
-
   dataArr = 'http://god.ares.local:81/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
   // dataArr = 'http://62.216.34.146:9000/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
   $.ajax({
@@ -100,8 +97,7 @@ function getDataArr() {
           resultArr.push(tempArr);
         }
 
-        // сontrolPoint = resultArr[resultArr.length-1];
-        // lastPoint    = resultArr[resultArr.length-1];
+        lastPoint = resultArr[resultArr.length-1];
 
         // в перший раз тимчасова точка (145 рандомна) = 144
         resultArr.push(resultArr[resultArr.length-1]);
@@ -132,7 +128,8 @@ function getDataArr() {
         resultArr.push(tempPoint);
       }
 
-      // якщо точок забагато, контейнер їх не вміщує, і свічки замість 30/60 хв. стають по 1 - 6 годині, простий графік теж збивається
+      // якщо точок забагато, контейнер їх не вміщує, і свічки замість 30/60 хв. стають по 1 - 6 годині,
+      // простий графік теж збивається
       var containerWidth = $('#container').width();
       if (872 <= containerWidth && containerWidth < 1032) {
         resultArr = resultArr.slice(24);
@@ -151,10 +148,61 @@ function getDataArr() {
       pointStart = resultArr[0];
       startTime  = pointStart[0].getTime();
 
-      drawChart();
+
+
+      if (!сontrolPoint) {
+        // якщо сontrolPoint не призначена (перший вхід у функцію),
+        // призначаємо контрольні точки сontrolPoint2 = сontrolPoint = lastPoint[0].getTime(),
+        // та запускаємо відмальовування графіку drawChart()
+
+        сontrolPoint2 = сontrolPoint = lastPoint[0].getTime();
+        drawChart();
+
+      } else {
+        // якщо сontrolPoint уже призначена (вхід у функцію в циклі поки time > step з функції redrawSerie(x,y))
+        // порівнюємо сontrolPoint2 та сontrolPoint
+
+        сontrolPoint2 = lastPoint[0].getTime();
+
+        if (сontrolPoint != сontrolPoint2) {
+          // якщо контрольні точки різні, значить масив оновився, обнулюємо точки, перемальовуємо графік
+
+          сontrolPoint = сontrolPoint2 = undefined;
+          drawChart();
+        } else {
+          // якщо time > step (уже потрібно малювати нову точку), але її поки ще в масиві нема
+          // зупиняємо відмальовування графіку та чекаємо на нову точку, після чого запускаємо відмальовування графіку
+
+          clearInterval(interval);
+
+          redrawChart();
+
+          interval = setInterval(function () {
+            $.ajax({
+              url     : dataArr,
+              success : function (data) {
+
+                          сontrolPoint2 = new Date (data[data.length-1].Date);
+                          сontrolPoint2 = сontrolPoint2.getTime();
+
+                          if (сontrolPoint != сontrolPoint2) {
+                          // якщо контрольні точки різні, значить масив оновився, обнулюємо точки, перемальовуємо графік
+
+                          сontrolPoint = сontrolPoint2 = undefined;
+                          drawChart();
+                        }
+              }
+            })
+
+          }, 1000);
+
+        }
+      }
+
     }
   });
 }
+
 
 function drawChart() {
   // створює графік
@@ -186,6 +234,7 @@ function drawChart() {
                                     redrawSerie(x,y);
                                   });
                                 }, 3000);
+
                                 tugOfWarAnimation();
 
                                 // remove "Highcharts.com"-marker
@@ -301,15 +350,10 @@ function redrawSerie(x,y) {
   var deltaTime = x.getTime() - lastPoint[0].getTime();
 
   if (deltaTime >= timeStep * 60 * 1000) {
-    console.log ('>');
-    // resultArr.shift();
-    // lastPoint = tempPoint;
-    // resultArr.push(tempPoint);
-    // tempPoint = null;
-
+    // перезавантажуємо графік
     getDataArr();
   } else {
-    console.log ('<');
+    // тягаємо хвостик
     redrawChart();
   }
 }
