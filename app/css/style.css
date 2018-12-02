@@ -401,10 +401,12 @@ a, a:hover {
   .main .work_area .highcharts-point-up {
     fill: dodgerblue !important;
     stroke: dodgerblue !important;
+    padding: 0;
   }
   .main .work_area .highcharts-point-down {
     fill: red !important;
     stroke: red !important;
+    padding: 0;
   }
   @-webkit-keyframes lightbulb {
     0% {

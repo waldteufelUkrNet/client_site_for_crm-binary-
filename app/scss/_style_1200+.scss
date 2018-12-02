@@ -213,11 +213,13 @@
       .highcharts-point-up {
         fill                     : dodgerblue !important;
         stroke                   : dodgerblue !important;
+        padding: 0
       }
 
       .highcharts-point-down {
         fill                     : red !important;
         stroke                   : red !important;
+        padding: 0
       }
 
       @keyframes lightbulb {
