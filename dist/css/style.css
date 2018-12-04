@@ -401,10 +401,12 @@ a, a:hover {
   .main .work_area .highcharts-point-up {
     fill: dodgerblue !important;
     stroke: dodgerblue !important;
+    padding: 0;
   }
   .main .work_area .highcharts-point-down {
     fill: red !important;
     stroke: red !important;
+    padding: 0;
   }
   @-webkit-keyframes lightbulb {
     0% {
@@ -1600,9 +1602,8 @@ a, a:hover {
 
 .message-from-mentor__text-wrapper {
   width: 100%;
-  height: 150px;
+  height: 78px;
   display: block;
-  margin: 10px 0 0;
   background-color: transparent;
   overflow: hidden;
 }
@@ -1610,7 +1611,7 @@ a, a:hover {
 .message-from-mentor__text {
   width: -webkit-calc( 100% + 18px);
   width: calc( 100% + 18px);
-  height: 150px;
+  height: 78px;
   color: white;
   padding: 2px 28px 2px 10px;
   font-family: rcl;
@@ -2141,6 +2142,75 @@ a, a:hover {
   border-bottom: none;
   border-left: 1px solid white;
   border-right: 1px solid white;
+}
+
+.deposit-confirmation__holder {
+  z-index: 9050;
+}
+
+.deposit-confirmation__header {
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.deposit-confirmation__text-wrapper {
+  width: 100%;
+  height: 80px;
+  display: block;
+  margin: 10px 0 0;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.deposit-confirmation__question, .deposit-confirmation__info-field {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.deposit-confirmation__form-buttons-wrapper {
+  width: 234px;
+  padding: 0 10px 0 10px;
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.deposit-confirmation__btn {
+  height: 30px;
+  min-width: 90px;
+  border: 1px solid dodgerblue;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: white;
+  background-color: dodgerblue;
+  font-family: rcl;
+  font-size: 14px;
+  -webkit-transition: background-color .5s, border-color .5s;
+  -o-transition: background-color .5s, border-color .5s;
+  transition: background-color .5s, border-color .5s;
+  position: relative;
+}
+
+.deposit-confirmation__btn:hover {
+  background-color: #1d2a38;
+  border-color: white;
 }
 
 .info-parlay-result {

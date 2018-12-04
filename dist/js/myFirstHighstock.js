@@ -1,22 +1,21 @@
-var pointStart,                                                                                                                   // перша точка графіку
-    startTime,                                                                                                                    // час першої точки графіку
-    lastPoint,                                                                                                                    //
-    tempPoint,                                                                                                                    //
-    YPlotLinesValue,                                                                                                              // величина, від якої малюється положення червоної лінії
-    interval,                                                                                                                     // setInterval
-    resultArr          = [],                                                                                                      // масив з перероблених вхідних даних, придатний для обробки бібліотекою
-    stringType         = '?',                                                                                                     // тип даних: ? для areaspline та Ohlc? для candlestick/ohlc
-    stringSymbol       = 'BTCETH',                                                                                                // назва торгової пари, потрібна для формування рядка запиту
-    // nameOfChart        = 'BTC/ETH',                                                                                               // ???
-    dataType           = 'areaspline',                                                                                            // тип графіку areaspline/candlestick/ohlc
-    timeStep           = 5,                                                                                                       // інтервал між точками на графіку
-    dataArr,                                                                                                                      // адреса для отримання масиву даних
-    dataOne,                                                                                                                      // адреса для отримання поточного значення
-    isDrawing          = false,                                                                                                   //
-    labelValue1        = labelValue2 = YPlotLinesValue,                                                                           // змінні для визначення тенденції в котировках (потрібні для зафарбовування рамки поточного значення)
-    labelBorderColor   = 'white',                                                                                                 // колір рамки поточного значення
-    minorTickXInterval = 0,                                                                                                       // відстань між допоміжними лініями по осі абсцис
-    minorTickYInterval = 0;                                                                                                       // відстань між допоміжними лініями по осі ординат
+var pointStart,                                         // перша точка графіку
+    startTime,                                          // час першої точки графіку
+    lastPoint,                                          //
+    tempPoint,                                          //
+    сontrolPoint,                                       // остання точка масиву, потрібна для порівняння: якщо вона не рівна останній точці масиву, значить масив оновився і графік потрібно перемалювати
+    сontrolPoint2,                                      // -- // --  -- // --
+    YPlotLinesValue,                                    // величина, від якої малюється положення червоної лінії
+    interval,                                           // setInterval
+    resultArr          = [],                            // масив з перероблених вхідних даних, придатний для обробки бібліотекою
+    stringType         = '?',                           // тип даних: ? для areaspline та Ohlc? для candlestick/ohlc
+    stringSymbol       = 'BTCETH',                      // назва торгової пари, потрібна для формування рядка запиту
+    dataType           = 'areaspline',                  // тип графіку areaspline/candlestick/ohlc
+    timeStep           = 5,                             // інтервал між точками на графіку
+    dataArr,                                            // адреса для отримання масиву даних
+    dataOne,                                            // адреса для отримання поточного значення
+    labelValue1        = labelValue2 = YPlotLinesValue, // змінні для визначення тенденції в котировках (потрібні для зафарбовування рамки поточного значення)
+    labelBorderColor   = 'white',                       // колір рамки поточного значення
+    chart;                                              // об'єкт Highcharts робимо доступним глобально для усіх функцій
 
 getDataArr();
 
@@ -24,7 +23,7 @@ getDataArr();
 var arrOfTimerBtns = $('.timer-buttons-li');
 var arrOfTypeBtns  = $('.type-buttons-li');
 
-$(arrOfTypeBtns).click(function(){ isDrawing = false;
+$(arrOfTypeBtns).click(function(){
   // type-buttons highlighting
   for (var i = 0; i < arrOfTypeBtns.length; i++) {
     $(arrOfTypeBtns[i]).removeClass('type-buttons-li_active');
@@ -63,7 +62,7 @@ $(arrOfTimerBtns).click(function(){
   }
   timeStep = +$(this).attr('data-time');
 
-  getDataArr();
+  getDataArr()
 });
 // ↑↑↑ type/time-switch-buttons behavior ↑↑↑
 
@@ -73,11 +72,11 @@ function getDataArr() {
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
-  dataArr = 'http://god.ares.local/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
+  dataArr = 'http://god.ares.local:81/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
   // dataArr = 'http://62.216.34.146:9000/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
   $.ajax({
-    url: dataArr,
-    success: function (data) {
+    url     : dataArr,
+    success : function (data) {
 
       resultArr  = [];
       pointStart = 0;
@@ -91,15 +90,17 @@ function getDataArr() {
         for (var i = 0; i < data.length; i++) {
           var tempArr = [];
           var tempTime = new Date(data[i].Date);
-          tempTime = new Date( tempTime.setSeconds(0) ); // обнулюємо секунди (для Highcharts потрібні чіткі інтервали аж до секунди)
           tempArr.push(tempTime);
           tempArr.push(data[i].Value);
           resultArr.push(tempArr);
         }
+
+        lastPoint = resultArr[resultArr.length-1];
+
         // в перший раз тимчасова точка (145 рандомна) = 144
         resultArr.push(resultArr[resultArr.length-1]);
 
-      } else if (dataType == 'candlestick' || dataType == 'ohlc') {
+      } else if ( dataType == 'candlestick' || dataType == 'ohlc' ) {
 
         YPlotLinesValue = data[data.length-1].Close;
 
@@ -109,7 +110,7 @@ function getDataArr() {
 
         for (var i = 0; i < data.length; i++) {
           var tempArr = [];
-          var tempTime = new Date(data[i].DateOpen); // раніше було var tempTime = new Date(data[i].DateClose);
+          var tempTime = new Date(data[i].DateClose);
           tempArr.push(tempTime);
           tempArr.push(data[i].Open);
           tempArr.push(data[i].Hight);
@@ -117,34 +118,88 @@ function getDataArr() {
           tempArr.push(data[i].Close);
           resultArr.push(tempArr);
         }
+
         lastPoint = resultArr[resultArr.length-1];
         tempPoint = [];
 
         // в перший раз тимчасова точка (145 рандомна) бере значення у Close 144-ї
-        tempPoint.push([lastPoint[0],lastPoint[4],lastPoint[4],lastPoint[4],lastPoint[4]]);
+        tempPoint.push([lastPoint[0], lastPoint[4], lastPoint[4], lastPoint[4], lastPoint[4]]);
         resultArr.push(tempPoint);
       }
 
-      // якщо точок забагато, контейнер їх не вміщує, і свічки замість 30/60 хв. стають по 1 - 6 годині, простий графік теж збивається
+      // якщо точок забагато, контейнер їх не вміщує, і свічки замість 30/60 хв. стають по 1 - 6 годині,
+      // простий графік теж збивається
       var containerWidth = $('#container').width();
-      if (872 <= containerWidth && containerWidth < 1032) {
-        resultArr = resultArr.slice(24);
+
+      if (1382 <= containerWidth && containerWidth < 1512) {
+        resultArr = resultArr.slice(14);
+      } else if (1032 <= containerWidth && containerWidth < 1382) {
+        resultArr = resultArr.slice(49);
+      } else if (872 <= containerWidth && containerWidth < 1032) {
+        resultArr = resultArr.slice(65);
       } else if (742 <= containerWidth && containerWidth < 872) {
-        resultArr = resultArr.slice(44);
+        resultArr = resultArr.slice(77);
       } else if (621 <= containerWidth && containerWidth < 742) {
-        resultArr = resultArr.slice(64);
+        resultArr = resultArr.slice(90);
       } else if (468 <= containerWidth && containerWidth < 621) {
-        resultArr = resultArr.slice(84);
+        resultArr = resultArr.slice(106);
       } else if (340 <= containerWidth && containerWidth < 468) {
-        resultArr = resultArr.slice(104);
+        resultArr = resultArr.slice(118);
       } else if (containerWidth < 340) {
         resultArr = resultArr.slice(124);
-
       }
+
       pointStart = resultArr[0];
       startTime  = pointStart[0].getTime();
 
-      drawChart();
+
+      if (!сontrolPoint) {
+        // якщо сontrolPoint не призначена (перший вхід у функцію),
+        // призначаємо контрольні точки сontrolPoint2 = сontrolPoint = lastPoint[0].getTime(),
+        // та запускаємо відмальовування графіку drawChart()
+
+        сontrolPoint2 = сontrolPoint = lastPoint[0].getTime();
+        drawChart();
+      } else {
+        // якщо сontrolPoint уже призначена (вхід у функцію в циклі поки time > step з функції redrawSerie(x,y))
+        // порівнюємо сontrolPoint2 та сontrolPoint
+
+        сontrolPoint2 = lastPoint[0].getTime();
+
+        if (сontrolPoint != сontrolPoint2) {
+          // якщо контрольні точки різні, значить масив оновився, обнулюємо точки, перемальовуємо графік
+
+          сontrolPoint = сontrolPoint2 = undefined;
+          drawChart();
+        } else {
+          // якщо time > step (уже потрібно малювати нову точку), але її поки ще в масиві нема
+          // зупиняємо відмальовування графіку та чекаємо на нову точку, після чого запускаємо відмальовування графіку
+
+          clearInterval(interval);
+
+          redrawChart();
+
+          interval = setInterval(function () {
+            $.ajax({
+              url     : dataArr,
+              success : function (data) {
+
+                          сontrolPoint2 = new Date (data[data.length-1].Date);
+                          сontrolPoint2 = сontrolPoint2.getTime();
+
+                          if (сontrolPoint != сontrolPoint2) {
+                          // якщо контрольні точки різні, значить масив оновився, обнулюємо точки, перемальовуємо графік
+
+                          сontrolPoint = сontrolPoint2 = undefined;
+                          drawChart();
+                        }
+              }
+            })
+
+          }, 1000);
+
+        }
+      }
     }
   });
 }
@@ -165,7 +220,7 @@ function drawChart() {
                                 clearInterval(interval); // зупиняє попередні інтервали, бо інакше при натисненні на кнопки часу і типу графік починає сходити з розуму
 
                                 interval = setInterval(function () {
-                                dataOne  = 'http://god.ares.local/api/Stock?timer=realOne&symbol=' + stringSymbol,
+                                dataOne  = 'http://god.ares.local:81/api/Stock?timer=realOne&symbol=' + stringSymbol,
                                 // dataOne  = 'http://62.216.34.146:9000/api/Stock?timer=realOne&symbol=' + stringSymbol,
                                   $.getJSON(dataOne, function (data) { // data = [{Sumbol,Value,'date'}]
                                     var x = new Date(data[0].Date),
@@ -175,6 +230,7 @@ function drawChart() {
                                     redrawSerie(x,y);
                                   });
                                 }, 3000);
+
                                 tugOfWarAnimation();
 
                                 // remove "Highcharts.com"-marker
@@ -192,6 +248,7 @@ function drawChart() {
       threshold            : null,
       name                 : stringSymbol,
       data                 : resultArr,
+      animation            : false,
       color                : 'dodgerblue',
       showInNavigator      : false,
       pointStart           : startTime,
@@ -211,9 +268,6 @@ function drawChart() {
     }],
     xAxis                  : {
       type                 : 'datetime',
-      dateTimeLabelFormats: {
-        day: '%e of %b'
-      },
       crosshair            : true,
       scrollbar            : { enabled: false },
       lineColor            : 'rgba(111, 111, 115, 0.2)',
@@ -250,7 +304,29 @@ function drawChart() {
     },
     tooltip                : {
       backgroundColor      : 'rgba(0, 0, 0, 0.85)',
-      style                : { color : '#F0F0F0' }
+      style                : { color : '#F0F0F0' },
+      // xDateFormat          : '%Y-%m-%d %H:%M UTC',
+      formatter: function(){
+                    var s = [Highcharts.dateFormat('%d.%m.%Y %H:%M UTC', this.x), '<br>'];
+                    $.each(this.points, function(i, p){
+                        if (p.series.type == 'candlestick' || p.series.type == 'ohlc') {
+                            s.push('open: ', p.point.open, '<br>',
+                                   'high: ', p.point.high, '<br>',
+                                   'low: ', p.point.low, '<br>',
+                                   'close: ', p.point.close, '<br>');
+                        } else {
+                            s.push(stringSymbol, ': ', p.y);
+                        }
+                    });
+
+                    return s.join('');
+                }
+    },
+    plotOptions            : {
+      candlestick          : {
+        lineWidth          : 1,
+        pointWidth         : 5
+      }
     }
   });
 }
@@ -289,13 +365,12 @@ function redrawSerie(x,y) {
   var deltaTime = x.getTime() - lastPoint[0].getTime();
 
   if (deltaTime >= timeStep * 60 * 1000) {
-
-    resultArr.shift();
-    lastPoint = tempPoint;
-    resultArr.push(tempPoint);
-    tempPoint = null;
+    // перезавантажуємо графік
+    getDataArr();
+  } else {
+    // тягаємо хвостик
+    redrawChart();
   }
-  redrawChart();
 }
 
 function redrawChart () {
@@ -307,6 +382,7 @@ function redrawChart () {
     threshold            : null,
     name                 : stringSymbol,
     data                 : resultArr,
+    animation            : false,
     color                : 'dodgerblue',
     showInNavigator      : false,
     pointStart           : startTime,
@@ -403,7 +479,6 @@ function getCoords(elem) {
     width  : box.right - box.left
   };
 }
-
 // ↑↑↑ functions declarations ↑↑↑
 
 // ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓

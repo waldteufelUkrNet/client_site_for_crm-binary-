@@ -25,26 +25,9 @@
     <!-- HEADER-->
     <header class="header">
       <div class="logo_part">LOGOGO</div>
-      <div class="central-part">
-        <div class="central-part__account">
-          <div class="central-part__account-type">
-            Account:
-            <span>Demo</span>
-          </div>
-          <!-- ↓↓↓ BEM-blocks: language-switcher (start) ↓↓↓-->
-          <div class="simple-switcher__positioning-wrapper">
-            <div class="simple-switcher"><span class="simple-switcher__real">real</span><span class="simple-switcher__demo">demo</span>
-              <div class="simple-switcher__thumb">
-                <div class="simple-switcher__thumb-line simple-switcher__thumb-line-1"></div>
-                <div class="simple-switcher__thumb-line simple-switcher__thumb-line-2"></div>
-                <div class="simple-switcher__thumb-line simple-switcher__thumb-line-3"></div>
-              </div>
-            </div>
-          </div>
-          <!-- ↑↑↑ BEM-blocks: language-switcher (end) ↑↑↑-->
-        </div><img class="central-part__currency-img" src="img/Bitcoin.png" alt="img/Bitcoin.png">
+      <div class="central-part"><img class="central-part__currency-img" src="img/Bitcoin.png" alt="img/Bitcoin.png">
         <div class="central-part__currency-value">9999.99</div>
-        <button class="central-part__btn" title="пополнить счет"><img src="img/wallet.png" alt="wallet.png"></button>
+        <button class="central-part__btn" title="пополнить счет"><img src="img/wallet.png" alt="wallet.png"><span class="central-part__btn-text">пополнить счет</span><span class="central-part__btn-splendour"></span></button>
       </div>
       <div class="right-part">
         <button class="call-us-btn" title="contact us"><img src="img/call-center.png" alt="call-center.png"></button><span>Menu:</span>
@@ -513,21 +496,6 @@
             <h5 class="trade-pair__name">BTC/ETH</h5>
             <p class="trade-pair__description">котировка: биткоин/тугрик</p><i class="fas fa-caret-up" style="font-size: 40px; color: green"></i><span class="trade-pair__price">12345.67890</span>
           </div>
-          <!-- ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓-->
-          <div class="tug-of-war__wrapper">
-            <div class="tug-of-war__img-holder"><img class="tug-of-war__img" src="img/bull1.png" alt="bull1.png" id="bull1"><img class="tug-of-war__img" src="img/bull2.png" alt="bull2.png" id="bull2"></div>
-            <div class="tug-of-war__indicator-wrapper">
-              <div class="tug-of-war__indicator-holder">
-                <div class="tug-of-war__indicator">
-                  <div class="tug-of-war__indicator-line"></div>
-                  <div class="tug-of-war__indicator-line"></div>
-                </div>
-              </div>
-              <div class="tug-of-war__lightbulb"></div>
-            </div>
-            <div class="tug-of-war__img-holder"><img class="tug-of-war__img" src="img/bear1.png" alt="bear1.png" id="bear1"><img class="tug-of-war__img" src="img/bear2.png" alt="bear2.png" id="bear2"></div>
-          </div>
-          <!-- ↑↑↑ BEM-blocks: tug-of-war (end) ↑↑↑-->
           <div class="investment-calculator">
             <label for="#investment-input">инвестиции:</label>
             <input id="investment-input" type="text" placeholder="инвестиции" value="25">

@@ -39,16 +39,60 @@
       	margin                   : 0 10px;
       }
       &__currency-value {}
+
+
+
+
+
       &__btn {
-        height                   : 6vh;
+        height                   : 36px;
         cursor                   : pointer;
-        background-color         : transparent;
-        border                   : none;
+        background-color         : dodgerblue;
+        border                   : 2px solid rgba(255,255,255,.3);
+        border-radius            : 8px;
         margin                   : 0 20px;
+        display                  : flex;
+        justify-content          : start;
+        align-items              : center;
+        position                 : relative;
+        overflow                 : hidden;
         img {
-          height                 : 40px;
+          height                 : 25px;
+          margin-right           : 6px;
+          z-index                : 1;
         }
       }
+      &__btn-text {
+        font-family              : rcl;
+        text-transform           : uppercase;
+        color                    : white;
+        letter-spacing           : 1px;
+        z-index: 1;
+      }
+      &__btn-splendour {
+        display                   : block;
+        height                    : 50px;
+        width                     : 1px;
+        position                  : absolute;
+        top                       : 50%;
+        left                      : 50%;
+        transform                 : translate(0, -50%) rotate(20deg);
+        background-color          : white;
+        z-index                   : 0;
+        box-shadow                : 0 0 6px 2px white;
+        animation-name            : splendourAnimation;
+        animation-duration        : 3s;
+        animation-iteration-count : infinite;
+      }
+
+      @keyframes splendourAnimation {
+        from { left : -100% }
+        to   { left : 150% }
+      }
+
+
+
+
     }
     .right-part {
       position                   : relative;

@@ -32,7 +32,7 @@ html(lang='en')
       .logo_part
         |LOGOGO
       .central-part
-        .central-part__account
+        //- .central-part__account
           .central-part__account-type
             |Account:
             |
@@ -40,8 +40,12 @@ html(lang='en')
           include BEM-blocks/simple-switcher/simple-switcher.pug
         img.central-part__currency-img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
         .central-part__currency-value 9999.99
+
         button.central-part__btn(title='пополнить счет')
           img(src='img/wallet.png' alt='wallet.png')
+          span.central-part__btn-text пополнить счет
+          span.central-part__btn-splendour
+
       .right-part
         button.call-us-btn(title='contact us'): img(src="img/call-center.png", alt="call-center.png")
         span Menu:
@@ -627,7 +631,7 @@ html(lang='en')
             i.fas.fa-caret-up(style='font-size: 40px; color: green')
             span.trade-pair__price 12345.67890
 
-          include BEM-blocks/tug-of-war/tug-of-war.pug
+          //- include BEM-blocks/tug-of-war/tug-of-war.pug
 
           .investment-calculator
             label(for='#investment-input') инвестиции:
