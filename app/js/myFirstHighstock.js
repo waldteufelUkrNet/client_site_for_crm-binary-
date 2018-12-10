@@ -128,6 +128,7 @@ function getDataArr() {
 
       // якщо точок забагато, контейнер їх не вміщує, і свічки замість 30/60 хв. стають по 1 - 6 годині,
       // простий графік теж збивається
+
       var containerWidth = $('#container').width();
 
       if (1382 <= containerWidth && containerWidth < 1512) {

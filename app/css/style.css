@@ -117,7 +117,7 @@ a, a:hover {
 /* ↑↑↑ global styles ↑↑↑ */
 /* ↓↓↓ for 320px and more ↓↓↓ */
 /* ↑↑↑ for 320px and more ↑↑↑ */
-@media only screen and (min-width: 1px) {
+@media only screen and (min-width: 1366px) {
   body {
     width: 100vw;
     height: 100vh;
