@@ -4,7 +4,7 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title waldteufel@ukr.net
-    link(rel='icon', href='img/wehrwolf.jpg')
+    link(rel='icon', href='img/logoIC_icon.png')
 
     // stylesheet
     link(rel='stylesheet', type='text/css', href='libs-css/jquery-ui.css')
@@ -30,7 +30,7 @@ html(lang='en')
     // HEADER
     header.header
       .logo_part
-        |LOGOGO
+        img(src="img/logoIC.png", alt="logoIC.png")
       .central-part
         //- .central-part__account
           .central-part__account-type
@@ -92,7 +92,7 @@ html(lang='en')
             li.type-buttons-li(data-type='ohlc')
               img(src='img/chart-bars.png', alt='chart-bars.png')
 
-        #container(style='width: 100%; height: calc(100% - 250px)')
+        #container
         p#labelBorder
         #labelIndicator
         .slider-area
@@ -339,200 +339,148 @@ html(lang='en')
                 table.wares-slider__table
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                      img(src='img/BCHBTC.png' alt='BCHBTC.png')
+                    td BCHBTC
+                    td(style='color: dodgerblue') ▲
+                    td 111111
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
+                    td 99999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHUSDt.png' alt='BCHUSDt.png')
+                    td BCHUSDt
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHXRP.png' alt='BCHXRP.png')
+                    td BCHXRP
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHBTC.png' alt='BCHBTC.png')
+                    td BCHBTC
+                    td(style='color: dodgerblue') ▲
                     td 1111
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                      img(src='img/BCHUSDt.png' alt='BCHUSDt.png')
+                    td BCHUSDt
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                      img(src='img/BCHXRP.png' alt='BCHXRP.png')
+                    td BCHXRP
+                    td(style='color: red') ▼
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                      img(src='img/BCHBTC.png' alt='BCHBTC.png')
+                    td BCHBTC
+                    td(style='color: dodgerblue') ▲
+                    td 1111
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                      img(src='img/BCHUSDt.png' alt='BCHUSDt.png')
+                    td BCHUSDt
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                      img(src='img/BCHXRP.png' alt='BCHXRP.png')
+                    td BCHXRP
+                    td(style='color: red') ▼
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                      img(src='img/BCHBTC.png' alt='BCHBTC.png')
+                    td BCHBTC
+                    td(style='color: dodgerblue') ▲
+                    td 1111
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                      img(src='img/BCHUSDt.png' alt='BCHUSDt.png')
+                    td BCHUSDt
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                    td 9999.99
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
-                    td qqq
-                  tr
-                    td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
-                    td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
-                    td XXXXX
+                      img(src='img/BCHXRP.png' alt='BCHXRP.png')
+                    td BCHXRP
+                    td(style='color: red') ▼
+                    td 222222
 
           .wares-slider__item
             h5.wares-slider__item-header Валютные пары
@@ -542,24 +490,21 @@ html(lang='en')
                 table.wares-slider__table
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                      img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
                     td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                      img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
                     td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                      img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
                     td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td(style='color: red') ▼
                     td 9999.99
 
           .wares-slider__item
@@ -570,24 +515,21 @@ html(lang='en')
                 table.wares-slider__table
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                      img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
                     td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                      img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
                     td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                      img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
                     td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td(style='color: red') ▼
                     td 9999.99
 
           .wares-slider__item
@@ -598,24 +540,21 @@ html(lang='en')
                 table.wares-slider__table
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                      img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
                     td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                      img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
                     td BTC/USDt
-                    td: i.fas.fa-caret-up(style='font-size: 24px; color: green')
+                    td(style='color: dodgerblue') ▲
                     td 9999.99
                   tr
                     td: .img-pair
-                      img.img-pair-top(src='img/Bitcoin.png' alt='img/Bitcoin.png')
-                      img.img-pair-bottom(src='img/dollar.png' alt='img/dollar.png')
+                      img(src='img/Bitcoin.png' alt='img/Bitcoin.png')
                     td BTC/USDt
-                    td: i.fas.fa-caret-down(style='font-size: 24px; color: red')
+                    td(style='color: red') ▼
                     td 9999.99
 
       // /SECTION 2
@@ -628,8 +567,8 @@ html(lang='en')
             img.trade-pair__logo(src="img/BTCETH.png", alt="BTCETH.png")
             h5.trade-pair__name BTC/ETH
             p.trade-pair__description котировка: биткоин/тугрик
-            i.fas.fa-caret-up(style='font-size: 40px; color: green')
-            span.trade-pair__price 12345.67890
+            span.trade-pair__price(style='color: dodgerblue') ▲
+              span 12345.67890
 
           //- include BEM-blocks/tug-of-war/tug-of-war.pug
 

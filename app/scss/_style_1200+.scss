@@ -1,19 +1,18 @@
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1px) {
   body {
     width                        : 100vw;
     height                       : 100vh;
     overflow                     : hidden;
     background-color             : $bgColor;
     color                        : $overColor;
-    border                       : 2px solid black;
     font-family                  : rcl;
-    font-size                    : 16px;
+    font-size                    : 12px;
   }
   /* ↓↓↓ HEADER ↓↓↓ */
   .header {
     width                        : 100%;
-    height                       : 60px;
-    border-bottom                : 2px solid black;
+    height                       : 40px;
+    border-bottom                : 1px solid black;
     display                      : flex;
     justify-content              : space-between;
     align-items                  : center;
@@ -22,6 +21,9 @@
       font-family                : rb;
       font-size                  : 42px;
       color                      : gold;
+      img {
+        height                   : 40px;
+      }
     }
     .central-part {
       display                    : flex;
@@ -40,12 +42,8 @@
       }
       &__currency-value {}
 
-
-
-
-
       &__btn {
-        height                   : 36px;
+        height                   : 30px;
         cursor                   : pointer;
         background-color         : dodgerblue;
         border                   : 2px solid rgba(255,255,255,.3);
@@ -57,7 +55,7 @@
         position                 : relative;
         overflow                 : hidden;
         img {
-          height                 : 25px;
+          height                 : 20px;
           margin-right           : 6px;
           z-index                : 1;
         }
@@ -148,7 +146,7 @@
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width                        : 100%;
-    height                       : calc(100% - 60px);
+    height                       : calc(100% - 40px);
     display                      : flex;
 
     /* ↓↓↓ SECTION 1 (work area) ↓↓↓ */
@@ -157,10 +155,10 @@
       flex-grow                  : 1;
       width                      : 60%;
       border                     : {
-        left                     : 2px solid black;
-        right                    : 2px solid black;
+        left                     : 1px solid black;
+        right                    : 1px solid black;
       }
-      padding                    : 15px;
+      padding                    : 10px;
       position                   : relative;
       .graphic-header {
         display                  : flex;
@@ -168,31 +166,32 @@
         align-items              : center;
 
         .currency-logo-holder {
-          width                  : 180px;
+          width                  : 150px;
           display                : flex;
           justify-content        : center;
           align-items            : center;
-          height                 : 45px;
+          min-height             : 35px;
           .img-pair {
-            min-width            : 60px;
-            max-height           : 45px
+            min-width            : 40px;
+            max-height           : 30px
           }
           h2 {
-            font-size            : 22px;
+            font-size            : 20px;
             padding-left         : 10px
           }
         }
         .timer-buttons-ul {
-          width                  : calc( (100% - 180px) / 2);
+          width                  : calc( (100% - 150px) / 2);
           display                : inline-block;
           .timer-buttons-li {
             display              : inline-block;
-            min-width            : 45px;
-            font-size            : 16px;
+            min-width            : 40px;
+            font-size            : 12px;
+            text-align           : center;
             border               : 1px solid silver;
             border-radius        : 4px;
             padding              : 2px 4px;
-            margin               : 3px 3px 0 0;
+            margin               : 0 3px 3px 0;
             cursor               : pointer;
             background-color     : transparent;
             transition           : background-color .5s, border-color .5s;
@@ -209,7 +208,7 @@
         }
         .type-buttons-ul {
           width                  : calc( (100% - 180px) / 2);
-          height                 : 36px;
+          height                 : 30px;
           display                : inline-block;
           position               : relative;
 
@@ -217,19 +216,18 @@
             display              : inline-block;
             position             : absolute;
             margin-left          : 3px;
-            width                : 36px;
-            height               : 36px;
-            font-size            : 16px;
+            width                : 30px;
+            height               : 30px;
             border               : 1px solid silver;
             border-radius        : 4px;
             cursor               : pointer;
             background-color     : transparent;
             transition           : background-color .5s, border-color .5s;
             &:nth-of-type(1) {
-              right              : 80px;
+              right              : 72px;
             }
             &:nth-of-type(2) {
-              right              : 40px;
+              right              : 36px;
             }
             &:nth-of-type(3) {
               right              : 0px;
@@ -243,8 +241,8 @@
               border-color       : dodgerblue;
             }
             img {
-              width              : 30px;
-              height             : 30px;
+              width              : 24px;
+              height             : 24px;
               display            : block;
               position           : absolute;
               top                : 50%;
@@ -271,6 +269,10 @@
         100% {background-color: #3d4a58; border-color: yellow;}
       }
     }
+    // #container {
+    //   width: 100%;
+    //   height: calc(100% - 250px);
+    // }
     #labelBorder {
       position                   : fixed;
       background-color           : lightgrey;
@@ -292,8 +294,8 @@
     //   background-color: red;
     // }
     .slider-area {
-      width                      : calc( 100% - 30px);
-      height                     : 200px;
+      width                      : calc( 100% - 20px);
+      height                     : 160px;
       position                   : absolute;
       bottom                     : 10px;
       overflow                   : hidden;
@@ -340,16 +342,16 @@
         }
       }
       &__slider-item {
-        height                   : 200px;
-        max-width                : 320px;
-        min-width                : 320px;
+        height                   : 160px;
+        max-width                : 260px;
+        min-width                : 260px;
         border                   : 1px solid white;
         border-radius            : 4px;
         padding                  : 15px;
         display                  : grid;
         grid-template-columns    : auto 1fr;
         grid-column-gap          : 15px;
-        margin                   : 0 20px
+        margin                   : 0 10px
       }
       &__win {
         border                   : 1px solid green;
@@ -361,14 +363,14 @@
       }
       .active-slider {
         &__item {
-          height                 : 200px;
-          max-width              : 500px;
-          min-width              : 500px;
+          height                 : 160px;
+          max-width              : 360px;
+          min-width              : 360px;
           border                 : 1px solid white;
           border-radius          : 4px;
           padding                : 5px;
           display                : grid;
-          grid-template-columns  : 40px 1fr;
+          grid-template-columns  : 20px 1fr;
           grid-column-gap        : 4px;
           margin                 : 0 20px;
           position               : relative;
@@ -410,9 +412,9 @@
         &__info {
           position               : absolute;
           top                    : 5px;
-          left                   : 49px;
+          left                   : 29px;
           border                 : 1px solid white;
-          border-radius          : 4px;
+          border-radius          : 4px 0 4px 0;
           padding                : 3px;
           background-color       : rgba(0,0,0,.5)
         }
@@ -442,32 +444,33 @@
     .left-column {
       order                      : 1;
       flex-grow                  : 0;
-      width                      : 250px;
-      padding                    : 15px 10px 10px 15px;
+      width                      : 200px;
+      padding                    : 10px;
       overflow                   : hidden;
       position                   : relative;
       &::after {
         content                  : '';
         display                  : block;
-        height                   : 2px;
-        width                    : 280px;
+        height                   : 1px;
+        width                    : 220px;
         background-color         : black;
         position                 : absolute;
-        top                      : 50px;
+        top                      : 40px;
         left                     : 0px;
       }
       .wares-slider {
         &__item {
           text-align             : center;
-          height                 : calc(100vh - 86px);
+          height                 : calc(100vh - 60px);
         }
         &__item-header {
           text-transform         : uppercase;
-          font-size              : 20px;
-          padding-bottom         : 20px;
+          font-size              : 16px;
+          line-height            : 20px;
+          padding-bottom         : 16px;
         }
         &__item-table-1-wrapper {
-          height                 : 95%;
+          height                 : 97%;
           overflow               : hidden;
           position               : relative;
         }
@@ -477,38 +480,39 @@
           overflow               : auto;
         }
         &__table {
+          width                  : 220px;
           tr {
             display              : flex;
             align-items          : center;
-            height               : 45px;
+            height               : 25px;
+            border-top           : 1px solid transparent;
+            border-bottom        : 1px solid transparent;
+            transition           : background-color .5s, border-color .5s;
+            &:hover {
+              background-color   : #2d3a48;
+              border-color       : black;
+            }
             td {
-              padding: 4px;
+              padding            : 4px;
+              cursor             : pointer;
+              &:nth-of-type(2) {
+                width            : 50px;
+                text-align       : left;
+              }
+              &:nth-of-type(3) {
+                width            : 25px;
+              }
             }
           }
-          .img-pair {
-            width               : 30px;
-            height              : 30px;
-            position            : relative;
-            .img-pair-top {
-              width             : 20px;
-              height            : 20px;
-              position          : absolute;
-              top               : 0;
-              left              : 0;
-            }
-            .img-pair-bottom {
-              width             : 20px;
-              height            : 20px;
-              position          : absolute;
-              bottom            : 0;
-              right             : 0;
-            }
+          img {
+            max-width            : 30px;
+            max-height           : 25px;
           }
         }
         .slick-arrow { border: 1px solid white;
           z-index               : 5000;
-          width                 : 20px;
-          height                : 30px;
+          width                 : 15px;
+          height                : 25px;
           border-radius         : 4px;
           font-family           : fa;
           transition            : background-color .5s;
@@ -526,15 +530,15 @@
           }
         }
         .slick-prev {
-          top                   : 11px;
-          left                  : -9px;
+          top                   : 10px;
+          left                  : -2px;
           &:before {
             content: "\f104";
           }
         }
         .slick-next {
-          top                   : 11px;
-          right                 : -3px;
+          top                   : 10px;
+          right                 : -2px;
           &:before {
             content             : "\f105";
           }
@@ -547,54 +551,51 @@
     .right-column {
       order                     : 3;
       flex-grow                 : 0;
-      width                     : 250px;
-      padding                   : 15px 15px 10px 15px;
+      width                     : 200px;
+      padding                   : 10px;
       position                  : relative;
       .work-field {
         .trade-pair {
           position              : relative;
           &__logo {
-            width               : 50px;
+            width               : 42px;
             position            : absolute;
           }
           &__name {
             font-family         : rcl;
-            font-size           : 28px;
-            padding             : 4px 0 10px 60px;
+            font-size           : 20px;
+            padding             : 4px 0 10px 50px;
           }
           &__description {
             font-family         : rcli;
-            font-size           : 14px;
             color               : lightskyblue;
           }
           &__price {
-            position            : relative;
-            top                 : -9px;
-            left                : 6px;
-            letter-spacing      : 2px;
+            display             : block;
+            padding             : 6px 0;
           }
         }
         .investment-calculator {
           overflow              : hidden;
           display               : grid;
-          grid-template-columns : 90px 120px;
+          grid-template-columns : 80px 100px;
           grid-gap              : 3px;
 
           label {
-            height              : 26px;
-            line-height         : 22px;
+            height              : 22px;
+            line-height         : 20px;
             user-select         : none;
           }
 
           input, span {
             background-image    : linear-gradient(to right, #141414, #102734);
             border              : 1px solid #102734;
-            height              : 26px;
-            line-height         : 26px;
+            height              : 22px;
+            line-height         : 22px;
             padding             : 0 12px;
             color               : white;
             font-family         : rcl;
-            font-size           : 14px;
+            font-size           : 12px;
             outline             : none;
             display             : block;
             width               : 120px;
@@ -621,6 +622,7 @@
         color                   : dodgerblue;
         user-select             : none;
         border                  : 1px solid dodgerblue;
+        line-height             : 16px;
         #UTC-datetimer {
           color                 : white;
         }
@@ -783,8 +785,8 @@
         }
       }
       .slider-change-btn-holder {
-        width                   : calc(100% - 30px);
-        height                  : 190px;
+        width                   : calc(100% - 20px);
+        height                  : 160px;
         position                : absolute;
         z-index                 : 1;
         bottom                  : 10px;
@@ -796,16 +798,15 @@
           display               : block;
           content               : '';
           width                 : 250px;
-          height                : 2px;
+          height                : 1px;
           background-color      : black;
           position              : absolute;
           top                   : -10px;
-          left                  : -15px;
+          left                  : -10px;
         }
         .slider-change-btn {
-          width                 : 220px;
-          height                : 40px;
-          line-height           : 36px;
+          height                : 36px;
+          line-height           : 32px;
           background-color      : dodgerblue;
           border                : 1px solid dodgerblue;
           border-radius         : 4px;

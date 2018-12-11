@@ -72,7 +72,7 @@ function getDataArr() {
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
-  dataArr = 'http://192.168.20.4:82/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
+  dataArr = 'https://central.investingcase.com/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
     $.ajax({
     url     : dataArr,
     success : function (data) {
@@ -221,7 +221,7 @@ function drawChart() {
                                 clearInterval(interval); // зупиняє попередні інтервали, бо інакше при натисненні на кнопки часу і типу графік починає сходити з розуму
 
                                 interval = setInterval(function () {
-                                dataOne  = 'http://192.168.20.4:82/api/Stock?timer=realOne&symbol=' + stringSymbol;
+                                dataOne  = 'https://central.investingcase.com/api/Stock?timer=realOne&symbol=' + stringSymbol;
 
                                   $.getJSON(dataOne, function (data) { // data = [{Sumbol,Value,'date'}]
                                     var x = new Date(data[0].Date),
