@@ -586,40 +586,46 @@ html(lang='en')
             span#UTC-datetimer-info Время UTC: &nbsp
             span#UTC-datetimer
 
-          .parlay-slider
-            .parlay-slider__item(data-parlayType='short' data-parlayTypeForBackEnd='0')
-              h5.parlay-slider__item-header Быстрые
-              .parlay-slider__item-choice-field
-                .parlay-slider__parlay-choise-btn-holder
-                  .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='30000') 30 секунд
-                  .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='60000') 1 минута
-                  .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='120000') 2 минуты
-                  .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='180000') 3 минуты
+          .parlay-slider-wrapper
+            .parlay-slider
 
-            .parlay-slider__item(data-parlayType='normal' data-parlayTypeForBackEnd='1')
-              h5.parlay-slider__item-header Нормальные
-              .parlay-slider__item-choice-field
-                .parlay-slider__parlay-choise-btn-holder
+              .parlay-slider__item(data-parlayType='short' data-parlayTypeForBackEnd='0')
+                h5.parlay-slider__item-header Быстрые
+                .parlay-slider__item-choice-field
+                  .parlay-slider__parlay-choise-btn-holder
+                    .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='30000') 30 секунд
+                    .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='60000') 1 минута
+                    .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='120000') 2 минуты
+                    .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='180000') 3 минуты
 
-            .parlay-slider__item(data-parlayType='long' data-parlayTypeForBackEnd='2')
-              h5.parlay-slider__item-header Длинные
-              .parlay-slider__item-choice-field
-                .parlay-slider__parlay-choise-btn-holder
-                  .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='86400000') 1 сутки
-                  .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='432000000') 5 суток
-                  .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='864000000') 10 суток
-                  .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='1296000000') 15 суток
-                  .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='2592000000') 30 суток
+              .parlay-slider__item(data-parlayType='normal' data-parlayTypeForBackEnd='1')
+                h5.parlay-slider__item-header Нормальные
+                .parlay-slider__item-choice-field
+                  .parlay-slider__parlay-choise-btn-holder
 
-          .parlay-btns__holder
-            .parlay-btns__btn.parlay-btns__btn_up(data-parlayAnticipation='up') Вверх
-              |
-              |
-              i.fas.fa-angle-double-up
-            .parlay-btns__btn.parlay-btns__btn_down(data-parlayAnticipation='down')
-              i.fas.fa-angle-double-down
-              |
-              | Вниз
+              .parlay-slider__item(data-parlayType='long' data-parlayTypeForBackEnd='2')
+                h5.parlay-slider__item-header Длинные
+                .parlay-slider__item-choice-field
+                  .parlay-slider__parlay-choise-btn-holder
+                    .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='86400000') 1 сутки
+                    .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='432000000') 5 суток
+                    .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='864000000') 10 суток
+                    .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='1296000000') 15 суток
+                    .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='2592000000') 30 суток
+            .parlay-slider__reactivation-field
+              .parlay-slider__reactivation-field-btn обновить
+                |
+                |
+                i.fas.fa-redo-alt
+            .parlay-btns__holder
+              .parlay-btns__btn.parlay-btns__btn_up(data-parlayAnticipation='up') Вверх
+                |
+                |
+                i.fas.fa-angle-double-up
+              .parlay-btns__btn.parlay-btns__btn_down(data-parlayAnticipation='down')
+                i.fas.fa-angle-double-down
+                |
+                | Вниз
             .parlay-btns__cover
               .parlay-btns__cover-left
               .parlay-btns__cover-right
@@ -630,11 +636,6 @@ html(lang='en')
           .slider-change-btn.deposit-slider-btn История депозитов
           .slider-change-btn.withdrawal-slider-btn История выводов
 
-        .parlay-slider-deactivation-panel
-          .parlay-slider-deactivation-panel__btn обновить
-            |
-            |
-            i.fas.fa-redo-alt
       // /SECTION 3
 
       // SECTION 4 (popups)

@@ -471,44 +471,52 @@
             <label for="#investment-result">прибыль:</label><span id="investment-result" type="text"></span>
           </div>
           <div id="UTC-datetimer-holder"><span id="UTC-datetimer-info">Время UTC: &nbsp</span><span id="UTC-datetimer"></span></div>
-          <div class="parlay-slider">
-            <div class="parlay-slider__item" data-parlayType="short" data-parlayTypeForBackEnd="0">
-              <h5 class="parlay-slider__item-header">Быстрые</h5>
-              <div class="parlay-slider__item-choice-field">
-                <div class="parlay-slider__parlay-choise-btn-holder">
-                  <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000">30 секунд</div>
-                  <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000">1 минута</div>
-                  <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000">2 минуты</div>
-                  <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000">3 минуты</div>
+          <div class="parlay-slider-wrapper">
+            <div class="parlay-slider">
+              <div class="parlay-slider__item" data-parlayType="short" data-parlayTypeForBackEnd="0">
+                <h5 class="parlay-slider__item-header">Быстрые</h5>
+                <div class="parlay-slider__item-choice-field">
+                  <div class="parlay-slider__parlay-choise-btn-holder">
+                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000">30 секунд</div>
+                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000">1 минута</div>
+                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000">2 минуты</div>
+                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000">3 минуты</div>
+                  </div>
+                </div>
+              </div>
+              <div class="parlay-slider__item" data-parlayType="normal" data-parlayTypeForBackEnd="1">
+                <h5 class="parlay-slider__item-header">Нормальные</h5>
+                <div class="parlay-slider__item-choice-field">
+                  <div class="parlay-slider__parlay-choise-btn-holder"></div>
+                </div>
+              </div>
+              <div class="parlay-slider__item" data-parlayType="long" data-parlayTypeForBackEnd="2">
+                <h5 class="parlay-slider__item-header">Длинные</h5>
+                <div class="parlay-slider__item-choice-field">
+                  <div class="parlay-slider__parlay-choise-btn-holder">
+                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="86400000">1 сутки</div>
+                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="432000000">5 суток</div>
+                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="864000000">10 суток</div>
+                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="1296000000">15 суток</div>
+                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="2592000000">30 суток</div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="parlay-slider__item" data-parlayType="normal" data-parlayTypeForBackEnd="1">
-              <h5 class="parlay-slider__item-header">Нормальные</h5>
-              <div class="parlay-slider__item-choice-field">
-                <div class="parlay-slider__parlay-choise-btn-holder"></div>
+            <div class="parlay-slider__reactivation-field">
+              <div class="parlay-slider__reactivation-field-btn">
+                обновить
+                <i class="fas fa-redo-alt"></i>
               </div>
             </div>
-            <div class="parlay-slider__item" data-parlayType="long" data-parlayTypeForBackEnd="2">
-              <h5 class="parlay-slider__item-header">Длинные</h5>
-              <div class="parlay-slider__item-choice-field">
-                <div class="parlay-slider__parlay-choise-btn-holder">
-                  <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="86400000">1 сутки</div>
-                  <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="432000000">5 суток</div>
-                  <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="864000000">10 суток</div>
-                  <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="1296000000">15 суток</div>
-                  <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="2592000000">30 суток</div>
-                </div>
+            <div class="parlay-btns__holder">
+              <div class="parlay-btns__btn parlay-btns__btn_up" data-parlayAnticipation="up">
+                Вверх
+                <i class="fas fa-angle-double-up"></i>
               </div>
-            </div>
-          </div>
-          <div class="parlay-btns__holder">
-            <div class="parlay-btns__btn parlay-btns__btn_up" data-parlayAnticipation="up">
-              Вверх
-              <i class="fas fa-angle-double-up"></i>
-            </div>
-            <div class="parlay-btns__btn parlay-btns__btn_down" data-parlayAnticipation="down"><i class="fas fa-angle-double-down"></i>
-              Вниз
+              <div class="parlay-btns__btn parlay-btns__btn_down" data-parlayAnticipation="down"><i class="fas fa-angle-double-down"></i>
+                Вниз
+              </div>
             </div>
             <div class="parlay-btns__cover">
               <div class="parlay-btns__cover-left"></div>
@@ -521,12 +529,6 @@
           <div class="slider-change-btn history-slider-btn">История сделок</div>
           <div class="slider-change-btn deposit-slider-btn">История депозитов</div>
           <div class="slider-change-btn withdrawal-slider-btn">История выводов</div>
-        </div>
-        <div class="parlay-slider-deactivation-panel">
-          <div class="parlay-slider-deactivation-panel__btn">
-            обновить
-            <i class="fas fa-redo-alt"></i>
-          </div>
         </div>
       </section>
       <!-- /SECTION 3-->

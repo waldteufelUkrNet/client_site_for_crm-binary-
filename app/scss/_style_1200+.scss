@@ -627,6 +627,9 @@
           color                 : white;
         }
       }
+      .parlay-slider-wrapper {
+        position: relative;
+      }
       .parlay-slider {
         width                   : 100%;
         display                 : flex;
@@ -649,16 +652,39 @@
           user-select           : none;
         }
         &__item-choice-field {
-          border                : 1px solid rgb(0,0,0);
-          height                : 130px;
+          border                : 1px solid black;
+          height                : 108px;
           margin-top            : 6px;
           overflow              : hidden;
+          position              : relative;
         }
         &__reactivation-field {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0,0,0,.3);
+          position              : absolute;
+          z-index               : 100;
+          top                   : 36px;
+          left                  : 0;
+          width                 : 100%;
+          height                : 108px;
+          background-color      : rgba(0,0,0,.3);
+          display               : flex;
+        }
+        &__reactivation-field-btn {
+          width           : 80px;
+          height          : 30px;
+          border          : 1px solid white;
+          border-radius   : 4px;
+          background-color: #141d27;
+          text-align      : center;
+          line-height     : 26px;
+          box-shadow      : 0px 0px 20px white;
+          cursor          : pointer;
+          user-select     : none;
+          transition      : background-color, .5s;
+          margin          : auto;
+
+          &:hover {
+            background-color: dodgerblue;
+          }
         }
         &__parlay-choise-btn-holder {
           height                : 130px;
@@ -676,7 +702,7 @@
           user-select: none;
         }
         .slick-arrow {
-          width                  : 25px;
+          width                  : 20px;
           height                 : 30px;
           border                 : 1px solid white;
           border-radius          : 4px;
@@ -713,15 +739,14 @@
       }
       .parlay-btns {
         &__holder {
-          height: 40px;
           margin-top: 6px;
           display: flex;
           justify-content: space-between;
         }
         &__btn { border: 1px solid white;
           width         : 45%;
-          height        : 40px;
-          line-height   : 38px;
+          height        : 30px;
+          line-height   : 27px;
           position      : relative;
           z-index       : 1;
           border-radius : 4px;
@@ -749,7 +774,7 @@
           }
           svg {
             position: absolute;
-            top: 12px;
+            top: 9px;
           }
           &_up {
             background: linear-gradient(teal,steelblue);
@@ -761,9 +786,9 @@
             }
           }
           &_down {
-            background: linear-gradient(tomato,orange);
+            background   : linear-gradient(tomato,orange);
             &:before {
-              background: linear-gradient(orange,red);
+              background : linear-gradient(orange,red);
             }
             svg {
               left: 10px;
@@ -771,16 +796,17 @@
           }
         }
         &__cover {
-          position: absolute;
-          z-index: 12;
-          width: 220px;
-          height: 40px;
-          display: flex;
-          justify-content: space-between;
+          position           : absolute;
+          z-index            : 12;
+          bottom             : 0;
+          width              : 100%;
+          height             : 30px;
+          display            : flex;
+          justify-content    : space-between;
           & > div {
-            background-color: rgba(0,0,0,.5);
-            border-radius: 4px;
-            width: 45%;
+            background-color : rgba(0,0,0,.5);
+            border-radius    : 4px;
+            width            : 45%;
           }
         }
       }
@@ -822,35 +848,6 @@
         .slider-change-btn_active {
           background-color      : $bgColor;
           border-color          : $overColor;
-        }
-      }
-      .parlay-slider-deactivation-panel {
-        width             : 220px;
-        height            : 130px;
-        background-color  : rgba(0,0,0,.4);
-        display           : flex;
-        justify-content   : center;
-        align-items       : center;
-        position          : fixed;
-        z-index           : 3000;
-        display           : none;
-        &__btn {
-          width           : 120px;
-          height          : 40px;
-          border          : 1px solid white;
-          border-radius   : 4px;
-          background-color: #141d27;
-          text-align      : center;
-          line-height     : 36px;
-          font-family     : rcl;
-          font-size       : 16px;
-          box-shadow      : 0px 0px 20px white;
-          cursor          : pointer;
-          user-select     : none;
-          transition      : background-color, .5s;
-          &:hover {
-            background-color: dodgerblue;
-          }
         }
       }
     }

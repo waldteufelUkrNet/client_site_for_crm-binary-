@@ -329,7 +329,7 @@ var startTime, finishTime, currentDateTime;
 $($('.parlay-slider').children('.slick-arrow')).click(function () {
 
     clearTimeout(deactivationTimer);
-    $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
+    $('.parlay-slider__reactivation-field').css({ 'display': 'none' });
 
     $('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
 
@@ -349,8 +349,8 @@ $(document).ready(function () {
         deactivationParlays()
     }, 30000);
 
-    $('.parlay-slider-deactivation-panel__btn').click(function () {
-        $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
+    $('.parlay-slider__reactivation-field-btn').click(function () {
+        $('.parlay-slider__reactivation-field, .parlay-btns__cover').css({ 'display': 'none' });
 
         rewriteParlayLists();
         // зробити перший елемент активним та правильно його відпозиціонувати
@@ -359,7 +359,7 @@ $(document).ready(function () {
         $($('.parlay-slider').children('.slick-arrow')).click(function () {
             clearTimeout(deactivationTimer);
 
-            $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
+            $('.parlay-slider__reactivation-field, .parlay-btns__cover').css({ 'display': 'none' });
 
             rewriteParlayLists();
 
@@ -1515,12 +1515,7 @@ function isActionsTradingPossible(url, dateTime) {
 }
 
 function deactivationParlays() {
-    var parlaySliderTop = getCoords($('.parlay-slider__item-choice-field')[0]).top;
-    var parlaySliderLeft = getCoords($('.parlay-slider')[0]).left;
-
-    $('.parlay-slider-deactivation-panel').css({
-        'top': parlaySliderTop,
-        'left': parlaySliderLeft,
+    $('.parlay-slider__reactivation-field').css({
         'display': 'flex'
     });
 
@@ -1545,7 +1540,7 @@ function investmentReset() {
     // обнулення інвестицій при зміні торгових пар
     clearTimeout(deactivationTimer);
 
-    $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
+    $('.parlay-slider__reactivation-field').css({ 'display': 'none' });
 
     // прибирати повідомлення, якщо вони є
     $('.info-message').css({ 'right': '-290px' });
@@ -1567,7 +1562,7 @@ function investmentReset() {
 
         clearTimeout(deactivationTimer);
 
-        $('.parlay-slider-deactivation-panel').css({ 'display': 'none' });
+        $('.parlay-slider__reactivation-field').css({ 'display': 'none' });
 
         rewriteParlayLists();
 

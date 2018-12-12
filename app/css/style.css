@@ -902,6 +902,9 @@ a, a:hover {
   .main .right-column #UTC-datetimer-holder #UTC-datetimer {
     color: white;
   }
+  .main .right-column .parlay-slider-wrapper {
+    position: relative;
+  }
   .main .right-column .parlay-slider {
     width: 100%;
     display: -webkit-box;
@@ -944,15 +947,47 @@ a, a:hover {
   }
   .main .right-column .parlay-slider__item-choice-field {
     border: 1px solid black;
-    height: 130px;
+    height: 108px;
     margin-top: 6px;
     overflow: hidden;
+    position: relative;
   }
   .main .right-column .parlay-slider__reactivation-field {
     position: absolute;
+    z-index: 100;
+    top: 36px;
+    left: 0;
     width: 100%;
-    height: 100%;
+    height: 108px;
     background-color: rgba(0, 0, 0, 0.3);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .main .right-column .parlay-slider__reactivation-field-btn {
+    width: 80px;
+    height: 30px;
+    border: 1px solid white;
+    -webkit-border-radius: 4px;
+            border-radius: 4px;
+    background-color: #141d27;
+    text-align: center;
+    line-height: 26px;
+    -webkit-box-shadow: 0px 0px 20px white;
+            box-shadow: 0px 0px 20px white;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    -webkit-transition: background-color, .5s;
+    -o-transition: background-color, .5s;
+    transition: background-color, .5s;
+    margin: auto;
+  }
+  .main .right-column .parlay-slider__reactivation-field-btn:hover {
+    background-color: dodgerblue;
   }
   .main .right-column .parlay-slider__parlay-choise-btn-holder {
     height: 130px;
@@ -972,7 +1007,7 @@ a, a:hover {
             user-select: none;
   }
   .main .right-column .parlay-slider .slick-arrow {
-    width: 25px;
+    width: 20px;
     height: 30px;
     border: 1px solid white;
     -webkit-border-radius: 4px;
@@ -1012,7 +1047,6 @@ a, a:hover {
     content: "\f105";
   }
   .main .right-column .parlay-btns__holder {
-    height: 40px;
     margin-top: 6px;
     display: -webkit-box;
     display: -webkit-flex;
@@ -1026,8 +1060,8 @@ a, a:hover {
   .main .right-column .parlay-btns__btn {
     border: 1px solid white;
     width: 45%;
-    height: 40px;
-    line-height: 38px;
+    height: 30px;
+    line-height: 27px;
     position: relative;
     z-index: 1;
     -webkit-border-radius: 4px;
@@ -1061,7 +1095,7 @@ a, a:hover {
   }
   .main .right-column .parlay-btns__btn svg {
     position: absolute;
-    top: 12px;
+    top: 9px;
   }
   .main .right-column .parlay-btns__btn_up {
     background: -webkit-gradient(linear, left top, left bottom, from(teal), to(steelblue));
@@ -1096,8 +1130,9 @@ a, a:hover {
   .main .right-column .parlay-btns__cover {
     position: absolute;
     z-index: 12;
-    width: 220px;
-    height: 40px;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1171,51 +1206,6 @@ a, a:hover {
   .main .right-column .slider-change-btn-holder .slider-change-btn_active {
     background-color: #1d2a38;
     border-color: white;
-  }
-  .main .right-column .parlay-slider-deactivation-panel {
-    width: 220px;
-    height: 130px;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    position: fixed;
-    z-index: 3000;
-    display: none;
-  }
-  .main .right-column .parlay-slider-deactivation-panel__btn {
-    width: 120px;
-    height: 40px;
-    border: 1px solid white;
-    -webkit-border-radius: 4px;
-            border-radius: 4px;
-    background-color: #141d27;
-    text-align: center;
-    line-height: 36px;
-    font-family: rcl;
-    font-size: 16px;
-    -webkit-box-shadow: 0px 0px 20px white;
-            box-shadow: 0px 0px 20px white;
-    cursor: pointer;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-    -webkit-transition: background-color, .5s;
-    -o-transition: background-color, .5s;
-    transition: background-color, .5s;
-  }
-  .main .right-column .parlay-slider-deactivation-panel__btn:hover {
-    background-color: dodgerblue;
   }
   /* ↓↓↓ FOOTER ↓↓↓ */
   /* ↑↑↑ /FOOTER ↑↑↑ */
