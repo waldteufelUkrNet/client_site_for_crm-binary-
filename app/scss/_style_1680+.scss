@@ -167,6 +167,8 @@
           justify-content        : center;
           align-items            : center;
           height                 : 45px;
+          flex-grow              : none;
+          order                  : 2;
           .img-pair {
             min-width            : 60px;
             max-height           : 45px
@@ -177,16 +179,18 @@
           }
         }
         .timer-buttons-ul {
-          width                  : calc( (100% - 180px) / 2);
+          width                  : calc( (100% - 150px) / 2);
           display                : inline-block;
+          order                  : 1;
           .timer-buttons-li {
             display              : inline-block;
-            min-width            : 55px;
-            font-size            : 16px;
+            min-width            : 45px;
+            font-size            : 12px;
+            text-align           : center;
             border               : 1px solid silver;
             border-radius        : 4px;
             padding              : 2px 4px;
-            margin               : 3px 3px 0 0;
+            margin               : 0 3px 3px 0;
             cursor               : pointer;
             background-color     : transparent;
             transition           : background-color .5s, border-color .5s;
@@ -202,32 +206,25 @@
           }
         }
         .type-buttons-ul {
-          width                  : calc( (100% - 180px) / 2);
-          height                 : 36px;
-          display                : inline-block;
+          width                  : calc( (100% - 150px) / 2);
+          height                 : 30px;
+          display                : flex;
+          justify-content        : flex-end;
+          align-items            : center;
           position               : relative;
-
+          order                  : 3;
           .type-buttons-li {
             display              : inline-block;
-            position             : absolute;
+            position             : relative;
             margin-left          : 3px;
-            width                : 36px;
-            height               : 36px;
-            font-size            : 16px;
+            width                : 30px;
+            height               : 30px;
             border               : 1px solid silver;
             border-radius        : 4px;
             cursor               : pointer;
             background-color     : transparent;
+            user-select          : none;
             transition           : background-color .5s, border-color .5s;
-            &:nth-of-type(1) {
-              right              : 84px;
-            }
-            &:nth-of-type(2) {
-              right              : 42px;
-            }
-            &:nth-of-type(3) {
-              right              : 0px;
-            }
             &:hover {
               background-color   : dodgerblue;
               border-color       : dodgerblue;
@@ -444,6 +441,7 @@
       padding                    : 15px 10px 10px 15px;
       overflow                   : hidden;
       position                   : relative;
+      display                    : block;
       &::after {
         content                  : '';
         display                  : block;
@@ -551,6 +549,7 @@
       width                     : 250px;
       padding                   : 15px 15px 10px 15px;
       position                  : relative;
+      display                   : block;
       .work-field {
         .trade-pair {
           position              : relative;

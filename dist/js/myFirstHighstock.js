@@ -72,9 +72,8 @@ function getDataArr() {
   // формує рядок запиту, визначає тип графіку і формує масив, придатний для обробки бібліотекою.
   // Викликає функцію перемальовування графіку.
 
-  dataArr = 'http://god.ares.local:81/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
-  // dataArr = 'http://62.216.34.146:9000/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
-  $.ajax({
+  dataArr = 'https://central.investingcase.com/api/Stock' + stringType + 'timer=' + timeStep + '&symbol=' + stringSymbol;
+    $.ajax({
     url     : dataArr,
     success : function (data) {
 
@@ -129,6 +128,7 @@ function getDataArr() {
 
       // якщо точок забагато, контейнер їх не вміщує, і свічки замість 30/60 хв. стають по 1 - 6 годині,
       // простий графік теж збивається
+
       var containerWidth = $('#container').width();
 
       if (1382 <= containerWidth && containerWidth < 1512) {
@@ -170,6 +170,7 @@ function getDataArr() {
           // якщо контрольні точки різні, значить масив оновився, обнулюємо точки, перемальовуємо графік
 
           сontrolPoint = сontrolPoint2 = undefined;
+          tempPoint = null;
           drawChart();
         } else {
           // якщо time > step (уже потрібно малювати нову точку), але її поки ще в масиві нема
@@ -220,8 +221,8 @@ function drawChart() {
                                 clearInterval(interval); // зупиняє попередні інтервали, бо інакше при натисненні на кнопки часу і типу графік починає сходити з розуму
 
                                 interval = setInterval(function () {
-                                dataOne  = 'http://god.ares.local:81/api/Stock?timer=realOne&symbol=' + stringSymbol,
-                                // dataOne  = 'http://62.216.34.146:9000/api/Stock?timer=realOne&symbol=' + stringSymbol,
+                                dataOne  = 'https://central.investingcase.com/api/Stock?timer=realOne&symbol=' + stringSymbol;
+
                                   $.getJSON(dataOne, function (data) { // data = [{Sumbol,Value,'date'}]
                                     var x = new Date(data[0].Date),
                                         y = data[0].Value;
@@ -231,7 +232,7 @@ function drawChart() {
                                   });
                                 }, 3000);
 
-                                tugOfWarAnimation();
+                                // tugOfWarAnimation();
 
                                 // remove "Highcharts.com"-marker
                                 $('.highcharts-credits').remove();
@@ -350,7 +351,8 @@ function redrawSerie(x,y) {
 
   } else if (dataType == 'candlestick' || dataType == 'ohlc') {
 
-    if (tempPoint == null) {
+    if (tempPoint == null) { console.log('trololo');
+
       tempPoint = [x, y, y, y, y]; // tempPoint = [x, open, high, low, close];
     }
     tempPoint[0] = x;
@@ -405,7 +407,7 @@ function redrawChart () {
 
   chart.yAxis[0].removePlotLine('plot-line-1');
   redrawPlotline(chart, YPlotLinesValue);
-  tugOfWarAnimation();
+  // tugOfWarAnimation();
 }
 
 function redrawPlotline(nameOfChart, currentYCoordValue) {
@@ -482,79 +484,79 @@ function getCoords(elem) {
 // ↑↑↑ functions declarations ↑↑↑
 
 // ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓
-function tugOfWarAnimation() {
-  // функція циклом визначає найбільшу і найменшу точки графіку, приймає їх за 100% та 0% відповідно,
-  // потім бере першу і останню точки, переводить їх у проценти, знаходить їх різницю і ділить на два,
-  // отримане значення або додає, або віднімає від 50% у залежності від тенденції.
+// function tugOfWarAnimation() {
+//   // функція циклом визначає найбільшу і найменшу точки графіку, приймає їх за 100% та 0% відповідно,
+//   // потім бере першу і останню точки, переводить їх у проценти, знаходить їх різницю і ділить на два,
+//   // отримане значення або додає, або віднімає від 50% у залежності від тенденції.
 
-  var firstTOWPoint,
-      lastTOWPoint,
-      minTOWPoint,
-      maxTOWPoint,
-      firstTOWPointInPercent,
-      lastTOWPointInPercent,
-      shiftTOW;
+//   var firstTOWPoint,
+//       lastTOWPoint,
+//       minTOWPoint,
+//       maxTOWPoint,
+//       firstTOWPointInPercent,
+//       lastTOWPointInPercent,
+//       shiftTOW;
 
-  $('#bull1').css({'display':'none'});
-  $('#bull2').css({'display':'block'});
-  $('#bear1').css({'display':'none'});
-  $('#bear2').css({'display':'block'});
+//   $('#bull1').css({'display':'none'});
+//   $('#bull2').css({'display':'block'});
+//   $('#bear1').css({'display':'none'});
+//   $('#bear2').css({'display':'block'});
 
-  if (dataType == 'areaspline') {
-    minTOWPoint = maxTOWPoint = firstTOWPoint = resultArr[0][1];
-    lastTOWPoint  = resultArr[resultArr.length-2][1];
+//   if (dataType == 'areaspline') {
+//     minTOWPoint = maxTOWPoint = firstTOWPoint = resultArr[0][1];
+//     lastTOWPoint  = resultArr[resultArr.length-2][1];
 
-    for(var i = 0; i < resultArr.length-1; i++) {
-      if(resultArr[i][1] > maxTOWPoint) {
-        maxTOWPoint = resultArr[i][1];
-      }
-      if(resultArr[i][1] < minTOWPoint) {
-        minTOWPoint = resultArr[i][1];
-      }
-    }
+//     for(var i = 0; i < resultArr.length-1; i++) {
+//       if(resultArr[i][1] > maxTOWPoint) {
+//         maxTOWPoint = resultArr[i][1];
+//       }
+//       if(resultArr[i][1] < minTOWPoint) {
+//         minTOWPoint = resultArr[i][1];
+//       }
+//     }
 
-  }
-  if (dataType == 'candlestick' || dataType == 'ohlc') {
-    minTOWPoint = maxTOWPoint = firstTOWPoint = resultArr[0][1];
-    lastTOWPoint  = resultArr[resultArr.length-2][4];
+//   }
+//   if (dataType == 'candlestick' || dataType == 'ohlc') {
+//     minTOWPoint = maxTOWPoint = firstTOWPoint = resultArr[0][1];
+//     lastTOWPoint  = resultArr[resultArr.length-2][4];
 
-    for(var i = 0; i < resultArr.length-1; i++) {
-      if(resultArr[i][4] > maxTOWPoint) {
-        maxTOWPoint = resultArr[i][4];
-      }
-      if(resultArr[i][4] < minTOWPoint) {
-        minTOWPoint = resultArr[i][4];
-      }
-    }
-  }
+//     for(var i = 0; i < resultArr.length-1; i++) {
+//       if(resultArr[i][4] > maxTOWPoint) {
+//         maxTOWPoint = resultArr[i][4];
+//       }
+//       if(resultArr[i][4] < minTOWPoint) {
+//         minTOWPoint = resultArr[i][4];
+//       }
+//     }
+//   }
 
-  firstTOWPointInPercent = (firstTOWPoint * 100) / (maxTOWPoint - minTOWPoint);
-  lastTOWPointInPercent  = (lastTOWPoint * 100) / (maxTOWPoint - minTOWPoint);
+//   firstTOWPointInPercent = (firstTOWPoint * 100) / (maxTOWPoint - minTOWPoint);
+//   lastTOWPointInPercent  = (lastTOWPoint * 100) / (maxTOWPoint - minTOWPoint);
 
-  if (firstTOWPointInPercent < lastTOWPointInPercent) {
-    shiftTOW = 50 + (lastTOWPointInPercent - firstTOWPointInPercent) / 2;
-  } else if (firstTOWPointInPercent > lastTOWPointInPercent) {
-    shiftTOW = 50 - ((firstTOWPointInPercent - lastTOWPointInPercent) / 2);
-  } else {
-    shiftTOW = 50;
-  }
+//   if (firstTOWPointInPercent < lastTOWPointInPercent) {
+//     shiftTOW = 50 + (lastTOWPointInPercent - firstTOWPointInPercent) / 2;
+//   } else if (firstTOWPointInPercent > lastTOWPointInPercent) {
+//     shiftTOW = 50 - ((firstTOWPointInPercent - lastTOWPointInPercent) / 2);
+//   } else {
+//     shiftTOW = 50;
+//   }
 
-  if (shiftTOW > 80) {
-    $('#bull1,#bear2').css({'display':'block'});
-    $('#bull2,#bear1').css({'display':'none'});
-  } else if (shiftTOW < 20) {
-    $('#bull1,#bear2').css({'display':'none'});
-    $('#bull2,#bear1').css({'display':'block'});
-  } else {
-    $('#bull1,#bear1').css({'display':'none'});
-    $('#bull2,#bear2').css({'display':'block'});
-  }
+//   if (shiftTOW > 80) {
+//     $('#bull1,#bear2').css({'display':'block'});
+//     $('#bull2,#bear1').css({'display':'none'});
+//   } else if (shiftTOW < 20) {
+//     $('#bull1,#bear2').css({'display':'none'});
+//     $('#bull2,#bear1').css({'display':'block'});
+//   } else {
+//     $('#bull1,#bear1').css({'display':'none'});
+//     $('#bull2,#bear2').css({'display':'block'});
+//   }
 
-  shiftTOW += '%';
+//   shiftTOW += '%';
 
-  $('.tug-of-war__indicator').css({'left':shiftTOW});
-  $('.tug-of-war__lightbulb').css({'left':shiftTOW});
-}
+//   $('.tug-of-war__indicator').css({'left':shiftTOW});
+//   $('.tug-of-war__lightbulb').css({'left':shiftTOW});
+// }
 // ↑↑↑ BEM-blocks: tug-of-war (end) ↑↑↑
 
 // made by waldteufel@ukr.net

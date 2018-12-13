@@ -165,13 +165,14 @@
         justify-content          : space-between;
         align-items              : center;
         height                   : 42px;
-
-        .currency-logo-holder {border: 1px dotted red;
+        .currency-logo-holder {
           min-width              : 150px;
-          display                : flex;
-          justify-content        : center;
-          align-items            : center;
           min-height             : 35px;
+          display                : flex;
+          justify-content        : start;
+          align-items            : center;
+          flex-grow              : 1;
+          order                  : 1;
           .img-pair {
             min-width            : 40px;
             max-height           : 30px
@@ -181,9 +182,10 @@
             padding-left         : 10px
           }
         }
-        .timer-buttons-ul { border: 1px dotted blue;
-          width                  : calc( (100% - 150px) / 2);
+        .timer-buttons-ul {
+          width                  : 160px;
           display                : inline-block;
+          order                  : 2;
           .timer-buttons-li {
             display              : inline-block;
             min-width            : 45px;
@@ -207,14 +209,15 @@
             }
           }
         }
-        .type-buttons-ul { border: 1px dotted yellow;
-          width                  : calc( (100% - 180px) / 2);
+        .type-buttons-ul {
           height                 : 30px;
-          display                : inline-block;
-          position               : relative;
+          display                : flex;
+          justify-content        : flex-end;
+          align-items            : center;
+          order                  : 3;
           .type-buttons-li {
             display              : inline-block;
-            position             : absolute;
+            position             : relative;
             margin-left          : 3px;
             width                : 30px;
             height               : 30px;
@@ -224,15 +227,6 @@
             background-color     : transparent;
             user-select          : none;
             transition           : background-color .5s, border-color .5s;
-            &:nth-of-type(1) {
-              right              : 72px;
-            }
-            &:nth-of-type(2) {
-              right              : 36px;
-            }
-            &:nth-of-type(3) {
-              right              : 0px;
-            }
             &:hover {
               background-color   : dodgerblue;
               border-color       : dodgerblue;
@@ -442,13 +436,14 @@
     /* ↑↑↑ /SECTION 1 (work area) ↑↑↑ */
 
     /* ↓↓↓ SECTION 2 (left column) ↓↓↓ */
-    .left-column { display: none;
+    .left-column {
       order                      : 1;
       flex-grow                  : 0;
       width                      : 200px;
       padding                    : 10px;
       overflow                   : hidden;
       position                   : relative;
+      display                    : none;
       &::after {
         content                  : '';
         display                  : block;
@@ -552,12 +547,13 @@
     /* ↑↑↑ /SECTION 2 (left column) ↑↑↑ */
 
     /* ↓↓↓ SECTION 3 (right column) ↓↓↓ */
-    .right-column { display: none;
+    .right-column {
       order                     : 3;
       flex-grow                 : 0;
       width                     : 200px;
       padding                   : 10px;
       position                  : relative;
+      display                   : none;
       .work-field {
         .trade-pair {
           position              : relative;

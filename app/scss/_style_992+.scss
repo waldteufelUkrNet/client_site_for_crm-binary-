@@ -172,6 +172,8 @@
           justify-content        : center;
           align-items            : center;
           min-height             : 35px;
+          flex-grow              : none;
+          order                  : 2;
           .img-pair {
             min-width            : 40px;
             max-height           : 30px
@@ -184,6 +186,7 @@
         .timer-buttons-ul {
           width                  : calc( (100% - 150px) / 2);
           display                : inline-block;
+          order                  : 1;
           .timer-buttons-li {
             display              : inline-block;
             min-width            : 45px;
@@ -208,32 +211,25 @@
           }
         }
         .type-buttons-ul {
-          width                  : calc( (100% - 180px) / 2);
+          width                  : calc( (100% - 150px) / 2);
           height                 : 30px;
-          display                : inline-block;
+          display                : flex;
+          justify-content        : flex-end;
+          align-items            : center;
           position               : relative;
-
+          order                  : 3;
           .type-buttons-li {
             display              : inline-block;
-            position             : absolute;
+            position             : relative;
             margin-left          : 3px;
             width                : 30px;
             height               : 30px;
             border               : 1px solid silver;
             border-radius        : 4px;
             cursor               : pointer;
-            user-select          : none;
             background-color     : transparent;
+            user-select          : none;
             transition           : background-color .5s, border-color .5s;
-            &:nth-of-type(1) {
-              right              : 72px;
-            }
-            &:nth-of-type(2) {
-              right              : 36px;
-            }
-            &:nth-of-type(3) {
-              right              : 0px;
-            }
             &:hover {
               background-color   : dodgerblue;
               border-color       : dodgerblue;
@@ -450,6 +446,7 @@
       padding                    : 10px;
       overflow                   : hidden;
       position                   : relative;
+      display                    : block;
       &::after {
         content                  : '';
         display                  : block;
@@ -559,6 +556,7 @@
       width                     : 200px;
       padding                   : 10px;
       position                  : relative;
+      display                   : block;
       .work-field {
         .trade-pair {
           position              : relative;

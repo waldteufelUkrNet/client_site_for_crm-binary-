@@ -313,7 +313,6 @@ a, a:hover {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
-    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -357,21 +356,28 @@ a, a:hover {
     height: 42px;
   }
   .main .work_area .graphic-header .currency-logo-holder {
-    border: 1px dotted red;
     min-width: 150px;
+    min-height: 35px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: start;
+        -ms-flex-pack: start;
+            justify-content: start;
     -webkit-box-align: center;
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    min-height: 35px;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
   }
   .main .work_area .graphic-header .currency-logo-holder .img-pair {
     min-width: 40px;
@@ -382,10 +388,12 @@ a, a:hover {
     padding-left: 10px;
   }
   .main .work_area .graphic-header .timer-buttons-ul {
-    border: 1px dotted blue;
-    width: -webkit-calc( (100% - 150px) / 2);
-    width: calc( (100% - 150px) / 2);
+    width: 160px;
     display: inline-block;
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
   }
   .main .work_area .graphic-header .timer-buttons-ul .timer-buttons-li {
     display: inline-block;
@@ -416,16 +424,27 @@ a, a:hover {
     border-color: dodgerblue;
   }
   .main .work_area .graphic-header .type-buttons-ul {
-    border: 1px dotted yellow;
-    width: -webkit-calc( (100% - 180px) / 2);
-    width: calc( (100% - 180px) / 2);
     height: 30px;
-    display: inline-block;
-    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-ordinal-group: 4;
+    -webkit-order: 3;
+        -ms-flex-order: 3;
+            order: 3;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li {
     display: inline-block;
-    position: absolute;
+    position: relative;
     margin-left: 3px;
     width: 30px;
     height: 30px;
@@ -441,15 +460,6 @@ a, a:hover {
     -webkit-transition: background-color .5s, border-color .5s;
     -o-transition: background-color .5s, border-color .5s;
     transition: background-color .5s, border-color .5s;
-  }
-  .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:nth-of-type(1) {
-    right: 72px;
-  }
-  .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:nth-of-type(2) {
-    right: 36px;
-  }
-  .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:nth-of-type(3) {
-    right: 0px;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:hover {
     background-color: dodgerblue;
@@ -502,7 +512,6 @@ a, a:hover {
   }
   .main #container {
     width: 100%;
-    height: -webkit-calc(100% - 200px);
     height: calc(100% - 200px);
   }
   .main #labelBorder {
@@ -519,7 +528,6 @@ a, a:hover {
             user-select: none;
   }
   .main .slider-area {
-    width: -webkit-calc( 100% - 20px);
     width: calc( 100% - 20px);
     height: 160px;
     position: absolute;
@@ -681,7 +689,6 @@ a, a:hover {
     background-color: rgba(173, 255, 47, 0.05);
   }
   .main .left-column {
-    display: none;
     -webkit-box-ordinal-group: 2;
     -webkit-order: 1;
         -ms-flex-order: 1;
@@ -694,6 +701,7 @@ a, a:hover {
     padding: 10px;
     overflow: hidden;
     position: relative;
+    display: none;
   }
   .main .left-column::after {
     content: '';
@@ -711,7 +719,6 @@ a, a:hover {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
-    height: -webkit-calc(100vh - 60px);
     height: calc(100vh - 60px);
   }
   .main .left-column .wares-slider__item-header {
@@ -721,14 +728,12 @@ a, a:hover {
     padding-bottom: 16px;
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
-    height: -webkit-calc(100% - 33px);
     height: calc(100% - 33px);
     overflow: hidden;
     position: relative;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
-    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
     overflow-x: hidden;
@@ -812,7 +817,6 @@ a, a:hover {
     content: "\f105";
   }
   .main .right-column {
-    display: none;
     -webkit-box-ordinal-group: 4;
     -webkit-order: 3;
         -ms-flex-order: 3;
@@ -824,6 +828,7 @@ a, a:hover {
     width: 200px;
     padding: 10px;
     position: relative;
+    display: none;
   }
   .main .right-column .work-field .trade-pair {
     position: relative;
@@ -1024,7 +1029,6 @@ a, a:hover {
   }
   .main .right-column .parlay-slider__parlay-choise-btn-holder {
     height: 130px;
-    width: -webkit-calc(100% + 20px);
     width: calc(100% + 20px);
     overflow: auto;
   }
@@ -1171,7 +1175,6 @@ a, a:hover {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
-    width: -webkit-calc(100% - 20px);
     width: calc(100% - 20px);
     height: 160px;
     position: absolute;
@@ -1429,7 +1432,6 @@ a, a:hover {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
-    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -1487,6 +1489,14 @@ a, a:hover {
         -ms-flex-align: center;
             align-items: center;
     min-height: 35px;
+    -webkit-box-flex: none;
+    -webkit-flex-grow: none;
+        -ms-flex-positive: none;
+            flex-grow: none;
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
   }
   .main .work_area .graphic-header .currency-logo-holder .img-pair {
     min-width: 40px;
@@ -1497,9 +1507,12 @@ a, a:hover {
     padding-left: 10px;
   }
   .main .work_area .graphic-header .timer-buttons-ul {
-    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     display: inline-block;
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
   }
   .main .work_area .graphic-header .timer-buttons-ul .timer-buttons-li {
     display: inline-block;
@@ -1530,15 +1543,29 @@ a, a:hover {
     border-color: dodgerblue;
   }
   .main .work_area .graphic-header .type-buttons-ul {
-    width: -webkit-calc( (100% - 180px) / 2);
-    width: calc( (100% - 180px) / 2);
+    width: calc( (100% - 150px) / 2);
     height: 30px;
-    display: inline-block;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     position: relative;
+    -webkit-box-ordinal-group: 4;
+    -webkit-order: 3;
+        -ms-flex-order: 3;
+            order: 3;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li {
     display: inline-block;
-    position: absolute;
+    position: relative;
     margin-left: 3px;
     width: 30px;
     height: 30px;
@@ -1546,23 +1573,14 @@ a, a:hover {
     -webkit-border-radius: 4px;
             border-radius: 4px;
     cursor: pointer;
+    background-color: transparent;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
-    background-color: transparent;
     -webkit-transition: background-color .5s, border-color .5s;
     -o-transition: background-color .5s, border-color .5s;
     transition: background-color .5s, border-color .5s;
-  }
-  .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:nth-of-type(1) {
-    right: 72px;
-  }
-  .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:nth-of-type(2) {
-    right: 36px;
-  }
-  .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:nth-of-type(3) {
-    right: 0px;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:hover {
     background-color: dodgerblue;
@@ -1615,7 +1633,6 @@ a, a:hover {
   }
   .main #container {
     width: 100%;
-    height: -webkit-calc(100% - 200px);
     height: calc(100% - 200px);
   }
   .main #labelBorder {
@@ -1632,7 +1649,6 @@ a, a:hover {
             user-select: none;
   }
   .main .slider-area {
-    width: -webkit-calc( 100% - 20px);
     width: calc( 100% - 20px);
     height: 160px;
     position: absolute;
@@ -1806,6 +1822,7 @@ a, a:hover {
     padding: 10px;
     overflow: hidden;
     position: relative;
+    display: block;
   }
   .main .left-column::after {
     content: '';
@@ -1823,7 +1840,6 @@ a, a:hover {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
-    height: -webkit-calc(100vh - 60px);
     height: calc(100vh - 60px);
   }
   .main .left-column .wares-slider__item-header {
@@ -1833,14 +1849,12 @@ a, a:hover {
     padding-bottom: 16px;
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
-    height: -webkit-calc(100% - 33px);
     height: calc(100% - 33px);
     overflow: hidden;
     position: relative;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
-    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
     overflow-x: hidden;
@@ -1935,6 +1949,7 @@ a, a:hover {
     width: 200px;
     padding: 10px;
     position: relative;
+    display: block;
   }
   .main .right-column .work-field .trade-pair {
     position: relative;
@@ -2135,7 +2150,6 @@ a, a:hover {
   }
   .main .right-column .parlay-slider__parlay-choise-btn-holder {
     height: 130px;
-    width: -webkit-calc(100% + 20px);
     width: calc(100% + 20px);
     overflow: auto;
   }
@@ -2282,7 +2296,6 @@ a, a:hover {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
-    width: -webkit-calc(100% - 20px);
     width: calc(100% - 20px);
     height: 160px;
     position: absolute;
@@ -2537,7 +2550,6 @@ a, a:hover {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
-    height: -webkit-calc(100% - 60px);
     height: calc(100% - 60px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -2594,6 +2606,14 @@ a, a:hover {
         -ms-flex-align: center;
             align-items: center;
     height: 45px;
+    -webkit-box-flex: none;
+    -webkit-flex-grow: none;
+        -ms-flex-positive: none;
+            flex-grow: none;
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
   }
   .main .work_area .graphic-header .currency-logo-holder .img-pair {
     min-width: 60px;
@@ -2604,19 +2624,23 @@ a, a:hover {
     padding-left: 10px;
   }
   .main .work_area .graphic-header .timer-buttons-ul {
-    width: -webkit-calc( (100% - 180px) / 2);
-    width: calc( (100% - 180px) / 2);
+    width: calc( (100% - 150px) / 2);
     display: inline-block;
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
   }
   .main .work_area .graphic-header .timer-buttons-ul .timer-buttons-li {
     display: inline-block;
-    min-width: 55px;
-    font-size: 16px;
+    min-width: 45px;
+    font-size: 12px;
+    text-align: center;
     border: 1px solid silver;
     -webkit-border-radius: 4px;
             border-radius: 4px;
     padding: 2px 4px;
-    margin: 3px 3px 0 0;
+    margin: 0 3px 3px 0;
     cursor: pointer;
     background-color: transparent;
     -webkit-transition: background-color .5s, border-color .5s;
@@ -2636,36 +2660,44 @@ a, a:hover {
     border-color: dodgerblue;
   }
   .main .work_area .graphic-header .type-buttons-ul {
-    width: -webkit-calc( (100% - 180px) / 2);
-    width: calc( (100% - 180px) / 2);
-    height: 36px;
-    display: inline-block;
+    width: calc( (100% - 150px) / 2);
+    height: 30px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     position: relative;
+    -webkit-box-ordinal-group: 4;
+    -webkit-order: 3;
+        -ms-flex-order: 3;
+            order: 3;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li {
     display: inline-block;
-    position: absolute;
+    position: relative;
     margin-left: 3px;
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
+    width: 30px;
+    height: 30px;
     border: 1px solid silver;
     -webkit-border-radius: 4px;
             border-radius: 4px;
     cursor: pointer;
     background-color: transparent;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
     -webkit-transition: background-color .5s, border-color .5s;
     -o-transition: background-color .5s, border-color .5s;
     transition: background-color .5s, border-color .5s;
-  }
-  .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:nth-of-type(1) {
-    right: 84px;
-  }
-  .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:nth-of-type(2) {
-    right: 42px;
-  }
-  .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:nth-of-type(3) {
-    right: 0px;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:hover {
     background-color: dodgerblue;
@@ -2718,7 +2750,6 @@ a, a:hover {
   }
   .main #container {
     width: 100%;
-    height: -webkit-calc(100% - 250px);
     height: calc(100% - 250px);
   }
   .main #labelBorder {
@@ -2735,7 +2766,6 @@ a, a:hover {
             user-select: none;
   }
   .main .slider-area {
-    width: -webkit-calc( 100% - 30px);
     width: calc( 100% - 30px);
     height: 200px;
     position: absolute;
@@ -2909,6 +2939,7 @@ a, a:hover {
     padding: 15px 10px 10px 15px;
     overflow: hidden;
     position: relative;
+    display: block;
   }
   .main .left-column::after {
     content: '';
@@ -2926,7 +2957,6 @@ a, a:hover {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
-    height: -webkit-calc(100vh - 85px);
     height: calc(100vh - 85px);
   }
   .main .left-column .wares-slider__item-header {
@@ -2936,13 +2966,11 @@ a, a:hover {
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
     position: relative;
-    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     overflow: hidden;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
-    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
   }
@@ -3036,6 +3064,7 @@ a, a:hover {
     width: 250px;
     padding: 15px 15px 10px 15px;
     position: relative;
+    display: block;
   }
   .main .right-column .work-field .trade-pair {
     position: relative;
@@ -3378,7 +3407,6 @@ a, a:hover {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
-    width: -webkit-calc(100% - 30px);
     width: calc(100% - 30px);
     height: 190px;
     position: absolute;
@@ -3838,7 +3866,6 @@ a, a:hover {
 .info-message__body {
   position: relative;
   height: 100%;
-  width: -webkit-calc( 290px - 44px);
   width: calc( 290px - 44px);
   left: 50%;
   -webkit-transform: translate(-50%);
@@ -3895,7 +3922,6 @@ a, a:hover {
 }
 
 .message-from-mentor__text {
-  width: -webkit-calc( 100% + 18px);
   width: calc( 100% + 18px);
   height: 78px;
   color: white;
@@ -4519,7 +4545,6 @@ a, a:hover {
 .info-parlay-result__body {
   position: relative;
   height: 100%;
-  width: -webkit-calc( 290px - 44px);
   width: calc( 290px - 44px);
   left: 50%;
   -webkit-transform: translate(-50%);
