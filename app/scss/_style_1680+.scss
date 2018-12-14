@@ -79,14 +79,6 @@
         animation-iteration-count : infinite;
       }
 
-      @keyframes splendourAnimation {
-        from { left : -100% }
-        to   { left : 150% }
-      }
-
-
-
-
     }
     .right-part {
       position                   : relative;
@@ -211,7 +203,6 @@
           display                : flex;
           justify-content        : flex-end;
           align-items            : center;
-          position               : relative;
           order                  : 3;
           .type-buttons-li {
             display              : inline-block;
@@ -234,8 +225,8 @@
               border-color       : dodgerblue;
             }
             img {
-              width              : 30px;
-              height             : 30px;
+              width              : 24px;
+              height             : 24px;
               display            : block;
               position           : absolute;
               top                : 50%;
@@ -245,47 +236,13 @@
           }
         }
       }
-      .highcharts-point-up {
-        fill                     : dodgerblue !important;
-        stroke                   : dodgerblue !important;
-        padding: 0
-      }
 
-      .highcharts-point-down {
-        fill                     : red !important;
-        stroke                   : red !important;
-        padding: 0
-      }
-
-      @keyframes lightbulb {
-        0% {background-color  : yellow; border-color: #3d4a58;}
-        100% {background-color: #3d4a58; border-color: yellow;}
-      }
     }
     #container {
       width: 100%;
       height: calc(100% - 250px);
     }
-    #labelBorder {
-      position                   : fixed;
-      background-color           : lightgrey;
-      padding                    : 0 3px;
-      font-family                : 'Lucida Sans Unicode';
-      font-size                  : 11px;
-      line-height                : 18px;
-      color                      : black;
-      user-select                : none;
-    }
-    // #labelIndicator {
-    //   position                   : fixed;
-    //   z-index                    : 9999;
-    //   border-radius              : 50px;
-    //   animation-name             : lightbulb;
-    //   animation-duration         : .5s;
-    //   animation-iteration-count  : infinite;
-    //   animation-direction        : alternate;
-    //   background-color: red;
-    // }
+
     .slider-area {
       width                      : calc( 100% - 30px);
       height                     : 200px;
@@ -335,15 +292,15 @@
         }
       }
       &__slider-item {
-        height                   : 200px;
-        max-width                : 320px;
-        min-width                : 320px;
+        height                   : 160px;
+        max-width                : 200px;
+        min-width                : 200px;
         border                   : 1px solid white;
         border-radius            : 4px;
-        padding                  : 15px;
+        padding                  : 10px;
         display                  : grid;
         grid-template-columns    : auto 1fr;
-        grid-column-gap          : 15px;
+        grid-column-gap          : 6px;
         margin                   : 0 20px
       }
       &__win {

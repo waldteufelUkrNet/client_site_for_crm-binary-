@@ -1602,4 +1602,60 @@ function getChar(event) {
 }
 /* ↑↑↑ /FUNCTIONS DECLARATIONS ↑↑↑ */
 
+
+
+
+
+
+
+/* ↓↓↓ адаптивка ↓↓↓ */
+var isNavigationOpen = false;
+$('.navigation__btn').click(function() {
+  if (!isNavigationOpen) {
+    $('.navigation').css('height', '240px');
+    isNavigationOpen = true;
+  } else {
+    $('.navigation').css('height', '60px');
+    isNavigationOpen = false;
+  }
+});
+// вибрати котировку
+$('.navigation__items:eq(0)').click(function(event) {
+  console.log('вибрати котировку');
+  $('.left-column').css('left','0px');
+});
+// зробити ставку
+$('.navigation__items:eq(1)').click(function(event) {
+  console.log('зробити ставку');
+});
+// активні
+$('.navigation__items:eq(2)').click(function(event) {
+  console.log('активні');
+});
+// історія
+$('.navigation__items:eq(3)').click(function(event) {
+  console.log('історія');
+});
+// депозити
+$('.navigation__items:eq(4)').click(function(event) {
+  console.log('депозити');
+});
+// виводи
+$('.navigation__items:eq(5)').click(function(event) {
+  console.log('виводи');
+});
+/* ↑↑↑ /адаптивка ↑↑↑ */
+
+
+
+
+
+
+
+
+
+
+
+
+
 // made by waldteufel@ukr.net
