@@ -406,6 +406,7 @@
       padding                    : 10px;
       overflow                   : hidden;
       position                   : relative;
+      left                       : 0;
       display                    : block;
       border-right               : none;
       border-bottom              : none;
@@ -518,7 +519,11 @@
       width                     : 200px;
       padding                   : 10px;
       position                  : relative;
+      z-index                   : 1;
       display                   : block;
+      height                    : 100%;
+      border-left               : none;
+      border-bottom             : none;
       .work-field {
         .trade-pair {
           position              : relative;

@@ -40,7 +40,6 @@
       	height                   : 20px;
       	margin                   : 0 10px;
       }
-      &__currency-value {}
 
       &__btn {
         height                   : 30px;
@@ -65,7 +64,7 @@
         text-transform           : uppercase;
         color                    : white;
         letter-spacing           : 1px;
-        z-index: 1;
+        z-index                  : 1;
       }
       &__btn-splendour {
         display                   : block;
@@ -242,8 +241,8 @@
       }
     }
     #container {
-      width: 100%;
-      height: calc(100% - 280px);
+      width                      : 100%;
+      height                     : calc(100% - 280px);
     }
 
     .slider-area {
@@ -402,7 +401,6 @@
       user-select        : none;
       transition         : height .3s;
       &__btn {
-        display          : block;
         width            : 100%;
         height           : 60px;
         line-height      : 58px;
@@ -413,6 +411,26 @@
         background-color : dodgerblue;
         position         : relative;
         overflow         : hidden;
+        display          : flex;
+        justify-content  : center;
+        align-items      : center;
+      }
+      &__btn-rotor {
+        width            : 26px;
+        height           : 26px;
+        border           : 1px solid white;
+        border-radius    : 50%;
+        position         : relative;
+        display          : block;
+        margin           : 0 10px;
+        display          : flex;
+        svg {
+          display        : block;
+          width          : 16px;
+          height         : 16px;
+          margin         : auto;
+          transition     : transform 1s;
+        }
       }
       &__body {
         height               : 180px;
@@ -432,9 +450,25 @@
         padding          : 13px;
         letter-spacing   : 1px;
         transition       : background-color .5s;
+        display          : flex;
+        position         : relative;
+        padding          : 0 20px;
         &:hover {
-          background-color: dodgerblue;
+          background-color : dodgerblue;
         }
+        svg {
+          position       : absolute;
+          top            : 50%;
+          right          : 6px;
+          transform      : translate(0, -50%);
+        }
+      }
+      &__items_active {
+        background-color : dodgerblue;
+      }
+      &__items-inner-text {
+        background-color : transparent;
+        margin           : auto;
       }
     }
     /* ↑↑↑ /SECTION 1 (work area) ↑↑↑ */
@@ -470,7 +504,7 @@
         position                 : relative;
         &__item {
           text-align             : center;
-          height                 : calc(100vh - 60px);
+          height                 : calc(100vh - 300px);
         }
         &__item-header {
           text-transform         : uppercase;
@@ -563,8 +597,16 @@
       flex-grow                 : 0;
       width                     : 200px;
       padding                   : 10px;
-      position                  : relative;
-      display                   : none;
+      position                  : absolute;
+      z-index                   : 2222;
+      right                     : -200px;
+      display                   : block;
+      background-color          : #1d2a38;
+      height                    : calc(100% - 280px);
+      border-left               : 1px solid black;
+      border-bottom             : 1px solid black;
+      transition                : right .3s;
+      overflow                  : hidden;
       .work-field {
         .trade-pair {
           position              : relative;
@@ -827,12 +869,12 @@
         position                : absolute;
         z-index                 : 1;
         bottom                  : 10px;
-        display                 : flex;
+        display                 : none;
         flex-direction          : column;
         justify-content         : space-between;
         flex-wrap               : nowrap;
         &:after {
-          display               : block;
+          display               : none;
           content               : '';
           width                 : 250px;
           height                : 1px;

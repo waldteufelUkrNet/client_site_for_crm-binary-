@@ -382,7 +382,6 @@ table {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
-    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -553,11 +552,9 @@ table {
   }
   .main #container {
     width: 100%;
-    height: -webkit-calc(100% - 280px);
     height: calc(100% - 280px);
   }
   .main .slider-area {
-    width: -webkit-calc( 100% - 20px);
     width: calc( 100% - 20px);
     height: 160px;
     position: absolute;
@@ -734,7 +731,6 @@ table {
     transition: height .3s;
   }
   .main .navigation__btn {
-    display: block;
     width: 100%;
     height: 60px;
     line-height: 58px;
@@ -745,6 +741,43 @@ table {
     background-color: dodgerblue;
     position: relative;
     overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .main .navigation__btn-rotor {
+    width: 26px;
+    height: 26px;
+    border: 1px solid white;
+    -webkit-border-radius: 50%;
+            border-radius: 50%;
+    position: relative;
+    display: block;
+    margin: 0 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .main .navigation__btn-rotor svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    -webkit-transition: -webkit-transform 1s;
+    transition: -webkit-transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+    transition: transform 1s, -webkit-transform 1s;
   }
   .main .navigation__body {
     height: 180px;
@@ -767,9 +800,30 @@ table {
     -webkit-transition: background-color .5s;
     -o-transition: background-color .5s;
     transition: background-color .5s;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    padding: 0 20px;
   }
   .main .navigation__items:hover {
     background-color: dodgerblue;
+  }
+  .main .navigation__items svg {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    -webkit-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+  }
+  .main .navigation__items_active {
+    background-color: dodgerblue;
+  }
+  .main .navigation__items-inner-text {
+    background-color: transparent;
+    margin: auto;
   }
   .main .left-column {
     -webkit-box-ordinal-group: 2;
@@ -781,7 +835,6 @@ table {
         -ms-flex-positive: 0;
             flex-grow: 0;
     width: 200px;
-    height: -webkit-calc(100% - 280px);
     height: calc(100% - 280px);
     padding: 10px;
     overflow: hidden;
@@ -812,8 +865,7 @@ table {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
-    height: -webkit-calc(100vh - 60px);
-    height: calc(100vh - 60px);
+    height: calc(100vh - 300px);
   }
   .main .left-column .wares-slider__item-header {
     text-transform: uppercase;
@@ -822,14 +874,12 @@ table {
     padding-bottom: 16px;
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
-    height: -webkit-calc(100% - 33px);
     height: calc(100% - 33px);
     overflow: hidden;
     position: relative;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
-    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
     overflow-x: hidden;
@@ -923,8 +973,18 @@ table {
             flex-grow: 0;
     width: 200px;
     padding: 10px;
-    position: relative;
-    display: none;
+    position: absolute;
+    z-index: 2222;
+    right: -200px;
+    display: block;
+    background-color: #1d2a38;
+    height: calc(100% - 280px);
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    -webkit-transition: right .3s;
+    -o-transition: right .3s;
+    transition: right .3s;
+    overflow: hidden;
   }
   .main .right-column .work-field .trade-pair {
     position: relative;
@@ -1125,7 +1185,6 @@ table {
   }
   .main .right-column .parlay-slider__parlay-choise-btn-holder {
     height: 130px;
-    width: -webkit-calc(100% + 20px);
     width: calc(100% + 20px);
     overflow: auto;
   }
@@ -1272,16 +1331,12 @@ table {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
-    width: -webkit-calc(100% - 20px);
     width: calc(100% - 20px);
     height: 160px;
     position: absolute;
     z-index: 1;
     bottom: 10px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+    display: none;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
@@ -1296,7 +1351,7 @@ table {
             flex-wrap: nowrap;
   }
   .main .right-column .slider-change-btn-holder:after {
-    display: block;
+    display: none;
     content: '';
     width: 250px;
     height: 1px;
@@ -1514,7 +1569,6 @@ table {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
-    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -1590,7 +1644,6 @@ table {
     padding-left: 10px;
   }
   .main .work_area .graphic-header .timer-buttons-ul {
-    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     display: inline-block;
     -webkit-box-ordinal-group: 2;
@@ -1627,7 +1680,6 @@ table {
     border-color: dodgerblue;
   }
   .main .work_area .graphic-header .type-buttons-ul {
-    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     height: 30px;
     display: -webkit-box;
@@ -1687,11 +1739,9 @@ table {
   }
   .main #container {
     width: 100%;
-    height: -webkit-calc(100% - 200px);
     height: calc(100% - 200px);
   }
   .main .slider-area {
-    width: -webkit-calc( 100% - 20px);
     width: calc( 100% - 20px);
     height: 160px;
     position: absolute;
@@ -1869,6 +1919,7 @@ table {
     padding: 10px;
     overflow: hidden;
     position: relative;
+    left: 0;
     display: block;
     border-right: none;
     border-bottom: none;
@@ -1889,7 +1940,6 @@ table {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
-    height: -webkit-calc(100vh - 60px);
     height: calc(100vh - 60px);
   }
   .main .left-column .wares-slider__item-header {
@@ -1899,14 +1949,12 @@ table {
     padding-bottom: 16px;
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
-    height: -webkit-calc(100% - 33px);
     height: calc(100% - 33px);
     overflow: hidden;
     position: relative;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
-    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
     overflow-x: hidden;
@@ -2001,7 +2049,11 @@ table {
     width: 200px;
     padding: 10px;
     position: relative;
+    z-index: 1;
     display: block;
+    height: 100%;
+    border-left: none;
+    border-bottom: none;
   }
   .main .right-column .work-field .trade-pair {
     position: relative;
@@ -2202,7 +2254,6 @@ table {
   }
   .main .right-column .parlay-slider__parlay-choise-btn-holder {
     height: 130px;
-    width: -webkit-calc(100% + 20px);
     width: calc(100% + 20px);
     overflow: auto;
   }
@@ -2349,7 +2400,6 @@ table {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
-    width: -webkit-calc(100% - 20px);
     width: calc(100% - 20px);
     height: 160px;
     position: absolute;
@@ -2588,7 +2638,6 @@ table {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
-    height: -webkit-calc(100% - 60px);
     height: calc(100% - 60px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -2663,7 +2712,6 @@ table {
     padding-left: 10px;
   }
   .main .work_area .graphic-header .timer-buttons-ul {
-    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     display: inline-block;
     -webkit-box-ordinal-group: 2;
@@ -2700,7 +2748,6 @@ table {
     border-color: dodgerblue;
   }
   .main .work_area .graphic-header .type-buttons-ul {
-    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     height: 30px;
     display: -webkit-box;
@@ -2760,11 +2807,9 @@ table {
   }
   .main #container {
     width: 100%;
-    height: -webkit-calc(100% - 250px);
     height: calc(100% - 250px);
   }
   .main .slider-area {
-    width: -webkit-calc( 100% - 30px);
     width: calc( 100% - 30px);
     height: 200px;
     position: absolute;
@@ -2956,7 +3001,6 @@ table {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
-    height: -webkit-calc(100vh - 85px);
     height: calc(100vh - 85px);
   }
   .main .left-column .wares-slider__item-header {
@@ -2966,13 +3010,11 @@ table {
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
     position: relative;
-    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     overflow: hidden;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
-    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
   }
@@ -3409,7 +3451,6 @@ table {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
-    width: -webkit-calc(100% - 30px);
     width: calc(100% - 30px);
     height: 190px;
     position: absolute;
@@ -3858,7 +3899,6 @@ table {
 .info-message__body {
   position: relative;
   height: 100%;
-  width: -webkit-calc( 290px - 44px);
   width: calc( 290px - 44px);
   left: 50%;
   -webkit-transform: translate(-50%);
@@ -3915,7 +3955,6 @@ table {
 }
 
 .message-from-mentor__text {
-  width: -webkit-calc( 100% + 18px);
   width: calc( 100% + 18px);
   height: 78px;
   color: white;
@@ -4539,7 +4578,6 @@ table {
 .info-parlay-result__body {
   position: relative;
   height: 100%;
-  width: -webkit-calc( 290px - 44px);
   width: calc( 290px - 44px);
   left: 50%;
   -webkit-transform: translate(-50%);

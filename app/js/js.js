@@ -1613,35 +1613,52 @@ var isNavigationOpen = false;
 $('.navigation__btn').click(function() {
   if (!isNavigationOpen) {
     $('.navigation').css('height', '240px');
+    $('.navigation__btn-rotor:eq(0) svg').css('transform','rotate(180deg)');
+    $('.navigation__btn-rotor:eq(1) svg').css('transform','rotate(-180deg)');
+    $('.navigation__items').removeClass('navigation__items_active');
     isNavigationOpen = true;
   } else {
     $('.navigation').css('height', '60px');
+    $('.navigation__btn-rotor svg').css('transform','rotate(0deg)');
     isNavigationOpen = false;
   }
 });
 // вибрати котировку
-$('.navigation__items:eq(0)').click(function(event) {
-  console.log('вибрати котировку');
+$('.navigation__items:eq(0)').click(function() {
+  $('.navigation__items').removeClass('navigation__items_active');
+  $(this).addClass('navigation__items_active');
+
   $('.left-column').css('left','0px');
 });
 // зробити ставку
-$('.navigation__items:eq(1)').click(function(event) {
-  console.log('зробити ставку');
+$('.navigation__items:eq(1)').click(function() {
+  $('.navigation__items').removeClass('navigation__items_active');
+  $(this).addClass('navigation__items_active');
+
+  $('.right-column').css('right','0px');
 });
 // активні
-$('.navigation__items:eq(2)').click(function(event) {
+$('.navigation__items:eq(2)').click(function() {
+  $('.navigation__items').removeClass('navigation__items_active');
+  $(this).addClass('navigation__items_active');
   console.log('активні');
 });
 // історія
-$('.navigation__items:eq(3)').click(function(event) {
+$('.navigation__items:eq(3)').click(function() {
+  $('.navigation__items').removeClass('navigation__items_active');
+  $(this).addClass('navigation__items_active');
   console.log('історія');
 });
 // депозити
-$('.navigation__items:eq(4)').click(function(event) {
+$('.navigation__items:eq(4)').click(function() {
+  $('.navigation__items').removeClass('navigation__items_active');
+  $(this).addClass('navigation__items_active');
   console.log('депозити');
 });
 // виводи
-$('.navigation__items:eq(5)').click(function(event) {
+$('.navigation__items:eq(5)').click(function() {
+  $('.navigation__items').removeClass('navigation__items_active');
+  $(this).addClass('navigation__items_active');
   console.log('виводи');
 });
 /* ↑↑↑ /адаптивка ↑↑↑ */

@@ -327,20 +327,32 @@ html(lang='en')
 
         .navigation
           btn.navigation__btn
-            i.fas.fa-angle-double-up
+            span.navigation__btn-rotor: i.fas.fa-angle-double-up
             |
             |
             span Навигация
             |
             |
-            i.fas.fa-angle-double-up
+            span.navigation__btn-rotor: i.fas.fa-angle-double-up
           ul.navigation__body
-            li.navigation__items Выбрать котировку
-            li.navigation__items Сделать ставку
-            li.navigation__items Активные
-            li.navigation__items История
-            li.navigation__items Депозиты
-            li.navigation__items Выводы
+            li.navigation__items
+              span.navigation__items-inner-text Выбрать котировку
+              i.fab.fa-sistrix
+            li.navigation__items
+              span.navigation__items-inner-text Сделать ставку
+              i.fas.fa-gavel
+            li.navigation__items
+              span.navigation__items-inner-text Активные
+              i.far.fa-star
+            li.navigation__items
+              span.navigation__items-inner-text История
+              i.fas.fa-history
+            li.navigation__items
+              span.navigation__items-inner-text Депозиты
+              i.fas.fa-sign-in-alt
+            li.navigation__items
+              span.navigation__items-inner-text Выводы
+              i.fas.fa-sign-out-alt
 
       // /SECTION 1
 
@@ -358,7 +370,115 @@ html(lang='en')
                       img(src='img/BCHBTC.png' alt='BCHBTC.png')
                     td BCHBTC
                     td(style='color: dodgerblue') ▲
-                    td 111111
+                    td first
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
+                    td 99999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
+                    td 99999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHUSDt.png' alt='BCHUSDt.png')
+                    td BCHUSDt
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHXRP.png' alt='BCHXRP.png')
+                    td BCHXRP
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHBTC.png' alt='BCHBTC.png')
+                    td BCHBTC
+                    td(style='color: dodgerblue') ▲
+                    td 1111
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHUSDt.png' alt='BCHUSDt.png')
+                    td BCHUSDt
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHXRP.png' alt='BCHXRP.png')
+                    td BCHXRP
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHBTC.png' alt='BCHBTC.png')
+                    td BCHBTC
+                    td(style='color: dodgerblue') ▲
+                    td 1111
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
                   tr
                     td: .img-pair
                       img(src='img/BCHDSH.png' alt='BCHDSH.png')
@@ -496,7 +616,169 @@ html(lang='en')
                       img(src='img/BCHXRP.png' alt='BCHXRP.png')
                     td BCHXRP
                     td(style='color: red') ▼
-                    td 222222
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHBTC.png' alt='BCHBTC.png')
+                    td BCHBTC
+                    td(style='color: dodgerblue') ▲
+                    td 1111
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
+                    td 99999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHUSDt.png' alt='BCHUSDt.png')
+                    td BCHUSDt
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHXRP.png' alt='BCHXRP.png')
+                    td BCHXRP
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHBTC.png' alt='BCHBTC.png')
+                    td BCHBTC
+                    td(style='color: dodgerblue') ▲
+                    td 1111
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHUSDt.png' alt='BCHUSDt.png')
+                    td BCHUSDt
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHXRP.png' alt='BCHXRP.png')
+                    td BCHXRP
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHBTC.png' alt='BCHBTC.png')
+                    td BCHBTC
+                    td(style='color: dodgerblue') ▲
+                    td 1111
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHUSDt.png' alt='BCHUSDt.png')
+                    td BCHUSDt
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHXRP.png' alt='BCHXRP.png')
+                    td BCHXRP
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHBTC.png' alt='BCHBTC.png')
+                    td BCHBTC
+                    td(style='color: dodgerblue') ▲
+                    td 1111
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHDSH.png' alt='BCHDSH.png')
+                    td BCHDSH
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHETH.png' alt='BCHETH.png')
+                    td BTCETH
+                    td(style='color: red') ▼
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHLTC.png' alt='BCHLTC.png')
+                    td BCHLTC
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHUSDt.png' alt='BCHUSDt.png')
+                    td BCHUSDt
+                    td(style='color: dodgerblue') ▲
+                    td 9999.99
+                  tr
+                    td: .img-pair
+                      img(src='img/BCHXRP.png' alt='BCHXRP.png')
+                    td BCHXRP
+                    td(style='color: red') ▼
+                    td last
 
           .wares-slider__item
             h5.wares-slider__item-header Валютные пары
