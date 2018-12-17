@@ -26,7 +26,12 @@ var exchangeDontWork = [
 $('.wares-slider, .parlay-slider').slick({
     draggable: false
 });
-$('#active-slider, #history-slider, #deposit-slider, #withdrawal-slider').slick({
+$('#active-slider').slick({
+    centerMode: false,
+    variableWidth: true,
+    infinite: false
+});
+$('#history-slider, #deposit-slider, #withdrawal-slider').slick({
     centerMode: false,
     variableWidth: true,
     infinite: false
@@ -34,7 +39,7 @@ $('#active-slider, #history-slider, #deposit-slider, #withdrawal-slider').slick(
 /* ↑↑↑ /активація слайдерів ↑↑↑ */
 
 /* ↓↓↓ field switch (активні ставки + історії) ↓↓↓ */
-$('.slider-change-btn').click(function () { console.log(1);
+$('.slider-change-btn').click(function () {
   var tempArrBtn = $('.slider-change-btn');
   var tempArrItem = $('.slider-area__slider');
   for (var i = 0; i < tempArrBtn.length; i++) {
