@@ -34,20 +34,20 @@ $('#active-slider, #history-slider, #deposit-slider, #withdrawal-slider').slick(
 /* ↑↑↑ /активація слайдерів ↑↑↑ */
 
 /* ↓↓↓ field switch (активні ставки + історії) ↓↓↓ */
-$('.slider-change-btn').click(function () {
-    var tempArrBtn = $('.slider-change-btn');
-    var tempArrItem = $('.slider-area__slider');
-    for (var i = 0; i < tempArrBtn.length; i++) {
-        if (tempArrBtn[i] == this) {
-            var thisElNumber = i;
-        }
+$('.slider-change-btn').click(function () { console.log(1);
+  var tempArrBtn = $('.slider-change-btn');
+  var tempArrItem = $('.slider-area__slider');
+  for (var i = 0; i < tempArrBtn.length; i++) {
+    if (tempArrBtn[i] == this) {
+      var thisElNumber = i;
     }
-    // buttons
-    $('.slider-change-btn').removeClass('slider-change-btn_active');
-    $(this).addClass('slider-change-btn_active');
-    // sliders
-    $('.slider-area__slider').css({ 'display': 'none' });
-    $(tempArrItem[thisElNumber]).css({ 'display': 'block' });
+  }
+  // buttons
+  $('.slider-change-btn').removeClass('slider-change-btn_active');
+  $(this).addClass('slider-change-btn_active');
+  // sliders
+  $('.slider-area__slider').css({ 'display': 'none' });
+  $(tempArrItem[thisElNumber]).css({ 'display': 'block' });
 });
 /* ↑↑↑ /field switch (активні ставки + історії) ↑↑↑ */
 
@@ -1609,6 +1609,7 @@ function getChar(event) {
 
 
 /* ↓↓↓ адаптивка ↓↓↓ */
+// відкрити/закрити меню
 var isNavigationOpen = false;
 $('.navigation__btn').click(function() {
   if (!isNavigationOpen) {
@@ -1618,61 +1619,95 @@ $('.navigation__btn').click(function() {
     $('.navigation__items').removeClass('navigation__items_active');
     isNavigationOpen = true;
   } else {
-    $('.navigation').css('height', '60px');
-    $('.navigation__btn-rotor svg').css('transform','rotate(0deg)');
-    isNavigationOpen = false;
+    closeNavigation()
   }
 });
 // вибрати котировку
+var isLeftColumnOpen = false;
 $('.navigation__items:eq(0)').click(function() {
-  $('.navigation__items').removeClass('navigation__items_active');
-  $(this).addClass('navigation__items_active');
-
-  $('.left-column').css('left','0px');
+  if (!isLeftColumnOpen) {
+    $('.navigation__items').removeClass('navigation__items_active');
+    $(this).addClass('navigation__items_active');
+    $('.left-column').css('left','0px');
+    $('.right-column').css('right','-200px');
+    isRightColumnOpen = false;
+    isLeftColumnOpen = true;
+  } else {
+    $('.left-column').css('left','-200px');
+    $('.navigation__items').removeClass('navigation__items_active');
+    isLeftColumnOpen = false;
+  }
 });
 // зробити ставку
+var isRightColumnOpen = false;
 $('.navigation__items:eq(1)').click(function() {
-  $('.navigation__items').removeClass('navigation__items_active');
-  $(this).addClass('navigation__items_active');
-
-  $('.right-column').css('right','0px');
+  if (!isRightColumnOpen) {
+    $('.navigation__items').removeClass('navigation__items_active');
+    $(this).addClass('navigation__items_active');
+    $('.right-column').css('right','0px');
+    $('.left-column').css('left','-200px');
+    isLeftColumnOpen = false;
+    isRightColumnOpen = true;
+  } else {
+    $('.right-column').css('right','-200px');
+    $('.navigation__items').removeClass('navigation__items_active');
+    isRightColumnOpen = false;
+  }
 });
 // активні
 $('.navigation__items:eq(2)').click(function() {
   $('.navigation__items').removeClass('navigation__items_active');
   $(this).addClass('navigation__items_active');
-  console.log('активні');
+  closeNavigation();
+  $('.slider-area__slider').css({ 'display': 'none' });
+  $( $('.slider-area__slider')[0] ).css({ 'display': 'block' });
 });
 // історія
 $('.navigation__items:eq(3)').click(function() {
   $('.navigation__items').removeClass('navigation__items_active');
   $(this).addClass('navigation__items_active');
-  console.log('історія');
+  closeNavigation();
+  $('.slider-area__slider').css({ 'display': 'none' });
+  $( $('.slider-area__slider')[1] ).css({ 'display': 'block' });
 });
 // депозити
 $('.navigation__items:eq(4)').click(function() {
   $('.navigation__items').removeClass('navigation__items_active');
   $(this).addClass('navigation__items_active');
-  console.log('депозити');
+  closeNavigation();
+  $('.slider-area__slider').css({ 'display': 'none' });
+  $( $('.slider-area__slider')[2] ).css({ 'display': 'block' });
 });
 // виводи
 $('.navigation__items:eq(5)').click(function() {
   $('.navigation__items').removeClass('navigation__items_active');
   $(this).addClass('navigation__items_active');
-  console.log('виводи');
+  closeNavigation();
+  $('.slider-area__slider').css({ 'display': 'none' });
+  $( $('.slider-area__slider')[3] ).css({ 'display': 'block' });
 });
+
+function closeNavigation() {
+  $('.navigation').css('height', '60px');
+  $('.navigation__btn-rotor svg').css('transform','rotate(0deg)');
+  $('.left-column').css('left','-200px');
+  $('.right-column').css('right','-200px');
+  isNavigationOpen = false;
+}
 /* ↑↑↑ /адаптивка ↑↑↑ */
 
 
-
-
-
-
-
-
-
-
-
-
+/* ↓↓↓ temp ↓↓↓ */
+var isButtumFielsOpen = false;
+$('.temp-btns-wrapper-btn').click(function(){
+  if (!isButtumFielsOpen) {
+    $('.temp-btns-wrapper').css('display','block');
+    isButtumFielsOpen = true;
+  } else {
+    $('.temp-btns-wrapper').css('display','none');
+    isButtumFielsOpen = false;
+  }
+});
+/* ↑↑↑ /temp ↑↑↑ */
 
 // made by waldteufel@ukr.net

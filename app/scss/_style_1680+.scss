@@ -291,26 +291,6 @@
           }
         }
       }
-      &__slider-item {
-        height                   : 160px;
-        max-width                : 200px;
-        min-width                : 200px;
-        border                   : 1px solid white;
-        border-radius            : 4px;
-        padding                  : 10px;
-        display                  : grid;
-        grid-template-columns    : auto 1fr;
-        grid-column-gap          : 6px;
-        margin                   : 0 20px
-      }
-      &__win {
-        border                   : 1px solid green;
-        background-color         : rgba(127,255,212,.1);
-      }
-      &__lose {
-        border                   : 1px solid red;
-        background-color         : rgba(255,0,0,.1);
-      }
       .active-slider {
         &__item {
           height                 : 200px;

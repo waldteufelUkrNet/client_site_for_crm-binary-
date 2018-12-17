@@ -28,10 +28,6 @@
 	}
 }/* ↑↑↑ global styles ↑↑↑ */
 
-/* ↓↓↓ for 320px and more ↓↓↓ */
-
-/* ↑↑↑ for 320px and more ↑↑↑ */
-
 /* ↓↓↓ Highcharts styles ↓↓↓ */*{
 	.highcharts-point-up {
 	  fill                     : dodgerblue !important;
@@ -75,6 +71,46 @@
 	  100% {background-color: #3d4a58; border-color: yellow;}
 	}
 }/* ↑↑↑ animations ↑↑↑ */
+
+/* ↓↓↓ separate blocks ↓↓↓ */*{
+	// блок слайдерів історії ставок, депозитів та виводів
+  .slider-area {
+  	@media screen and (min-width: 320px) {
+			&__slider-item {
+		    height                   : 160px;
+		    max-width                : 200px;
+		    min-width                : 200px;
+		    border                   : 1px solid white;
+		    border-radius            : 4px;
+		    padding                  : 10px;
+		    display                  : grid !important;
+		    grid-template-columns    : auto 1fr;
+		    grid-column-gap          : 6px;
+		    margin                   : 0 10px;
+		    user-select              : text;
+		  }
+		  &__win {
+		    border                   : 1px solid dodgerblue;
+		    background-color         : rgba(30, 144, 255, 0.03);
+		  }
+		  &__lose {
+		    border                   : 1px solid red;
+		    background-color         : rgba(255, 0, 0, 0.03);
+		  }
+	  }
+	  @media screen and (min-width: 1680px) {
+	  	&__slider-item {
+		    height                   : 200px;
+		    max-width                : 300px;
+		    min-width                : 300px;
+	  	}
+	  }
+  }
+
+}/* ↑↑↑ separate blocks ↑↑↑ */
+
+/* ↓↓↓ for 320px and more ↓↓↓ */*{
+}/* ↑↑↑ for 320px and more ↑↑↑ */
 
 @import "style_576+";
 @import "style_768+";
