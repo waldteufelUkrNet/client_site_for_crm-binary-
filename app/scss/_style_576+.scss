@@ -18,11 +18,14 @@
     align-items                  : center;
     padding                      : 10px 15px;
     .logo_part {
-      font-family                : rb;
-      font-size                  : 42px;
-      color                      : gold;
       img {
-        height                   : 40px;
+        height                   : 36px;
+        &:first-of-type {
+          display                : block;
+        }
+        &:last-of-type {
+          display                : none;
+        }
       }
     }
     .central-part {
@@ -57,9 +60,14 @@
           height                 : 20px;
           margin-right           : 6px;
           z-index                : 1;
+          position               : relative;
+          top                    : 0px;
+          left                   : 0px;
+          transform              : none;
         }
       }
       &__btn-text {
+        display                  : block;
         font-family              : rcl;
         text-transform           : uppercase;
         color                    : white;
@@ -81,21 +89,22 @@
         animation-duration        : 3s;
         animation-iteration-count : infinite;
       }
-
     }
     .right-part {
       position                   : relative;
       display                    : flex;
       align-items                : center;
-      span {
+      .header-titles {
         display                  : block;
         margin                   : 0 6px;
+        width                    : auto;
+        color                    : white;
       }
       .menu {
         position                 : absolute;
         z-index                  : 8777;
         top                      : 110%;
-        width                    : 100%;
+        width                    : 120px;
         background-color         : black;
         padding                  : 0px 0px;
         border                   : 0px solid darkgrey;
@@ -158,6 +167,7 @@
         justify-content          : space-between;
         align-items              : center;
         height                   : 42px;
+        flex-wrap                : nowrap;
         .currency-logo-holder {
           min-width              : 150px;
           min-height             : 35px;
@@ -439,6 +449,7 @@
           background-color : dodgerblue;
         }
         svg {
+          display        : block;
           position       : absolute;
           top            : 50%;
           right          : 6px;

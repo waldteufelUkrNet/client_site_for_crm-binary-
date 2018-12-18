@@ -33,6 +33,7 @@ html(lang='en')
     header.header
       .logo_part
         img(src="img/logoIC.png", alt="logoIC.png")
+        img(src="img/logoIC_icon.png", alt="logoIC_icon.png")
       .central-part
         //- .central-part__account
           .central-part__account-type
@@ -47,12 +48,12 @@ html(lang='en')
           img(src='img/wallet.png' alt='wallet.png')
           span.central-part__btn-text пополнить счет
           span.central-part__btn-splendour
-
       .right-part
         //- button.call-us-btn(title='contact us'): img(src="img/call-center.png", alt="call-center.png")
-        span Menu:
+        span.header-greeting Добро пожаловать, Гусь Звичайний!
+        span.header-titles Menu:
         include BEM-blocks/menu-btn/menu-btn.pug
-        span#language-span Lang:
+        span.header-titles#language-span Lang:
         include BEM-blocks/language-switcher/language-switcher.pug
         .menu
           ul.menu-list

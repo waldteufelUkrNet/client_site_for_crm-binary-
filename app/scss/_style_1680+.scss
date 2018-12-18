@@ -18,9 +18,15 @@
     align-items                  : center;
     padding                      : 10px 15px;
     .logo_part {
-      font-family                : rb;
-      font-size                  : 42px;
-      color                      : gold;
+      img {
+        height                   : 36px;
+        &:first-of-type {
+          display                : block;
+        }
+        &:last-of-type {
+          display                : none;
+        }
+      }
     }
     .central-part {
       display                    : flex;
@@ -84,7 +90,7 @@
       position                   : relative;
       display                    : flex;
       align-items                : center;
-      span {
+      .header-titles {
         display                  : block;
         margin                   : 0 6px;
       }
@@ -92,7 +98,7 @@
         position                 : absolute;
         z-index                  : 8777;
         top                      : 110%;
-        width                    : 100%;
+        width                    : 150px;
         background-color         : black;
         padding                  : 0px 0px;
         border                   : 0px solid darkgrey;

@@ -26,7 +26,12 @@ var exchangeDontWork = [
 $('.wares-slider, .parlay-slider').slick({
     draggable: false
 });
-$('#active-slider, #history-slider, #deposit-slider, #withdrawal-slider').slick({
+$('#active-slider').slick({
+    centerMode: false,
+    variableWidth: true,
+    infinite: false
+});
+$('#history-slider, #deposit-slider, #withdrawal-slider').slick({
     centerMode: false,
     variableWidth: true,
     infinite: false
@@ -34,7 +39,7 @@ $('#active-slider, #history-slider, #deposit-slider, #withdrawal-slider').slick(
 /* ↑↑↑ /активація слайдерів ↑↑↑ */
 
 /* ↓↓↓ field switch (активні ставки + історії) ↓↓↓ */
-$('.slider-change-btn').click(function () { console.log(1);
+$('.slider-change-btn').click(function () {
   var tempArrBtn = $('.slider-change-btn');
   var tempArrItem = $('.slider-area__slider');
   for (var i = 0; i < tempArrBtn.length; i++) {
@@ -1613,7 +1618,11 @@ function getChar(event) {
 var isNavigationOpen = false;
 $('.navigation__btn').click(function() {
   if (!isNavigationOpen) {
-    $('.navigation').css('height', '240px');
+    if ($('body').width() < 576) {
+      $('.navigation').css('height', '170px');
+    } else {
+      $('.navigation').css('height', '240px');
+    }
     $('.navigation__btn-rotor:eq(0) svg').css('transform','rotate(180deg)');
     $('.navigation__btn-rotor:eq(1) svg').css('transform','rotate(-180deg)');
     $('.navigation__items').removeClass('navigation__items_active');
@@ -1688,7 +1697,11 @@ $('.navigation__items:eq(5)').click(function() {
 });
 
 function closeNavigation() {
-  $('.navigation').css('height', '60px');
+  if ($('body').width() < 576) {
+    $('.navigation').css('height', '50px');
+  } else {
+    $('.navigation').css('height', '60px');
+  }
   $('.navigation__btn-rotor svg').css('transform','rotate(0deg)');
   $('.left-column').css('left','-200px');
   $('.right-column').css('right','-200px');
