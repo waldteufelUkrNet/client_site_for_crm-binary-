@@ -7,7 +7,7 @@
   z-index              : -1;
   background-color     : rgba(0,0,0,0);
 }
-.message__holder {
+.message__holder {max-width: 90vw;
   width                : 460px;
   min-height           : 200px;
   padding              : 10px;
@@ -19,6 +19,8 @@
   overflow             : hidden;
 }
 .message {
+  max-width            : 100%;
+  overflow             : hidden;
   width                : 440px;
   min-height           : 200px;
   max-height           : 500px;

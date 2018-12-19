@@ -9,6 +9,7 @@
 }
 .make-lodgement {
   width                  : 120px;
+  max-width              : 400px;
   height                 : 20px;
   background-color       : #1d2a38;
   border                 : 1px solid white;
@@ -54,10 +55,10 @@
     cursor               : pointer;
     display              : none;
     &:nth-of-type(odd) {
-      left               : -110%;
+      left               : -120%;
     }
     &:nth-of-type(even) {
-      left               : 110%;
+      left               : 120%;
     }
     &:hover {
       padding-left       : 50px;
@@ -81,19 +82,20 @@
   }
   .make-lodgement-MasterCard,
   .make-lodgement-VISA {
-    width                : 345px;
+    width                : 100%;
     display              : flex;
     justify-content      : space-between;
     overflow             : hidden;
     height               : 0px;
     .make-lodgement__currency {
+      width: calc(100% - 100px);
       input {
         height           : 30px;
-        width            : 155px;
+        width            : 60%;
       }
       select {
         height           : 30px;
-        width            : 55px;
+        width            : 35%;
       }
     }
   }

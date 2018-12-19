@@ -9,6 +9,7 @@
 }
 .profile-editor__holder {
   width                : 460px;
+  max-width            : 90%;
   min-height           : 200px;
   padding              : 10px;
   position             : absolute;
@@ -19,7 +20,7 @@
   overflow             : hidden;
 }
 .profile-editor {
-  width                : 440px;
+  width                : 100%;
   min-height           : 200px;
   background-color     : #1d2a38;
   border               : 1px solid white;
@@ -32,19 +33,20 @@
   &__header {
     font-size          : 18px;
     text-align         : center;
-    padding-bottom     : 20px;
+    padding-bottom     : 10px;
   }
   &__label {
+    overflow: hidden;
     width                 : 100%;
     display               : grid;
-    grid-template-columns : 110px auto;
-    margin                : 10px 0;
-    line-height: 30px;
+    grid-template-columns : 30% 70%;
+    margin                : 6px 0;
+    line-height           : 20px;
   }
   &__input {
     display               : block;
-    height                : 30px;
-    line-height           : 30;
+    height                : 20px;
+    line-height           : 20px;
     padding               : 0 6px;
     font-size: 14px;
     outline               : none;
@@ -57,7 +59,7 @@
   }
   &__gender-container {
     display: grid;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: repeat(4, auto);
     justify-content: start;
   }
   &__btn {
@@ -68,5 +70,29 @@
   }
   &__validation-warning {
     //margin             : 10px 0 0;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .profile-editor__positioning-wrapper {
+  }
+  .profile-editor {
+    min-height           : 200px;
+    &__header {
+      padding-bottom     : 20px;
+    }
+    &__label {
+      grid-template-columns : 110px auto;
+      margin                : 10px 0;
+      line-height           : 30px;
+    }
+    &__input {
+      height                : 30px;
+      line-height           : 30px;
+      padding               : 0 6px;
+    }
+    &__gender-container {
+      grid-template-columns : repeat(6, auto);
+    }
   }
 }

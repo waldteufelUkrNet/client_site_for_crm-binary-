@@ -794,4 +794,12 @@
   }
   /* ↓↓↓ FOOTER ↓↓↓ */
   /* ↑↑↑ /FOOTER ↑↑↑ */
+  @media screen and(max-height: 719px) {
+    //@media screen and (min-width: 768px) and (max-width: 991px) {
+    body{
+      height                   : 720px;
+      overflow-y               : auto;
+      // display                  : none;
+    }
+  }
 }
