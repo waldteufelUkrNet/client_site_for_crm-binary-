@@ -6,7 +6,7 @@
     background-color             : $bgColor;
     color                        : $overColor;
     font-family                  : rcl;
-    font-size                    : 16px;
+    font-size                    : 12px;
   }
   /* ↓↓↓ HEADER ↓↓↓ */
   .header {
@@ -797,8 +797,8 @@
   @media screen and(max-height: 719px) {
     //@media screen and (min-width: 768px) and (max-width: 991px) {
     body{
-      height                   : 720px;
-      overflow-y               : auto;
+      // height                   : 720px;
+      // overflow-y               : auto;
       // display                  : none;
     }
   }
