@@ -1,4 +1,4 @@
-@media only screen and (min-width: 1680px) {
+@media only screen and (min-width: 1680px) and (min-height: 720px) {
   body {
     width                        : 100vw;
     height                       : 100vh;
@@ -6,7 +6,7 @@
     background-color             : $bgColor;
     color                        : $overColor;
     font-family                  : rcl;
-    font-size                    : 12px;
+    font-size                    : 16px;
   }
   /* ↓↓↓ HEADER ↓↓↓ */
   .header {
@@ -794,12 +794,5 @@
   }
   /* ↓↓↓ FOOTER ↓↓↓ */
   /* ↑↑↑ /FOOTER ↑↑↑ */
-  @media screen and(max-height: 719px) {
-    //@media screen and (min-width: 768px) and (max-width: 991px) {
-    body{
-      // height                   : 720px;
-      // overflow-y               : auto;
-      // display                  : none;
-    }
-  }
+
 }

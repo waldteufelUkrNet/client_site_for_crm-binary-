@@ -1617,8 +1617,8 @@ function getChar(event) {
 // відкрити/закрити меню
 var isNavigationOpen = false;
 $('.navigation__btn').click(function() {
-  if (!isNavigationOpen) {
-    if ($('body').width() < 576) {
+  if (!isNavigationOpen) {console.log($('body').width());
+    if ( $('body').width() < 576 || $('body').width() > 320 && $('body').width() < 992 && $('body').height() > 590 && $('body').height() < 660 || $('body').width() > 992 && $('body').height() > 590 && $('body').height() < 600 ) {
       $('.navigation').css('height', '170px');
     } else {
       $('.navigation').css('height', '240px');
@@ -1697,7 +1697,7 @@ $('.navigation__items:eq(5)').click(function() {
 });
 
 function closeNavigation() {
-  if ($('body').width() < 576) {
+  if ( $('body').width() < 576 || $('body').width() > 320 && $('body').width() < 992 && $('body').height() > 590 && $('body').height() < 660 || $('body').width() > 992 && $('body').height() > 590 && $('body').height() < 600 ) {
     $('.navigation').css('height', '50px');
   } else {
     $('.navigation').css('height', '60px');
