@@ -3,7 +3,7 @@
   height                 : 100vh;
   top                    : 0;
   left                   : 0;
-  position               : absolute;
+  position               : fixed;
   z-index                : -1;
   background-color       : rgba(0,0,0,0);
 }
@@ -81,7 +81,7 @@
     right                : -12px;
   }
   .make-lodgement-MasterCard,
-  .make-lodgement-VISA {
+  .make-lodgement-VISA { border: 1px dotted;
     width                : 100%;
     display              : flex;
     justify-content      : space-between;
@@ -98,5 +98,8 @@
         width            : 35%;
       }
     }
+  }
+  &__agree {
+    width: 100%;
   }
 }

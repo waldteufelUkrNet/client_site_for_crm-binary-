@@ -5318,7 +5318,7 @@ table {
   height: 100vh;
   top: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
   z-index: -1;
   background-color: rgba(0, 0, 0, 0);
 }
@@ -5449,7 +5449,7 @@ table {
   height: 100vh;
   top: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
   z-index: -1;
   background-color: rgba(0, 0, 0, 0);
 }
@@ -5548,6 +5548,7 @@ table {
 
 .make-lodgement .make-lodgement-MasterCard,
 .make-lodgement .make-lodgement-VISA {
+  border: 1px dotted;
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -5577,6 +5578,10 @@ table {
 .make-lodgement .make-lodgement-VISA .make-lodgement__currency select {
   height: 30px;
   width: 35%;
+}
+
+.make-lodgement__agree {
+  width: 100%;
 }
 
 .make-cash-withdrawal__holder {
