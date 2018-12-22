@@ -16,6 +16,14 @@
     <script src="libs/jquery 3.3.1.js"></script>
   </head>
   <body>
+    <div class="body-cover-wrapper">
+      <div class="body-cover">
+        <p>Разрешение Вашего устройства слишком мало и не позволяет отображать контент платформы</p>
+        <p>Your device’s resolution is too low and doesn’t allow displaying platform content</p>
+        <p>Поверните устройство на 90°</p>
+        <p>Rotate the device 90°</p>
+      </div>
+    </div>
     <div class="temp-btns-wrapper" style="display: none; position: fixed; z-Index: 8888; bottom: 35px; left: 3px; border: 1px dotted white; width: 134px; height: 194px; background-color: lightskyblue; padding: 6px;">
       <button class="tempBTN" style="width: 120px; height: 30px; cursor: pointer">message</button>
       <button class="tempBTN2" style="width: 120px; height: 30px; cursor: pointer">withdrawal</button>
@@ -834,77 +842,79 @@
       <!-- /SECTION 2-->
       <!-- SECTION 3 (right column)-->
       <section class="right-column">
-        <div class="work-field">
-          <div class="trade-pair">
-            <input type="hidden" id="currentStockPairId" value="2"><img class="trade-pair__logo" src="img/BTCETH.png" alt="BTCETH.png">
-            <h5 class="trade-pair__name">BTC/ETH</h5>
-            <p class="trade-pair__description">котировка: биткоин/тугрик</p><span class="trade-pair__price" id="activeStatus" style="color: dodgerblue">▲<span id="activePairPrise" style="color: white">12345.67890</span></span>
-          </div>
-          <div class="investment-calculator">
-            <label for="#investment-input">инвестиции:</label>
-            <input id="investment-input" type="text" placeholder="инвестиции" value="25">
-            <label for="#investment-percent">доход, %:</label><span id="investment-percent" type="text">80</span>
-            <label for="#investment-result">прибыль:</label><span id="investment-result" type="text"></span>
-          </div>
-          <div id="UTC-datetimer-holder"><span id="UTC-datetimer-info">Время UTC: &nbsp</span><span id="UTC-datetimer"></span></div>
-          <div class="parlay-slider-wrapper">
-            <div class="parlay-slider">
-              <div class="parlay-slider__item" data-parlayType="short" data-parlayTypeForBackEnd="0">
-                <h5 class="parlay-slider__item-header">Быстрые</h5>
-                <div class="parlay-slider__item-choice-field">
-                  <div class="parlay-slider__parlay-choise-btn-holder">
-                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000">30 секунд</div>
-                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000">1 минута</div>
-                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000">2 минуты</div>
-                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000">3 минуты</div>
+        <div class="work-field-wrapper">
+          <div class="work-field">
+            <div class="trade-pair">
+              <input type="hidden" id="currentStockPairId" value="2"><img class="trade-pair__logo" src="img/BTCETH.png" alt="BTCETH.png">
+              <h5 class="trade-pair__name">BTC/ETH</h5>
+              <p class="trade-pair__description">котировка: биткоин/тугрик</p><span class="trade-pair__price" id="activeStatus" style="color: dodgerblue">▲<span id="activePairPrise" style="color: white">12345.67890</span></span>
+            </div>
+            <div class="investment-calculator">
+              <label for="#investment-input">инвестиции:</label>
+              <input id="investment-input" type="text" placeholder="инвестиции" value="25">
+              <label for="#investment-percent">доход, %:</label><span id="investment-percent" type="text">80</span>
+              <label for="#investment-result">прибыль:</label><span id="investment-result" type="text"></span>
+            </div>
+            <div id="UTC-datetimer-holder"><span id="UTC-datetimer-info">Время UTC: &nbsp</span><span id="UTC-datetimer"></span></div>
+            <div class="parlay-slider-wrapper">
+              <div class="parlay-slider">
+                <div class="parlay-slider__item" data-parlayType="short" data-parlayTypeForBackEnd="0">
+                  <h5 class="parlay-slider__item-header">Быстрые</h5>
+                  <div class="parlay-slider__item-choice-field">
+                    <div class="parlay-slider__parlay-choise-btn-holder">
+                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000">30 секунд</div>
+                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000">1 минута</div>
+                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000">2 минуты</div>
+                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000">3 минуты</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="parlay-slider__item" data-parlayType="normal" data-parlayTypeForBackEnd="1">
+                  <h5 class="parlay-slider__item-header">Нормальные</h5>
+                  <div class="parlay-slider__item-choice-field">
+                    <div class="parlay-slider__parlay-choise-btn-holder"></div>
+                  </div>
+                </div>
+                <div class="parlay-slider__item" data-parlayType="long" data-parlayTypeForBackEnd="2">
+                  <h5 class="parlay-slider__item-header">Длинные</h5>
+                  <div class="parlay-slider__item-choice-field">
+                    <div class="parlay-slider__parlay-choise-btn-holder">
+                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="86400000">1 сутки</div>
+                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="432000000">5 суток</div>
+                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="864000000">10 суток</div>
+                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="1296000000">15 суток</div>
+                      <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="2592000000">30 суток</div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="parlay-slider__item" data-parlayType="normal" data-parlayTypeForBackEnd="1">
-                <h5 class="parlay-slider__item-header">Нормальные</h5>
-                <div class="parlay-slider__item-choice-field">
-                  <div class="parlay-slider__parlay-choise-btn-holder"></div>
+              <div class="parlay-slider__reactivation-field">
+                <div class="parlay-slider__reactivation-field-btn">
+                  обновить
+                  <i class="fas fa-redo-alt"></i>
                 </div>
               </div>
-              <div class="parlay-slider__item" data-parlayType="long" data-parlayTypeForBackEnd="2">
-                <h5 class="parlay-slider__item-header">Длинные</h5>
-                <div class="parlay-slider__item-choice-field">
-                  <div class="parlay-slider__parlay-choise-btn-holder">
-                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="86400000">1 сутки</div>
-                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="432000000">5 суток</div>
-                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="864000000">10 суток</div>
-                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="1296000000">15 суток</div>
-                    <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="2592000000">30 суток</div>
-                  </div>
+              <div class="parlay-btns__holder">
+                <div class="parlay-btns__btn parlay-btns__btn_up" data-parlayAnticipation="up">
+                  Вверх
+                  <i class="fas fa-angle-double-up"></i>
+                </div>
+                <div class="parlay-btns__btn parlay-btns__btn_down" data-parlayAnticipation="down"><i class="fas fa-angle-double-down"></i>
+                  Вниз
                 </div>
               </div>
-            </div>
-            <div class="parlay-slider__reactivation-field">
-              <div class="parlay-slider__reactivation-field-btn">
-                обновить
-                <i class="fas fa-redo-alt"></i>
+              <div class="parlay-btns__cover">
+                <div class="parlay-btns__cover-left"></div>
+                <div class="parlay-btns__cover-right"></div>
               </div>
-            </div>
-            <div class="parlay-btns__holder">
-              <div class="parlay-btns__btn parlay-btns__btn_up" data-parlayAnticipation="up">
-                Вверх
-                <i class="fas fa-angle-double-up"></i>
-              </div>
-              <div class="parlay-btns__btn parlay-btns__btn_down" data-parlayAnticipation="down"><i class="fas fa-angle-double-down"></i>
-                Вниз
-              </div>
-            </div>
-            <div class="parlay-btns__cover">
-              <div class="parlay-btns__cover-left"></div>
-              <div class="parlay-btns__cover-right"></div>
             </div>
           </div>
-        </div>
-        <div class="slider-change-btn-holder">
-          <div class="slider-change-btn active-slider-btn slider-change-btn_active">Активные сделки</div>
-          <div class="slider-change-btn history-slider-btn">История сделок</div>
-          <div class="slider-change-btn deposit-slider-btn">История депозитов</div>
-          <div class="slider-change-btn withdrawal-slider-btn">История выводов</div>
+          <div class="slider-change-btn-holder">
+            <div class="slider-change-btn active-slider-btn slider-change-btn_active">Активные сделки</div>
+            <div class="slider-change-btn history-slider-btn">История сделок</div>
+            <div class="slider-change-btn deposit-slider-btn">История депозитов</div>
+            <div class="slider-change-btn withdrawal-slider-btn">История выводов</div>
+          </div>
         </div>
       </section>
       <!-- /SECTION 3-->
@@ -922,6 +932,12 @@
             <div class="make-lodgement__triangle"></div>
             <div class="make-lodgement__pay-block">
               <form class="make-lodgement-MasterCard" action="#" method="#" name="make-lodgement-MasterCard">
+                <div class="make-lodgement__agree">
+                  <input type="checkbox"><span>
+                    Мне исполнилось 18 лет. Я ознакомлен с рисками и принимаю
+                    <a href="https://investingcase.com/terms_and_conditions.html">Условия и Соглашения</a>
+                    компании.</span>
+                </div>
                 <div class="make-lodgement__currency">
                   <input type="text">
                   <select name="currency-MC">
@@ -933,6 +949,12 @@
                 <button class="popup-ok-btn" id="make-lodgement-MasterCard-btn" type="submit">оплатить</button>
               </form>
               <form class="make-lodgement-VISA" action="#" method="#" name="make-lodgement-VISA">
+                <div class="make-lodgement__agree">
+                  <input type="checkbox"><span>
+                    Мне исполнилось 18 лет. Я ознакомлен с рисками и принимаю
+                    <a href="https://investingcase.com/terms_and_conditions.html">Условия и Соглашения</a>
+                    компании.</span>
+                </div>
                 <div class="make-lodgement__currency">
                   <input type="text">
                   <select name="currency-V">

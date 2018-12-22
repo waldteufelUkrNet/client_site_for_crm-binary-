@@ -30,20 +30,20 @@ $(document).ready(function(){
     },1600);
   });
 
-  // кліки
-  $('.make-lodgement__pay-system:first').click(function(){
-    $('.make-lodgement__triangle').css({'transition':'.5s','top':'44px'});
-    $('.make-lodgement').css({'transition':'height .3s','height':'192px'});
-    $('.make-lodgement-MasterCard').css({'transition':'.5s','height':'30px'});
-    $('.make-lodgement-VISA').css({'transition':'.5s','height':'0px'});
-  });
+// кліки
+$('.make-lodgement__pay-system:first').click(function () {
+    $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': '44px' });
+    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': '250px' });
+    $('.make-lodgement-MasterCard').css({ 'transition': '.5s', 'height': '80px' });
+    $('.make-lodgement-VISA').css({ 'transition': '.5s', 'height': '0px' });
+});
 
-  $('.make-lodgement__pay-system:last').click(function(){
-    $('.make-lodgement__triangle').css({'transition':'.5s','top':'104px'});
-    $('.make-lodgement').css({'transition':'height .3s','height':'192px'});
-    $('.make-lodgement-VISA').css({'transition':'.5s','height':'30px'});
-    $('.make-lodgement-MasterCard').css({'transition':'.5s','height':'0px'});
-  });
+$('.make-lodgement__pay-system:last').click(function () {
+    $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': '104px' });
+    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': '250px' });
+    $('.make-lodgement-VISA').css({ 'transition': '.5s', 'height': '80px' });
+    $('.make-lodgement-MasterCard').css({ 'transition': '.5s', 'height': '0px' });
+});
 
   // закриття
   $('.make-lodgement__close-btn').click(function(){

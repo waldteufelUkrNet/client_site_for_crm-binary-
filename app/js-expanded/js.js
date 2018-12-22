@@ -929,6 +929,9 @@ function closeProfilePopup() {
 }
 /* ↑↑↑ /BEM-block: profile-editor ↑↑↑ */
 
+
+
+
 /* ↓↓↓ BEM-block: make-lodgement ↓↓↓ */
 // поява
 $('.central-part__btn').click(function () {
@@ -966,15 +969,15 @@ $('.central-part__btn').click(function () {
 // кліки
 $('.make-lodgement__pay-system:first').click(function () {
     $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': '44px' });
-    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': '192px' });
-    $('.make-lodgement-MasterCard').css({ 'transition': '.5s', 'height': '30px' });
+    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': '250px' });
+    $('.make-lodgement-MasterCard').css({ 'transition': '.5s', 'height': '80px' });
     $('.make-lodgement-VISA').css({ 'transition': '.5s', 'height': '0px' });
 });
 
 $('.make-lodgement__pay-system:last').click(function () {
     $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': '104px' });
-    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': '192px' });
-    $('.make-lodgement-VISA').css({ 'transition': '.5s', 'height': '30px' });
+    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': '250px' });
+    $('.make-lodgement-VISA').css({ 'transition': '.5s', 'height': '80px' });
     $('.make-lodgement-MasterCard').css({ 'transition': '.5s', 'height': '0px' });
 });
 
@@ -1071,6 +1074,13 @@ $('.make-lodgement__pay-block input').keypress(function (e) {
 });
 /* ↑↑↑ /BEM-block: make-lodgement ↑↑↑ */
 /* ↑↑↑ /BEM-blocks ↑↑↑ */
+
+
+
+
+
+
+
 
 /* ↓↓↓ showParlayInfoMessage ↓↓↓ */
 $('.tempBTN5').click(function () {
@@ -1617,7 +1627,7 @@ function getChar(event) {
 // відкрити/закрити меню
 var isNavigationOpen = false;
 $('.navigation__btn').click(function() {
-  if (!isNavigationOpen) {console.log($('body').width());
+  if (!isNavigationOpen) {
     if ( $('body').width() < 576 || $('body').width() > 320 && $('body').width() < 992 && $('body').height() > 590 && $('body').height() < 660 || $('body').width() > 992 && $('body').height() > 590 && $('body').height() < 600 ) {
       $('.navigation').css('height', '170px');
     } else {
@@ -1721,6 +1731,8 @@ $('.temp-btns-wrapper-btn').click(function(){
     isBottomFielsOpen = false;
   }
 });
+
+// $('.body-cover p:eq(0)').text( $('body').width() + '*' + $('body').height() );
 /* ↑↑↑ /temp ↑↑↑ */
 
 // made by waldteufel@ukr.net

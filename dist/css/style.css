@@ -200,12 +200,37 @@ table {
 
 /* ↑↑↑ animations ↑↑↑ */
 /* ↓↓↓ separate blocks ↓↓↓ */
+* .body-cover-wrapper {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  position: absolute;
+  z-index: 9999;
+  display: none;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+* .body-cover-wrapper p {
+  text-align: center;
+  line-height: 1.5em;
+  font-size: 16px;
+  margin-bottom: 20px;
+  display: none;
+}
+
 @media screen and (min-width: 320px) {
   * .slider-area__slider-item {
     height: 160px;
-    max-width: -webkit-calc(100vw - 82px);
     max-width: calc(100vw - 82px);
-    min-width: -webkit-calc(100vw - 82px);
     min-width: calc(100vw - 82px);
     border: 1px solid white;
     -webkit-border-radius: 4px;
@@ -246,9 +271,7 @@ table {
 }
 
 /* ↑↑↑ separate blocks ↑↑↑ */
-/* ↓↓↓ for 320px and more ↓↓↓ */
-/* ↑↑↑ for 320px and more ↑↑↑ */
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 0px) and (min-height: 0px) {
   body {
     width: 100vw;
     height: 100vh;
@@ -464,7 +487,6 @@ table {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
-    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -639,11 +661,9 @@ table {
   }
   .main #container {
     width: 100%;
-    height: -webkit-calc(100% - 292px);
     height: calc(100% - 292px);
   }
   .main .slider-area {
-    width: -webkit-calc( 100% - 20px);
     width: calc( 100% - 20px);
     height: 160px;
     position: absolute;
@@ -699,9 +719,7 @@ table {
   }
   .main .slider-area .active-slider__item {
     height: 160px;
-    max-width: -webkit-calc(100vw - 82px);
     max-width: calc(100vw - 82px);
-    min-width: -webkit-calc(100vw - 82px);
     min-width: calc(100vw - 82px);
     border: 1px solid white;
     -webkit-border-radius: 4px;
@@ -908,7 +926,6 @@ table {
         -ms-flex-positive: 0;
             flex-grow: 0;
     width: 200px;
-    height: -webkit-calc(100% - 170px);
     height: calc(100% - 170px);
     padding: 10px;
     overflow: hidden;
@@ -939,7 +956,6 @@ table {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
-    height: -webkit-calc(100vh - 220px);
     height: calc(100vh - 220px);
   }
   .main .left-column .wares-slider__item-header {
@@ -949,14 +965,12 @@ table {
     padding-bottom: 16px;
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
-    height: -webkit-calc(100% - 33px);
     height: calc(100% - 33px);
     overflow: hidden;
     position: relative;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
-    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
     overflow-x: hidden;
@@ -1055,7 +1069,6 @@ table {
     right: -200px;
     display: block;
     background-color: #1d2a38;
-    height: -webkit-calc(100% - 170px);
     height: calc(100% - 170px);
     border-left: 1px solid black;
     border-bottom: 1px solid black;
@@ -1063,6 +1076,11 @@ table {
     -o-transition: right .3s;
     transition: right .3s;
     overflow: hidden;
+  }
+  .main .right-column .work-field-wrapper {
+    max-height: calc(100vh - 220px);
+    overflow: hidden;
+    overflow-y: scroll;
   }
   .main .right-column .work-field .trade-pair {
     position: relative;
@@ -1263,7 +1281,6 @@ table {
   }
   .main .right-column .parlay-slider__parlay-choise-btn-holder {
     height: 130px;
-    width: -webkit-calc(100% + 20px);
     width: calc(100% + 20px);
     overflow: auto;
   }
@@ -1410,7 +1427,6 @@ table {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
-    width: -webkit-calc(100% - 20px);
     width: calc(100% - 20px);
     height: 160px;
     position: absolute;
@@ -1469,14 +1485,7 @@ table {
   /* ↑↑↑ /FOOTER ↑↑↑ */
 }
 
-@media screen and (min-width: 320px) and (orientation: landscape) {
-  body {
-    height: 590px;
-    overflow-y: auto;
-  }
-}
-
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 576px) and (min-height: 660px) {
   body {
     width: 100vw;
     height: 100vh;
@@ -1666,7 +1675,6 @@ table {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
-    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -1842,11 +1850,9 @@ table {
   }
   .main #container {
     width: 100%;
-    height: -webkit-calc(100% - 280px);
     height: calc(100% - 280px);
   }
   .main .slider-area {
-    width: -webkit-calc( 100% - 20px);
     width: calc( 100% - 20px);
     height: 160px;
     position: absolute;
@@ -2108,7 +2114,6 @@ table {
         -ms-flex-positive: 0;
             flex-grow: 0;
     width: 200px;
-    height: -webkit-calc(100% - 241px);
     height: calc(100% - 241px);
     padding: 10px;
     overflow: hidden;
@@ -2139,7 +2144,6 @@ table {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
-    height: -webkit-calc(100vh - 300px);
     height: calc(100vh - 300px);
   }
   .main .left-column .wares-slider__item-header {
@@ -2149,14 +2153,12 @@ table {
     padding-bottom: 16px;
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
-    height: -webkit-calc(100% - 33px);
     height: calc(100% - 33px);
     overflow: hidden;
     position: relative;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
-    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
     overflow-x: hidden;
@@ -2255,7 +2257,6 @@ table {
     right: -200px;
     display: block;
     background-color: #1d2a38;
-    height: -webkit-calc(100% - 241px);
     height: calc(100% - 241px);
     border-left: 1px solid black;
     border-bottom: 1px solid black;
@@ -2463,7 +2464,6 @@ table {
   }
   .main .right-column .parlay-slider__parlay-choise-btn-holder {
     height: 130px;
-    width: -webkit-calc(100% + 20px);
     width: calc(100% + 20px);
     overflow: auto;
   }
@@ -2610,7 +2610,6 @@ table {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
-    width: -webkit-calc(100% - 20px);
     width: calc(100% - 20px);
     height: 160px;
     position: absolute;
@@ -2677,7 +2676,7 @@ table {
   /* ↑↑↑ /HEADER ↑↑↑ */
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) and (min-height: 600px) {
   body {
     width: 100vw;
     height: 100vh;
@@ -2706,6 +2705,9 @@ table {
             align-items: center;
     padding: 10px 15px;
   }
+  .header .logo_part {
+    width: 33.33%;
+  }
   .header .logo_part img {
     height: 36px;
   }
@@ -2716,6 +2718,7 @@ table {
     display: none;
   }
   .header .central-part {
+    width: 33.33%;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2797,6 +2800,7 @@ table {
             animation-iteration-count: infinite;
   }
   .header .right-part {
+    width: 33.33%;
     position: relative;
     display: -webkit-box;
     display: -webkit-flex;
@@ -2858,7 +2862,6 @@ table {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
-    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -2934,7 +2937,6 @@ table {
     padding-left: 10px;
   }
   .main .work_area .graphic-header .timer-buttons-ul {
-    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     display: inline-block;
     -webkit-box-ordinal-group: 2;
@@ -2971,7 +2973,6 @@ table {
     border-color: dodgerblue;
   }
   .main .work_area .graphic-header .type-buttons-ul {
-    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     height: 30px;
     display: -webkit-box;
@@ -3031,11 +3032,9 @@ table {
   }
   .main #container {
     width: 100%;
-    height: -webkit-calc(100% - 200px);
     height: calc(100% - 200px);
   }
   .main .slider-area {
-    width: -webkit-calc( 100% - 20px);
     width: calc( 100% - 20px);
     height: 160px;
     position: absolute;
@@ -3213,7 +3212,6 @@ table {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
-    height: -webkit-calc(100vh - 60px);
     height: calc(100vh - 60px);
   }
   .main .left-column .wares-slider__item-header {
@@ -3223,14 +3221,12 @@ table {
     padding-bottom: 16px;
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
-    height: -webkit-calc(100% - 33px);
     height: calc(100% - 33px);
     overflow: hidden;
     position: relative;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
-    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
     overflow-x: hidden;
@@ -3477,6 +3473,7 @@ table {
   .main .right-column .parlay-slider__item-choice-field {
     border: 1px solid black;
     height: 106px;
+    width: calc(100% - 1px);
     margin-top: 6px;
     overflow: hidden;
     position: relative;
@@ -3531,7 +3528,6 @@ table {
   }
   .main .right-column .parlay-slider__parlay-choise-btn-holder {
     height: 130px;
-    width: -webkit-calc(100% + 20px);
     width: calc(100% + 20px);
     overflow: auto;
   }
@@ -3678,7 +3674,6 @@ table {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
-    width: -webkit-calc(100% - 20px);
     width: calc(100% - 20px);
     height: 160px;
     position: absolute;
@@ -3740,7 +3735,7 @@ table {
   /* ↑↑↑ /FOOTER ↑↑↑ */
 }
 
-@media only screen and (min-width: 1680px) {
+@media only screen and (min-width: 1680px) and (min-height: 720px) {
   body {
     width: 100vw;
     height: 100vh;
@@ -3921,7 +3916,6 @@ table {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
-    height: -webkit-calc(100% - 60px);
     height: calc(100% - 60px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -3996,7 +3990,6 @@ table {
     padding-left: 10px;
   }
   .main .work_area .graphic-header .timer-buttons-ul {
-    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     display: inline-block;
     -webkit-box-ordinal-group: 2;
@@ -4033,7 +4026,6 @@ table {
     border-color: dodgerblue;
   }
   .main .work_area .graphic-header .type-buttons-ul {
-    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     height: 30px;
     display: -webkit-box;
@@ -4093,11 +4085,9 @@ table {
   }
   .main #container {
     width: 100%;
-    height: -webkit-calc(100% - 250px);
     height: calc(100% - 250px);
   }
   .main .slider-area {
-    width: -webkit-calc( 100% - 30px);
     width: calc( 100% - 30px);
     height: 200px;
     position: absolute;
@@ -4268,7 +4258,6 @@ table {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
-    height: -webkit-calc(100vh - 85px);
     height: calc(100vh - 85px);
   }
   .main .left-column .wares-slider__item-header {
@@ -4278,13 +4267,11 @@ table {
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
     position: relative;
-    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     overflow: hidden;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
-    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
   }
@@ -4721,7 +4708,6 @@ table {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
-    width: -webkit-calc(100% - 30px);
     width: calc(100% - 30px);
     height: 190px;
     position: absolute;
@@ -4783,6 +4769,47 @@ table {
   /* ↑↑↑ /FOOTER ↑↑↑ */
 }
 
+/* ↓↓↓ responsive ↓↓↓ */
+@media screen and (max-width: 319px), (max-height: 319px) {
+  * .body-cover-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  * .body-cover-wrapper p:nth-of-type(1),
+  * .body-cover-wrapper p:nth-of-type(2) {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 479px) and (max-height: 479px) {
+  * .body-cover-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  * .body-cover-wrapper p:nth-of-type(1),
+  * .body-cover-wrapper p:nth-of-type(2) {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 480px) and (min-height: 320px) and (max-height: 479px) {
+  * .body-cover-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  * .body-cover-wrapper p:nth-of-type(3),
+  * .body-cover-wrapper p:nth-of-type(4) {
+    display: block;
+  }
+}
+
+/* ↑↑↑ /responsive ↑↑↑ */
 .popup-ok-btn {
   min-width: 100px;
   height: 30px;
@@ -5171,7 +5198,6 @@ table {
 .info-message__body {
   position: relative;
   height: 100%;
-  width: -webkit-calc( 290px - 44px);
   width: calc( 290px - 44px);
   left: 50%;
   -webkit-transform: translate(-50%);
@@ -5228,7 +5254,6 @@ table {
 }
 
 .message-from-mentor__text {
-  width: -webkit-calc( 100% + 18px);
   width: calc( 100% + 18px);
   height: 78px;
   color: white;
@@ -5252,7 +5277,7 @@ table {
   height: 100vh;
   top: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
   z-index: -1;
   background-color: rgba(0, 0, 0, 0);
 }
@@ -5383,7 +5408,7 @@ table {
   height: 100vh;
   top: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
   z-index: -1;
   background-color: rgba(0, 0, 0, 0);
 }
@@ -5400,7 +5425,7 @@ table {
           box-shadow: 0 0 10px white;
   padding: 26px;
   position: absolute;
-  top: -10%;
+  top: -100px;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
@@ -5493,11 +5518,13 @@ table {
           justify-content: space-between;
   overflow: hidden;
   height: 0px;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 
 .make-lodgement .make-lodgement-MasterCard .make-lodgement__currency,
 .make-lodgement .make-lodgement-VISA .make-lodgement__currency {
-  width: -webkit-calc(100% - 100px);
   width: calc(100% - 100px);
 }
 
@@ -5511,6 +5538,26 @@ table {
 .make-lodgement .make-lodgement-VISA .make-lodgement__currency select {
   height: 30px;
   width: 35%;
+}
+
+.make-lodgement__agree {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.make-lodgement__agree a {
+  color: lightskyblue;
 }
 
 .make-cash-withdrawal__holder {
@@ -5883,7 +5930,6 @@ table {
 .info-parlay-result__body {
   position: relative;
   height: 100%;
-  width: -webkit-calc( 290px - 44px);
   width: calc( 290px - 44px);
   left: 50%;
   -webkit-transform: translate(-50%);

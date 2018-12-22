@@ -5,18 +5,22 @@
     .make-lodgement__close-btn
       .make-lodgement__close-btn-line1
       .make-lodgement__close-btn-line2
+
     .make-lodgement__pay-system MasterCard
       img.make-lodgement__pay-img(src='img/mastercard.png')
     .make-lodgement__pay-system VISA
       img.make-lodgement__pay-img(src='img/visa.png')
     .make-lodgement__triangle
+
     .make-lodgement__pay-block
+
       form.make-lodgement-MasterCard(action='#' method='#' name='make-lodgement-MasterCard')
         .make-lodgement__agree
           input(type='checkbox')
           span Мне исполнилось 18 лет. Я ознакомлен с рисками и принимаю
             |
-            | a(href='https://investingcase.com/terms_and_conditions.html')Условия и Соглашения
+            |
+            a(href='https://investingcase.com/terms_and_conditions.html') Условия и Соглашения
             |
             | компании.
         .make-lodgement__currency
@@ -26,12 +30,14 @@
             option(value='EUR') EUR
             option(value='RUB') RUB
         button#make-lodgement-MasterCard-btn.popup-ok-btn(type='submit') оплатить
+
       form.make-lodgement-VISA(action='#' method='#' name='make-lodgement-VISA')
         .make-lodgement__agree
           input(type='checkbox')
           span Мне исполнилось 18 лет. Я ознакомлен с рисками и принимаю
             |
-            | a(href='https://investingcase.com/terms_and_conditions.html')Условия и Соглашения
+            |
+            a(href='https://investingcase.com/terms_and_conditions.html') Условия и Соглашения
             |
             | компании.
         .make-lodgement__currency
