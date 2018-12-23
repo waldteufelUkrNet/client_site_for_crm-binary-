@@ -1,137 +1,25 @@
 @media only screen and (min-width: 1680px) and (min-height: 720px) {
   body {
-    width                        : 100vw;
-    height                       : 100vh;
-    overflow                     : hidden;
-    background-color             : $bgColor;
-    color                        : $overColor;
-    font-family                  : rcl;
-    font-size                    : 16px;
+    font-size: 16px;
   }
   /* ↓↓↓ HEADER ↓↓↓ */
   .header {
-    width                        : 100%;
     height                       : 60px;
     border-bottom                : 2px solid black;
-    display                      : flex;
-    justify-content              : space-between;
-    align-items                  : center;
-    padding                      : 10px 15px;
-    .logo_part {
-      img {
-        height                   : 36px;
-        &:first-of-type {
-          display                : block;
-        }
-        &:last-of-type {
-          display                : none;
-        }
-      }
-    }
     .central-part {
-      display                    : flex;
-      justify-content            : center;
-      align-items                : center;
-      &__account {
-      	width                    : 92px;
-      	margin                   : 0 20px;
-      }
       &__account-type {
         margin-bottom            : 6px;
       }
-      &__currency-img {
-      	height                   : 20px;
-      	margin                   : 0 10px;
-      }
-
       &__btn {
         height                   : 36px;
-        cursor                   : pointer;
-        background-color         : dodgerblue;
-        border                   : 2px solid rgba(255,255,255,.3);
-        border-radius            : 8px;
-        margin                   : 0 20px;
-        display                  : flex;
-        justify-content          : start;
-        align-items              : center;
-        position                 : relative;
-        overflow                 : hidden;
         img {
           height                 : 25px;
-          margin-right           : 6px;
-          z-index                : 1;
         }
       }
-      &__btn-text {
-        font-family              : rcl;
-        text-transform           : uppercase;
-        color                    : white;
-        letter-spacing           : 1px;
-        z-index: 1;
-      }
-      &__btn-splendour {
-        display                   : block;
-        height                    : 50px;
-        width                     : 1px;
-        position                  : absolute;
-        top                       : 50%;
-        left                      : 50%;
-        transform                 : translate(0, -50%) rotate(20deg);
-        background-color          : white;
-        z-index                   : 0;
-        box-shadow                : 0 0 6px 2px white;
-        animation-name            : splendourAnimation;
-        animation-duration        : 3s;
-        animation-iteration-count : infinite;
-      }
-
     }
     .right-part {
-      position                   : relative;
-      display                    : flex;
-      align-items                : center;
-      .header-titles {
-        display                  : block;
-        margin                   : 0 6px;
-      }
       .menu {
-        position                 : absolute;
-        z-index                  : 8777;
-        top                      : 110%;
         width                    : 150px;
-        background-color         : black;
-        padding                  : 0px 0px;
-        border                   : 0px solid darkgrey;
-        overflow                 : hidden;
-        height                   : 0px;
-        .menu-list-a {
-          display                : block;
-          color                  : $overColor;
-          height                 : 30px;
-          width                  : 100%;
-          position               : relative;
-          left                   : 100%;
-          line-height            : 30px;
-          padding                : 0px 10px;
-          transition             : background-color .5s;
-          cursor                 : pointer;
-          &:hover {
-            background-color     : $bgColor;
-            transition           : background-color .5s;
-          }
-        }
-      }
-      .call-us-btn {
-        background-color         : transparent;
-        border                   : 1px solid transparent;
-        padding                  : 0;
-        outline                  : none;
-        cursor                   : pointer;
-        position                 : relative;
-        top                      : 3px;
-        img {
-          height                 : 25px;
-        }
       }
     }
   }
@@ -139,238 +27,42 @@
 
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
-    width                        : 100%;
     height                       : calc(100% - 60px);
-    display                      : flex;
-
     /* ↓↓↓ SECTION 1 (work area) ↓↓↓ */
     .work_area {
-      order                      : 2;
-      flex-grow                  : 1;
-      width                      : 60%;
-      border                     : {
-        left                     : 2px solid black;
-        right                    : 2px solid black;
-      }
       padding                    : 15px;
-      position                   : relative;
       .graphic-header {
-        display                  : flex;
-        justify-content          : space-between;
-        align-items              : center;
-
         .currency-logo-holder {
           min-width              : 180px;
-          display                : flex;
-          justify-content        : center;
-          align-items            : center;
           height                 : 45px;
-          flex-grow              : none;
-          order                  : 2;
           .img-pair {
             min-width            : 60px;
             max-height           : 45px
           }
           h2 {
             font-size            : 22px;
-            padding-left         : 10px
-          }
-        }
-        .timer-buttons-ul {
-          width                  : calc( (100% - 150px) / 2);
-          display                : inline-block;
-          order                  : 1;
-          .timer-buttons-li {
-            display              : inline-block;
-            min-width            : 45px;
-            font-size            : 12px;
-            text-align           : center;
-            border               : 1px solid silver;
-            border-radius        : 4px;
-            padding              : 2px 4px;
-            margin               : 0 3px 3px 0;
-            cursor               : pointer;
-            background-color     : transparent;
-            transition           : background-color .5s, border-color .5s;
-            user-select          : none;
-            &:hover {
-              background-color   : dodgerblue;
-              border-color       : dodgerblue;
-            }
-            &_active {
-              background-color   : dodgerblue;
-              border-color       : dodgerblue;
-            }
-          }
-        }
-        .type-buttons-ul {
-          width                  : calc( (100% - 150px) / 2);
-          height                 : 30px;
-          display                : flex;
-          justify-content        : flex-end;
-          align-items            : center;
-          order                  : 3;
-          .type-buttons-li {
-            display              : inline-block;
-            position             : relative;
-            margin-left          : 3px;
-            width                : 30px;
-            height               : 30px;
-            border               : 1px solid silver;
-            border-radius        : 4px;
-            cursor               : pointer;
-            background-color     : transparent;
-            user-select          : none;
-            transition           : background-color .5s, border-color .5s;
-            &:hover {
-              background-color   : dodgerblue;
-              border-color       : dodgerblue;
-            }
-            &_active {
-              background-color   : dodgerblue;
-              border-color       : dodgerblue;
-            }
-            img {
-              width              : 24px;
-              height             : 24px;
-              display            : block;
-              position           : absolute;
-              top                : 50%;
-              left               : 50%;
-              transform          : translate(-50%,-50%);
-            }
           }
         }
       }
 
     }
     #container {
-      width: 100%;
-      height: calc(100% - 250px);
+      height                     : calc(100% - 250px);
     }
 
     .slider-area {
       width                      : calc( 100% - 30px);
       height                     : 200px;
-      position                   : absolute;
-      bottom                     : 10px;
-      overflow                   : hidden;
-      &__slider {
-        width                    : 100%;
-        height                   : 100%;
-        padding                  : 0 30px;
-        display                  : none;
-        &:first-of-type {
-          display                : block;
-        }
-        .slick-arrow {
-          width                  : 25px;
-          height                 : 50px;
-          border                 : 1px solid white;
-          border-radius          : 4px;
-          font-family            : fa;
-          transition             : background-color .5s;
-          &:before {
-            width                : 100%;
-            height               : 100%;
-            font-family          : fa;
-            font-size            : 14px;
-            color                : white;
-          }
-          &:hover {
-            background-color     : dodgerblue;
-            transition           : background-color .5s;
-          }
-        }
-        .slick-prev {
-          top                    : 50%;
-          left                   : 0px;
-          &:before {
-            content              : "\f104";
-          }
-        }
-        .slick-next {
-          top                    : 50%;
-          right                  : 0px;
-          &:before {
-            content              : "\f105";
-          }
-        }
-      }
       .active-slider {
         &__item {
           height                 : 200px;
           max-width              : 500px;
           min-width              : 500px;
-          border                 : 1px solid white;
-          border-radius          : 4px;
-          padding                : 5px;
-          display                : grid;
           grid-template-columns  : 40px 1fr;
-          grid-column-gap        : 4px;
-          margin                 : 0 20px;
-          position               : relative;
-        }
-        &__item-timer-wrapper {
-          max-height             : 100%;
-          display                : flex;
-          flex-direction         : column;
-          justify-content        : start;
-          overflow               : hidden;
-          background-color       : rgba(0,0,0,.5);
-          border                 : 1px solid white;
-          border-radius          : 4px;
-          position               : relative;
-        }
-        &__time-candle-wrapper {
-          height                 : 186px;
-          width                  : 100%;
-          border-top             : 1px solid dodgerblue;
-          margin                 : 0 auto;
-          position               : absolute;
-          left                   : 0px;
-          bottom                 : 0px;
-          overflow               : hidden;
-        }
-        &__time-candle {
-          width                  : 100%;
-          height                 : 186px;
-          position               : absolute;
-          left                   : 0px;
-          bottom                 : 0px;
-          background-image       : linear-gradient( rgba(30, 144, 255, .1), rgba(30, 144, 255, .4), rgba(30, 144, 255, .9) );
-        }
-        &__item-graphic {
-          border                 : 1px solid white;
-          border-radius          : 4px;
-          overflow               : hidden;
         }
         &__info {
-          position               : absolute;
-          top                    : 5px;
           left                   : 49px;
-          border                 : 1px solid white;
           border-radius          : 4px;
-          padding                : 3px;
-          background-color       : rgba(0,0,0,.5)
-        }
-        &__start-price {
-          font-size              : 12px;
-        }
-        &__current-price {
-          font-size              : 12px;
-          color                  : red;
-        }
-      }
-      #history-slider {}
-      #deposit-slider {
-        .deposit-slider__item {
-          background-color       : rgba(255,0,0,.05);
-        }
-      }
-      #withdrawal-slider {
-        .withdrawal-slider__item {
-          background-color       : rgba(173,255,47,.05);
         }
       }
     }
@@ -378,108 +70,45 @@
 
     /* ↓↓↓ SECTION 2 (left column) ↓↓↓ */
     .left-column {
-      order                      : 1;
-      flex-grow                  : 0;
       width                      : 250px;
       padding                    : 15px 10px 10px 15px;
-      overflow                   : hidden;
-      position                   : relative;
-      display                    : block;
       &::after {
-        content                  : '';
-        display                  : block;
         height                   : 2px;
         width                    : 280px;
-        background-color         : black;
-        position                 : absolute;
         top                      : 50px;
-        left                     : 0px;
       }
       .wares-slider {
-        height                   : 100%;
-        position                 : relative;
         &__item {
-          text-align             : center;
           height                 : calc(100vh - 85px);
         }
         &__item-header {
-          text-transform         : uppercase;
           font-size              : 20px;
           padding-bottom         : 20px;
         }
         &__item-table-1-wrapper {
-          position               : relative;
           height                 : calc(100% - 40px );
-          overflow               : hidden;
-        }
-        &__item-table-2-wrapper {
-          height                 : 100%;
-          width                  : calc( 100% + 20px);
-          overflow               : auto;
         }
         &__table {
-          width                  : 220px;
           tr {
-            display              : flex;
-            align-items          : center;
             height               : 40px;
-            border-top           : 1px solid transparent;
-            border-bottom        : 1px solid transparent;
-            transition           : background-color .5s, border-color .5s;
-            &:hover {
-              background-color   : #2d3a48;
-              border-color       : black;
-            }
             td {
-              padding            : 4px;
-              cursor             : pointer;
               &:nth-of-type(2) {
                 width            : 65px;
-                text-align       : left;
-              }
-              &:nth-of-type(3) {
-                width            : 25px;
               }
             }
           }
-          img {
-            max-width            : 30px;
-            max-height           : 25px;
-          }
         }
-        .slick-arrow { border: 1px solid white;
-          z-index               : 5000;
+        .slick-arrow {
           width                 : 20px;
           height                : 30px;
-          border-radius         : 4px;
-          font-family           : fa;
-          transition            : background-color .5s;
-          background-color      : $bgColor;
-          &:before {
-            width               : 50%;
-            height              : 50%;
-            font-family         : fa;
-            font-size           : 14px;
-            color               : white;
-          }
-          &:hover {
-            background-color    : dodgerblue;
-            transition          : background-color .5s;
-          }
         }
         .slick-prev {
           top                   : 11px;
           left                  : -9px;
-          &:before {
-            content: "\f104";
-          }
         }
         .slick-next {
           top                   : 11px;
           right                 : -3px;
-          &:before {
-            content             : "\f105";
-          }
         }
       }
     }
@@ -487,312 +116,75 @@
 
     /* ↓↓↓ SECTION 3 (right column) ↓↓↓ */
     .right-column {
-      order                     : 3;
-      flex-grow                 : 0;
       width                     : 250px;
       padding                   : 15px 15px 10px 15px;
-      position                  : relative;
-      display                   : block;
       .work-field {
         .trade-pair {
-          position              : relative;
           &__logo {
             width               : 50px;
-            position            : absolute;
           }
           &__name {
-            font-family         : rcl;
-            font-size           : 28px;
             padding             : 4px 0 10px 60px;
           }
           &__description {
-            font-family         : rcli;
             font-size           : 14px;
-            color               : lightskyblue;
-          }
-          &__price {
-            display             : block;
-            padding             : 6px 0;
-            letter-spacing      : 2px;
           }
         }
         .investment-calculator {
-          overflow              : hidden;
-          display               : grid;
           grid-template-columns : 90px 120px;
-          grid-gap              : 3px;
-
           label {
             height              : 26px;
-            line-height         : 22px;
-            user-select         : none;
           }
-
           input, span {
-            background-image    : linear-gradient(to right, #141414, #102734);
-            border              : 1px solid #102734;
             height              : 26px;
             line-height         : 26px;
-            padding             : 0 12px;
-            color               : white;
-            font-family         : rcl;
-            font-size           : 14px;
-            outline             : none;
-            display             : block;
-            width               : 120px;
-          }
-
-          span {
-            user-select         : none;
-          }
-
-          input::placeholder {
-            color               : white;
-            opacity             : 1;
-            font-family         : rcl;
             font-size           : 14px;
           }
         }
-      }
-      #UTC-datetimer-holder {
-        min-height              : 30px;
-        padding                 : 6px;
-        border-radius           : 4px;
-        text-align              : center;
-        margin                  : 6px 0;
-        color                   : dodgerblue;
-        user-select             : none;
-        border                  : 1px solid dodgerblue;
-        #UTC-datetimer {
-          color                 : white;
-        }
-      }
-      .parlay-slider-wrapper {
-        position: relative;
       }
       .parlay-slider {
-        width                   : 100%;
-        display                 : flex;
-        flex-direction          : column;
-        justify-content         : space-between;
-        flex-wrap               : nowrap;
-        position                : relative;
-        z-index                 : 2;
-        background-color        : $bgColor;
-        &__item-header {
-          width                 : 70%;
-          margin                : 0 auto;
-          height                : 30px;
-          line-height           : 28px;
-          background-color      : dodgerblue;
-          border                : 1px solid dodgerblue;
-          border-radius         : 4px;
-          text-align            : center;
-          transition            : background-color .5s, border-color .5s;
-          user-select           : none;
-        }
         &__item-choice-field {
-          border                : 1px solid black;
           height                : 132px;
-          margin-top            : 6px;
-          overflow              : hidden;
-          position              : relative;
-          padding: 0;
+          padding               : 0;
         }
         &__parlay-choise-btn {
-          width                 : 100%;
           height                : 30px;
-          padding               : 6px;
-          padding-left          : 16px;
-          cursor                : pointer;
-          user-select           : none;
         }
         &__reactivation-field {
-          position              : absolute;
-          z-index               : 100;
-          top                   : 36px;
-          left                  : 0;
-          width                 : 100%;
           height                : 132px;
-          background-color      : rgba(0,0,0,.3);
-          display               : flex;
         }
         &__reactivation-field-btn {
           width           : 120px;
           height          : 40px;
-          border          : 1px solid white;
-          border-radius   : 4px;
-          background-color: #141d27;
-          text-align      : center;
           line-height     : 36px;
-          box-shadow      : 0px 0px 20px white;
-          cursor          : pointer;
-          user-select     : none;
-          transition      : background-color, .5s;
-          margin          : auto;
-
-          &:hover {
-            background-color: dodgerblue;
-          }
-        }
-        // &__parlay-choise-btn-holder {
-        //   height                : 130px;
-        //   width                 : calc(100% + 20px);
-        //   overflow              : auto;
-        // }
-        .slick-arrow {
-          width                  : 20px;
-          height                 : 30px;
-          border                 : 1px solid white;
-          border-radius          : 4px;
-          font-family            : fa;
-          transition             : background-color .5s;
-          z-index                : 11;
-          background-color       : $bgColor;
-          &:before {
-            width                : 100%;
-            height               : 100%;
-            font-family          : fa;
-            font-size            : 14px;
-            color                : white;
-          }
-          &:hover {
-            background-color     : dodgerblue;
-            transition           : background-color .5s;
-          }
-        }
-        .slick-prev {
-          top                    : 15px;
-          left                   : 0px;
-          &:before {
-            content              : "\f104";
-          }
-        }
-        .slick-next {
-          top                    : 15px;
-          right                  : 0px;
-          &:before {
-            content              : "\f105";
-          }
         }
       }
       .parlay-btns {
-        &__holder {
-          margin-top: 6px;
-          display: flex;
-          justify-content: space-between;
-        }
-        &__btn { border: 1px solid white;
-          width         : 45%;
+        &__btn {
           height        : 40px;
           line-height   : 37px;
-          position      : relative;
-          z-index       : 1;
-          border-radius : 4px;
-          text-align    : center;
-          letter-spacing: 2px;
-          cursor        : pointer;
-          user-select   : none;
-          &:before {
-            content      : '';
-            display      : block;
-            height       : 100%;
-            width        : 100%;
-            border-radius: inherit;
-            position     : absolute;
-            z-index      : -1;
-            top          : 0;
-            left         : 0;
-            opacity      : 0;
-            transition   : opacity 1s;
-          }
-          &:hover {
-           &:before {
-             opacity: 1;
-           }
-          }
           svg {
-            position: absolute;
-            top: 12px;
-          }
-          &_up {
-            background: linear-gradient(teal,steelblue);
-            &:before {
-              background: linear-gradient(cornflowerblue,darkblue);
-            }
-            svg {
-              right: 10px;
-            }
-          }
-          &_down {
-            background   : linear-gradient(tomato,orange);
-            &:before {
-              background : linear-gradient(orange,red);
-            }
-            svg {
-              left: 10px;
-            }
+            top               : 12px;
           }
         }
         &__cover {
-          position           : absolute;
-          z-index            : 12;
-          bottom             : 0;
-          width              : 100%;
           height             : 40px;
-          display            : flex;
-          justify-content    : space-between;
-          & > div {
-            background-color : rgba(0,0,0,.5);
-            border-radius    : 4px;
-            width            : 45%;
-          }
         }
       }
       .slider-change-btn-holder {
         width                   : calc(100% - 30px);
         height                  : 190px;
-        position                : absolute;
-        z-index                 : 1;
-        bottom                  : 10px;
-        display                 : flex;
-        flex-direction          : column;
-        justify-content         : space-between;
-        flex-wrap               : nowrap;
         &:after {
-          display               : block;
-          content               : '';
-          width                 : 250px;
           height                : 2px;
           background-color      : black;
-          position              : absolute;
-          top                   : -10px;
           left                  : -15px;
         }
         .slider-change-btn {
           height                : 42px;
           line-height           : 40px;
-          background-color      : dodgerblue;
-          border                : 1px solid dodgerblue;
-          border-radius         : 4px;
-          text-align            : center;
-          cursor                : pointer;
-          transition            : background-color .5s, border-color .5s;
-          user-select           : none;
-          &:hover {
-            background-color    : $bgColor;
-            border-color        : $overColor;
-          }
-        }
-        .slider-change-btn_active {
-          background-color      : $bgColor;
-          border-color          : $overColor;
         }
       }
     }
     /* ↑↑↑ /SECTION 3 (right column) ↑↑↑ */
   }
-  /* ↓↓↓ FOOTER ↓↓↓ */
-  /* ↑↑↑ /FOOTER ↑↑↑ */
-
 }

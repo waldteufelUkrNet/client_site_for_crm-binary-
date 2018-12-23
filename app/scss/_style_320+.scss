@@ -1,5 +1,4 @@
 @media screen and (min-width: 0px) and (min-height: 0px) {
-
   body {
     width                        : 100vw;
     height                       : 100vh;
@@ -271,7 +270,6 @@
       position                   : absolute;
       bottom                     : 56px;
       overflow                   : hidden;
-
       &__slider {
         width                    : 100%;
         height                   : 100%;
@@ -395,7 +393,7 @@
       height             : 50px;
       position           : absolute;
       left               : 0;
-      bottom             : 0px;
+      bottom             : 0;
       cursor             : pointer;
       user-select        : none;
       transition         : height .3s;
@@ -457,7 +455,8 @@
         &:hover {
           background-color : dodgerblue;
         }
-        svg { display: none;
+        svg {
+          display        : none;
           position       : absolute;
           top            : 50%;
           right          : 6px;
@@ -514,7 +513,7 @@
           padding-bottom         : 16px;
         }
         &__item-table-1-wrapper {
-          height                 : calc(100% - 33px );;
+          height                 : calc(100% - 33px );
           overflow               : hidden;
           position               : relative;
         }
@@ -554,7 +553,8 @@
             max-height           : 25px;
           }
         }
-        .slick-arrow { border: 1px solid white;
+        .slick-arrow {
+          border                : 1px solid white;
           z-index               : 5000;
           width                 : 15px;
           height                : 25px;
@@ -611,7 +611,7 @@
       .work-field-wrapper {
         max-height              : calc(100vh - 220px);
         overflow                : hidden;
-        overflow-y              : scroll;
+        overflow-y              : auto;
       }
       .work-field {
         .trade-pair {
@@ -634,20 +634,17 @@
             padding             : 6px 0;
             letter-spacing      : 2px;
           }
-
         }
         .investment-calculator {
           overflow              : hidden;
           display               : grid;
           grid-template-columns : 80px 100px;
           grid-gap              : 3px;
-
           label {
             height              : 22px;
             line-height         : 20px;
             user-select         : none;
           }
-
           input, span {
             background-image    : linear-gradient(to right, #141414, #102734);
             border              : 1px solid #102734;
@@ -661,11 +658,9 @@
             display             : block;
             width               : 120px;
           }
-
           span {
             user-select         : none;
           }
-
           input::placeholder {
             color               : white;
             opacity             : 1;
@@ -798,11 +793,12 @@
       }
       .parlay-btns {
         &__holder {
-          margin-top: 6px;
-          display: flex;
+          margin-top     : 6px;
+          display        : flex;
           justify-content: space-between;
         }
-        &__btn { border: 1px solid white;
+        &__btn {
+          border        : 1px solid white;
           width         : 45%;
           height        : 30px;
           line-height   : 27px;
@@ -911,9 +907,7 @@
       }
     }
     /* ↑↑↑ /SECTION 3 (right column) ↑↑↑ */
-
   }
   /* ↓↓↓ FOOTER ↓↓↓ */
   /* ↑↑↑ /FOOTER ↑↑↑ */
-
 }

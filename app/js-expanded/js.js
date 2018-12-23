@@ -1731,8 +1731,6 @@ $('.temp-btns-wrapper-btn').click(function(){
     isBottomFielsOpen = false;
   }
 });
-
-// $('.body-cover p:eq(0)').text( $('body').width() + '*' + $('body').height() );
 /* ↑↑↑ /temp ↑↑↑ */
 
 // made by waldteufel@ukr.net
