@@ -230,7 +230,9 @@ table {
 @media screen and (min-width: 320px) {
   * .slider-area__slider-item {
     height: 160px;
+    max-width: -webkit-calc(100vw - 82px);
     max-width: calc(100vw - 82px);
+    min-width: -webkit-calc(100vw - 82px);
     min-width: calc(100vw - 82px);
     border: 1px solid white;
     -webkit-border-radius: 4px;
@@ -487,6 +489,7 @@ table {
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     width: 100%;
+    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
     display: -webkit-box;
     display: -webkit-flex;
@@ -661,9 +664,11 @@ table {
   }
   .main #container {
     width: 100%;
+    height: -webkit-calc(100% - 292px);
     height: calc(100% - 292px);
   }
   .main .slider-area {
+    width: -webkit-calc( 100% - 20px);
     width: calc( 100% - 20px);
     height: 160px;
     position: absolute;
@@ -719,7 +724,9 @@ table {
   }
   .main .slider-area .active-slider__item {
     height: 160px;
+    max-width: -webkit-calc(100vw - 82px);
     max-width: calc(100vw - 82px);
+    min-width: -webkit-calc(100vw - 82px);
     min-width: calc(100vw - 82px);
     border: 1px solid white;
     -webkit-border-radius: 4px;
@@ -926,6 +933,7 @@ table {
         -ms-flex-positive: 0;
             flex-grow: 0;
     width: 200px;
+    height: -webkit-calc(100% - 170px);
     height: calc(100% - 170px);
     padding: 10px;
     overflow: hidden;
@@ -956,6 +964,7 @@ table {
   }
   .main .left-column .wares-slider__item {
     text-align: center;
+    height: -webkit-calc(100vh - 220px);
     height: calc(100vh - 220px);
   }
   .main .left-column .wares-slider__item-header {
@@ -965,12 +974,14 @@ table {
     padding-bottom: 16px;
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
+    height: -webkit-calc(100% - 33px);
     height: calc(100% - 33px);
     overflow: hidden;
     position: relative;
   }
   .main .left-column .wares-slider__item-table-2-wrapper {
     height: 100%;
+    width: -webkit-calc( 100% + 20px);
     width: calc( 100% + 20px);
     overflow: auto;
     overflow-x: hidden;
@@ -1069,6 +1080,7 @@ table {
     right: -200px;
     display: block;
     background-color: #1d2a38;
+    height: -webkit-calc(100% - 170px);
     height: calc(100% - 170px);
     border-left: 1px solid black;
     border-bottom: 1px solid black;
@@ -1078,6 +1090,7 @@ table {
     overflow: hidden;
   }
   .main .right-column .work-field-wrapper {
+    max-height: -webkit-calc(100vh - 220px);
     max-height: calc(100vh - 220px);
     overflow: hidden;
     overflow-y: auto;
@@ -1281,6 +1294,7 @@ table {
   }
   .main .right-column .parlay-slider__parlay-choise-btn-holder {
     height: 130px;
+    width: -webkit-calc(100% + 20px);
     width: calc(100% + 20px);
     overflow: auto;
   }
@@ -1427,6 +1441,7 @@ table {
     width: 45%;
   }
   .main .right-column .slider-change-btn-holder {
+    width: -webkit-calc(100% - 20px);
     width: calc(100% - 20px);
     height: 160px;
     position: absolute;
@@ -1556,6 +1571,7 @@ table {
     margin: 0 3px 3px 0;
   }
   .main #container {
+    height: -webkit-calc(100% - 280px);
     height: calc(100% - 280px);
   }
   .main .slider-area {
@@ -1565,6 +1581,7 @@ table {
     max-width: 360px;
     min-width: 360px;
     padding: 5px;
+    grid-template-columns: 20px 1fr;
     grid-column-gap: 4px;
   }
   .main .slider-area .active-slider__info {
@@ -1592,12 +1609,15 @@ table {
     display: block;
   }
   .main .left-column {
+    height: -webkit-calc(100% - 241px);
     height: calc(100% - 241px);
   }
   .main .left-column .wares-slider__item {
+    height: -webkit-calc(100vh - 300px);
     height: calc(100vh - 300px);
   }
   .main .right-column {
+    height: -webkit-calc(100% - 241px);
     height: calc(100% - 241px);
   }
 }
@@ -1649,6 +1669,7 @@ table {
             order: 2;
   }
   .main .work_area .graphic-header .timer-buttons-ul {
+    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     -webkit-box-ordinal-group: 2;
     -webkit-order: 1;
@@ -1656,6 +1677,7 @@ table {
             order: 1;
   }
   .main .work_area .graphic-header .type-buttons-ul {
+    width: -webkit-calc( (100% - 150px) / 2);
     width: calc( (100% - 150px) / 2);
     height: 30px;
     display: -webkit-box;
@@ -1676,6 +1698,7 @@ table {
             order: 3;
   }
   .main #container {
+    height: -webkit-calc(100% - 200px);
     height: calc(100% - 200px);
   }
   .main .slider-area {
@@ -1692,6 +1715,7 @@ table {
     border-bottom: none;
   }
   .main .left-column .wares-slider__item {
+    height: -webkit-calc(100vh - 60px);
     height: calc(100vh - 60px);
   }
   .main .right-column {
@@ -1703,6 +1727,7 @@ table {
     border-bottom: none;
   }
   .main .right-column .parlay-slider__item-choice-field {
+    width: -webkit-calc(100% - 1px);
     width: calc(100% - 1px);
   }
   .main .right-column .slider-change-btn-holder {
@@ -1740,6 +1765,7 @@ table {
   /* ↑↑↑ /HEADER ↑↑↑ */
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
+    height: -webkit-calc(100% - 60px);
     height: calc(100% - 60px);
     /* ↓↓↓ SECTION 1 (work area) ↓↓↓ */
     /* ↑↑↑ /SECTION 1 (work area) ↑↑↑ */
@@ -1763,9 +1789,11 @@ table {
     font-size: 22px;
   }
   .main #container {
+    height: -webkit-calc(100% - 250px);
     height: calc(100% - 250px);
   }
   .main .slider-area {
+    width: -webkit-calc( 100% - 30px);
     width: calc( 100% - 30px);
     height: 200px;
   }
@@ -1790,6 +1818,7 @@ table {
     top: 50px;
   }
   .main .left-column .wares-slider__item {
+    height: -webkit-calc(100vh - 85px);
     height: calc(100vh - 85px);
   }
   .main .left-column .wares-slider__item-header {
@@ -1797,6 +1826,7 @@ table {
     padding-bottom: 20px;
   }
   .main .left-column .wares-slider__item-table-1-wrapper {
+    height: -webkit-calc(100% - 40px);
     height: calc(100% - 40px);
   }
   .main .left-column .wares-slider__table tr {
@@ -1867,6 +1897,7 @@ table {
     height: 40px;
   }
   .main .right-column .slider-change-btn-holder {
+    width: -webkit-calc(100% - 30px);
     width: calc(100% - 30px);
     height: 190px;
   }
@@ -2310,6 +2341,7 @@ table {
 .info-message__body {
   position: relative;
   height: 100%;
+  width: -webkit-calc( 290px - 44px);
   width: calc( 290px - 44px);
   left: 50%;
   -webkit-transform: translate(-50%);
@@ -2366,6 +2398,7 @@ table {
 }
 
 .message-from-mentor__text {
+  width: -webkit-calc( 100% + 18px);
   width: calc( 100% + 18px);
   height: 78px;
   color: white;
@@ -2637,6 +2670,7 @@ table {
 
 .make-lodgement .make-lodgement-MasterCard .make-lodgement__currency,
 .make-lodgement .make-lodgement-VISA .make-lodgement__currency {
+  width: -webkit-calc(100% - 100px);
   width: calc(100% - 100px);
 }
 
@@ -3042,6 +3076,7 @@ table {
 .info-parlay-result__body {
   position: relative;
   height: 100%;
+  width: -webkit-calc( 290px - 44px);
   width: calc( 290px - 44px);
   left: 50%;
   -webkit-transform: translate(-50%);
