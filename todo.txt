@@ -30,6 +30,7 @@ graphics
 - при переклацуванні на кнопки типу: pointStart is undefined / lastPoint is undefined
 + лінійний графік: розібратися з controlPoint
 - response
+- зробити обв'язку на обрізанні точок - якщо їх мало, не обрізвти
 
 
 parlays
