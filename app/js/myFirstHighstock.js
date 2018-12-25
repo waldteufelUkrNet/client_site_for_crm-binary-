@@ -51,6 +51,7 @@ $(arrOfTypeBtns).click(function(){
     }
     stringType = '?';
   }
+  tempPoint == null;
   getDataArr();
 });
 
@@ -61,7 +62,7 @@ $(arrOfTimerBtns).click(function(){
     $(this).addClass('timer-buttons-li_active');
   }
   timeStep = +$(this).attr('data-time');
-
+  tempPoint == null;
   getDataArr()
 });
 // ↑↑↑ type/time-switch-buttons behavior ↑↑↑
@@ -351,7 +352,7 @@ function redrawSerie(x,y) {
 
   } else if (dataType == 'candlestick' || dataType == 'ohlc') {
 
-    if (tempPoint == null) { console.log('trololo');
+    if (tempPoint == null) {
 
       tempPoint = [x, y, y, y, y]; // tempPoint = [x, open, high, low, close];
     }
@@ -363,6 +364,8 @@ function redrawSerie(x,y) {
     resultArr[resultArr.length-1] = tempPoint;
 
   }
+  console.log("tempPoint", tempPoint);
+  console.log("tempPoint[1]", tempPoint[1]);
 
   var deltaTime = x.getTime() - lastPoint[0].getTime();
 
