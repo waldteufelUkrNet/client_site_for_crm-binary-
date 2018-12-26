@@ -446,7 +446,8 @@ table {
     position: absolute;
     z-index: 8777;
     top: 110%;
-    width: 120px;
+    white-space: nowrap;
+    width: auto;
     background-color: black;
     padding: 0px 0px;
     border: 0px solid darkgrey;
@@ -1758,9 +1759,6 @@ table {
   }
   .header .central-part__btn img {
     height: 25px;
-  }
-  .header .right-part .menu {
-    width: 150px;
   }
   /* ↑↑↑ /HEADER ↑↑↑ */
   /* ↓↓↓ MAIN PART ↓↓↓ */

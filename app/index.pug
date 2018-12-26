@@ -34,6 +34,17 @@ html(lang='en')
       button.tempBTN6(style='width: 120px; height: 30px; cursor: pointer') timerCandleTest1
       button.tempBTN7(style='width: 120px; height: 30px; cursor: pointer') timerCandleTest2
     btn.temp-btns-wrapper-btn(style="width: 134px; height: 30px; background-color: lightskyblue; position: fixed; z-Index: 8888; bottom: 3px; left: 3px; border: 1px dotted white; cursor: pointer; color: black; text-align: center; line-height: 26px") popups
+    script.
+      var isBottomFielsOpen = false;
+      $('.temp-btns-wrapper-btn').click(function(){
+        if (!isBottomFielsOpen) {
+          $('.temp-btns-wrapper').css('display','block');
+          isBottomFielsOpen = true;
+        } else {
+          $('.temp-btns-wrapper').css('display','none');
+          isBottomFielsOpen = false;
+        }
+      });
 
     // HEADER
     header.header
@@ -976,3 +987,4 @@ html(lang='en')
     script(src='js/js.js')
     script(src='js/myFirstHighstock.js')
     script(src='js/testJs.js')
+    script(src='js/BEM-blocks.js')
