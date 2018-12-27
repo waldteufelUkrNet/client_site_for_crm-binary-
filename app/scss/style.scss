@@ -132,17 +132,15 @@
 	  	}
 	  }
   }
-
 }/* ↑↑↑ separate blocks ↑↑↑ */
 
 @import "style_320+";
 @import "style_576+";
-@import "style_768+";
 @import "style_992+";
 @import "style_1200+";
-@import "style_1440+";
 @import "style_1680+";
-@import "style_1920+";
+@import "_header.scss";
+@import "_active_slider_item.scss";
 
 /* ↓↓↓ responsive ↓↓↓ */*{
 	@media screen and (max-width: 319px), (max-height: 319px) {

@@ -2,23 +2,6 @@
   body {
     font-size: 16px;
   }
-  /* ↓↓↓ HEADER ↓↓↓ */
-  .header {
-    height                       : 60px;
-    border-bottom                : 2px solid black;
-    .central-part {
-      &__account-type {
-        margin-bottom            : 6px;
-      }
-      &__btn {
-        height                   : 36px;
-        img {
-          height                 : 25px;
-        }
-      }
-    }
-  }
-  /* ↑↑↑ /HEADER ↑↑↑ */
 
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
@@ -48,18 +31,6 @@
     .slider-area {
       width                      : calc( 100% - 30px);
       height                     : 200px;
-      .active-slider {
-        &__item {
-          height                 : 200px;
-          max-width              : 500px;
-          min-width              : 500px;
-          grid-template-columns  : 40px 1fr;
-        }
-        &__info {
-          left                   : 49px;
-          border-radius          : 4px;
-        }
-      }
     }
     /* ↑↑↑ /SECTION 1 (work area) ↑↑↑ */
 

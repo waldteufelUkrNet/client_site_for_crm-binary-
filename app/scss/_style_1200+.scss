@@ -1,0 +1,36 @@
+@media only screen and (min-width: 1200px) and (min-height: 600px) {
+  /* ↓↓↓ MAIN PART ↓↓↓ */
+  .main {
+    /* ↓↓↓ SECTION 1 (work area) ↓↓↓ */
+    #container {
+      height                     : calc(100% - 220px);
+    }
+    .slider-area {
+      bottom                     : 30px;
+    }
+    /* ↑↑↑ /SECTION 1 (work area) ↑↑↑ */
+
+    /* ↓↓↓ SECTION 3 (right column) ↓↓↓ */
+    .right-column {
+      position                  : relative;
+      z-index                   : 1;
+      right                     : 0;
+      height                    : 100%;
+      border-left               : none;
+      border-bottom             : none;
+      .parlay-slider {
+        &__item-choice-field {
+          width                 : calc(100% - 1px);
+        }
+      }
+      .slider-change-btn-holder {
+        display                 : flex;
+        bottom                  : 30px;
+        &:after {
+          display               : block;
+        }
+      }
+    }
+    /* ↑↑↑ /SECTION 3 (right column) ↑↑↑ */
+  }
+}

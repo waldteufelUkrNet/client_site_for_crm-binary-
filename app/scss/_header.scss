@@ -1,0 +1,233 @@
+/* ↓↓↓ HEADER ↓↓↓ */
+.header {
+  width                        : 100%;
+  height                       : 40px;
+  border-bottom                : 1px solid black;
+  display                      : flex;
+  justify-content              : space-between;
+  align-items                  : center;
+  padding                      : 0px 10px 2px;
+  font-size                    : 12px;
+  .logo_part {
+    flex-grow                  : 1;
+    display                    : flex;
+    align-items                : center;
+    img {
+      height                   : 30px;
+      &:first-of-type {
+        display                : none;
+      }
+    }
+  }
+  .central-part {
+    display                    : flex;
+    justify-content            : center;
+    align-items                : center;
+    flex-grow                  : 1;
+    &__account {
+      width                    : 92px;
+      margin                   : 0 20px;
+    }
+    &__account-type {
+      margin-bottom            : 6px;
+    }
+    &__currency-img {
+      height                   : 20px;
+      margin                   : 0 10px;
+    }
+
+    &__btn {
+      min-width                : 40px;
+      height                   : 30px;
+      cursor                   : pointer;
+      background-color         : dodgerblue;
+      border                   : 2px solid rgba(255,255,255,.3);
+      border-radius            : 8px;
+      margin                   : 0 20px;
+      display                  : flex;
+      justify-content          : start;
+      align-items              : center;
+      position                 : relative;
+      overflow                 : hidden;
+      white-space              : nowrap;
+      img {
+        height                 : 20px;
+        margin-right           : 6px;
+        z-index                : 1;
+        position               : absolute;
+        top                    : 50%;
+        left                   : 50%;
+        transform              : translate(-50%,-50%);
+      }
+    }
+    &__btn-text {
+      display                  : none;
+      font-family              : rcl;
+      text-transform           : uppercase;
+      color                    : white;
+      letter-spacing           : 1px;
+      z-index                  : 1;
+    }
+    &__btn-splendour {
+      display                   : block;
+      height                    : 50px;
+      width                     : 1px;
+      position                  : absolute;
+      top                       : 50%;
+      left                      : 50%;
+      transform                 : translate(0, -50%) rotate(20deg);
+      background-color          : white;
+      z-index                   : 0;
+      box-shadow                : 0 0 6px 2px white;
+      animation-name            : splendourAnimation;
+      animation-duration        : 3s;
+      animation-iteration-count : infinite;
+    }
+  }
+  .right-part {
+    position                   : relative;
+    display                    : flex;
+    justify-content            : flex-end;
+    align-items                : center;
+    .header-greeting {
+      white-space              : nowrap;
+      color                    : lightskyblue;
+      display                  : none;
+    }
+    .header-titles {
+      display                  : block;
+      margin                   : 0 6px;
+      width                    : 1px;
+      color                    : transparent;
+    }
+    .menu {
+      position                 : absolute;
+      z-index                  : 8777;
+      top                      : 110%;
+      white-space              : nowrap;
+      width                    : auto;
+      background-color         : black;
+      padding                  : 0px 0px;
+      border                   : 0px solid darkgrey;
+      overflow                 : hidden;
+      height                   : 0px;
+      .menu-list-a {
+        display                : block;
+        color                  : $overColor;
+        height                 : 30px;
+        width                  : 100%;
+        position               : relative;
+        left                   : 100%;
+        line-height            : 30px;
+        padding                : 0px 10px;
+        transition             : background-color .5s;
+        cursor                 : pointer;
+        &:hover {
+          background-color     : $bgColor;
+          transition           : background-color .5s;
+        }
+      }
+    }
+    .call-us-btn {
+      background-color         : transparent;
+      border                   : 1px solid transparent;
+      padding                  : 0;
+      outline                  : none;
+      cursor                   : pointer;
+      position                 : relative;
+      top                      : 3px;
+      img {
+        height                 : 25px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .header {
+    padding                      : 10px 15px;
+    .logo_part {
+      img {
+        height                   : 36px;
+        &:first-of-type {
+          display                : block;
+        }
+        &:last-of-type {
+          display                : none;
+        }
+      }
+    }
+    .central-part {
+      &__account-type {
+        margin-bottom            : 6px;
+      }
+
+      &__btn {
+        img {
+          position               : relative;
+          top                    : 0px;
+          left                   : 0px;
+          transform              : none;
+        }
+      }
+      &__btn-text {
+        display                  : block;
+      }
+    }
+    .right-part {
+      .header-titles {
+        display                  : block;
+        margin                   : 0 6px;
+        width                    : auto;
+        color                    : white;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    .right-part {
+      .header-greeting {
+        display                  : block;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .header {
+    .logo_part {
+      width                      : 33.33%;
+    }
+    .central-part {
+      width                      : 33.33%;
+      &__account-type {
+        margin-bottom            : 6px;
+      }
+    }
+    .right-part {
+      width                      : 33.33%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .header {
+    height                       : 60px;
+    border-bottom                : 2px solid black;
+    font-size                    : 16px;
+    .central-part {
+      &__account-type {
+        margin-bottom            : 6px;
+      }
+      &__btn {
+        height                   : 36px;
+        img {
+          height                 : 25px;
+        }
+      }
+    }
+  }
+}
+/* ↑↑↑ /HEADER ↑↑↑ */

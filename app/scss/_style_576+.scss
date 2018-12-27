@@ -1,46 +1,4 @@
 @media screen and (min-width: 576px) and (min-height:660px) {
-  /* ↓↓↓ HEADER ↓↓↓ */
-  .header {
-    padding                      : 10px 15px;
-    .logo_part {
-      img {
-        height                   : 36px;
-        &:first-of-type {
-          display                : block;
-        }
-        &:last-of-type {
-          display                : none;
-        }
-      }
-    }
-    .central-part {
-      &__account-type {
-        margin-bottom            : 6px;
-      }
-
-      &__btn {
-        img {
-          position               : relative;
-          top                    : 0px;
-          left                   : 0px;
-          transform              : none;
-        }
-      }
-      &__btn-text {
-        display                  : block;
-      }
-    }
-    .right-part {
-      .header-titles {
-        display                  : block;
-        margin                   : 0 6px;
-        width                    : auto;
-        color                    : white;
-      }
-    }
-  }
-  /* ↑↑↑ /HEADER ↑↑↑ */
-
   /* ↓↓↓ MAIN PART ↓↓↓ */
   .main {
     /* ↓↓↓ SECTION 1 (work area) ↓↓↓ */
@@ -63,8 +21,6 @@
             margin               : 0 3px 3px 0;
           }
         }
-        .type-buttons-ul {
-        }
       }
     }
     #container {
@@ -73,19 +29,6 @@
 
     .slider-area {
       bottom                     : 80px;
-      .active-slider {
-        &__item {
-          max-width              : 360px;
-          min-width              : 360px;
-          padding                : 5px;
-          grid-template-columns  : 20px 1fr;
-          grid-column-gap        : 4px;
-        }
-        &__info {
-          top                    : 5px;
-          left                   : 29px;
-        }
-      }
     }
     .navigation {
       height             : 60px;

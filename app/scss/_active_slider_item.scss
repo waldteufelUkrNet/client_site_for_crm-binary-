@@ -1,0 +1,94 @@
+.active-slider {
+  &__item {
+    height                 : 160px;
+    max-width              : calc(100vw - 82px);
+    min-width              : calc(100vw - 82px);
+    border                 : 1px solid white;
+    border-radius          : 4px;
+    padding                : 1px;
+    display                : grid !important;
+    grid-template-columns  : 10px 1fr;
+    grid-column-gap        : 1px;
+    margin                 : 0 20px;
+    position               : relative;
+  }
+  &__item-timer-wrapper {
+    max-height             : 100%;
+    display                : flex;
+    flex-direction         : column;
+    justify-content        : start;
+    overflow               : hidden;
+    background-color       : rgba(0,0,0,.5);
+    border                 : 1px solid white;
+    border-radius          : 4px;
+    position               : relative;
+  }
+  &__time-candle-wrapper {
+    height                 : 186px;
+    width                  : 100%;
+    border-top             : 1px solid dodgerblue;
+    margin                 : 0 auto;
+    position               : absolute;
+    left                   : 0px;
+    bottom                 : 0px;
+    overflow               : hidden;
+  }
+  &__time-candle {
+    width                  : 100%;
+    height                 : 186px;
+    position               : absolute;
+    left                   : 0px;
+    bottom                 : 0px;
+    background-image       : linear-gradient( rgba(30, 144, 255, .1), rgba(30, 144, 255, .4), rgba(30, 144, 255, .9) );
+  }
+  &__item-graphic {
+    border                 : 1px solid white;
+    border-radius          : 4px;
+    overflow               : hidden;
+  }
+  &__info {
+    position               : absolute;
+    top                    : 1px;
+    left                   : 12px;
+    border                 : 1px solid white;
+    border-radius          : 4px 0 4px 0;
+    padding                : 3px;
+    background-color       : rgba(0,0,0,.5)
+  }
+  &__start-price {
+    font-size              : 12px;
+  }
+  &__current-price {
+    font-size              : 12px;
+    color                  : red;
+  }
+}
+@media screen and (min-width: 576px) {
+  .active-slider {
+    &__item {
+      max-width              : 360px;
+      min-width              : 360px;
+      padding                : 5px;
+      grid-template-columns  : 20px 1fr;
+      grid-column-gap        : 4px;
+    }
+    &__info {
+      top                    : 5px;
+      left                   : 29px;
+    }
+  }
+}
+@media only screen and (min-width: 1680px) {
+  .active-slider {
+    &__item {
+      height                 : 200px;
+      max-width              : 500px;
+      min-width              : 500px;
+      grid-template-columns  : 40px 1fr;
+    }
+    &__info {
+      left                   : 49px;
+      border-radius          : 4px;
+    }
+  }
+}
