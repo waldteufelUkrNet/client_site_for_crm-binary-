@@ -879,81 +879,82 @@ html(lang='en')
 
       // SECTION 3 (right column)
       section.right-column
-        .work-field-wrapper
-          .work-field
-            .trade-pair
-              input( type="hidden" id="currentStockPairId" value="2")
-              img.trade-pair__logo(src="img/BTCETH.png", alt="BTCETH.png")
-              h5.trade-pair__name BTC/ETH
-              p.trade-pair__description котировка: биткоин/тугрик
-              span#activeStatus.trade-pair__price(style='color: dodgerblue') ▲
-                span#activePairPrise(style='color: white') 12345.67890
+        .work-field-wrapper-scroll
+          .work-field-wrapper
+            .work-field
+              .trade-pair
+                input( type="hidden" id="currentStockPairId" value="2")
+                img.trade-pair__logo(src="img/BTCETH.png", alt="BTCETH.png")
+                h5.trade-pair__name BTC/ETH
+                p.trade-pair__description котировка: биткоин/тугрик
+                span#activeStatus.trade-pair__price(style='color: dodgerblue') ▲
+                  span#activePairPrise(style='color: white') 12345.67890
 
-            //- include BEM-blocks/tug-of-war/tug-of-war.pug
+              //- include BEM-blocks/tug-of-war/tug-of-war.pug
 
-            .investment-calculator
-              label(for='#investment-input') инвестиции:
-              input(id='investment-input' type='text' placeholder='инвестиции' value='25')
+              .investment-calculator
+                label(for='#investment-input') инвестиции:
+                input(id='investment-input' type='text' placeholder='инвестиции' value='25')
 
-              label(for='#investment-percent') доход, %:
-              span(id='investment-percent' type='text') 80
+                label(for='#investment-percent') доход, %:
+                span(id='investment-percent' type='text') 80
 
-              label(for='#investment-result') прибыль:
-              span(id='investment-result' type='text')
+                label(for='#investment-result') прибыль:
+                span(id='investment-result' type='text')
 
-            #UTC-datetimer-holder
-              span#UTC-datetimer-info Время UTC: &nbsp;
-              span#UTC-datetimer
+              #UTC-datetimer-holder
+                span#UTC-datetimer-info Время UTC: &nbsp;
+                span#UTC-datetimer
 
-            .parlay-slider-wrapper
-              .parlay-slider
+              .parlay-slider-wrapper
+                .parlay-slider
 
-                .parlay-slider__item(data-parlayType='short' data-parlayTypeForBackEnd='0')
-                  h5.parlay-slider__item-header Быстрые
-                  .parlay-slider__item-choice-field
-                    .parlay-slider__parlay-choise-btn-holder
-                      .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='30000') 30 секунд
-                      .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='60000') 1 минута
-                      .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='120000') 2 минуты
-                      .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='180000') 3 минуты
+                  .parlay-slider__item(data-parlayType='short' data-parlayTypeForBackEnd='0')
+                    h5.parlay-slider__item-header Быстрые
+                    .parlay-slider__item-choice-field
+                      .parlay-slider__parlay-choise-btn-holder
+                        .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='30000') 30 секунд
+                        .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='60000') 1 минута
+                        .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='120000') 2 минуты
+                        .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='180000') 3 минуты
 
-                .parlay-slider__item(data-parlayType='normal' data-parlayTypeForBackEnd='1')
-                  h5.parlay-slider__item-header Нормальные
-                  .parlay-slider__item-choice-field
-                    .parlay-slider__parlay-choise-btn-holder
+                  .parlay-slider__item(data-parlayType='normal' data-parlayTypeForBackEnd='1')
+                    h5.parlay-slider__item-header Нормальные
+                    .parlay-slider__item-choice-field
+                      .parlay-slider__parlay-choise-btn-holder
 
-                .parlay-slider__item(data-parlayType='long' data-parlayTypeForBackEnd='2')
-                  h5.parlay-slider__item-header Длинные
-                  .parlay-slider__item-choice-field
-                    .parlay-slider__parlay-choise-btn-holder
-                      .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='86400000') 1 сутки
-                      .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='432000000') 5 суток
-                      .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='864000000') 10 суток
-                      .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='1296000000') 15 суток
-                      .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='2592000000') 30 суток
-              .parlay-slider__reactivation-field
-                .parlay-slider__reactivation-field-btn обновить
-                  |
-                  |
-                  i.fas.fa-redo-alt
-              .parlay-btns__holder
-                .parlay-btns__btn.parlay-btns__btn_up(data-parlayAnticipation='up') Вверх
-                  |
-                  |
-                  i.fas.fa-angle-double-up
-                .parlay-btns__btn.parlay-btns__btn_down(data-parlayAnticipation='down')
-                  i.fas.fa-angle-double-down
-                  |
-                  | Вниз
-              .parlay-btns__cover
-                .parlay-btns__cover-left
-                .parlay-btns__cover-right
+                  .parlay-slider__item(data-parlayType='long' data-parlayTypeForBackEnd='2')
+                    h5.parlay-slider__item-header Длинные
+                    .parlay-slider__item-choice-field
+                      .parlay-slider__parlay-choise-btn-holder
+                        .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='86400000') 1 сутки
+                        .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='432000000') 5 суток
+                        .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='864000000') 10 суток
+                        .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='1296000000') 15 суток
+                        .parlay-slider__parlay-choise-btn(onclick='deActivationParlayBtns(this)' data-timeToEndInMS='2592000000') 30 суток
+                .parlay-slider__reactivation-field
+                  .parlay-slider__reactivation-field-btn обновить
+                    |
+                    |
+                    i.fas.fa-redo-alt
+                .parlay-btns__holder
+                  .parlay-btns__btn.parlay-btns__btn_up(data-parlayAnticipation='up') Вверх
+                    |
+                    |
+                    i.fas.fa-angle-double-up
+                  .parlay-btns__btn.parlay-btns__btn_down(data-parlayAnticipation='down')
+                    i.fas.fa-angle-double-down
+                    |
+                    | Вниз
+                .parlay-btns__cover
+                  .parlay-btns__cover-left
+                  .parlay-btns__cover-right
 
-          .slider-change-btn-holder
-            .slider-change-btn.active-slider-btn.slider-change-btn_active Активные сделки
-            .slider-change-btn.history-slider-btn История сделок
-            .slider-change-btn.deposit-slider-btn История депозитов
-            .slider-change-btn.withdrawal-slider-btn История выводов
+            .slider-change-btn-holder
+              .slider-change-btn.active-slider-btn.slider-change-btn_active Активные сделки
+              .slider-change-btn.history-slider-btn История сделок
+              .slider-change-btn.deposit-slider-btn История депозитов
+              .slider-change-btn.withdrawal-slider-btn История выводов
 
       // /SECTION 3
 

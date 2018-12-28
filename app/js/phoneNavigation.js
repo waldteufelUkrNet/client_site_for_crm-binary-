@@ -3,8 +3,9 @@
 var isNavigationOpen = false;
 $('.navigation__btn').click(function() {
   if (!isNavigationOpen) {
-    if ( $('body').width() < 576 || $('body').width() > 320 && $('body').width() < 992 && $('body').height() > 590 && $('body').height() < 660
-                                 || $('body').width() > 992 && $('body').height() > 590 && $('body').height() < 600 ) {
+    // if ( $('body').width() < 576 || $('body').width() > 320 && $('body').width() < 992 && $('body').height() > 590 && $('body').height() < 660
+    //                              || $('body').width() > 992 && $('body').height() > 590 && $('body').height() < 600 ) {
+    if ( $('body').width() < 576 ) {
       $('.navigation').css('height', '170px');
     } else {
       $('.navigation').css('height', '240px');

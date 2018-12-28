@@ -296,7 +296,7 @@
         position                 : relative;
         &__item {
           text-align             : center;
-          height                 : calc(100vh - 220px);
+          height                 : calc(100vh - 230px);
         }
         &__item-header {
           text-transform         : uppercase;
@@ -400,8 +400,11 @@
       border-bottom             : 1px solid black;
       transition                : right .3s;
       overflow                  : hidden;
+      .work-field-wrapper-scroll {
+        overflow                : hidden;
+      }
       .work-field-wrapper {
-        max-height              : calc(100vh - 220px);
+        max-height              : calc(100vh - 230px);
         overflow                : hidden;
         overflow-y              : auto;
       }
