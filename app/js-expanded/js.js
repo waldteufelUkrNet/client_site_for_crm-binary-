@@ -154,13 +154,11 @@ rewriteParlayLists();
 
 // оновлення списку ставок при кліку на стрілки слайдера ставок
 $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
-  console.log('click on parlay-slider arrows');
   rewriteParlayLists();
 });
 
 // оновлення списку ставок при свайпі
 $('.parlay-slider').on('swipe', function(event, slick, direction){
-  console.log('swipe parlay-slider');
   rewriteParlayLists();
 });
 
@@ -170,6 +168,152 @@ $('.parlay-slider').on('swipe', function(event, slick, direction){
 // клік на кнопки ВГОРУ/ВНИЗ
 $('.parlay-btns__btn').click(function () {
   console.log('click on up/down-btns');
+
+  // підготовка даних для попапу-підтвердження ставки та створення ставки
+  var parlayAnticipation   = $(this).attr('data-parlayAnticipation');                                            // очікування     : up/down
+  var parlayInvestment     = +$('#investment-input').val();                                                      // розмір ставки  : 25
+      parlayType           = $($('.parlay-slider').find('.slick-current')[0]).attr('data-parlayType');           // тип ставки     : short/normal/long
+  var parlayTypeForBackEnd = $($('.parlay-slider').find('.slick-current')[0]).attr('data-parlayTypeForBackEnd'); // тип ставки     : 0/1/2
+  var parlayPairName       = $('.trade-pair__name').text();                                                      // назва пари     : BTC/ETH
+  var parlayPairId         = $('#currentStockPairId').val();                                                     // ід. номер пари : 1
+
+  var parlayAnticipationForPopup,                                                                                // очікування     : up/down/вверх/вниз
+      parlayAnticipationForBackEnd,                                                                              // очікування     : true/false
+      parlayAnticipationForFontAwesome;                                                                          // очікування     : html
+  if (parlayAnticipation == 'up') {
+    parlayAnticipationForBackEnd = true;
+    parlayAnticipationForFontAwesome = 'class="fas fa-angle-double-up" style="color:dodgerblue"';
+    if ($('#language-span').text().toLowerCase() == 'язык:') {
+      parlayAnticipationForPopup = 'вверх'
+    } else {
+      parlayAnticipationForPopup = 'up'
+    }
+  } else {
+    parlayAnticipationForBackEnd = false;
+    parlayAnticipationForFontAwesome = 'class="fas fa-angle-double-down" style="color:red"';
+    if ($('#language-span').text().toLowerCase() == 'язык:') {
+      parlayAnticipationForPopup = 'вниз'
+    } else {
+      parlayAnticipationForPopup = 'down'
+    }
+  }
+
+  var highlightingEl;
+  var tempArr = $('.parlay-slider__parlay-choise-btn');
+  for (var i = 0; i < tempArr.length; i++) {
+    if ($(tempArr[i]).css('background-color') == 'rgba(0, 0, 0, 0.3)') {
+      highlightingEl = tempArr[i];
+      var parlayTimeAsString = $(highlightingEl).text();                                                         // час закриття у формі рядка
+      if ($(highlightingEl).attr('data-timeToEndInMS')) {
+        parlayTime = +$(highlightingEl).attr('data-timeToEndInMS');                                              // час до закриття ставки у мілісекундах
+      } else if ($(highlightingEl).attr('data-timeToEnd')) {
+        parlayTime = $(highlightingEl).attr('data-timeToEnd');
+
+        var UTCDate = new Date();
+        UTCDate = UTCDate.setHours(UTCDate.getUTCHours());
+
+        parlayTime = new Date(parlayTime.slice(0, 4),                                                            // час до закриття ставки у мілісекундах
+                              parlayTime.slice(5, 7) - 1,
+                              parlayTime.slice(8, 10),
+                              parlayTime.slice(11, 13),
+                              parlayTime.slice(14, 16)) - UTCDate;
+      }
+    }
+  }
+
+  console.log("parlayInvestment                 :", parlayInvestment);
+  console.log("parlayPairName                   :", parlayPairName);
+  console.log("parlayPairId                     :", parlayPairId);
+  console.log("==================================");
+
+  console.log("parlayType                       :", parlayType);
+  console.log("parlayTypeForBackEnd             :", parlayTypeForBackEnd);
+  console.log("==================================");
+
+  console.log("parlayAnticipation               :", parlayAnticipation);
+  console.log("parlayAnticipationForPopup       :", parlayAnticipationForPopup);
+  console.log("parlayAnticipationForBackEnd     :", parlayAnticipationForBackEnd);
+  console.log("parlayAnticipationForFontAwesome :", parlayAnticipationForFontAwesome);
+  console.log("==================================");
+
+  console.log("parlayTime                       :", parlayTime);
+  console.log("parlayTimeAsString               :", parlayTimeAsString);
+
+  // заповнення полів попапа-підтвердження
+  $('#tradePair').text(parlayPairName);
+  $('#tradeSumm').text(parlayInvestment);
+  $('#tradeTime').text(parlayTimeAsString);
+  $('#tradeParlay').text(parlayAnticipationForPopup);
+
+  // відкриття попапа
+  $('.parlay-confirmation__positioning-wrapper').css({ 'zIndex': '8888', 'background-color': 'rgba(0,0,0,.8)' });
+  $('.parlay-confirmation').css({ 'left': '0%' });
+
+  // закриття попапа
+  $('.parlay-confirmation__btn-no, .parlay-confirmation__close-btn').click(function () {
+    closeParlayConfirmationPopup()
+  });
+
+  // таймер на самозакриття попапа
+  var parlayConfirmationCount = 11;
+  var parlayConfirmationInterval = setInterval(function(){
+    if (parlayConfirmationCount > 1) {
+      parlayConfirmationCount -= 1;
+      $('.parlay-confirmation__timer').text(parlayConfirmationCount);
+    } else {
+      closeParlayConfirmationPopup();
+    }
+  },1000);
+
+  // відправка даних на сервер для формування ставки
+  $('.parlay-confirmation__btn-yes').click(function () {
+
+    var dat = {
+      idStock    : parlayPairId,
+      timeOrder  : parlayTime,
+      typeOrder  : parlayAnticipationForBackEnd,
+      invest     : parlayInvestment,
+      classOrder : parlayTypeForBackEnd
+    }
+
+    $.ajax({
+      url: "/Order/OpenOrder",
+      type: "POST",
+      data: dat,
+      success: function (data) {
+        // тут возвращаем попап об ошибке
+        console.log(data);
+      }
+    });
+
+    // тут створюємо ставку - код в testJs.js
+
+    closeParlayConfirmationPopup()
+  });
+
+  function closeParlayConfirmationPopup() {
+    $('.parlay-confirmation__timer').text('');
+    clearInterval(parlayConfirmationInterval);
+
+    $('.parlay-confirmation').css({ 'left': '110%' });
+    var tempParlayConfirmationWidth   = $('.parlay-confirmation__holder').css('width');
+    var tempParlayConfirmationPadding = $('.parlay-confirmation__holder').css('padding-left');
+    setTimeout(function () {
+      $('.parlay-confirmation__holder').css({ 'width': '0px', 'padding': '0px' });
+      $('.parlay-confirmation__positioning-wrapper').css({ 'zIndex': '-1', 'background-color': 'rgba(0,0,0,0)' });
+      $('.parlay-confirmation').css({ 'left': '-110%' });
+    }, 500);
+    setTimeout(function () {
+      $('.parlay-confirmation__holder').css({ 'width': tempParlayConfirmationWidth, 'padding': tempParlayConfirmationPadding });
+    }, 1000);
+  }
+
+
+  parlayTime = 0;
+  $('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
+  $('.parlay-btns__cover').css('display', 'flex');
+  $('#investment-input').val('25');
+
 });
 /* ↑↑↑ /БЛОК ВИБОРУ СТАВОК ↑↑↑ */
 
@@ -208,7 +352,7 @@ function rewriteParlayLists() {
   // перевірка роботи біржі по конкретній парі
   breakInTrade = $('#currentStockPairId').attr('data-break');
   if ( breakInTrade == 1 ) {
-    console.log('повідомлення: біржа не працює');
+    console.log('повідомлення: біржа не працює(breakInTrade)');
   } else if ( breakInTrade == 0 ) {
     pairType   = $('#currentStockPairId').attr('data-typestock');
     parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType') || 'short';
@@ -218,34 +362,109 @@ function rewriteParlayLists() {
     // console.log("parlayType :", parlayType);
 
     if ( pairType == 0 ) {
-      // 0 - валюта
+    // 0 - валюта
       // перевірка на вихідні: п'ятниця 21:30 - неділя 21:30
-      // doSomething();
+      // 21:30 = 21 * 60 + 30 = 1290
+      var weekday           = timeHandler(time).wdUTC,
+          tempTimeInMinutes = timeHandler(time).hhUTC*60 + timeHandler(time).mn;
 
-      // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
-
+      if ( weekday == 5 && tempTimeInMinutes >= 1285 || // -5хв - для запасу на короткі ставки
+           weekday == 6 ||
+           weekday == 0 && tempTimeInMinutes <= 1290 ) {
+        console.log('повідомлення: у валютних пар вихідні: п\'ятниця 21:30 - неділя 21:30');
+      } else {
+        // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
+        if ( parlayType  == 'short' ) {
+          rewriteShortParlayList ()
+        } else if ( parlayType  == 'normal' ) {
+          var startTime  = timeHandler(time).hh_mmUTC;
+          if ( weekday <= 0 && weekday >= 4 ) {
+            var finishTime = '24:00';
+          } else {
+            var finishTime = '21:30';
+          }
+          rewriteNormalParlayList (startTime, finishTime)
+        } else if ( parlayType  == 'long' ) {
+          rewriteLongParlayList ()
+        }
+      }
     } else if ( pairType == 1 ) {
-      // 1 - акції
-      // перевірка на вихідні: святкові дні в США, субота та неділя - вихідні, робота: пн-пт, з 13:30 до 20:00 по UTC
-      // doSomething();
+    // 1 - акції
+
+      // перевірка на вихідні (субота та неділя)
+      var weekday = timeHandler(time).wdUTC;
+      if ( weekday == 6 || weekday == 0 ) {
+        console.log('повідомлення: біржа не працює (субота, неділя)');
+        // відновлення інтервалу
+        timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, 30000);
+        return
+      }
+
+      // перевірка на робочий час (13:30 - 20:00 по UTC)
+      // 13:30 = 13 * 60 + 30 = 810;
+      // 20:00 = 20 * 60 = 1200;
+      var tempTimeInMinutes = timeHandler(time).hhUTC * 60 + timeHandler(time).mn;
+      if ( tempTimeInMinutes < 810 || tempTimeInMinutes > 1195 ) { // -5хв - для запасу на короткі ставки
+        console.log('повідомлення: біржа не працює (не робочий час)');
+        // відновлення інтервалу
+        timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, 30000);
+        return
+      }
+
+      // перевірка на державні святкові дні в США
+      var tempDate = timeHandler(time).yyyy_mm_ddUTC;
+      if ( isFeastDayInUSA('tempDate') ) {
+        console.log('повідомлення: біржа не працює (вихідний день в США)');
+        // відновлення інтервалу
+        timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, 30000);
+        return
+      }
 
       // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
-
+      if ( parlayType  == 'short' ) {
+        rewriteShortParlayList ()
+      } else if ( parlayType  == 'normal' ) {
+        var startTime  = timeHandler(time).hh_mmUTC;
+        var finishTime = '20:00';
+        rewriteNormalParlayList (startTime, finishTime)
+      } else if ( parlayType  == 'long' ) {
+        rewriteLongParlayList ()
+      }
     } else if ( pairType == 2 ) {
-      // 2 - товари
+    // 2 - товари
       // перевірка на вихідні: п'ятниця 21:30 - неділя 21:30
-      // doSomething();
+      // 21:30 = 21 * 60 + 30 = 1290
+      var weekday           = timeHandler(time).wdUTC,
+          tempTimeInMinutes = timeHandler(time).hhUTC*60 + timeHandler(time).mn;
 
-      // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
-
+      if ( weekday == 5 && tempTimeInMinutes >= 1285 || // -5хв - для запасу на короткі ставки
+           weekday == 6 ||
+           weekday == 0 && tempTimeInMinutes <= 1290 ) {
+        console.log('повідомлення: у валютних пар вихідні: п\'ятниця 21:30 - неділя 21:30');
+      } else {
+        // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
+        if ( parlayType  == 'short' ) {
+          rewriteShortParlayList ()
+        } else if ( parlayType  == 'normal' ) {
+          var startTime  = timeHandler(time).hh_mmUTC;
+          if ( weekday <= 0 && weekday >= 4 ) {
+            var finishTime = '24:00';
+          } else {
+            var finishTime = '21:30';
+          }
+          rewriteNormalParlayList (startTime, finishTime)
+        } else if ( parlayType  == 'long' ) {
+          rewriteLongParlayList ()
+        }
+      }
     } else if ( pairType == 3 ) {
-      // 3 - криптовалюта
+    // 3 - криптовалюта
       // перевірка на вихідні: працюють безперервно
       // у залежності від типу ставки (short/normal/long) побудувати список ставок
       if ( parlayType  == 'short' ) {
         rewriteShortParlayList ()
       } else if ( parlayType  == 'normal' ) {
-        var startTime  = timeHandler().hh_mmUTC,
+        var startTime  = timeHandler(time).hh_mmUTC,
             finishTime = '24:00';
         rewriteNormalParlayList (startTime, finishTime)
       } else if ( parlayType  == 'long' ) {
@@ -255,7 +474,7 @@ function rewriteParlayLists() {
   }
 
   // відновлення інтервалу
-  timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, 10000);
+  timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, 30000);
 }
 
 function rewriteShortParlayList () {
@@ -280,15 +499,16 @@ function rewriteShortParlayList () {
                                                               ');
   }
 
-  // навішування підсвітки на елементи при hover
+  // навішування hover-ефекту
   $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn').hover(function(e){
-    $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
-    $(this).css('background-color', 'rgba(0, 0, 0, 0.3)');
+    $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn').css({'transition':'letter-spacing .5s','letter-spacing':'0px'});
+    $(this).css('letter-spacing', '1px');
   });
 }
 
 function rewriteNormalParlayList (start, finish) {
 // створює список нормальних ставок - від поточного часу до 24:00 (для акцій - до 20:00) з інтервалом 30хв
+// для запасу міцності: закінчення останньої ставки - за півгодини до закриття (тобто 23:30 та 19:30 відповідно)
   var tempTimeString; // зміна у форматі yyyy-mm-dd hh:mn для створення елемену ставки
 
   // видалення попередньо створеного списку
@@ -303,8 +523,8 @@ function rewriteNormalParlayList (start, finish) {
   var tempStartTimeInMinutes  = tempStartTimeUTCHours * 60 + tempStartTimeUTCMinutes,
       tempFinishTimeInMinutes = tempFinishTimeUTCHours * 60 + tempFinishTimeUTCMinutes;
 
-  // визначення, чи ставки можливі впринципі (мінімум 5хв до 24:00 (для акцій - до 20:00) )
-  if ( tempFinishTimeInMinutes - 5 < tempStartTimeInMinutes ) return;
+  // визначення, чи ставки можливі впринципі (мінімум 35хв до 24:00 (для акцій - до 20:00) )
+  if ( tempFinishTimeInMinutes - 35 <= tempStartTimeInMinutes ) return;
 
   // округлення часу першої можливої ставки до 00хв або 30хв
   if (25 <= tempStartTimeUTCMinutes && tempStartTimeUTCMinutes < 55) {
@@ -343,11 +563,11 @@ function rewriteNormalParlayList (start, finish) {
     tempStartTimeUTCMinutes = tempStartTimeInMinutes - tempStartTimeUTCHours*60;
   }
 
-  // навішування підсвітки на елементи при hover
+  // навішування hover-ефекту
   $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn').hover(function(e){
-    $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
-    $(this).css('background-color', 'rgba(0, 0, 0, 0.3)');
-  });
+    $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn').css({'transition':'letter-spacing .5s','letter-spacing':'0px'});
+    $(this).css('letter-spacing', '1px');
+  })
 }
 
 function rewriteLongParlayList () {
@@ -360,6 +580,13 @@ function rewriteLongParlayList () {
   for (var i = 0; i < 31; i++) {
     startTime.setUTCDate(startTime.getUTCDate() + 1);
 
+    // додаткова перевірка для акцій
+    if ( pairType == 1 ) {
+      var weekday = timeHandler(startTime).wdUTC;
+      if ( weekday == 6 || weekday == 0 ) continue;
+      if ( isFeastDayInUSA( timeHandler(startTime).yyyy_mm_ddUTC ) ) continue;
+    }
+
     $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
                                                      .append('<div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="'
                                                               + timeToEndInMS + '">'
@@ -367,15 +594,15 @@ function rewriteLongParlayList () {
     timeToEndInMS += timeToEndInMS;
   }
 
-  // навішування підсвітки на елементи при hover
+  // навішування hover-ефекту
   $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn').hover(function(e){
-    $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
-    $(this).css('background-color', 'rgba(0, 0, 0, 0.3)');
-  });
+    $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn').css({'transition':'letter-spacing .5s','letter-spacing':'0px'});
+    $(this).css('letter-spacing', '1px');
+  })
 }
 
 function clickOnParlayTimeButtons(elem) {
-// що робить функція?
+// підсвічує обраний час, викликає ф-ю активації кнопок ВВЕРХ/ВНИЗ
   // зупинка інтервалу
   clearInterval(timerForListBuilding);
 
@@ -383,13 +610,30 @@ function clickOnParlayTimeButtons(elem) {
   $('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
   $(elem).css('background-color', 'rgba(0, 0, 0, 0.3)');
 
-// як це деактивовувати? в реврайт на початку міняти прапор?
   // позначення того, що час ставки обрано і можна активувати кнопки ВВЕРХ/ВНИЗ
   flagIsTradingPossible_selectedTime = true;
   deActivationParlayBtns();
 
   // відновлення інтервалу
-  timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, 10000);
+  timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, 30000);
+}
+
+function isFeastDayInUSA(date) {
+// перевіряє, чи є вказаний день святковим в США: 1 - святковий, 0 - не святковий
+  var url = 'https://central.investingcase.com/api/Hol/GetDate?value=' + date;
+  var ansver;
+  $.ajax({
+      url     : url,
+      async   : false,
+      success : function (data) {
+                  if (data == 1) {        // святковий день
+                    ansver = true;
+                  } else if (data == 0) { // не святковий день
+                    ansver = false;
+                  }
+                }
+  });
+  return ansver
 }
 
 function timeHandler(time) {
@@ -461,6 +705,8 @@ function getChar(event) {
 
 
 
+
+
 // var parlayBtnInnerHTML;
 // $('.parlay-slider__parlay-choise-btn').click(function() {
 //     parlayBtnInnerHTML = $(this).text();
@@ -470,37 +716,12 @@ function getChar(event) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-// /* ↓↓↓ create active-slider-item ↓↓↓ */
 // $('.parlay-btns__btn').click(function () {
 //   console.log('click on up/down-btns');
 
@@ -649,7 +870,6 @@ function getChar(event) {
 //   $('.parlay-btns__cover').css('display', 'flex');
 //   $('#investment-input').val('25');
 // });
-// /* ↑↑↑ /create active-slider-item ↑↑↑ */
 
 
 
