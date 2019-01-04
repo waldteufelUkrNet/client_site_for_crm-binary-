@@ -6,6 +6,7 @@ var parlayType,                                    // short/normal/long
     deactivationTimer,                             // таймер для деактивації списків можливих ставок
     flagIsTradingPossible_investmentInput = false, // мінімальна ставка більше 5
     flagIsTradingPossible_selectedTime    = false, // вибрано час ставки
+    timerForListBuilding,                          // інтервал для оновлення списків ставок
     flag;                                          // визначає, чи був клік на пару
 
 var exchangeDontWork = [
@@ -72,6 +73,7 @@ $('.slider-change-btn').click(function () {
 var inputValue   = +$('#investment-input').val(),
     percentValue = +$('#investment-percent').text();
 $('#investment-result').text( inputValue * percentValue/100 + inputValue );
+flagIsTradingPossible_investmentInput = true;
 
 // обрахунок прибутку при клацанні по полю + активація/деактивація кнопок ставок
 $('#investment-input').bind('keypress keyup blur', function (e) {
@@ -148,7 +150,7 @@ setInterval(function () {
 rewriteParlayLists();
 
 // періодичне оновлення списку ставок
-var timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, 30000);
+// setInterval(function(){ rewriteParlayLists() }, 310000) перенесено в rewriteParlayLists() та інші функції;
 
 // оновлення списку ставок при кліку на стрілки слайдера ставок
 $( $('.parlay-slider').children('.slick-arrow') ).click(function(){
@@ -163,9 +165,7 @@ $('.parlay-slider').on('swipe', function(event, slick, direction){
 });
 
 // вибір часу ставки
-$('.parlay-slider__parlay-choise-btn').click(function() {
-  console.log('click on time-buttons');
-});
+// клік на .parlay-slider__parlay-choise-btn викликає ф-ю clickOnParlayTimeButtons(this) - прописано в html
 
 // клік на кнопки ВГОРУ/ВНИЗ
 $('.parlay-btns__btn').click(function () {
@@ -188,61 +188,74 @@ function deActivationParlayBtns() {
   }
 }
 function rewriteParlayLists() {
+// призупиняє setInterval, який викликає цю функцію
+// визначає, чи біржа активна
+// breakInTrade = $('#currentStockPairId').attr('data-break'); // 0 - біржа активна, 1 - перерва у вибраної пари
 // визначає, чим є поточна торгова пара (валюта/акції/товари/криптовалюта)
 // pairType = $('#currentStockPairId').attr('data-typestock'); 0 - валюта, 1 - акції, 2 - товари, 3 - криптовалюта
 // визначає тип ставок ('short'/'normal'/'long')
 // parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
-// breakInTrade = $('#currentStockPairId').attr('data-break'); // 0 - біржа активна, 1 - перерва у вибраної пари
 // перевіряє на вихідні і не робочі дні та години, якщо робочі - будує список
+// запускає setInterval
 
-  pairType   = $('#currentStockPairId').attr('data-typestock') || 0;
-  parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType') || 'short';
-  var time   = new Date();
+  // зупинка інтервалу
+  clearInterval(timerForListBuilding);
 
-  var temp = timeHandler(time);
-  console.log("temp", temp);
+  // деактивація кнопок ВГОРУ/ВНИЗ
+  flagIsTradingPossible_selectedTime = false;
+  deActivationParlayBtns();
 
-pairType = 3;
+  // перевірка роботи біржі по конкретній парі
+  breakInTrade = $('#currentStockPairId').attr('data-break');
+  if ( breakInTrade == 1 ) {
+    console.log('повідомлення: біржа не працює');
+  } else if ( breakInTrade == 0 ) {
+    pairType   = $('#currentStockPairId').attr('data-typestock');
+    parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType') || 'short';
+    var time   = new Date();
 
-  console.log("pairType   :", pairType);
-  console.log("parlayType :", parlayType);
+    // console.log("pairType   :", pairType);
+    // console.log("parlayType :", parlayType);
 
-  if ( pairType == 0 ) {
-    // 0 - валюта
-    // перевірка на вихідні: п'ятниця 21:30 - неділя 21:30
-    // doSomething();
+    if ( pairType == 0 ) {
+      // 0 - валюта
+      // перевірка на вихідні: п'ятниця 21:30 - неділя 21:30
+      // doSomething();
 
-    // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
+      // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
 
-  } else if ( pairType == 1 ) {
-    // 1 - акції
-    // перевірка на вихідні: святкові дні в США, субота та неділя - вихідні, робота: пн-пт, з 13:30 до 20:00 по UTC
-    // doSomething();
+    } else if ( pairType == 1 ) {
+      // 1 - акції
+      // перевірка на вихідні: святкові дні в США, субота та неділя - вихідні, робота: пн-пт, з 13:30 до 20:00 по UTC
+      // doSomething();
 
-    // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
+      // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
 
-  } else if ( pairType == 2 ) {
-    // 2 - товари
-    // перевірка на вихідні: п'ятниця 21:30 - неділя 21:30
-    // doSomething();
+    } else if ( pairType == 2 ) {
+      // 2 - товари
+      // перевірка на вихідні: п'ятниця 21:30 - неділя 21:30
+      // doSomething();
 
-    // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
+      // якщо робочий час - у залежності від типу ставки (short/normal/long) побудувати список ставок
 
-  } else if ( pairType == 3 ) {
-    // 3 - криптовалюта
-    // перевірка на вихідні: працюють безперервно
-    // у залежності від типу ставки (short/normal/long) побудувати список ставок
-    if ( parlayType  == 'short' ) {
-      rewriteShortParlayList ()
-    } else if ( parlayType  == 'normal' ) {
-      // від поточного часу до 24:00
-      // startTime  = time.getUTCHour + ':' + tempUTCMinutes;
-      // finishTime = '20:00';
-      rewriteNormalParlayList (startTime, finishTime)
-    } else if ( parlayType  == 'long' ) {
-
+    } else if ( pairType == 3 ) {
+      // 3 - криптовалюта
+      // перевірка на вихідні: працюють безперервно
+      // у залежності від типу ставки (short/normal/long) побудувати список ставок
+      if ( parlayType  == 'short' ) {
+        rewriteShortParlayList ()
+      } else if ( parlayType  == 'normal' ) {
+        var startTime  = timeHandler().hh_mmUTC,
+            finishTime = '24:00';
+        rewriteNormalParlayList (startTime, finishTime)
+      } else if ( parlayType  == 'long' ) {
+        rewriteLongParlayList ()
+      }
     }
   }
+
+  // відновлення інтервалу
+  timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, 10000);
 }
 
 function rewriteShortParlayList () {
@@ -253,35 +266,130 @@ function rewriteShortParlayList () {
   // створення нового списку
   if ($('#language-span').text().toLowerCase() == 'язык:') {
     $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
-                                                      .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
-                                                               <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 минута</div>\
-                                                               <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
-                                                               <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
+                                                      .append('<div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="30000"> 30 секунд</div>\
+                                                               <div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="60000"> 1 минута</div>\
+                                                               <div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="120000"> 2 минуты</div>\
+                                                               <div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="180000"> 3 минуты</div>\
                                                               ');
   } else {
     $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn-holder')
-                                                      .append('<div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
-                                                               <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000"> 1 minute</div>\
-                                                               <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000"> 2 minutes</div>\
-                                                               <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
+                                                      .append('<div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="30000"> 30 seconds</div>\
+                                                               <div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="60000"> 1 minute</div>\
+                                                               <div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="120000"> 2 minutes</div>\
+                                                               <div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="180000"> 3 minutes</div>\
                                                               ');
   }
+
+  // навішування підсвітки на елементи при hover
+  $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn').hover(function(e){
+    $('.parlay-slider__item[data-parlayType="short"]').find('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
+    $(this).css('background-color', 'rgba(0, 0, 0, 0.3)');
+  });
 }
 
-function rewriteNormalParlayList (start, end) {
+function rewriteNormalParlayList (start, finish) {
 // створює список нормальних ставок - від поточного часу до 24:00 (для акцій - до 20:00) з інтервалом 30хв
+  var tempTimeString; // зміна у форматі yyyy-mm-dd hh:mn для створення елемену ставки
+
   // видалення попередньо створеного списку
   $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
 
-  // створення нового списку
+  // розібрати рядки startTime / finishTime
+  var tempStartTimeUTCHours    = +start.slice(0, 2),
+      tempStartTimeUTCMinutes  = +start.slice(3),
+      tempFinishTimeUTCHours   = +finish.slice(0, 2),
+      tempFinishTimeUTCMinutes = +finish.slice(3);
+
+  var tempStartTimeInMinutes  = tempStartTimeUTCHours * 60 + tempStartTimeUTCMinutes,
+      tempFinishTimeInMinutes = tempFinishTimeUTCHours * 60 + tempFinishTimeUTCMinutes;
+
+  // визначення, чи ставки можливі впринципі (мінімум 5хв до 24:00 (для акцій - до 20:00) )
+  if ( tempFinishTimeInMinutes - 5 < tempStartTimeInMinutes ) return;
+
+  // округлення часу першої можливої ставки до 00хв або 30хв
+  if (25 <= tempStartTimeUTCMinutes && tempStartTimeUTCMinutes < 55) {
+    // оркуглити до 00, додати 1 годину
+    tempStartTimeUTCHours   = +tempStartTimeUTCHours + 1;
+    if ( tempStartTimeUTCHours < 10 ) tempStartTimeUTCHours = '0' + tempStartTimeUTCHours;
+    tempStartTimeUTCMinutes = '00';
+  } else if (0 <= tempStartTimeUTCMinutes && tempStartTimeUTCMinutes < 25) {
+    // оркуглити до 30
+    tempStartTimeUTCMinutes = '30';
+  } else if (55 <= tempStartTimeUTCMinutes && tempStartTimeUTCMinutes <= 59) {
+    // округлити до 30, додати годину
+    tempStartTimeUTCHours   = +tempStartTimeUTCHours + 1;
+    if ( tempStartTimeUTCHours < 10 ) tempStartTimeUTCHours = '0' + tempStartTimeUTCHours;
+    tempStartTimeUTCMinutes = '30';
+  }
+
+  // створення першої ставки і далі створення в циклі нового списку
+  while ( tempFinishTimeInMinutes > tempStartTimeInMinutes ) {
+    if (tempStartTimeUTCHours < 10) tempStartTimeUTCHours = '0' + tempStartTimeUTCHours;
+    if ( tempStartTimeUTCMinutes == 0 ) {
+      tempStartTimeUTCMinutes = '00'
+    }
+
+    tempTimeString = timeHandler().yyyy_mm_ddUTC + ' ' + tempStartTimeUTCHours + ':' + tempStartTimeUTCMinutes;
+    $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
+                                                       .children('.parlay-slider__parlay-choise-btn-holder')
+                                                       .append('<div class="parlay-slider__parlay-choise-btn" data-timeToEnd="'
+                                                                + tempTimeString +
+                                                                ' " onclick="clickOnParlayTimeButtons(this)">'
+                                                                + tempTimeString +
+                                                                '</div>');
+    // збільшуємо час на 30хв
+    tempStartTimeInMinutes  = tempStartTimeUTCHours * 60 + +tempStartTimeUTCMinutes + 30;
+    tempStartTimeUTCHours   = Math.floor(tempStartTimeInMinutes/60);
+    tempStartTimeUTCMinutes = tempStartTimeInMinutes - tempStartTimeUTCHours*60;
+  }
+
+  // навішування підсвітки на елементи при hover
+  $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn').hover(function(e){
+    $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
+    $(this).css('background-color', 'rgba(0, 0, 0, 0.3)');
+  });
 }
 
 function rewriteLongParlayList () {
 // створює список довгих ставок
   // видалення попередньо створеного списку
   $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-
+  var startTime     = new Date(),
+      timeToEndInMS = 86400000; // 24*60*60*1000
   // створення нового списку
+  for (var i = 0; i < 31; i++) {
+    startTime.setUTCDate(startTime.getUTCDate() + 1);
+
+    $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
+                                                     .append('<div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="'
+                                                              + timeToEndInMS + '">'
+                                                              + timeHandler(startTime).yyyy_mm_dd_hh_mnUTC + '</div>');
+    timeToEndInMS += timeToEndInMS;
+  }
+
+  // навішування підсвітки на елементи при hover
+  $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn').hover(function(e){
+    $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
+    $(this).css('background-color', 'rgba(0, 0, 0, 0.3)');
+  });
+}
+
+function clickOnParlayTimeButtons(elem) {
+// що робить функція?
+  // зупинка інтервалу
+  clearInterval(timerForListBuilding);
+
+  // підсвітка вибраного часу
+  $('.parlay-slider__parlay-choise-btn').css('background-color', 'transparent');
+  $(elem).css('background-color', 'rgba(0, 0, 0, 0.3)');
+
+// як це деактивовувати? в реврайт на початку міняти прапор?
+  // позначення того, що час ставки обрано і можна активувати кнопки ВВЕРХ/ВНИЗ
+  flagIsTradingPossible_selectedTime = true;
+  deActivationParlayBtns();
+
+  // відновлення інтервалу
+  timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, 10000);
 }
 
 function timeHandler(time) {
@@ -289,12 +397,9 @@ function timeHandler(time) {
 // та повертає об'єкт з різними форматами часу та його компонентами
   if (!time) {
     var time = new Date();
-    console.log("time-time", time);
   } else {
     var time = time;
-    console.log("time-arg", time);
   }
-
 
   var timeObj     = {};
   timeObj.yyyy    = time.getFullYear();                   // повний рік
@@ -308,7 +413,7 @@ function timeHandler(time) {
   timeObj.ms      = time.getMilliseconds();               // мілісекунди
   timeObj.yyyyUTC = time.getUTCFullYear();                // повний рік (UTC)
   timeObj.yyUTC   = +timeObj.yyyyUTC.toString().slice(2); // скорочений рік (UTC)
-  timeObj.mmUTC   = time.getUTCMonth(); + 1;              // місяць 1 - 12 (UTC)
+  timeObj.mmUTC   = time.getUTCMonth() + 1;               // місяць 1 - 12 (UTC)
   timeObj.ddUTC   = time.getUTCDate();                    // число (UTC)
   timeObj.wdUTC   = time.getUTCDay();                     // день тижня 0 - неділя, 6 - субота (UTC)
   timeObj.hhUTC   = time.getUTCHours();                   // години (UTC)
@@ -325,6 +430,18 @@ function timeHandler(time) {
   if (timeObj.ddUTC < 10) { timeObj.ddUTCStr = '0' + timeObj.ddUTC} else { timeObj.ddUTCStr = '' + timeObj.ddUTC }
   if (timeObj.hhUTC < 10) { timeObj.hhUTCStr = '0' + timeObj.hhUTC} else { timeObj.hhUTCStr = '' + timeObj.hhUTC }
 
+  timeObj.hh_mmUTC = timeObj.hhUTCStr + ':' + timeObj.mnStr;
+
+  timeObj.yyyy_mm_dd_hh_mnUTC = timeObj.yyyyUTC  + '-'+
+                                timeObj.mmUTCStr + '-' +
+                                timeObj.ddUTCStr + ' ' +
+                                timeObj.hhUTCStr + ':' +
+                                timeObj.mnStr;
+
+  timeObj.yyyy_mm_ddUTC = timeObj.yyyyUTC  + '-'+
+                          timeObj.mmUTCStr + '-' +
+                          timeObj.ddUTCStr;
+
   return(timeObj);
 }
 
@@ -340,113 +457,6 @@ function getChar(event) {
   return null; // спец. символ
 }
 /* ↑↑↑ /FUNCTIONS DECLARATIONS ↑↑↑ */
-
-
-// function createListOfNormalParlay(startTime, finishTime, currentDateTime) {
-//     // видаляє старий список нормальних ставок (якщо він є)
-//     // якщо біржа закрита - виводить повідомлення
-//     // циклом формує список можливих нормальних ставок з інтервалом у півгодини
-
-//     // спочатку потрібно видалити старий список, якщо він є
-//     $('.parlay-slider__item[data-parlayType="normal"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-
-//     // якщо startTime = finishTime = false - торги не можливі
-//     if (startTime == false) {
-//         //біржа не працює
-//         if ($('#language-span').text().toLowerCase() == 'язык:') {
-//             showInfoMessage(exchangeDontWork[0]);
-//         } else {
-//             showInfoMessage(exchangeDontWork[1]);
-//         }
-//         return
-//     }
-
-//     // визначення першого можливого часу ставки: ставки робляться або в 00хв, або в 30хв,
-//     // але так, щоб до кінця ставки було щонайменше 5 хв
-
-//     // розібрати рядки startTime / finishTime
-//     var tempUTCTimeHours = +startTime.slice(0, 2),
-//         tempUTCTimeMinutes = +startTime.slice(3),
-//         tempUTCTimeFinishHours = +finishTime.slice(0, 2),
-//         tempUTCTimeFinishMinutes = +finishTime.slice(3);
-
-//     var tempUTCTimeInMinutes = tempUTCTimeHours * 60 + tempUTCTimeMinutes,
-//         tempUTCTimeFinishInMinutes = tempUTCTimeFinishHours * 60 + tempUTCTimeFinishMinutes;
-
-//     // округлення часу першої можливої ставки до 00хв або 30хв
-//     if (25 <= tempUTCTimeMinutes && tempUTCTimeMinutes < 55) {
-//         // оркуглити до 00, додати 1 годину
-//         currentDateTime.setUTCMinutes(60);
-//     } else if (0 <= tempUTCTimeMinutes && tempUTCTimeMinutes < 25) {
-//         // оркуглити до 30
-//         currentDateTime.setUTCMinutes(30);
-//     } else if (55 <= tempUTCTimeMinutes && tempUTCTimeMinutes <= 59) {
-//         // округлити до 30, додати годину
-//         currentDateTime.setUTCMinutes(90);
-//     }
-
-//     // сформувати рядок дати ( у список для вибору клієнту )
-//     tempUTCFullYear = currentDateTime.getUTCFullYear();
-//     if (tempUTCFullYear < 10) tempUTCFullYear = '0' + tempUTCFullYear;
-//     tempUTCMonth = currentDateTime.getUTCMonth() + 1;
-//     if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
-//     tempUTCDate = currentDateTime.getUTCDate();
-//     if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
-//     tempUTCHours = currentDateTime.getUTCHours();
-//     if (tempUTCHours < 10) tempUTCHours = '0' + tempUTCHours;
-//     tempUTCMinutes = currentDateTime.getUTCMinutes();
-//     if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
-
-//     var tempDateTimeString = tempUTCFullYear + '-' +
-//         tempUTCMonth + '-' +
-//         tempUTCDate + ' ' +
-//         tempUTCHours + ':' +
-//         tempUTCMinutes;
-
-//     // це щоб перша ставка формувалася лише тоді, коли час робочий
-//     if (tempUTCTimeHours * 60 + tempUTCTimeMinutes < (tempUTCTimeFinishHours * 60 + tempUTCTimeFinishMinutes - 5)) {
-//         $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
-//             .children('.parlay-slider__parlay-choise-btn-holder')
-//             .append('<div class="parlay-slider__parlay-choise-btn" data-timeToEnd="' + tempDateTimeString+' " onclick="deActivationParlayBtns(this)">' + tempDateTimeString +'</div>');
-//     }
-
-//     while (tempUTCTimeInMinutes < tempUTCTimeFinishInMinutes - 60) {
-//         currentDateTime.setMinutes(currentDateTime.getMinutes() + 30)
-//         // сформувати рядок дати ( у список для вибору клієнту )
-//         tempUTCFullYear = currentDateTime.getUTCFullYear();
-//         if (tempUTCFullYear < 10) tempUTCFullYear = '0' + tempUTCFullYear;
-//         tempUTCMonth = currentDateTime.getUTCMonth() + 1;
-//         if (tempUTCMonth < 10) tempUTCMonth = '0' + tempUTCMonth;
-//         tempUTCDate = currentDateTime.getUTCDate();
-//         if (tempUTCDate < 10) tempUTCDate = '0' + tempUTCDate;
-//         tempUTCHours = currentDateTime.getUTCHours();
-//         if (tempUTCHours < 10) tempUTCHours = '0' + tempUTCHours;
-//         tempUTCMinutes = currentDateTime.getUTCMinutes();
-//         if (tempUTCMinutes < 10) tempUTCMinutes = '0' + tempUTCMinutes;
-
-//         var tempDateTimeString = tempUTCFullYear + '-' +
-//             tempUTCMonth + '-' +
-//             tempUTCDate + ' ' +
-//             tempUTCHours + ':' +
-//             tempUTCMinutes;
-//         $('.parlay-slider__item[data-parlayType="normal"]').children('.parlay-slider__item-choice-field')
-//             .children('.parlay-slider__parlay-choise-btn-holder')
-//             .append('<div class="parlay-slider__parlay-choise-btn" data-timeToEnd="' + tempDateTimeString + '"\
-//                                                                      onclick="deActivationParlayBtns(this)">'
-//             + tempDateTimeString +
-//             '</div>');
-//         tempUTCTimeInMinutes += 30;
-//     }
-// }
-
-
-
-
-
-
-
-
-
 
 
 
