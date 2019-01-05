@@ -859,7 +859,7 @@
           <div class="work-field-wrapper">
             <div class="work-field">
               <div class="trade-pair">
-                <input type="hidden" id="currentStockPairId" value="2"><img class="trade-pair__logo" src="img/BTCETH.png" alt="BTCETH.png">
+                <input type="hidden" id="currentStockPairId" value="2" data-break="0" data-typestock="3"><img class="trade-pair__logo" src="img/BTCETH.png" alt="BTCETH.png">
                 <h5 class="trade-pair__name">BTC/ETH</h5>
                 <p class="trade-pair__description">котировка: биткоин/тугрик</p><span class="trade-pair__price" id="activeStatus" style="color: dodgerblue">▲<span id="activePairPrise" style="color: white">12345.67890</span></span>
               </div>
@@ -875,12 +875,7 @@
                   <div class="parlay-slider__item" data-parlayType="short" data-parlayTypeForBackEnd="0">
                     <h5 class="parlay-slider__item-header">Быстрые</h5>
                     <div class="parlay-slider__item-choice-field">
-                      <div class="parlay-slider__parlay-choise-btn-holder">
-                        <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="30000">30 секунд</div>
-                        <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="60000">1 минута</div>
-                        <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="120000">2 минуты</div>
-                        <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="180000">3 минуты</div>
-                      </div>
+                      <div class="parlay-slider__parlay-choise-btn-holder"></div>
                     </div>
                   </div>
                   <div class="parlay-slider__item" data-parlayType="normal" data-parlayTypeForBackEnd="1">
@@ -892,20 +887,8 @@
                   <div class="parlay-slider__item" data-parlayType="long" data-parlayTypeForBackEnd="2">
                     <h5 class="parlay-slider__item-header">Длинные</h5>
                     <div class="parlay-slider__item-choice-field">
-                      <div class="parlay-slider__parlay-choise-btn-holder">
-                        <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="86400000">1 сутки</div>
-                        <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="432000000">5 суток</div>
-                        <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="864000000">10 суток</div>
-                        <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="1296000000">15 суток</div>
-                        <div class="parlay-slider__parlay-choise-btn" onclick="deActivationParlayBtns(this)" data-timeToEndInMS="2592000000">30 суток</div>
-                      </div>
+                      <div class="parlay-slider__parlay-choise-btn-holder"></div>
                     </div>
-                  </div>
-                </div>
-                <div class="parlay-slider__reactivation-field">
-                  <div class="parlay-slider__reactivation-field-btn">
-                    обновить
-                    <i class="fas fa-redo-alt"></i>
                   </div>
                 </div>
                 <div class="parlay-btns__holder">
