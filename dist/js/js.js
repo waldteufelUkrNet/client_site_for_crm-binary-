@@ -1,3 +1,4 @@
+// made by waldteufel@ukr.net
 /* ↓↓↓ GLOBAL VARIABLES ↓↓↓ */
 var parlayType,                                    // short/normal/long
     parlayTime                            = 0,     // час ДО закриття ставки - в мілісекундах
@@ -757,6 +758,4 @@ function getChar(event) {
   return null; // спец. символ
 }
 /* ↑↑↑ /FUNCTIONS DECLARATIONS ↑↑↑ */
-
-
 // made by waldteufel@ukr.net
