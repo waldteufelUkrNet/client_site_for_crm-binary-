@@ -554,7 +554,7 @@ function closeProfilePopup() {
 /* ↓↓↓ BEM-block: make-lodgement ↓↓↓ */
 // поява
 $('.central-part__btn').click(function () {
-    // чистка попереднiх input"iв
+    // чистка попереднiх input'iв
     $('#inpVISA').val('');
     $('#inpMasterCard').val('');
 
@@ -640,9 +640,14 @@ $('.make-lodgement__close-btn').click(function (e) {
 // валiдацiя та закриття
 //----------------------------------------------------- РАБОТА С ПЛАТЕЖКОЙ ----------------------------------------------------------
 $('#make-lodgement-VISA-btn').click(function (e) {
-    if ($('#inpVISA').val() == '') {
+    if ( $('#inpVISA').val() == '' ) {
         e.preventDefault();
     } else {
+        $('#make-lodgement-VISA-btn').css('display','none');
+        $('#make-lodgement-VISA-btn-notBtn').css('display','flex');
+        $('.make-lodgement').css('height','270px');
+        $('.make-lodgement__info').css({'height':'30px'});
+
         var paySystem = 'Visa';
         var payAmount = $('#inpVISA').val();
         var payCurrency = $('select[name="currency-V"]').val();
