@@ -643,10 +643,10 @@ $('#make-lodgement-VISA-btn').click(function (e) {
     if ( $('#inpVISA').val() == '' ) {
         e.preventDefault();
     } else {
-        $('#make-lodgement-VISA-btn').css('display','none');
-        $('#make-lodgement-VISA-btn-notBtn').css('display','flex');
-        $('.make-lodgement').css('height','270px');
-        $('.make-lodgement__info').css({'height':'30px'});
+        // $('#make-lodgement-VISA-btn').css('display','none');
+        // $('#make-lodgement-VISA-btn-notBtn').css('display','flex');
+        // $('.make-lodgement').css('height','270px');
+        // $('.make-lodgement__info').css({'height':'30px'});
 
         var paySystem = 'Visa';
         var payAmount = $('#inpVISA').val();
