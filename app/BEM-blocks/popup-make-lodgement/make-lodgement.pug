@@ -6,18 +6,18 @@
       .make-lodgement__close-btn-line1
       .make-lodgement__close-btn-line2
 
-    .make-lodgement__pay-system#pay-system1 Terminal 1
+    .make-lodgement__pay-system#pay-system1(data-currency-names='USD EUR RUB') Terminal 1
       i.far.fa-credit-card.make-lodgement__pay-img
-    .make-lodgement__pay-system#pay-system2 Terminal 2
+    .make-lodgement__pay-system#pay-system2(data-currency-names='USD EUR') Terminal 2
       i.far.fa-credit-card.make-lodgement__pay-img
-    .make-lodgement__pay-system#pay-system3 Terminal 3
+    .make-lodgement__pay-system#pay-system3(data-currency-names='USD EUR') Terminal 3
       i.far.fa-credit-card.make-lodgement__pay-img
 
     .make-lodgement__triangle
 
     .make-lodgement__pay-block
 
-      form.make-lodgement__form(action='#' method='#' name='make-lodgement-MasterCard')
+      form.make-lodgement__form(action='#' method='#' name='make-lodgement__form')
         .make-lodgement__agree
           input(type='checkbox')
           span Мне исполнилось 18 лет. Я ознакомлен с рисками и принимаю
@@ -30,9 +30,7 @@
           input#terminalId(type='hidden')
           input#currencyAmount(type='text')
           select(name='currency')
-            option(value='USD') USD
-            option(value='EUR') EUR
-            option(value='RUB') RUB
+            //- option(value='USD') USD
 
         #make-lodgement-notBtn.popup-ok-btn
           i.fas.fa-sync-alt
