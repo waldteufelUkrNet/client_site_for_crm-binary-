@@ -2596,7 +2596,7 @@ table {
 }
 
 .make-lodgement__close-btn-line1, .make-lodgement__close-btn-line2 {
-  width: 0px;
+  width: 24px;
   height: 2px;
   background-color: dodgerblue;
   position: absolute;
@@ -2625,6 +2625,9 @@ table {
   position: relative;
   cursor: pointer;
   display: none;
+  -webkit-transition: padding-left .3s, letter-spacing .3s;
+  -o-transition: padding-left .3s, letter-spacing .3s;
+  transition: padding-left .3s, letter-spacing .3s;
 }
 
 .make-lodgement__pay-system:nth-of-type(odd) {
@@ -2636,8 +2639,8 @@ table {
 }
 
 .make-lodgement__pay-system:hover {
-  padding-left: 50px;
-  letter-spacing: 6px;
+  padding-left: 20px;
+  letter-spacing: 3px;
 }
 
 .make-lodgement__pay-img {
@@ -2653,12 +2656,16 @@ table {
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   position: absolute;
-  top: 74px;
+  top: 44px;
   right: -12px;
 }
 
-.make-lodgement .make-lodgement-MasterCard,
-.make-lodgement .make-lodgement-VISA {
+.make-lodgement__pay-block {
+  height: 0;
+  overflow: hidden;
+}
+
+.make-lodgement__form {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2669,26 +2676,22 @@ table {
       -ms-flex-pack: justify;
           justify-content: space-between;
   overflow: hidden;
-  height: 0px;
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
 }
 
-.make-lodgement .make-lodgement-MasterCard .make-lodgement__currency,
-.make-lodgement .make-lodgement-VISA .make-lodgement__currency {
+.make-lodgement__form .make-lodgement__currency {
   width: -webkit-calc(100% - 100px);
   width: calc(100% - 100px);
 }
 
-.make-lodgement .make-lodgement-MasterCard .make-lodgement__currency input,
-.make-lodgement .make-lodgement-VISA .make-lodgement__currency input {
+.make-lodgement__form .make-lodgement__currency input {
   height: 30px;
   width: 60%;
 }
 
-.make-lodgement .make-lodgement-MasterCard .make-lodgement__currency select,
-.make-lodgement .make-lodgement-VISA .make-lodgement__currency select {
+.make-lodgement__form .make-lodgement__currency select {
   height: 30px;
   width: 35%;
 }
@@ -2707,14 +2710,14 @@ table {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 10px;
 }
 
 .make-lodgement__agree a {
   color: lightskyblue;
 }
 
-.make-lodgement #make-lodgement-VISA-btn-notBtn,
-.make-lodgement #make-lodgement-MasterCard-btn-notBtn {
+.make-lodgement #make-lodgement-notBtn {
   background-color: transparent;
   display: none;
   -webkit-box-pack: center;
@@ -2728,8 +2731,7 @@ table {
   cursor: none;
 }
 
-.make-lodgement #make-lodgement-VISA-btn-notBtn svg,
-.make-lodgement #make-lodgement-MasterCard-btn-notBtn svg {
+.make-lodgement #make-lodgement-notBtn svg {
   font-size: 20px;
   display: block;
   color: dodgerblue;

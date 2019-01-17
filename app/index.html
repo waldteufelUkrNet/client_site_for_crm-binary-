@@ -925,11 +925,12 @@
               <div class="make-lodgement__close-btn-line1"></div>
               <div class="make-lodgement__close-btn-line2"></div>
             </div>
-            <div class="make-lodgement__pay-system">MasterCard<img class="make-lodgement__pay-img" src="img/mastercard.png"></div>
-            <div class="make-lodgement__pay-system">VISA<img class="make-lodgement__pay-img" src="img/visa.png"></div>
+            <div class="make-lodgement__pay-system" id="pay-system1">Terminal 1<i class="far fa-credit-card make-lodgement__pay-img"></i></div>
+            <div class="make-lodgement__pay-system" id="pay-system2">Terminal 2<i class="far fa-credit-card make-lodgement__pay-img"></i></div>
+            <div class="make-lodgement__pay-system" id="pay-system3">Terminal 3<i class="far fa-credit-card make-lodgement__pay-img"></i></div>
             <div class="make-lodgement__triangle"></div>
             <div class="make-lodgement__pay-block">
-              <form class="make-lodgement-MasterCard" action="#" method="#" name="make-lodgement-MasterCard">
+              <form class="make-lodgement__form" action="#" method="#" name="make-lodgement-MasterCard">
                 <div class="make-lodgement__agree">
                   <input type="checkbox"><span>
                     Мне исполнилось 18 лет. Я ознакомлен с рисками и принимаю
@@ -937,33 +938,16 @@
                     компании.</span>
                 </div>
                 <div class="make-lodgement__currency">
-                  <input type="text" id="inpMasterCard">
-                  <select name="currency-MC">
+                  <input id="terminalId" type="hidden">
+                  <input id="currencyAmount" type="text">
+                  <select name="currency">
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
                     <option value="RUB">RUB</option>
                   </select>
                 </div>
-                <div class="popup-ok-btn" id="make-lodgement-MasterCard-btn-notBtn"><i class="fas fa-sync-alt"></i></div>
-                <button class="popup-ok-btn" id="make-lodgement-MasterCard-btn" type="submit">оплатить</button>
-              </form>
-              <form class="make-lodgement-VISA" action="#" method="#" name="make-lodgement-VISA">
-                <div class="make-lodgement__agree">
-                  <input type="checkbox"><span>
-                    Мне исполнилось 18 лет. Я ознакомлен с рисками и принимаю
-                    <a href="https://investingcase.com/terms_and_conditions.html">Условия и Соглашения</a>
-                    компании.</span>
-                </div>
-                <div class="make-lodgement__currency">
-                  <input type="text" id="inpVISA">
-                  <select name="currency-V">
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
-                    <option value="RUB">RUB</option>
-                  </select>
-                </div>
-                <div class="popup-ok-btn" id="make-lodgement-VISA-btn-notBtn"><i class="fas fa-sync-alt"></i></div>
-                <button class="popup-ok-btn" id="make-lodgement-VISA-btn" type="submit">оплатить</button>
+                <div class="popup-ok-btn" id="make-lodgement-notBtn"><i class="fas fa-sync-alt"></i></div>
+                <button class="popup-ok-btn" id="make-lodgement-btn" type="button">оплатить</button>
               </form>
               <div class="make-lodgement__info validation-warning">trololo</div>
             </div>

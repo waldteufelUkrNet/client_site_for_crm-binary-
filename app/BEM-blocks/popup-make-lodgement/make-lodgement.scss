@@ -31,7 +31,7 @@
     cursor               : pointer;
   }
   &__close-btn-line1 {
-    width                : 0px;
+    width                : 24px;//0px;
     height               : 2px;
     background-color     : dodgerblue;
     position             : absolute;
@@ -54,6 +54,7 @@
     position             : relative;
     cursor               : pointer;
     display              : none;
+    transition           : padding-left .3s, letter-spacing .3s;
     &:nth-of-type(odd) {
       left               : -120%;
     }
@@ -61,8 +62,8 @@
       left               : 120%;
     }
     &:hover {
-      padding-left       : 50px;
-      letter-spacing     : 6px;
+      padding-left       : 20px;
+      letter-spacing     : 3px;
     }
   }
   &__pay-img {
@@ -77,16 +78,19 @@
     border-top           : 8px solid transparent;
     border-bottom        : 8px solid transparent;
     position             : absolute;
-    top                  : 74px;
+    top                  : 44px;
     right                : -12px;
   }
-  .make-lodgement-MasterCard,
-  .make-lodgement-VISA {
+  &__pay-block {
+    height               : 0;
+    overflow             : hidden;
+  }
+  &__form {
     width                : 100%;
     display              : flex;
     justify-content      : space-between;
     overflow             : hidden;
-    height               : 0px;
+    //height               : 0px;
     flex-wrap            : wrap;
     .make-lodgement__currency {
       width              : calc(100% - 100px);
@@ -105,12 +109,12 @@
     display              : flex;
     justify-content      : space-between;
     align-items          : center;
+    margin-bottom        : 10px;
     a {
       color              : lightskyblue;
     }
   }
-  #make-lodgement-VISA-btn-notBtn,
-  #make-lodgement-MasterCard-btn-notBtn {
+  #make-lodgement-notBtn {
     background-color            : transparent;
     display                     : none;
     justify-content             : center;

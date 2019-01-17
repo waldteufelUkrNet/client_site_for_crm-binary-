@@ -6,15 +6,18 @@
       .make-lodgement__close-btn-line1
       .make-lodgement__close-btn-line2
 
-    .make-lodgement__pay-system MasterCard
-      img.make-lodgement__pay-img(src='img/mastercard.png')
-    .make-lodgement__pay-system VISA
-      img.make-lodgement__pay-img(src='img/visa.png')
+    .make-lodgement__pay-system#pay-system1 Terminal 1
+      i.far.fa-credit-card.make-lodgement__pay-img
+    .make-lodgement__pay-system#pay-system2 Terminal 2
+      i.far.fa-credit-card.make-lodgement__pay-img
+    .make-lodgement__pay-system#pay-system3 Terminal 3
+      i.far.fa-credit-card.make-lodgement__pay-img
+
     .make-lodgement__triangle
 
     .make-lodgement__pay-block
 
-      form.make-lodgement-MasterCard(action='#' method='#' name='make-lodgement-MasterCard')
+      form.make-lodgement__form(action='#' method='#' name='make-lodgement-MasterCard')
         .make-lodgement__agree
           input(type='checkbox')
           span Мне исполнилось 18 лет. Я ознакомлен с рисками и принимаю
@@ -24,33 +27,16 @@
             |
             | компании.
         .make-lodgement__currency
-          input(type='text' id='inpMasterCard')
-          select(name='currency-MC')
+          input#terminalId(type='hidden')
+          input#currencyAmount(type='text')
+          select(name='currency')
             option(value='USD') USD
             option(value='EUR') EUR
             option(value='RUB') RUB
-        #make-lodgement-MasterCard-btn-notBtn.popup-ok-btn
-          i.fas.fa-sync-alt
-        button#make-lodgement-MasterCard-btn.popup-ok-btn(type='submit') оплатить
 
-      form.make-lodgement-VISA(action='#' method='#' name='make-lodgement-VISA')
-        .make-lodgement__agree
-          input(type='checkbox')
-          span Мне исполнилось 18 лет. Я ознакомлен с рисками и принимаю
-            |
-            |
-            a(href='https://investingcase.com/terms_and_conditions.html') Условия и Соглашения
-            |
-            | компании.
-        .make-lodgement__currency
-          input(type='text' id='inpVISA')
-          select(name='currency-V')
-            option(value='USD') USD
-            option(value='EUR') EUR
-            option(value='RUB') RUB
-        #make-lodgement-VISA-btn-notBtn.popup-ok-btn
+        #make-lodgement-notBtn.popup-ok-btn
           i.fas.fa-sync-alt
-        button#make-lodgement-VISA-btn.popup-ok-btn(type='submit') оплатить
+        button#make-lodgement-btn.popup-ok-btn(type='button') оплатить
 
       .make-lodgement__info.validation-warning trololo
 

@@ -552,11 +552,14 @@ function closeProfilePopup() {
 
 
 /* ↓↓↓ BEM-block: make-lodgement ↓↓↓ */
+var popupHeight;
 // поява
 $('.central-part__btn').click(function () {
-    // чистка попереднiх input"iв
-    $('#inpVISA').val('');
-    $('#inpMasterCard').val('');
+    // чистка попереднього input'у
+    $('#currencyAmount').val('');
+    $('#terminalId').val('');
+
+    popupHeight = 26*2 + 50*$('.make-lodgement__pay-system').length + 10*($('.make-lodgement__pay-system').length - 1);
 
     $('.make-lodgement__positioning-wrapper').css({ 'z-index': '8888', 'background-color': 'rgba(0,0,0,.8' });
 
@@ -567,7 +570,7 @@ $('.central-part__btn').click(function () {
     }, 200);
 
     setTimeout(function () {
-        $('.make-lodgement').css({ 'transition': 'height .3s', 'height': '162px' });
+        $('.make-lodgement').css({ 'transition': 'height .3s', 'height': popupHeight });
         $('.make-lodgement__pay-system').css({ 'display': 'block' });
     }, 500);
 
@@ -586,26 +589,32 @@ $('.central-part__btn').click(function () {
 });
 
 // кліки
-$('.make-lodgement__pay-system:first').click(function () {
+$('.make-lodgement__pay-system:eq(0)').click(function () {
     $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': '44px' });
-    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': '250px' });
-    $('.make-lodgement-MasterCard').css({ 'transition': '.5s', 'height': '80px' });
-    $('.make-lodgement-VISA').css({ 'transition': '.5s', 'height': '0px' });
+    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': popupHeight + 76 });
+    $('.make-lodgement__pay-block').css({ 'transition': '.5s', 'height': '80px' });
+    $('#terminalId').val('1');
 });
 
-$('.make-lodgement__pay-system:last').click(function () {
+$('.make-lodgement__pay-system:eq(1)').click(function () {
     $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': '104px' });
-    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': '250px' });
-    $('.make-lodgement-VISA').css({ 'transition': '.5s', 'height': '80px' });
-    $('.make-lodgement-MasterCard').css({ 'transition': '.5s', 'height': '0px' });
+    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': popupHeight + 76 });
+    $('.make-lodgement__pay-block').css({ 'transition': '.5s', 'height': '80px' });
+    $('#terminalId').val('2');
+});
+
+$('.make-lodgement__pay-system:eq(2)').click(function () {
+    $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': '164px' });
+    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': popupHeight + 76 });
+    $('.make-lodgement__pay-block').css({ 'transition': '.5s', 'height': '80px' });
+    $('#terminalId').val('3');
 });
 
 // закриття
 $('.make-lodgement__close-btn').click(function (e) {
 
-    $('.make-lodgement-VISA').css({ 'transition': '.3s', 'height': '0px' });
-    $('.make-lodgement-MasterCard').css({ 'transition': '.3s', 'height': '0px' });
-    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': '162px' });
+    $('.make-lodgement__pay-block').css({ 'transition': '.3s', 'height': '0px' });
+    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': popupHeight });
     $('.make-lodgement__triangle').css({ 'transition': '.3s', 'right': '-12px' });
 
     setTimeout(function () {
@@ -633,18 +642,26 @@ $('.make-lodgement__close-btn').click(function (e) {
 
     setTimeout(function () {
         $('.make-lodgement').css({ 'transition': 'top .2s', 'top': '-10%' });
-        $('.make-lodgement__positioning-wrapper').css({ 'transition': 'background-color .5s', 'z-index': '-1', 'background-color': 'rgba(0,0,0,0' });
     }, 1800);
+
+    setTimeout(function () {
+        $('.make-lodgement__positioning-wrapper').css({ 'transition': 'background-color .3s', 'z-index': '-1', 'background-color': 'rgba(0,0,0,0' });
+    }, 2100);
 });
 
 // валiдацiя та закриття
 //----------------------------------------------------- РАБОТА С ПЛАТЕЖКОЙ ----------------------------------------------------------
-$('#make-lodgement-VISA-btn').click(function (e) {
-    if ($('#inpVISA').val() == '') {
+$('#make-lodgement-btn').click(function (e) {
+    if ( $('#currencyAmount').val() == '' ) {
         e.preventDefault();
     } else {
-        var paySystem = 'Visa';
-        var payAmount = $('#inpVISA').val();
+        $('#make-lodgement-btn').css('display','none');
+        $('#make-lodgement-notBtn').css('display','flex');
+        $('.make-lodgement').css('height','270px');
+        $('.make-lodgement__info').css({'height':'30px'});
+
+        var paySystem   = $('#terminalId').val();
+        var payAmount   = $('#inpVISA').val();
         var payCurrency = $('select[name="currency-V"]').val();
         var dat = {
             count: payAmount,
@@ -659,25 +676,6 @@ $('#make-lodgement-VISA-btn').click(function (e) {
     }
 });
 
-$('#make-lodgement-MasterCard-btn').click(function (e) {
-    if ($('#inpMasterCard').val() == '') {
-        e.preventDefault();
-    } else {
-        var paySystem = 'MasterCard';
-        var payAmount = $('#inpMasterCard').val();
-        var payCurrency = $('select[name="currency-MC"]').val();
-        var dat = {
-            count: payAmount,
-            curensy: payCurrency,
-            paySystem: paySystem
-        };
-        $.ajax({
-            url: "/Home/AddDeposit",
-            type: "POST",
-            data: dat
-        });
-    }
-});
 //----------------------------------------------------- РАБОТА С ПЛАТЕЖКОЙ ----------------------------------------------------------
 
 // inputs - only for numbers
