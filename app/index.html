@@ -925,12 +925,12 @@
               <div class="make-lodgement__close-btn-line1"></div>
               <div class="make-lodgement__close-btn-line2"></div>
             </div>
-            <div class="make-lodgement__pay-system" id="pay-system1">Terminal 1<i class="far fa-credit-card make-lodgement__pay-img"></i></div>
-            <div class="make-lodgement__pay-system" id="pay-system2">Terminal 2<i class="far fa-credit-card make-lodgement__pay-img"></i></div>
-            <div class="make-lodgement__pay-system" id="pay-system3">Terminal 3<i class="far fa-credit-card make-lodgement__pay-img"></i></div>
+            <div class="make-lodgement__pay-system" id="pay-system1" data-currency-names="USD EUR RUB">Terminal 1<i class="far fa-credit-card make-lodgement__pay-img"></i></div>
+            <div class="make-lodgement__pay-system" id="pay-system2" data-currency-names="USD EUR">Terminal 2<i class="far fa-credit-card make-lodgement__pay-img"></i></div>
+            <div class="make-lodgement__pay-system" id="pay-system3" data-currency-names="USD EUR">Terminal 3<i class="far fa-credit-card make-lodgement__pay-img"></i></div>
             <div class="make-lodgement__triangle"></div>
             <div class="make-lodgement__pay-block">
-              <form class="make-lodgement__form" action="#" method="#" name="make-lodgement-MasterCard">
+              <form class="make-lodgement__form" action="#" method="#" name="make-lodgement__form">
                 <div class="make-lodgement__agree">
                   <input type="checkbox"><span>
                     Мне исполнилось 18 лет. Я ознакомлен с рисками и принимаю
@@ -940,11 +940,7 @@
                 <div class="make-lodgement__currency">
                   <input id="terminalId" type="hidden">
                   <input id="currencyAmount" type="text">
-                  <select name="currency">
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
-                    <option value="RUB">RUB</option>
-                  </select>
+                  <select name="currency"></select>
                 </div>
                 <div class="popup-ok-btn" id="make-lodgement-notBtn"><i class="fas fa-sync-alt"></i></div>
                 <button class="popup-ok-btn" id="make-lodgement-btn" type="button">оплатить</button>
