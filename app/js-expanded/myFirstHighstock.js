@@ -210,7 +210,7 @@ function drawChart() {
   chart = Highcharts.stockChart({
     chart                  : {
       renderTo             : 'container',
-      backgroundColor      : '#1d2a38',
+      backgroundColor      : 'transparent',
       spacingRight         : 50,
       events               : {
         load               :  function () {
@@ -249,7 +249,7 @@ function drawChart() {
       name                 : stringSymbol,
       data                 : resultArr,
       animation            : false,
-      color                : 'dodgerblue',
+      color                : 'orange',
       showInNavigator      : false,
       pointStart           : startTime,
       pointInterval        : timeStep * 60 * 1000,
@@ -384,7 +384,7 @@ function redrawChart () {
     name                 : stringSymbol,
     data                 : resultArr,
     animation            : false,
-    color                : 'dodgerblue',
+    color                : 'orange',
     showInNavigator      : false,
     pointStart           : startTime,
     pointInterval        : timeStep * 60 * 1000,

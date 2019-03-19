@@ -278,7 +278,7 @@ table {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: #1d2a38;
+    background-color: black;
     color: white;
     font-family: rcl;
     font-size: 12px;
@@ -592,7 +592,7 @@ table {
   }
   .main .navigation__body {
     height: 120px;
-    background-color: #1d2a38;
+    background-color: black;
     padding: 10px 15px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -602,7 +602,7 @@ table {
     border: 1px solid white;
     -webkit-border-radius: 4px;
             border-radius: 4px;
-    background-color: #1d2a38;
+    background-color: black;
     text-transform: uppercase;
     text-align: center;
     line-height: 1.5em;
@@ -656,7 +656,7 @@ table {
     z-index: 2222;
     left: -200px;
     display: block;
-    background-color: #1d2a38;
+    background-color: black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     -webkit-transition: left .3s;
@@ -750,7 +750,7 @@ table {
     -webkit-transition: background-color .5s;
     -o-transition: background-color .5s;
     transition: background-color .5s;
-    background-color: #1d2a38;
+    background-color: black;
   }
   .main .left-column .wares-slider .slick-arrow:before {
     width: 50%;
@@ -794,7 +794,7 @@ table {
     z-index: 2222;
     right: -200px;
     display: block;
-    background-color: #1d2a38;
+    background-color: black;
     height: -webkit-calc(100% - 170px);
     height: calc(100% - 170px);
     border-left: 1px solid black;
@@ -849,11 +849,8 @@ table {
             user-select: none;
   }
   .main .right-column .work-field .investment-calculator input, .main .right-column .work-field .investment-calculator span {
-    background-image: -webkit-gradient(linear, left top, right top, from(#141414), to(#102734));
-    background-image: -webkit-linear-gradient(left, #141414, #102734);
-    background-image: -o-linear-gradient(left, #141414, #102734);
-    background-image: linear-gradient(to right, #141414, #102734);
-    border: 1px solid #102734;
+    background-color: transparent;
+    border: 1px solid transparent;
     height: 22px;
     line-height: 22px;
     padding: 0 12px;
@@ -935,7 +932,7 @@ table {
             flex-wrap: nowrap;
     position: relative;
     z-index: 2;
-    background-color: #1d2a38;
+    background-color: black;
   }
   .main .right-column .parlay-slider__item-header {
     width: 70%;
@@ -990,7 +987,7 @@ table {
     -o-transition: background-color .5s;
     transition: background-color .5s;
     z-index: 11;
-    background-color: #1d2a38;
+    background-color: black;
   }
   .main .right-column .parlay-slider .slick-arrow:before {
     width: 100%;
@@ -1170,11 +1167,11 @@ table {
             user-select: none;
   }
   .main .right-column .slider-change-btn-holder .slider-change-btn:hover {
-    background-color: #1d2a38;
+    background-color: black;
     border-color: white;
   }
   .main .right-column .slider-change-btn-holder .slider-change-btn_active {
-    background-color: #1d2a38;
+    background-color: black;
     border-color: white;
   }
   /* ↓↓↓ FOOTER ↓↓↓ */
@@ -1746,7 +1743,7 @@ table {
 }
 
 .header .right-part .menu .menu-list-a:hover {
-  background-color: #1d2a38;
+  background-color: black;
   -webkit-transition: background-color .5s;
   -o-transition: background-color .5s;
   transition: background-color .5s;
@@ -1897,10 +1894,10 @@ table {
   position: absolute;
   left: 0px;
   bottom: 0px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(30, 144, 255, 0.1)), color-stop(rgba(30, 144, 255, 0.4)), to(rgba(30, 144, 255, 0.9)));
-  background-image: -webkit-linear-gradient(rgba(30, 144, 255, 0.1), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
-  background-image: -o-linear-gradient(rgba(30, 144, 255, 0.1), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
-  background-image: linear-gradient(rgba(30, 144, 255, 0.1), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(30, 144, 255, 0)), color-stop(rgba(30, 144, 255, 0.4)), to(rgba(30, 144, 255, 0.9)));
+  background-image: -webkit-linear-gradient(rgba(30, 144, 255, 0), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
+  background-image: -o-linear-gradient(rgba(30, 144, 255, 0), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
+  background-image: linear-gradient(rgba(30, 144, 255, 0), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
 }
 
 .active-slider__item-graphic {
@@ -1918,7 +1915,7 @@ table {
   -webkit-border-radius: 4px 0 4px 0;
           border-radius: 4px 0 4px 0;
   padding: 3px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
 }
 
 .active-slider__start-price {
