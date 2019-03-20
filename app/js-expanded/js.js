@@ -134,6 +134,7 @@ $('#investment-input').bind('keypress keyup blur', function (e) {
 var datetimer = document.getElementById('UTC-datetimer');
 setInterval(function () {
   var date = new Date();
+  console.log("date", date);
   var dd = date.getUTCDate();
   if (dd < 10) dd = '0' + dd;
 

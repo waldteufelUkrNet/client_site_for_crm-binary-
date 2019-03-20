@@ -15,7 +15,9 @@ var pointStart,                                         // перша точка
     dataOne,                                            // адреса для отримання поточного значення
     labelValue1        = labelValue2 = YPlotLinesValue, // змінні для визначення тенденції в котировках (потрібні для зафарбовування рамки поточного значення)
     labelBorderColor   = 'white',                       // колір рамки поточного значення
-    chart;                                              // об'єкт Highcharts робимо доступним глобально для усіх функцій
+    chart,                                              // об'єкт Highcharts робимо доступним глобально для усіх функцій
+    graphicColor      = '#0FBFBCFF',
+    plotlineColor     = '#FF0532FF';
 
 getDataArr();
 
@@ -249,7 +251,7 @@ function drawChart() {
       name                 : stringSymbol,
       data                 : resultArr,
       animation            : false,
-      color                : 'orange',
+      color                : graphicColor,
       showInNavigator      : false,
       pointStart           : startTime,
       pointInterval        : timeStep * 60 * 1000,
@@ -384,7 +386,7 @@ function redrawChart () {
     name                 : stringSymbol,
     data                 : resultArr,
     animation            : false,
-    color                : 'orange',
+    color                : graphicColor,
     showInNavigator      : false,
     pointStart           : startTime,
     pointInterval        : timeStep * 60 * 1000,
@@ -414,7 +416,7 @@ function redrawPlotline(nameOfChart, currentYCoordValue) {
   // перемальовує плот-лінію та поточне значення
 
   nameOfChart.yAxis[0].addPlotLine({
-    color         : 'red',
+    color         : plotlineColor,
     id            : 'plot-line-1',
     dashStyle     : 'solid',
     width         : 1,

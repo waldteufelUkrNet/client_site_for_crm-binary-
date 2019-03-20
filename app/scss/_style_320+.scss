@@ -3,7 +3,8 @@
     width                        : 100vw;
     height                       : 100vh;
     overflow                     : hidden;
-    background-color             : $bgColor;
+    // background-color             : $bgColor;
+    background-image: linear-gradient(#06071DFF,#1A2255FF, #1D4085FF);
     color                        : $overColor;
     font-family                  : rcl;
     font-size                    : 12px;
@@ -68,12 +69,12 @@
             transition           : background-color .5s, border-color .5s;
             user-select          : none;
             &:hover {
-              background-color   : dodgerblue;
-              border-color       : dodgerblue;
+              background-color   : #38C1D0FF;
+              border-color       : #38C1D0FF;
             }
             &_active {
-              background-color   : dodgerblue;
-              border-color       : dodgerblue;
+              background-color   : #38C1D0FF;
+              border-color       : #38C1D0FF;
             }
           }
         }
@@ -97,12 +98,12 @@
             overflow             : hidden;
             transition           : background-color .5s, border-color .5s;
             &:hover {
-              background-color   : dodgerblue;
-              border-color       : dodgerblue;
+              background-color   : #38C1D0FF;
+              border-color       : #38C1D0FF;
             }
             &_active {
-              background-color   : dodgerblue;
-              border-color       : dodgerblue;
+              background-color   : #38C1D0FF;
+              border-color       : #38C1D0FF;
             }
             img {
               width              : 24px;
@@ -325,7 +326,7 @@
             border-bottom        : 1px solid transparent;
             transition           : background-color .5s, border-color .5s;
             &:hover {
-              background-color   : #2d3a48;
+              background-color   : #0CA1B5;
               border-color       : black;
             }
             td {
@@ -362,7 +363,7 @@
             color               : white;
           }
           &:hover {
-            background-color    : dodgerblue;
+            background-color    : #13B1E1FF;
             transition          : background-color .5s;
           }
         }
@@ -470,9 +471,9 @@
         border-radius           : 4px;
         text-align              : center;
         margin                  : 6px 0;
-        color                   : dodgerblue;
+        color                   : #13B1E1FF;
         user-select             : none;
-        border                  : 1px solid dodgerblue;
+        border                  : 1px solid #13B1E1FF;
         line-height             : 16px;
         #UTC-datetimer {
           color                 : white;
@@ -495,8 +496,8 @@
           margin                : 0 auto;
           height                : 30px;
           line-height           : 28px;
-          background-color      : dodgerblue;
-          border                : 1px solid dodgerblue;
+          background-color      : #13B1E1FF;
+          border                : 1px solid white;
           border-radius         : 4px;
           text-align            : center;
           transition            : background-color .5s, border-color .5s;
@@ -539,7 +540,7 @@
             color                : white;
           }
           &:hover {
-            background-color     : dodgerblue;
+            background-color     : #13B1E1FF;
             transition           : background-color .5s;
           }
         }
@@ -655,8 +656,8 @@
         .slider-change-btn {
           height                : 36px;
           line-height           : 32px;
-          background-color      : dodgerblue;
-          border                : 1px solid dodgerblue;
+          background-color      : #0FBFBCFF;
+          border                : 2px solid #0B6F8DFF;
           border-radius         : 4px;
           text-align            : center;
           cursor                : pointer;
@@ -664,12 +665,12 @@
           user-select           : none;
           &:hover {
             background-color    : $bgColor;
-            border-color        : $overColor;
+            border-color        : #0B6F8DFF;
           }
         }
         .slider-change-btn_active {
           background-color      : $bgColor;
-          border-color          : $overColor;
+          border-color          : #0B6F8DFF;
         }
       }
     }

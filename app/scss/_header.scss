@@ -40,8 +40,8 @@
       min-width                : 40px;
       height                   : 30px;
       cursor                   : pointer;
-      background-color         : dodgerblue;
-      border                   : 2px solid rgba(255,255,255,.3);
+      background-color         : #13B1E1FF;
+      border                   : 1px solid rgba(255,255,255,.3);
       border-radius            : 8px;
       margin                   : 0 20px;
       display                  : flex;
@@ -65,7 +65,7 @@
       font-family              : rcl;
       text-transform           : uppercase;
       color                    : white;
-      letter-spacing           : 1px;
+      letter-spacing           : 3px;
       z-index                  : 1;
     }
     &__btn-splendour {
@@ -91,7 +91,7 @@
     align-items                : center;
     .header-greeting {
       white-space              : nowrap;
-      color                    : lightskyblue;
+      color                    : #13B1E1FF;
       display                  : none;
     }
     .header-titles {
