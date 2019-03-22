@@ -88,7 +88,6 @@ table {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   outline: none;
-  letter-spacing: 1px;
 }
 
 * a, * a:hover {

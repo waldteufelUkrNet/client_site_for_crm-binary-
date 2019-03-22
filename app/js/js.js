@@ -130,30 +130,90 @@ $('#investment-input').bind('keypress keyup blur', function (e) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* ↓↓↓ БЛОК ЧАСУ ↓↓↓ */
+
+// для правильного визначення часу звертаємося до сервера (у клієнта на компі може стояти неправильний час)
+var newUTCTimeObj = {};
+var dateString;
+(function() {
+  // запускається один раз при старті, ajax'ом робить запит на сервер, забирає час і далі самостійно через setInterval робить відлік часу і записує в об'єкт
+  // ajax-запит "2019-03-22T10:16:31Z"
+  $.ajax({
+    url     : 'http://localhost/api/UtcTime',
+    success : function (data) {
+                newUTCTimeObj.yyyySTR = data.slice(0,4);
+                newUTCTimeObj.yyyyNUM = +data.slice(0,4);
+                newUTCTimeObj.yySTR   = data.slice(2,4);
+                newUTCTimeObj.yyNUM   = +data.slice(2,4);
+                newUTCTimeObj.mmSTR   = data.slice(5,7);
+                newUTCTimeObj.mmNUM   = +data.slice(5,7);
+                newUTCTimeObj.ddSTR   = data.slice(8,10);
+                newUTCTimeObj.ddNUM   = +data.slice(8,10);
+                newUTCTimeObj.hhSTR   = data.slice(11,13);
+                newUTCTimeObj.hhNUM   = +data.slice(11,13);
+                newUTCTimeObj.minSTR  = data.slice(14,16);
+                newUTCTimeObj.minNUM  = +data.slice(14,16);
+                newUTCTimeObj.ssSTR   = data.slice(17,19);
+                newUTCTimeObj.ssNUM   = +data.slice(17,19);
+                newUTCTimeObj.timeInMS = Date.parse(data);
+
+                dateString = data;
+                timer ()
+              },
+    error   : function() {
+                var date = new Date();
+                newUTCTimeObj.yyyySTR = '' +date.getUTCFullYear();
+                newUTCTimeObj.yyyyNUM = date.getUTCFullYear();
+                newUTCTimeObj.yySTR   = newUTCTimeObj.yyyySTR.slice(2,4);
+                newUTCTimeObj.yyNUM   = +newUTCTimeObj.yyyySTR.slice(2,4);
+                newUTCTimeObj.mmNUM   = date.getUTCMonth() + 1;
+                if (newUTCTimeObj.mmNUM < 10) {newUTCTimeObj.mmSTR = '0' + newUTCTimeObj.mmNUM } else {newUTCTimeObj.mmSTR = '' + newUTCTimeObj.mmNUM};
+                newUTCTimeObj.ddNUM   = date.getUTCDate();
+                if (newUTCTimeObj.ddNUM < 10) {newUTCTimeObj.ddSTR = '0' + newUTCTimeObj.ddNUM } else {newUTCTimeObj.ddSTR = '' + newUTCTimeObj.ddNUM};
+                newUTCTimeObj.hhNUM   = date.getUTCHours();
+                if (newUTCTimeObj.hhNUM < 10) {newUTCTimeObj.hhSTR = '0' + newUTCTimeObj.hhNUM } else {newUTCTimeObj.hhSTR = '' + newUTCTimeObj.hhNUM};
+                newUTCTimeObj.minNUM  = date.getUTCMinutes();
+                if (newUTCTimeObj.minNUM < 10) {newUTCTimeObj.minSTR = '0' + newUTCTimeObj.minNUM } else {newUTCTimeObj.minSTR = '' + newUTCTimeObj.minNUM};
+                newUTCTimeObj.ssNUM   = date.getUTCSeconds();
+                if (newUTCTimeObj.ssNUM < 10) {newUTCTimeObj.ssSTR = '0' + newUTCTimeObj.ssNUM } else {newUTCTimeObj.ssSTR = '' + newUTCTimeObj.ssNUM};
+
+                newUTCTimeObj.timeInMS = +date;
+
+                dateString = newUTCTimeObj.yyyySTR + '-' + newUTCTimeObj.mmSTR + '-' + newUTCTimeObj.ddSTR +'T' + newUTCTimeObj.hhSTR + ':' + newUTCTimeObj.minSTR + ':' + newUTCTimeObj.ssSTR + 'Z';
+                timer ()
+              }
+  });
+})();
+
+function timer () {
+  var currentDate = Date.parse(dateString);
+  currentDate     = new Date(currentDate);
+
+  setInterval(function() {
+    currentDate.setSeconds(currentDate.getSeconds() +1);
+
+    newUTCTimeObj.yyyySTR = '' +currentDate.getUTCFullYear();
+    newUTCTimeObj.yyyyNUM = currentDate.getUTCFullYear();
+    newUTCTimeObj.yySTR   = newUTCTimeObj.yyyySTR.slice(2,4);
+    newUTCTimeObj.yyNUM   = +newUTCTimeObj.yyyySTR.slice(2,4);
+    newUTCTimeObj.mmNUM   = currentDate.getUTCMonth() + 1;
+    if (newUTCTimeObj.mmNUM < 10) {newUTCTimeObj.mmSTR = '0' + newUTCTimeObj.mmNUM } else {newUTCTimeObj.mmSTR = '' + newUTCTimeObj.mmNUM};
+    newUTCTimeObj.ddNUM   = currentDate.getUTCDate();
+    if (newUTCTimeObj.ddNUM < 10) {newUTCTimeObj.ddSTR = '0' + newUTCTimeObj.ddNUM } else {newUTCTimeObj.ddSTR = '' + newUTCTimeObj.ddNUM};
+    newUTCTimeObj.hhNUM   = currentDate.getUTCHours();
+    if (newUTCTimeObj.hhNUM < 10) {newUTCTimeObj.hhSTR = '0' + newUTCTimeObj.hhNUM } else {newUTCTimeObj.hhSTR = '' + newUTCTimeObj.hhNUM};
+    newUTCTimeObj.minNUM  = currentDate.getUTCMinutes();
+    if (newUTCTimeObj.minNUM < 10) {newUTCTimeObj.minSTR = '0' + newUTCTimeObj.minNUM } else {newUTCTimeObj.minSTR = '' + newUTCTimeObj.minNUM};
+    newUTCTimeObj.ssNUM   = currentDate.getUTCSeconds();
+    if (newUTCTimeObj.ssNUM < 10) {newUTCTimeObj.ssSTR = '0' + newUTCTimeObj.ssNUM } else {newUTCTimeObj.ssSTR = '' + newUTCTimeObj.ssNUM};
+
+    newUTCTimeObj.timeInMS = +currentDate;
+  },1000);
+}
+
 /* ↓↓↓ datetimer ↓↓↓ */
 var datetimer = document.getElementById('UTC-datetimer');
 setInterval(function () {
-  var date = new Date();
-  console.log("date", date);
-  var dd = date.getUTCDate();
-  if (dd < 10) dd = '0' + dd;
-
-  var mm = date.getUTCMonth() + 1;
-  if (mm < 10) mm = '0' + mm;
-
-  var yy = date.getUTCFullYear();
-  if (yy < 10) yy = '0' + yy;
-
-  var hh = date.getUTCHours();
-  if (hh < 10) hh = '0' + hh;
-
-  var mn = date.getUTCMinutes();
-  if (mn < 10) mn = '0' + mn;
-
-  var ss = date.getUTCSeconds();
-  if (ss < 10) ss = '0' + ss;
-
-  datetimer.innerHTML = dd + "." + mm + "." + yy + "   " + hh + ":" + mn + ":" + ss;
+  datetimer.innerHTML = newUTCTimeObj.ddSTR + "." + newUTCTimeObj.mmSTR + "." + newUTCTimeObj.yyyySTR + "   " + newUTCTimeObj.hhSTR + ":" + newUTCTimeObj.minSTR + ":" + newUTCTimeObj.ssSTR;
 }, 1000);
 /* ↑↑↑ /datetimer ↑↑↑ */
 /* ↑↑↑ /БЛОК ЧАСУ ↑↑↑ */
@@ -233,6 +293,7 @@ $('.parlay-btns__btn').click(function () {
                               parlayTime.slice(8, 10),
                               parlayTime.slice(11, 13),
                               parlayTime.slice(14, 16)) - UTCDate;
+
       }
     }
   }
@@ -727,6 +788,7 @@ function timeHandler(time) {
                           timeObj.ddUTCStr;
 
   return(timeObj);
+
 }
 
 function closeParlayConfirmationPopup() {
