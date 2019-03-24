@@ -16,8 +16,8 @@ var pointStart,                                         // перша точка
     labelValue1        = labelValue2 = YPlotLinesValue, // змінні для визначення тенденції в котировках (потрібні для зафарбовування рамки поточного значення)
     labelBorderColor   = 'white',                       // колір рамки поточного значення
     chart,                                              // об'єкт Highcharts робимо доступним глобально для усіх функцій
-    graphicColor      = '#0FBFBCFF',
-    plotlineColor     = '#FF0532FF';
+    graphicColor      = 'rgb(0, 187, 187)',
+    plotlineColor     = 'rgb(255, 0, 51)';
 
 getDataArr();
 
