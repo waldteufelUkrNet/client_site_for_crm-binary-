@@ -548,18 +548,18 @@ function closeProfilePopup() {
 }
 /* ↑↑↑ /BEM-block: profile-editor ↑↑↑ */
 
-
-
-
 /* ↓↓↓ BEM-block: make-lodgement ↓↓↓ */
 var popupHeight;
 // поява
 $('.central-part__btn').click(function () {
+    $(".check_pay").val(0);
+    $('.check_pay').prop("checked", false);
     // чистка попереднього input'у
     $('#currencyAmount').val('');
     $('#terminalId').val('');
+    $('.make-lodgement__info').css({ 'height': '0px' });
 
-    popupHeight = 26*2 + 50*$('.make-lodgement__pay-system').length + 10*($('.make-lodgement__pay-system').length - 1);
+    popupHeight = 26 * 2 + 50 * $('.make-lodgement__pay-system').length + 10 * ($('.make-lodgement__pay-system').length - 1);
 
     $('.make-lodgement__positioning-wrapper').css({ 'z-index': '8888', 'background-color': 'rgba(0,0,0,.8' });
 
@@ -590,35 +590,40 @@ $('.central-part__btn').click(function () {
 
 // кліки
 $('.make-lodgement__pay-system:eq(0)').click(function () {
-    $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': '44px' });
-    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': popupHeight + 76 });
-    $('.make-lodgement__pay-block').css({ 'transition': '.5s', 'height': '80px' });
-    $('#terminalId').val('1');
+    choosePayTerminal(this, '44px', 1)
 });
 
 $('.make-lodgement__pay-system:eq(1)').click(function () {
-    $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': '104px' });
-    $('.make-lodgement').css({ 'transition': 'height .3s', 'height': popupHeight + 76 });
-    $('.make-lodgement__pay-block').css({ 'transition': '.5s', 'height': '80px' });
-    $('#terminalId').val('2');
+    choosePayTerminal(this, '104px', 2)
 });
 
 $('.make-lodgement__pay-system:eq(2)').click(function () {
-    $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': '164px' });
+    choosePayTerminal(this, '164px', 3)
+});
+
+function choosePayTerminal(THIS, trianglePosition, terminalId) {
+    $('.make-lodgement__triangle').css({ 'transition': '.5s', 'top': trianglePosition });
     $('.make-lodgement').css({ 'transition': 'height .3s', 'height': popupHeight + 76 });
     $('.make-lodgement__pay-block').css({ 'transition': '.5s', 'height': '80px' });
-    $('#terminalId').val('3');
-});
+
+    $('#terminalId').val(terminalId);
+
+    $('#make-lodgement__currency-select').empty();
+    var tempCurrencyArr = $(THIS).attr('data-currency-names').split(' ');
+    for (var i = 0; i < tempCurrencyArr.length; i++) {
+        $('#make-lodgement__currency-select').append('<option value="' + tempCurrencyArr[i] + '">' + tempCurrencyArr[i] + '</option>');
+    }
+}
 
 // закриття
 $('.make-lodgement__close-btn').click(function (e) {
-
+    $('.make-lodgement__info').css({ 'height': '0px' });
     $('.make-lodgement__pay-block').css({ 'transition': '.3s', 'height': '0px' });
     $('.make-lodgement').css({ 'transition': 'height .3s', 'height': popupHeight });
     $('.make-lodgement__triangle').css({ 'transition': '.3s', 'right': '-12px' });
 
     setTimeout(function () {
-        $('.make-lodgement__triangle').css({ 'top': '74px' });
+        $('.make-lodgement__triangle').css({ 'top': '44px' });
     }, 300);
 
     setTimeout(function () {
@@ -649,32 +654,91 @@ $('.make-lodgement__close-btn').click(function (e) {
     }, 2100);
 });
 
+function closeMakeLodgementPopup() {
+
+    $('.make-lodgement-VISA').css({ 'transition': '.2s', 'height': '0px' });
+    $('.make-lodgement-MasterCard').css({ 'transition': '.2s', 'height': '0px' });
+    $('.make-lodgement').css({ 'transition': 'height .2s', 'height': '162px' });
+    $('.make-lodgement__triangle').css({ 'transition': '.2s', 'right': '-12px' });
+
+    setTimeout(function () {
+        $('.make-lodgement__triangle').css({ 'top': '74px' });
+    }, 200);
+
+    setTimeout(function () {
+        $('.make-lodgement__pay-system:even').css({ 'transition': '.2s', 'left': '110%' });
+        $('.make-lodgement__pay-system:odd').css({ 'transition': '.2s', 'left': '-110%' });
+    }, 300);
+
+    setTimeout(function () {
+        $('.make-lodgement__close-btn').css({ 'transition': '.3s', 'transform': 'rotate(0deg)' });
+        $('.make-lodgement__close-btn-line1, .make-lodgement__close-btn-line2').css({ 'transition': 'width .3s', 'width': '0px' });
+    }, 500);
+
+    setTimeout(function () {
+        $('.make-lodgement').css({ 'transition': 'height .2s', 'height': '20px' });
+        $('.make-lodgement__pay-system').css({ 'display': 'none' });
+    }, 800);
+
+    setTimeout(function () {
+        $('.make-lodgement').css({ 'transition': 'width .2s', 'width': '120px' });
+    }, 1000);
+
+    setTimeout(function () {
+        $('.make-lodgement').css({ 'transition': 'top .2s', 'top': '-10%' });
+        $('.make-lodgement__positioning-wrapper').css({ 'transition': 'background-color .3s', 'z-index': '-1', 'background-color': 'rgba(0,0,0,0' });
+    }, 1200);
+}
+
+
 // валiдацiя та закриття
 //----------------------------------------------------- РАБОТА С ПЛАТЕЖКОЙ ----------------------------------------------------------
 $('#make-lodgement-btn').click(function (e) {
-    if ( $('#currencyAmount').val() == '' ) {
-        e.preventDefault();
-    } else {
-        $('#make-lodgement-btn').css('display','none');
-        $('#make-lodgement-notBtn').css('display','flex');
-        $('.make-lodgement').css('height','270px');
-        $('.make-lodgement__info').css({'height':'30px'});
+    var i = $(".check_pay").val();
+    if ($('#currencyAmount').val() != '' && i != 0) {
 
-        var paySystem   = $('#terminalId').val();
-        var payAmount   = $('#inpVISA').val();
-        var payCurrency = $('select[name="currency-V"]').val();
+        $('#make-lodgement-btn').css('display', 'none');
+        $('#make-lodgement-notBtn').css('display', 'flex');
+
+        var paySystem = $('#terminalId').val();
+        var payAmount = $('#currencyAmount').val();
+        var payCurrency = $('select[name="currency"]').val();
         var dat = {
             count: payAmount,
             curensy: payCurrency,
             paySystem: paySystem
         };
         $.ajax({
-            url: "/Home/AddDeposit",
-            type: "POST",
-            data: dat
+            url: "/Home/CheckSum?count=" + payAmount + "&curensy=" + payCurrency,
+            type: "GET",
+            success: function (data1) {
+                if (data1 == "ok") {
+                    $.ajax({
+                        url: "/Home/AddDeposit",
+                        type: "POST",
+                        data: dat,
+                        success: function (data) {
+                            $('#make-lodgement-btn').css({ 'display': 'block' });
+                            $('#make-lodgement-notBtn').css('display', 'none');
+                            $('.make-lodgement__pay-block').css('height', '0px');
+                            closeMakeLodgementPopup();
+                            if (data != null) {
+                                $('#massegeConteiner').html(data);
+                            }
+                        }
+                    });
+                } else {
+                    $('#make-lodgement-btn').css({ 'display': 'block' });
+                    $('#make-lodgement-notBtn').css('display', 'none');
+                    $('.make-lodgement').css('height', popupHeight + 76 + 30);
+                    $('.make-lodgement__pay-block').css('height', 110);
+                    $('.make-lodgement__info').css({ 'height': '30px' }).text(data1);
+                }
+            }
         });
     }
 });
+
 
 //----------------------------------------------------- РАБОТА С ПЛАТЕЖКОЙ ----------------------------------------------------------
 

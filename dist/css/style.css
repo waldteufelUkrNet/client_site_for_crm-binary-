@@ -278,7 +278,10 @@ table {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: #1d2a38;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#06071f), color-stop(#112255), to(#114488));
+    background-image: -webkit-linear-gradient(#06071f, #112255, #114488);
+    background-image: -o-linear-gradient(#06071f, #112255, #114488);
+    background-image: linear-gradient(#06071f, #112255, #114488);
     color: white;
     font-family: rcl;
     font-size: 12px;
@@ -394,12 +397,12 @@ table {
             user-select: none;
   }
   .main .work_area .graphic-header .timer-buttons-ul .timer-buttons-li:hover {
-    background-color: dodgerblue;
-    border-color: dodgerblue;
+    background-color: #38c1d0;
+    border-color: #38c1d0;
   }
   .main .work_area .graphic-header .timer-buttons-ul .timer-buttons-li_active {
-    background-color: dodgerblue;
-    border-color: dodgerblue;
+    background-color: #38c1d0;
+    border-color: #38c1d0;
   }
   .main .work_area .graphic-header .type-buttons-ul {
     height: 30px;
@@ -441,12 +444,12 @@ table {
     transition: background-color .5s, border-color .5s;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:hover {
-    background-color: dodgerblue;
-    border-color: dodgerblue;
+    background-color: #38c1d0;
+    border-color: #38c1d0;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li_active {
-    background-color: dodgerblue;
-    border-color: dodgerblue;
+    background-color: #38c1d0;
+    border-color: #38c1d0;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li img {
     width: 24px;
@@ -592,7 +595,7 @@ table {
   }
   .main .navigation__body {
     height: 120px;
-    background-color: #1d2a38;
+    background-color: transparent;
     padding: 10px 15px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -602,7 +605,7 @@ table {
     border: 1px solid white;
     -webkit-border-radius: 4px;
             border-radius: 4px;
-    background-color: #1d2a38;
+    background-color: transparent;
     text-transform: uppercase;
     text-align: center;
     line-height: 1.5em;
@@ -656,7 +659,7 @@ table {
     z-index: 2222;
     left: -200px;
     display: block;
-    background-color: #1d2a38;
+    background-color: transparent;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     -webkit-transition: left .3s;
@@ -721,7 +724,7 @@ table {
     transition: background-color .5s, border-color .5s;
   }
   .main .left-column .wares-slider__table tr:hover {
-    background-color: #2d3a48;
+    background-color: #0CA1B5;
     border-color: black;
   }
   .main .left-column .wares-slider__table tr td {
@@ -750,7 +753,7 @@ table {
     -webkit-transition: background-color .5s;
     -o-transition: background-color .5s;
     transition: background-color .5s;
-    background-color: #1d2a38;
+    background-color: transparent;
   }
   .main .left-column .wares-slider .slick-arrow:before {
     width: 50%;
@@ -760,7 +763,7 @@ table {
     color: white;
   }
   .main .left-column .wares-slider .slick-arrow:hover {
-    background-color: dodgerblue;
+    background-color: #13b1e1;
     -webkit-transition: background-color .5s;
     -o-transition: background-color .5s;
     transition: background-color .5s;
@@ -794,7 +797,7 @@ table {
     z-index: 2222;
     right: -200px;
     display: block;
-    background-color: #1d2a38;
+    background-color: transparent;
     height: -webkit-calc(100% - 170px);
     height: calc(100% - 170px);
     border-left: 1px solid black;
@@ -849,11 +852,8 @@ table {
             user-select: none;
   }
   .main .right-column .work-field .investment-calculator input, .main .right-column .work-field .investment-calculator span {
-    background-image: -webkit-gradient(linear, left top, right top, from(#141414), to(#102734));
-    background-image: -webkit-linear-gradient(left, #141414, #102734);
-    background-image: -o-linear-gradient(left, #141414, #102734);
-    background-image: linear-gradient(to right, #141414, #102734);
-    border: 1px solid #102734;
+    background-color: transparent;
+    border: 1px solid transparent;
     height: 22px;
     line-height: 22px;
     padding: 0 12px;
@@ -901,12 +901,12 @@ table {
             border-radius: 4px;
     text-align: center;
     margin: 6px 0;
-    color: dodgerblue;
+    color: #13b1e1;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
-    border: 1px solid dodgerblue;
+    border: 1px solid #13b1e1;
     line-height: 16px;
   }
   .main .right-column #UTC-datetimer-holder #UTC-datetimer {
@@ -935,15 +935,15 @@ table {
             flex-wrap: nowrap;
     position: relative;
     z-index: 2;
-    background-color: #1d2a38;
+    background-color: transparent;
   }
   .main .right-column .parlay-slider__item-header {
     width: 70%;
     margin: 0 auto;
     height: 30px;
     line-height: 28px;
-    background-color: dodgerblue;
-    border: 1px solid dodgerblue;
+    background-color: #13b1e1;
+    border: 1px solid white;
     -webkit-border-radius: 4px;
             border-radius: 4px;
     text-align: center;
@@ -990,7 +990,7 @@ table {
     -o-transition: background-color .5s;
     transition: background-color .5s;
     z-index: 11;
-    background-color: #1d2a38;
+    background-color: transparent;
   }
   .main .right-column .parlay-slider .slick-arrow:before {
     width: 100%;
@@ -1000,7 +1000,7 @@ table {
     color: white;
   }
   .main .right-column .parlay-slider .slick-arrow:hover {
-    background-color: dodgerblue;
+    background-color: #13b1e1;
     -webkit-transition: background-color .5s;
     -o-transition: background-color .5s;
     transition: background-color .5s;
@@ -1155,8 +1155,8 @@ table {
   .main .right-column .slider-change-btn-holder .slider-change-btn {
     height: 36px;
     line-height: 32px;
-    background-color: dodgerblue;
-    border: 1px solid dodgerblue;
+    background-color: #0fbfbc;
+    border: 2px solid #0b6f8d;
     -webkit-border-radius: 4px;
             border-radius: 4px;
     text-align: center;
@@ -1170,12 +1170,12 @@ table {
             user-select: none;
   }
   .main .right-column .slider-change-btn-holder .slider-change-btn:hover {
-    background-color: #1d2a38;
-    border-color: white;
+    background-color: transparent;
+    border-color: #0b6f8d;
   }
   .main .right-column .slider-change-btn-holder .slider-change-btn_active {
-    background-color: #1d2a38;
-    border-color: white;
+    background-color: transparent;
+    border-color: #0b6f8d;
   }
   /* ↓↓↓ FOOTER ↓↓↓ */
   /* ↑↑↑ /FOOTER ↑↑↑ */
@@ -1623,8 +1623,8 @@ table {
   min-width: 40px;
   height: 30px;
   cursor: pointer;
-  background-color: dodgerblue;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: #14b1e0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   -webkit-border-radius: 8px;
           border-radius: 8px;
   margin: 0 20px;
@@ -1662,7 +1662,7 @@ table {
   font-family: rcl;
   text-transform: uppercase;
   color: white;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
   z-index: 1;
 }
 
@@ -1706,7 +1706,7 @@ table {
 
 .header .right-part .header-greeting {
   white-space: nowrap;
-  color: lightskyblue;
+  color: #11bbee;
   display: none;
 }
 
@@ -1746,7 +1746,7 @@ table {
 }
 
 .header .right-part .menu .menu-list-a:hover {
-  background-color: #1d2a38;
+  background-color: transparent;
   -webkit-transition: background-color .5s;
   -o-transition: background-color .5s;
   transition: background-color .5s;
@@ -1897,10 +1897,10 @@ table {
   position: absolute;
   left: 0px;
   bottom: 0px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(30, 144, 255, 0.1)), color-stop(rgba(30, 144, 255, 0.4)), to(rgba(30, 144, 255, 0.9)));
-  background-image: -webkit-linear-gradient(rgba(30, 144, 255, 0.1), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
-  background-image: -o-linear-gradient(rgba(30, 144, 255, 0.1), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
-  background-image: linear-gradient(rgba(30, 144, 255, 0.1), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(30, 144, 255, 0)), color-stop(rgba(30, 144, 255, 0.4)), to(rgba(30, 144, 255, 0.9)));
+  background-image: -webkit-linear-gradient(rgba(30, 144, 255, 0), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
+  background-image: -o-linear-gradient(rgba(30, 144, 255, 0), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
+  background-image: linear-gradient(rgba(30, 144, 255, 0), rgba(30, 144, 255, 0.4), rgba(30, 144, 255, 0.9));
 }
 
 .active-slider__item-graphic {
@@ -1918,7 +1918,7 @@ table {
   -webkit-border-radius: 4px 0 4px 0;
           border-radius: 4px 0 4px 0;
   padding: 3px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
 }
 
 .active-slider__start-price {
@@ -2141,7 +2141,7 @@ table {
 .menu-btn__line {
   width: 24px;
   height: 2px;
-  background-color: dodgerblue;
+  background-color: #13b1e1;
   position: absolute;
 }
 
@@ -2179,13 +2179,13 @@ table {
   position: relative;
   z-index: 8666;
   display: block;
-  color: dodgerblue;
+  color: #13b1e1;
   width: 32px;
   height: 24px;
   border: none;
   cursor: pointer;
   background-color: transparent;
-  border: 1px solid dodgerblue;
+  border: 1px solid #13b1e1;
   text-align: center;
   line-height: 21px;
   font-size: 18px;

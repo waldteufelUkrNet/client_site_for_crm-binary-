@@ -140,7 +140,6 @@ var dateString;
   $.ajax({
     url     : 'http://localhost/api/UtcTime',
     success : function (data) {
-                console.log("success");
                 newUTCTimeObj.yyyySTR    = data.slice(0,4);
                 newUTCTimeObj.yyyyNUM    = +data.slice(0,4);
                 newUTCTimeObj.yySTR      = data.slice(2,4);
@@ -157,7 +156,7 @@ var dateString;
                 newUTCTimeObj.ssNUM      = +data.slice(17,19);
                 newUTCTimeObj.timeInMS   = Date.parse(data);
                 newUTCTimeObj.date       = new Date(newUTCTimeObj.timeInMS);
-                newUTCTimeObj.weekday    = date.getDay();                    // день тижня 0 - неділя, 6 - субота
+                newUTCTimeObj.weekday    = newUTCTimeObj.date.getDay();                    // день тижня 0 - неділя, 6 - субота
                 newUTCTimeObj.hh_mm      = newUTCTimeObj.hhSTR + ':' + newUTCTimeObj.minSTR;
                 newUTCTimeObj.yyyy_mm_dd = newUTCTimeObj.yyyySTR + '-' + newUTCTimeObj.mmSTR + '-' + newUTCTimeObj.ddSTR;
 
@@ -165,7 +164,6 @@ var dateString;
                 timer ()
               },
     error   : function() {
-                console.log("error");
                 var date = new Date();
                 newUTCTimeObj.yyyySTR   = '' +date.getUTCFullYear();
                 newUTCTimeObj.yyyyNUM   = date.getUTCFullYear();
@@ -189,8 +187,6 @@ var dateString;
                 newUTCTimeObj.yyyy_mm_dd = newUTCTimeObj.yyyySTR + '-' + newUTCTimeObj.mmSTR + '-' + newUTCTimeObj.ddSTR;
 
                 dateString = newUTCTimeObj.yyyySTR + '-' + newUTCTimeObj.mmSTR + '-' + newUTCTimeObj.ddSTR +'T' + newUTCTimeObj.hhSTR + ':' + newUTCTimeObj.minSTR + ':' + newUTCTimeObj.ssSTR + 'Z';
-
-                dateString = '2019-03-25T15:00:00Z';
                 timer ()
               }
   });
@@ -296,20 +292,36 @@ $('.parlay-btns__btn').click(function () {
     if ($(tempArr[i]).css('background-color') == 'rgba(0, 0, 0, 0.3)') {
       highlightingEl = tempArr[i];
       var parlayTimeAsString = $(highlightingEl).text();                                                         // час закриття у формі рядка
+      // short/long
       if ( $(highlightingEl).attr('data-timeToEndInMS') ) {
         parlayTime = +$(highlightingEl).attr('data-timeToEndInMS');                                              // час до закриття ставки у мілісекундах
+        // normal
       } else if ( $(highlightingEl).attr('data-timeToEnd') ) {
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // parlayTime = $(highlightingEl).attr('data-timeToEnd');
+        // console.log("parlayTime", parlayTime);
+
+        // var UTCDate = new Date();
+        // UTCDate = UTCDate.setHours(UTCDate.getUTCHours());
+
+        // parlayTime = new Date(parlayTime.slice(0, 4),                                                            // час до закриття ставки у мілісекундах
+        //                       parlayTime.slice(5, 7) - 1,
+        //                       parlayTime.slice(8, 10),
+        //                       parlayTime.slice(11, 13),
+        //                       parlayTime.slice(14, 16)) - UTCDate;
+        // console.log("parlayTime", parlayTime);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         parlayTime = $(highlightingEl).attr('data-timeToEnd');
+        console.log("parlayTime", parlayTime);
 
-        var UTCDate = new Date();
-        UTCDate = UTCDate.setHours(UTCDate.getUTCHours());
-
-        parlayTime = new Date(parlayTime.slice(0, 4),                                                            // час до закриття ставки у мілісекундах
-                              parlayTime.slice(5, 7) - 1,
-                              parlayTime.slice(8, 10),
-                              parlayTime.slice(11, 13),
-                              parlayTime.slice(14, 16)) - UTCDate;
-
+        var tempStartTimeInMinutes  = newUTCTimeObj.hhNUM * 60 + newUTCTimeObj.minNUM;
+        var tempFinishTimeInMinutes = (+parlayTime.slice(11,13)) * 60 + +parlayTime.slice(14,16);
+        parlayTime = (tempFinishTimeInMinutes - tempStartTimeInMinutes) * 60 * 1000
+        console.log("parlayTime", parlayTime);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       }
     }
   }
@@ -399,7 +411,7 @@ $('.parlay-btns__btn').click(function () {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* ↓↓↓ FUNCTIONS DECLARATIONS ↓↓↓ */
-function deActivationParlayBtns() {
+function deActivationParlayBtns () {
 // перевіряє, чи в полі інвестицій значення більше 5 та чи вибраний час ставки,
 // якщо так - активує кнопки ВГОРУ/ВНИЗ, якщо ні - деактивує
   if (flagIsTradingPossible_investmentInput && flagIsTradingPossible_selectedTime) {
@@ -408,7 +420,7 @@ function deActivationParlayBtns() {
     $('.parlay-btns__cover').css('display', 'flex');
   }
 }
-function rewriteParlayLists() {
+function rewriteParlayLists () {
 // призупиняє setInterval, який викликає цю функцію
 // визначає, чи біржа активна
 // breakInTrade = $('#currentStockPairId').attr('data-break'); // 0 - біржа активна, 1 - перерва у вибраної пари
@@ -647,26 +659,51 @@ function rewriteLongParlayList () {
 // створює список довгих ставок
   // видалення попередньо створеного списку
   $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder').empty();
-  // var startTime     = new Date(),
-  var startTime     = newUTCTimeObj.date,
-      timeToEndInMS = 86400000; // 24*60*60*1000
-      console.log("startTime", startTime);
+
+  // потрібно використати newUTCTimeObj.date, але вираз startTime = newUTCTimeObj.date посилається на об'єкт,
+  // а не на примітив, відповідно його змінює і ламає код. Щоб цього не було, потрібно створити клон об'єкту. Для цього
+  // використовуємо наступний канделябр: беремо час на компі клієнта, вираховуємо різницю між цим часом та UTC, отриману
+  // різницю віднімаємо/додаємо від/до часу компа і отримуємо новий об'єкт-час уже в UTC
+
+  var tempTime = Date.now();
+  if ( tempTime > +newUTCTimeObj.date ) {
+    var delta = tempTime - +newUTCTimeObj.date;
+    var startTime = new Date( tempTime - delta );
+  } else if ( tempTime < +newUTCTimeObj.date ) {
+    var delta = +newUTCTimeObj.date - tempTime;
+    var startTime = new Date( tempTime + delta );
+  } else if ( tempTime = +newUTCTimeObj.date ) {
+    var startTime = new Date( tempTime );
+  }
+
+  var timeToEndInMS = 86400000; // 24*60*60*1000
+
   // створення нового списку
   for (var i = 0; i < 31; i++) {
     // додаємо по одній добі
     startTime.setUTCDate(startTime.getUTCDate() + 1);
 
+    var tempDateSTR       = {};
+    tempDateSTR.yyyySTR   = '' +startTime.getUTCFullYear();
+    tempDateSTR.mmNUM     = startTime.getUTCMonth() + 1;
+    if (tempDateSTR.mmNUM < 10) {tempDateSTR.mmSTR = '0' + newUTCTimeObj.mmNUM } else {tempDateSTR.mmSTR = '' + tempDateSTR.mmNUM};
+    tempDateSTR.ddNUM     = startTime.getUTCDate();
+    if (tempDateSTR.ddNUM < 10) {tempDateSTR.ddSTR = '0' + tempDateSTR.ddNUM } else {tempDateSTR.ddSTR = '' + tempDateSTR.ddNUM};
+
+    var weekday           = startTime.getDay();
+
+    tempDateSTR           = tempDateSTR.yyyySTR + '-' + tempDateSTR.mmSTR + '-' + tempDateSTR.ddSTR;
+
     // додаткова перевірка для акцій
     if ( pairType == 1 ) {
-      var weekday = newUTCTimeObj.weekday;
       if ( weekday == 6 || weekday == 0 ) continue;
-      if ( isFeastDayInUSA( newUTCTimeObj.yyyy_mm_dd ) ) continue;
+      if ( isFeastDayInUSA( tempDateSTR ) ) continue;
     }
 
     $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
                                                      .append('<div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="'
                                                               + timeToEndInMS + '">'
-                                                              + newUTCTimeObj.yyyy_mm_dd + '</div>');
+                                                              + tempDateSTR + '</div>');
     timeToEndInMS += timeToEndInMS;
   }
 
@@ -677,7 +714,7 @@ function rewriteLongParlayList () {
   })
 }
 
-function clickOnParlayTimeButtons(elem) {
+function clickOnParlayTimeButtons (elem) {
 // підсвічує обраний час, викликає ф-ю активації кнопок ВВЕРХ/ВНИЗ
   // зупинка інтервалу
   clearInterval(timerForListBuilding);
@@ -694,7 +731,7 @@ function clickOnParlayTimeButtons(elem) {
   timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, timeForListBuildingTimer);
 }
 
-function isFeastDayInUSA(date) {
+function isFeastDayInUSA (date) {
 // перевіряє, чи є вказаний день святковим в США: 1 - святковий, 0 - не святковий
   var url = 'https://central.investingcase.com/api/Hol/GetDate?value=' + date;
   var ansver;
@@ -712,7 +749,7 @@ function isFeastDayInUSA(date) {
   return ansver
 }
 
-function showInfoMessage(message) {
+function showInfoMessage (message) {
   var langIndex,
       langSpanText = $('#language-span').text().toLowerCase().slice(0,4);
 
@@ -755,60 +792,6 @@ function showInfoMessage(message) {
   });
 }
 
-function timeHandler(time) {
-// приймає аргументом час (якщо аргумент не переданий - працює з поточним часом)
-// та повертає об'єкт з різними форматами часу та його компонентами
-  if (!time) {
-    var time = new Date();
-  } else {
-    var time = time;
-  }
-
-  var timeObj     = {};
-  timeObj.yyyy    = time.getFullYear();                   // повний рік
-  timeObj.yy      = +timeObj.yyyy.toString().slice(2);    // скорочений рік
-  timeObj.mm      = time.getMonth() + 1;                  // місяць 1 - 12
-  timeObj.dd      = time.getDate();                       // число
-  timeObj.wd      = time.getDay();                        // день тижня 0 - неділя, 6 - субота
-  timeObj.hh      = time.getHours();                      // години
-  timeObj.mn      = time.getMinutes();                    // хвилини
-  timeObj.ss      = time.getSeconds();                    // секунди
-  timeObj.ms      = time.getMilliseconds();               // мілісекунди
-  timeObj.yyyyUTC = time.getUTCFullYear();                // повний рік (UTC)
-  timeObj.yyUTC   = +timeObj.yyyyUTC.toString().slice(2); // скорочений рік (UTC)
-  timeObj.mmUTC   = time.getUTCMonth() + 1;               // місяць 1 - 12 (UTC)
-  timeObj.ddUTC   = time.getUTCDate();                    // число (UTC)
-  timeObj.wdUTC   = time.getUTCDay();                     // день тижня 0 - неділя, 6 - субота (UTC)
-  timeObj.hhUTC   = time.getUTCHours();                   // години (UTC)
-
-  if (timeObj.yy < 10) { timeObj.yyStr = '0' + timeObj.yy} else { timeObj.yyStr = '' + timeObj.yy }
-  if (timeObj.mm < 10) { timeObj.mmStr = '0' + timeObj.mm} else { timeObj.mmStr = '' + timeObj.mm }
-  if (timeObj.dd < 10) { timeObj.ddStr = '0' + timeObj.dd} else { timeObj.ddStr = '' + timeObj.dd }
-  if (timeObj.hh < 10) { timeObj.hhStr = '0' + timeObj.hh} else { timeObj.hhStr = '' + timeObj.hh }
-  if (timeObj.mn < 10) { timeObj.mnStr = '0' + timeObj.mn} else { timeObj.mnStr = '' + timeObj.mn }
-  if (timeObj.ss < 10) { timeObj.ssStr = '0' + timeObj.ss} else { timeObj.ssStr = '' + timeObj.ss }
-
-  if (timeObj.yyUTC < 10) { timeObj.yyUTCStr = '0' + timeObj.yyUTC} else { timeObj.yyUTCStr = '' + timeObj.yyUTC }
-  if (timeObj.mmUTC < 10) { timeObj.mmUTCStr = '0' + timeObj.mmUTC} else { timeObj.mmUTCStr = '' + timeObj.mmUTC }
-  if (timeObj.ddUTC < 10) { timeObj.ddUTCStr = '0' + timeObj.ddUTC} else { timeObj.ddUTCStr = '' + timeObj.ddUTC }
-  if (timeObj.hhUTC < 10) { timeObj.hhUTCStr = '0' + timeObj.hhUTC} else { timeObj.hhUTCStr = '' + timeObj.hhUTC }
-
-  timeObj.hh_mmUTC = timeObj.hhUTCStr + ':' + timeObj.mnStr;
-
-  timeObj.yyyy_mm_dd_hh_mnUTC = timeObj.yyyyUTC  + '-'+
-                                timeObj.mmUTCStr + '-' +
-                                timeObj.ddUTCStr + ' ' +
-                                timeObj.hhUTCStr + ':' +
-                                timeObj.mnStr;
-
-  timeObj.yyyy_mm_ddUTC = timeObj.yyyyUTC  + '-'+
-                          timeObj.mmUTCStr + '-' +
-                          timeObj.ddUTCStr;
-
-  return(timeObj);
-
-}
-
 function closeParlayConfirmationPopup() {
 // анімує закриття спливаючого вікна - підтвердження ставки
   $('.parlay-confirmation__timer').text('');
@@ -827,7 +810,7 @@ function closeParlayConfirmationPopup() {
   }, 1000);
 }
 
-function getChar(event) {
+function getChar (event) {
   if (event.which == null) { // IE
     if (event.keyCode < 32) return null; // спец. символ
     return String.fromCharCode(event.keyCode)
