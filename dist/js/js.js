@@ -161,6 +161,7 @@ var dateString;
                 newUTCTimeObj.yyyy_mm_dd = newUTCTimeObj.yyyySTR + '-' + newUTCTimeObj.mmSTR + '-' + newUTCTimeObj.ddSTR;
 
                 dateString = data;
+                dateString = "2022-03-22T08:40:31Z";
                 timer ()
               },
     error   : function() {
@@ -615,7 +616,7 @@ function rewriteNormalParlayList (start, finish) {
   if (25 <= tempStartTimeUTCMinutes && tempStartTimeUTCMinutes < 55) {
     // оркуглити до 00, додати 1 годину
     tempStartTimeUTCHours   = +tempStartTimeUTCHours + 1;
-    if ( tempStartTimeUTCHours < 10 ) tempStartTimeUTCHours = '0' + tempStartTimeUTCHours;
+    if ( tempStartTimeUTCHours < 10 ) tempStartTimeUTCHours = '0' + +tempStartTimeUTCHours;
     tempStartTimeUTCMinutes = '00';
   } else if (0 <= tempStartTimeUTCMinutes && tempStartTimeUTCMinutes < 25) {
     // оркуглити до 30
@@ -623,13 +624,13 @@ function rewriteNormalParlayList (start, finish) {
   } else if (55 <= tempStartTimeUTCMinutes && tempStartTimeUTCMinutes <= 59) {
     // округлити до 30, додати годину
     tempStartTimeUTCHours   = +tempStartTimeUTCHours + 1;
-    if ( tempStartTimeUTCHours < 10 ) tempStartTimeUTCHours = '0' + tempStartTimeUTCHours;
+    if ( tempStartTimeUTCHours < 10 ) tempStartTimeUTCHours = '0' + +tempStartTimeUTCHours;
     tempStartTimeUTCMinutes = '30';
   }
 
   // створення першої ставки і далі створення в циклі нового списку
   while ( tempFinishTimeInMinutes > tempStartTimeInMinutes ) {
-    if (tempStartTimeUTCHours < 10) tempStartTimeUTCHours = '0' + tempStartTimeUTCHours;
+    if (tempStartTimeUTCHours < 10) tempStartTimeUTCHours = '0' + +tempStartTimeUTCHours;
     if ( tempStartTimeUTCMinutes == 0 ) {
       tempStartTimeUTCMinutes = '00'
     }
@@ -686,18 +687,33 @@ function rewriteLongParlayList () {
     var tempDateSTR       = {};
     tempDateSTR.yyyySTR   = '' +startTime.getUTCFullYear();
     tempDateSTR.mmNUM     = startTime.getUTCMonth() + 1;
-    if (tempDateSTR.mmNUM < 10) {tempDateSTR.mmSTR = '0' + newUTCTimeObj.mmNUM } else {tempDateSTR.mmSTR = '' + tempDateSTR.mmNUM};
+    if (tempDateSTR.mmNUM < 10) {tempDateSTR.mmSTR = '0' + tempDateSTR.mmNUM } else {tempDateSTR.mmSTR = '' + tempDateSTR.mmNUM};
     tempDateSTR.ddNUM     = startTime.getUTCDate();
     if (tempDateSTR.ddNUM < 10) {tempDateSTR.ddSTR = '0' + tempDateSTR.ddNUM } else {tempDateSTR.ddSTR = '' + tempDateSTR.ddNUM};
+    var tempDatehhNUM     = startTime.getUTCHours();
+    var tempDateminNUM    = startTime.getUTCMinutes();
 
     var weekday           = startTime.getDay();
 
     tempDateSTR           = tempDateSTR.yyyySTR + '-' + tempDateSTR.mmSTR + '-' + tempDateSTR.ddSTR;
 
-    // додаткова перевірка для акцій
+    // додаткова перевірка для акцій (по дню закінчення)
     if ( pairType == 1 ) {
       if ( weekday == 6 || weekday == 0 ) continue;
       if ( isFeastDayInUSA( tempDateSTR ) ) continue;
+    }
+pairType = 0;
+    // додаткова перевірка для валюти та товарів (по дню закінчення)
+    if ( pairType == 0 || pairType == 2 ) {
+
+      var tempTimeInMinutes = tempDatehhNUM * 60 + tempDateminNUM;
+
+      if ( weekday == 5 && tempTimeInMinutes >= 1285 ||
+           weekday == 6 ||
+           weekday == 0 && tempTimeInMinutes <= 1290 ) {
+        continue
+      }
+
     }
 
     $('.parlay-slider__item[data-parlayType="long"]').find('.parlay-slider__parlay-choise-btn-holder')
