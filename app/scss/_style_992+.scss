@@ -43,6 +43,7 @@
       left                       : 0;
       border-right               : none;
       border-bottom              : none;
+      background-color           : transparent;
       .wares-slider {
         &__item {
            height                 : calc(100vh - 60px);
@@ -59,6 +60,7 @@
       height                    : 100%;
       border-left               : none;
       border-bottom             : none;
+      background-color          : transparent;
       .work-field-wrapper {
         max-height              : calc(100vh - 240px);
       }
