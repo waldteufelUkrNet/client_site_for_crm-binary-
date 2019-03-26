@@ -702,7 +702,7 @@ function rewriteLongParlayList () {
       if ( weekday == 6 || weekday == 0 ) continue;
       if ( isFeastDayInUSA( tempDateSTR ) ) continue;
     }
-pairType = 0;
+
     // додаткова перевірка для валюти та товарів (по дню закінчення)
     if ( pairType == 0 || pairType == 2 ) {
 
