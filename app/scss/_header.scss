@@ -8,6 +8,7 @@
   align-items                  : center;
   padding                      : 0px 10px 2px;
   font-size                    : 12px;
+  background-color             : lightgrey;
   .logo_part {
     flex-grow                  : 1;
     display                    : flex;
@@ -40,9 +41,9 @@
       min-width                : 40px;
       height                   : 30px;
       cursor                   : pointer;
-      background-color         : rgb(20, 177, 224);
-      border                   : 1px solid rgba(255,255,255,.3);
-      border-radius            : 8px;
+      background-color         : red;
+      border                   : 1px solid red;
+      border-radius            : 4px;
       margin                   : 0 20px;
       display                  : flex;
       justify-content          : start;
@@ -91,14 +92,14 @@
     align-items                : center;
     .header-greeting {
       white-space              : nowrap;
-      color                    : rgb(17, 187, 238);
+      color                    : grey;
       display                  : none;
     }
     .header-titles {
       display                  : block;
       margin                   : 0 6px;
       width                    : 1px;
-      color                    : transparent;
+      color                    : grey;
     }
     .menu {
       position                 : absolute;
@@ -179,7 +180,7 @@
         display                  : block;
         margin                   : 0 6px;
         width                    : auto;
-        color                    : white;
+        color                    : grey;
       }
     }
   }

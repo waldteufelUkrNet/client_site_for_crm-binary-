@@ -255,7 +255,7 @@ function drawSmallChart(currentObj) {
   Highcharts.stockChart({
     chart                  : {
       renderTo             : 'smallContainer',
-      backgroundColor      : '#1d2a38',
+      backgroundColor      : 'white',
       spacingRight         : 10,
       events               : {
         load               :  function () {
@@ -330,7 +330,7 @@ function drawSmallChart(currentObj) {
       gridLineWidth        : 1,
       labels               : {
         style              : {
-          color            : 'white',
+          color            : 'black',
           fontSize         : '8px'
         }
       },
@@ -350,7 +350,7 @@ function drawSmallChart(currentObj) {
       gridLineWidth        : 1,
       labels               : {
         style              : {
-          color            : 'white',
+          color            : 'black',
           fontSize         : '8px'
         },
         align              : 'left',

@@ -278,11 +278,8 @@ table {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#06071f), color-stop(#112255), to(#114488));
-    background-image: -webkit-linear-gradient(#06071f, #112255, #114488);
-    background-image: -o-linear-gradient(#06071f, #112255, #114488);
-    background-image: linear-gradient(#06071f, #112255, #114488);
-    color: white;
+    background-color: transparent;
+    color: black;
     font-family: rcl;
     font-size: 12px;
   }
@@ -387,7 +384,7 @@ table {
     padding: 2px 2px;
     margin: 0 2px 3px 0;
     cursor: pointer;
-    background-color: transparent;
+    background-color: lightgrey;
     -webkit-transition: background-color .5s, border-color .5s;
     -o-transition: background-color .5s, border-color .5s;
     transition: background-color .5s, border-color .5s;
@@ -397,12 +394,14 @@ table {
             user-select: none;
   }
   .main .work_area .graphic-header .timer-buttons-ul .timer-buttons-li:hover {
-    background-color: #38c1d0;
-    border-color: #38c1d0;
+    background-color: grey;
+    border-color: grey;
+    color: white;
   }
   .main .work_area .graphic-header .timer-buttons-ul .timer-buttons-li_active {
-    background-color: #38c1d0;
-    border-color: #38c1d0;
+    background-color: grey;
+    border-color: grey;
+    color: white;
   }
   .main .work_area .graphic-header .type-buttons-ul {
     height: 30px;
@@ -433,7 +432,7 @@ table {
     -webkit-border-radius: 4px;
             border-radius: 4px;
     cursor: pointer;
-    background-color: transparent;
+    background-color: lightgrey;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -444,12 +443,14 @@ table {
     transition: background-color .5s, border-color .5s;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li:hover {
-    background-color: #38c1d0;
-    border-color: #38c1d0;
+    background-color: grey;
+    border-color: grey;
+    color: white;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li_active {
-    background-color: #38c1d0;
-    border-color: #38c1d0;
+    background-color: grey;
+    border-color: grey;
+    color: white;
   }
   .main .work_area .graphic-header .type-buttons-ul .type-buttons-li img {
     width: 24px;
@@ -487,23 +488,24 @@ table {
   .main .slider-area__slider .slick-arrow {
     width: 25px;
     height: 50px;
-    border: 1px solid white;
+    border: 1px solid grey;
     -webkit-border-radius: 4px;
             border-radius: 4px;
     font-family: fa;
     -webkit-transition: background-color .5s;
     -o-transition: background-color .5s;
     transition: background-color .5s;
+    background-color: lightgrey;
   }
   .main .slider-area__slider .slick-arrow:before {
     width: 100%;
     height: 100%;
     font-family: fa;
     font-size: 14px;
-    color: white;
+    color: black;
   }
   .main .slider-area__slider .slick-arrow:hover {
-    background-color: dodgerblue;
+    background-color: grey;
     -webkit-transition: background-color .5s;
     -o-transition: background-color .5s;
     transition: background-color .5s;
@@ -660,7 +662,7 @@ table {
     z-index: 2222;
     left: -200px;
     display: block;
-    background-color: #114488;
+    background-color: white;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     -webkit-transition: left .3s;
@@ -725,8 +727,8 @@ table {
     transition: background-color .5s, border-color .5s;
   }
   .main .left-column .wares-slider__table tr:hover {
-    background-color: #0CA1B5;
-    border-color: black;
+    background-color: lightgrey;
+    border-color: lightgrey;
   }
   .main .left-column .wares-slider__table tr td {
     padding: 4px;
@@ -744,7 +746,7 @@ table {
     max-height: 25px;
   }
   .main .left-column .wares-slider .slick-arrow {
-    border: 1px solid white;
+    border: 1px solid grey;
     z-index: 5000;
     width: 15px;
     height: 25px;
@@ -754,17 +756,17 @@ table {
     -webkit-transition: background-color .5s;
     -o-transition: background-color .5s;
     transition: background-color .5s;
-    background-color: transparent;
+    background-color: lightgrey;
   }
   .main .left-column .wares-slider .slick-arrow:before {
     width: 50%;
     height: 50%;
     font-family: fa;
     font-size: 14px;
-    color: white;
+    color: black;
   }
   .main .left-column .wares-slider .slick-arrow:hover {
-    background-color: #13b1e1;
+    background-color: grey;
     -webkit-transition: background-color .5s;
     -o-transition: background-color .5s;
     transition: background-color .5s;
@@ -798,7 +800,7 @@ table {
     z-index: 2222;
     right: -200px;
     display: block;
-    background-color: #114488;
+    background-color: white;
     height: -webkit-calc(100% - 170px);
     height: calc(100% - 170px);
     border-left: 1px solid black;
@@ -837,6 +839,7 @@ table {
     display: block;
     padding: 6px 0;
     letter-spacing: 2px;
+    color: black;
   }
   .main .right-column .work-field .investment-calculator {
     overflow: hidden;
@@ -854,11 +857,13 @@ table {
   }
   .main .right-column .work-field .investment-calculator input, .main .right-column .work-field .investment-calculator span {
     background-color: transparent;
-    border: 1px solid transparent;
+    border: 1px solid lightgrey;
+    -webkit-border-radius: 4px;
+            border-radius: 4px;
     height: 22px;
-    line-height: 22px;
-    padding: 0 12px;
-    color: white;
+    line-height: 20px;
+    padding: 0 6px;
+    color: black;
     font-family: rcl;
     font-size: 12px;
     outline: none;
@@ -902,16 +907,16 @@ table {
             border-radius: 4px;
     text-align: center;
     margin: 6px 0;
-    color: #13b1e1;
+    color: grey;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
-    border: 1px solid #13b1e1;
+    border: 1px solid grey;
     line-height: 16px;
   }
   .main .right-column #UTC-datetimer-holder #UTC-datetimer {
-    color: white;
+    color: grey;
   }
   .main .right-column .parlay-slider-wrapper {
     position: relative;
@@ -943,7 +948,7 @@ table {
     margin: 0 auto;
     height: 30px;
     line-height: 28px;
-    background-color: #13b1e1;
+    background-color: transparent;
     border: 1px solid white;
     -webkit-border-radius: 4px;
             border-radius: 4px;
@@ -983,7 +988,7 @@ table {
   .main .right-column .parlay-slider .slick-arrow {
     width: 20px;
     height: 30px;
-    border: 1px solid white;
+    border: 1px solid grey;
     -webkit-border-radius: 4px;
             border-radius: 4px;
     font-family: fa;
@@ -991,17 +996,17 @@ table {
     -o-transition: background-color .5s;
     transition: background-color .5s;
     z-index: 11;
-    background-color: transparent;
+    background-color: lightgrey;
   }
   .main .right-column .parlay-slider .slick-arrow:before {
     width: 100%;
     height: 100%;
     font-family: fa;
     font-size: 14px;
-    color: white;
+    color: black;
   }
   .main .right-column .parlay-slider .slick-arrow:hover {
-    background-color: #13b1e1;
+    background-color: grey;
     -webkit-transition: background-color .5s;
     -o-transition: background-color .5s;
     transition: background-color .5s;
@@ -1032,14 +1037,14 @@ table {
             justify-content: space-between;
   }
   .main .right-column .parlay-btns__btn {
-    border: 1px solid white;
+    border: 1px solid transparent;
     width: 45%;
     height: 30px;
     line-height: 27px;
     position: relative;
     z-index: 1;
-    -webkit-border-radius: 4px;
-            border-radius: 4px;
+    -webkit-border-radius: 6px;
+            border-radius: 6px;
     text-align: center;
     letter-spacing: 2px;
     cursor: pointer;
@@ -1047,6 +1052,7 @@ table {
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+    color: white;
   }
   .main .right-column .parlay-btns__btn:before {
     content: '';
@@ -1072,31 +1078,19 @@ table {
     top: 9px;
   }
   .main .right-column .parlay-btns__btn_up {
-    background: -webkit-gradient(linear, left top, left bottom, from(teal), to(steelblue));
-    background: -webkit-linear-gradient(teal, steelblue);
-    background: -o-linear-gradient(teal, steelblue);
-    background: linear-gradient(teal, steelblue);
+    background: #23cd45;
   }
   .main .right-column .parlay-btns__btn_up:before {
-    background: -webkit-gradient(linear, left top, left bottom, from(cornflowerblue), to(darkblue));
-    background: -webkit-linear-gradient(cornflowerblue, darkblue);
-    background: -o-linear-gradient(cornflowerblue, darkblue);
-    background: linear-gradient(cornflowerblue, darkblue);
+    background: #23cd45;
   }
   .main .right-column .parlay-btns__btn_up svg {
     right: 10px;
   }
   .main .right-column .parlay-btns__btn_down {
-    background: -webkit-gradient(linear, left top, left bottom, from(tomato), to(orange));
-    background: -webkit-linear-gradient(tomato, orange);
-    background: -o-linear-gradient(tomato, orange);
-    background: linear-gradient(tomato, orange);
+    background: red;
   }
   .main .right-column .parlay-btns__btn_down:before {
-    background: -webkit-gradient(linear, left top, left bottom, from(orange), to(red));
-    background: -webkit-linear-gradient(orange, red);
-    background: -o-linear-gradient(orange, red);
-    background: linear-gradient(orange, red);
+    background: red;
   }
   .main .right-column .parlay-btns__btn_down svg {
     left: 10px;
@@ -1156,8 +1150,8 @@ table {
   .main .right-column .slider-change-btn-holder .slider-change-btn {
     height: 36px;
     line-height: 32px;
-    background-color: #0fbfbc;
-    border: 2px solid #0b6f8d;
+    background-color: grey;
+    border: 1px solid grey;
     -webkit-border-radius: 4px;
             border-radius: 4px;
     text-align: center;
@@ -1172,11 +1166,11 @@ table {
   }
   .main .right-column .slider-change-btn-holder .slider-change-btn:hover {
     background-color: transparent;
-    border-color: #0b6f8d;
+    border-color: grey;
   }
   .main .right-column .slider-change-btn-holder .slider-change-btn_active {
     background-color: transparent;
-    border-color: #0b6f8d;
+    border-color: grey;
   }
   /* ↓↓↓ FOOTER ↓↓↓ */
   /* ↑↑↑ /FOOTER ↑↑↑ */
@@ -1564,6 +1558,7 @@ table {
           align-items: center;
   padding: 0px 10px 2px;
   font-size: 12px;
+  background-color: lightgrey;
 }
 
 .header .logo_part {
@@ -1626,10 +1621,10 @@ table {
   min-width: 40px;
   height: 30px;
   cursor: pointer;
-  background-color: #14b1e0;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  -webkit-border-radius: 8px;
-          border-radius: 8px;
+  background-color: red;
+  border: 1px solid red;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
   margin: 0 20px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1709,7 +1704,7 @@ table {
 
 .header .right-part .header-greeting {
   white-space: nowrap;
-  color: #11bbee;
+  color: grey;
   display: none;
 }
 
@@ -1717,7 +1712,7 @@ table {
   display: block;
   margin: 0 6px;
   width: 1px;
-  color: transparent;
+  color: grey;
 }
 
 .header .right-part .menu {
@@ -1800,7 +1795,7 @@ table {
     display: block;
     margin: 0 6px;
     width: auto;
-    color: white;
+    color: grey;
   }
 }
 
@@ -1876,7 +1871,7 @@ table {
       -ms-flex-pack: start;
           justify-content: start;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: white;
   border: 1px solid white;
   -webkit-border-radius: 4px;
           border-radius: 4px;

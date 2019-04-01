@@ -16,8 +16,8 @@ var pointStart,                                         // перша точка
     labelValue1        = labelValue2 = YPlotLinesValue, // змінні для визначення тенденції в котировках (потрібні для зафарбовування рамки поточного значення)
     labelBorderColor   = 'white',                       // колір рамки поточного значення
     chart,                                              // об'єкт Highcharts робимо доступним глобально для усіх функцій
-    graphicColor      = 'rgb(0, 187, 187)',
-    plotlineColor     = 'rgb(255, 0, 51)';
+    graphicColor      = 'dodgerblue',
+    plotlineColor     = 'red';
 
 getDataArr();
 
@@ -276,7 +276,7 @@ function drawChart() {
       gridLineColor        : 'rgba(111, 111, 115, 0.3)',
       gridLineWidth        : 1,
       labels               : {
-        style              : { color: 'white' } //'#E0E0E3' }
+        style              : { color: 'black' } //'#E0E0E3' }
       },
       dateTimeLabelFormats : { hour : '%H:%M' },
       tickColor            : 'rgba(111, 111, 115, 0.2)',
@@ -293,7 +293,7 @@ function drawChart() {
       gridLineColor        : 'rgba(111, 111, 115, 0.3)',
       gridLineWidth        : 1,
       labels               : {
-        style              : { color: '#E0E0E3' },
+        style              : { color: 'black' },
         align              : 'left',
         x                  : 8,
         y                  : 4

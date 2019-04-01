@@ -50,3 +50,8 @@ parlays
   $('.parlay-slider').on('swipe', function(){  });
 - замість кнопки "оновити" - setInterval
 + на норм ставках не прокручується на усі ставки в низ (є мертва зона) на певних розширеннях
+
+інтернаціоналізація в графіку:
+https://www.highcharts.com/docs/advanced-chart-features/internationalization
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/members/highcharts-numberformat/
+https://stackoverflow.com/questions/7419358/highcharts-datetime-localization
