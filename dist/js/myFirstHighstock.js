@@ -16,8 +16,8 @@ var pointStart,                                         // перша точка
     labelValue1        = labelValue2 = YPlotLinesValue, // змінні для визначення тенденції в котировках (потрібні для зафарбовування рамки поточного значення)
     labelBorderColor   = 'white',                       // колір рамки поточного значення
     chart,                                              // об'єкт Highcharts робимо доступним глобально для усіх функцій
-    graphicColor      = 'rgb(0, 187, 187)',
-    plotlineColor     = 'rgb(255, 0, 51)';
+    graphicColor      = 'dodgerblue',
+    plotlineColor     = 'red';
 
 getDataArr();
 
@@ -276,7 +276,7 @@ function drawChart() {
       gridLineColor        : 'rgba(111, 111, 115, 0.3)',
       gridLineWidth        : 1,
       labels               : {
-        style              : { color: 'white' } //'#E0E0E3' }
+        style              : { color: 'black' } //'#E0E0E3' }
       },
       dateTimeLabelFormats : { hour : '%H:%M' },
       tickColor            : 'rgba(111, 111, 115, 0.2)',
@@ -293,7 +293,7 @@ function drawChart() {
       gridLineColor        : 'rgba(111, 111, 115, 0.3)',
       gridLineWidth        : 1,
       labels               : {
-        style              : { color: '#E0E0E3' },
+        style              : { color: 'black' },
         align              : 'left',
         x                  : 8,
         y                  : 4
@@ -317,7 +317,7 @@ function drawChart() {
                                    'low: ', p.point.low, '<br>',
                                    'close: ', p.point.close, '<br>');
                         } else {
-                            s.push(stringSymbol, ': ', p.y);
+                          s.push(stringSymbol, ': ', p.y);
                         }
                     });
 
@@ -484,80 +484,29 @@ function getCoords(elem) {
 }
 // ↑↑↑ functions declarations ↑↑↑
 
-// ↓↓↓ BEM-blocks: tug-of-war (start) ↓↓↓
-// function tugOfWarAnimation() {
-//   // функція циклом визначає найбільшу і найменшу точки графіку, приймає їх за 100% та 0% відповідно,
-//   // потім бере першу і останню точки, переводить їх у проценти, знаходить їх різницю і ділить на два,
-//   // отримане значення або додає, або віднімає від 50% у залежності від тенденції.
+// ↓↓↓ відмова від інтернаціоналізації в графіках (недоречна через часте використання клієнтами vpn) ↓↓↓
+Highcharts.setOptions({
+            lang: {
+              loading: 'loading...',
+              months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+              weekdays: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+              thousandsSep: " ",
+              decimalPoint: '.'
+            }
+    });
 
-//   var firstTOWPoint,
-//       lastTOWPoint,
-//       minTOWPoint,
-//       maxTOWPoint,
-//       firstTOWPointInPercent,
-//       lastTOWPointInPercent,
-//       shiftTOW;
+var converters = {
+  en: function (number) {
+    return number.toString().replace(/\d/g, function (d) {
+      return String.fromCharCode(d.charCodeAt());
+    });
+  }
+};
 
-//   $('#bull1').css({'display':'none'});
-//   $('#bull2').css({'display':'block'});
-//   $('#bear1').css({'display':'none'});
-//   $('#bear2').css({'display':'block'});
-
-//   if (dataType == 'areaspline') {
-//     minTOWPoint = maxTOWPoint = firstTOWPoint = resultArr[0][1];
-//     lastTOWPoint  = resultArr[resultArr.length-2][1];
-
-//     for(var i = 0; i < resultArr.length-1; i++) {
-//       if(resultArr[i][1] > maxTOWPoint) {
-//         maxTOWPoint = resultArr[i][1];
-//       }
-//       if(resultArr[i][1] < minTOWPoint) {
-//         minTOWPoint = resultArr[i][1];
-//       }
-//     }
-
-//   }
-//   if (dataType == 'candlestick' || dataType == 'ohlc') {
-//     minTOWPoint = maxTOWPoint = firstTOWPoint = resultArr[0][1];
-//     lastTOWPoint  = resultArr[resultArr.length-2][4];
-
-//     for(var i = 0; i < resultArr.length-1; i++) {
-//       if(resultArr[i][4] > maxTOWPoint) {
-//         maxTOWPoint = resultArr[i][4];
-//       }
-//       if(resultArr[i][4] < minTOWPoint) {
-//         minTOWPoint = resultArr[i][4];
-//       }
-//     }
-//   }
-
-//   firstTOWPointInPercent = (firstTOWPoint * 100) / (maxTOWPoint - minTOWPoint);
-//   lastTOWPointInPercent  = (lastTOWPoint * 100) / (maxTOWPoint - minTOWPoint);
-
-//   if (firstTOWPointInPercent < lastTOWPointInPercent) {
-//     shiftTOW = 50 + (lastTOWPointInPercent - firstTOWPointInPercent) / 2;
-//   } else if (firstTOWPointInPercent > lastTOWPointInPercent) {
-//     shiftTOW = 50 - ((firstTOWPointInPercent - lastTOWPointInPercent) / 2);
-//   } else {
-//     shiftTOW = 50;
-//   }
-
-//   if (shiftTOW > 80) {
-//     $('#bull1,#bear2').css({'display':'block'});
-//     $('#bull2,#bear1').css({'display':'none'});
-//   } else if (shiftTOW < 20) {
-//     $('#bull1,#bear2').css({'display':'none'});
-//     $('#bull2,#bear1').css({'display':'block'});
-//   } else {
-//     $('#bull1,#bear1').css({'display':'none'});
-//     $('#bull2,#bear2').css({'display':'block'});
-//   }
-
-//   shiftTOW += '%';
-
-//   $('.tug-of-war__indicator').css({'left':shiftTOW});
-//   $('.tug-of-war__lightbulb').css({'left':shiftTOW});
-// }
-// ↑↑↑ BEM-blocks: tug-of-war (end) ↑↑↑
-
+Highcharts.wrap(Highcharts, 'numberFormat', function (proceed) {
+    var ret = proceed.apply(0, [].slice.call(arguments, 1));
+    return converters.en(ret);
+});
+// ↑↑↑ відмова від інтернаціоналізації в графіках (недоречна через часте використання клієнтами vpn) ↑↑↑
 // made by waldteufel@ukr.net

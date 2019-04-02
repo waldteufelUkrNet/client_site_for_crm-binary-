@@ -161,7 +161,6 @@ var dateString;
                 newUTCTimeObj.yyyy_mm_dd = newUTCTimeObj.yyyySTR + '-' + newUTCTimeObj.mmSTR + '-' + newUTCTimeObj.ddSTR;
 
                 dateString = data;
-                dateString = "2022-03-22T08:40:31Z";
                 timer ()
               },
     error   : function() {
