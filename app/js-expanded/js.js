@@ -161,6 +161,7 @@ var dateString;
                 newUTCTimeObj.yyyy_mm_dd = newUTCTimeObj.yyyySTR + '-' + newUTCTimeObj.mmSTR + '-' + newUTCTimeObj.ddSTR;
 
                 dateString = data;
+// dateString = '2019-05-13T16:32:00Z';
                 timer ()
               },
     error   : function() {
@@ -187,6 +188,7 @@ var dateString;
                 newUTCTimeObj.yyyy_mm_dd = newUTCTimeObj.yyyySTR + '-' + newUTCTimeObj.mmSTR + '-' + newUTCTimeObj.ddSTR;
 
                 dateString = newUTCTimeObj.yyyySTR + '-' + newUTCTimeObj.mmSTR + '-' + newUTCTimeObj.ddSTR +'T' + newUTCTimeObj.hhSTR + ':' + newUTCTimeObj.minSTR + ':' + newUTCTimeObj.ssSTR + 'Z';
+// dateString = '2019-05-13T16:32:00Z';
                 timer ()
               }
   });
@@ -208,8 +210,10 @@ function timer () {
     newUTCTimeObj.ddNUM      = currentDate.getUTCDate();
     if (newUTCTimeObj.ddNUM < 10) {newUTCTimeObj.ddSTR = '0' + newUTCTimeObj.ddNUM } else {newUTCTimeObj.ddSTR = '' + newUTCTimeObj.ddNUM};
     newUTCTimeObj.hhNUM      = currentDate.getUTCHours();
+    // console.log("newUTCTimeObj.hhNUM", newUTCTimeObj.hhNUM);
     if (newUTCTimeObj.hhNUM < 10) {newUTCTimeObj.hhSTR = '0' + newUTCTimeObj.hhNUM } else {newUTCTimeObj.hhSTR = '' + newUTCTimeObj.hhNUM};
     newUTCTimeObj.minNUM     = currentDate.getUTCMinutes();
+    // console.log("newUTCTimeObj.minNUM", newUTCTimeObj.minNUM);
     if (newUTCTimeObj.minNUM < 10) {newUTCTimeObj.minSTR = '0' + newUTCTimeObj.minNUM } else {newUTCTimeObj.minSTR = '' + newUTCTimeObj.minNUM};
     newUTCTimeObj.ssNUM      = currentDate.getUTCSeconds();
     if (newUTCTimeObj.ssNUM < 10) {newUTCTimeObj.ssSTR = '0' + newUTCTimeObj.ssNUM } else {newUTCTimeObj.ssSTR = '' + newUTCTimeObj.ssNUM};
@@ -420,7 +424,7 @@ function deActivationParlayBtns () {
     $('.parlay-btns__cover').css('display', 'flex');
   }
 }
-function rewriteParlayLists () {
+async function rewriteParlayLists () {
 // призупиняє setInterval, який викликає цю функцію
 // визначає, чи біржа активна
 // breakInTrade = $('#currentStockPairId').attr('data-break'); // 0 - біржа активна, 1 - перерва у вибраної пари
@@ -430,6 +434,12 @@ function rewriteParlayLists () {
 // parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType');
 // перевіряє на вихідні і не робочі дні та години, якщо робочі - будує список
 // запускає setInterval
+  var tempTimeInMinutes = newUTCTimeObj.hhNUM * 60 + newUTCTimeObj.minNUM;
+
+  if ( !tempTimeInMinutes ) {
+    await sleep(2000);
+    var tempTimeInMinutes = newUTCTimeObj.hhNUM * 60 + newUTCTimeObj.minNUM;
+  }
 
   // зупинка інтервалу
   clearInterval(timerForListBuilding);
@@ -444,6 +454,7 @@ function rewriteParlayLists () {
     showInfoMessage('exchangeDontWork');
   } else if ( breakInTrade == 0 ) {
     pairType   = $('#currentStockPairId').attr('data-typestock');
+
     parlayType = $( $('.parlay-slider').find('.slick-current')[0] ).attr('data-parlayType') || 'short';
 
     if ( pairType == 0 ) {
@@ -489,7 +500,8 @@ function rewriteParlayLists () {
       // 13:30 = 13 * 60 + 30 = 810;
       // 20:00 = 20 * 60 = 1200;
       var tempTimeInMinutes = newUTCTimeObj.hhNUM * 60 + newUTCTimeObj.minNUM;
-      if ( tempTimeInMinutes < 810 || tempTimeInMinutes > 1195 ) { // -5хв - для запасу на короткі ставки
+
+      if ( tempTimeInMinutes < 810 || tempTimeInMinutes > 1195 || !tempTimeInMinutes ) { // -5хв - для запасу на короткі ставки
         showInfoMessage('ActionsExchangeDontWork');
         // відновлення інтервалу
         timerForListBuilding = setInterval(function(){ rewriteParlayLists() }, timeForListBuildingTimer);
@@ -835,6 +847,10 @@ function getChar (event) {
     return String.fromCharCode(event.which); // остальные
   }
   return null; // спец. символ
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 /* ↑↑↑ /FUNCTIONS DECLARATIONS ↑↑↑ */
 // made by waldteufel@ukr.net
