@@ -93,7 +93,10 @@
     //height               : 0px;
     flex-wrap            : wrap;
     .make-lodgement__currency {
-      width              : calc(100% - 100px);
+      width              : 100%;
+      display            : flex;
+      justify-content    : space-between;
+      align-items        : center;
       input {
         height           : 30px;
         width            : 60%;
