@@ -11,6 +11,8 @@ var parlayType,                                    // short/normal/long
     timeForListBuildingTimer = 30000,              // період оновлення списків
     flag;                                          // визначає, чи був клік на пару
 
+var parlayTime1;
+
 var dictionary = {
   ActionsExchangeDontWork : [
                               'Торги невозможны, на данный момент биржа закрыта. Акционная биржа работает с 13:30 до 20:00 по UTC с понедельника по пятницу с учетом государственных праздников США.',
@@ -298,7 +300,8 @@ $('.parlay-btns__btn').click(function () {
       var parlayTimeAsString = $(highlightingEl).text();                                                         // час закриття у формі рядка
       // short/long
       if ( $(highlightingEl).attr('data-timeToEndInMS') ) {
-        parlayTime = +$(highlightingEl).attr('data-timeToEndInMS');                                              // час до закриття ставки у мілісекундах
+        parlayTime = +$(highlightingEl).attr('data-timeToEndInMS');
+        parlayTime1 = parlayTime;                                             // час до закриття ставки у мілісекундах
         // normal
       } else if ( $(highlightingEl).attr('data-timeToEnd') ) {
 
@@ -323,7 +326,8 @@ $('.parlay-btns__btn').click(function () {
 
         var tempStartTimeInMinutes  = newUTCTimeObj.hhNUM * 60 + newUTCTimeObj.minNUM;
         var tempFinishTimeInMinutes = (+parlayTime.slice(11,13)) * 60 + +parlayTime.slice(14,16);
-        parlayTime = (tempFinishTimeInMinutes - tempStartTimeInMinutes) * 60 * 1000
+        parlayTime = (tempFinishTimeInMinutes - tempStartTimeInMinutes) * 60 * 1000;
+        parlayTime1 = parlayTime; 
         console.log("parlayTime", parlayTime);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       }
@@ -379,7 +383,7 @@ $('.parlay-btns__btn').click(function () {
 
     var dat = {
       idStock    : parlayPairId,
-      timeOrder  : parlayTime,
+      timeOrder  : parlayTime1,
       typeOrder  : parlayAnticipationForBackEnd,
       invest     : parlayInvestment,
       classOrder : parlayTypeForBackEnd
@@ -731,7 +735,7 @@ function rewriteLongParlayList () {
                                                      .append('<div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="'
                                                               + timeToEndInMS + '">'
                                                               + tempDateSTR + '</div>');
-    timeToEndInMS += timeToEndInMS;
+    timeToEndInMS += 86400000;
   }
 
   // навішування hover-ефекту

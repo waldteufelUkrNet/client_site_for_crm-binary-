@@ -735,7 +735,7 @@ function rewriteLongParlayList () {
                                                      .append('<div class="parlay-slider__parlay-choise-btn" onclick="clickOnParlayTimeButtons(this)" data-timeToEndInMS="'
                                                               + timeToEndInMS + '">'
                                                               + tempDateSTR + '</div>');
-    timeToEndInMS += timeToEndInMS;
+    timeToEndInMS += 86400000;
   }
 
   // навішування hover-ефекту
